@@ -2,7 +2,12 @@ import React from 'react';
 
 function App() {
   return (
-    <div>Hello World</div>
+    <div>
+      <h1>Ben Component</h1>
+      <h1>Kurt Component</h1>
+      <h1>Khurram Component</h1>
+      <h1>Jon Component</h1>
+    </div>
   );
 }
 
