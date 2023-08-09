@@ -1,1 +1,0 @@
-// this should render the app component
