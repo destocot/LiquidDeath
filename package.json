@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-client": "webpack serve --port 3000",
+    "start-client": "npx webpack --watch",
     "build": "NODE_ENV=production webpack",
-    "start-serv":"nodemon server.js"
+    "start-serv": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/LiquidDeath2023/front-end-capstone#readme",
   "dependencies": {
+    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
     "axios": "^1.4.0",
+    "babel-loader": "^9.1.3",
     "dotenv": "^16.3.1",
     "eslint-config-airbnb": "^19.0.4",
     "express": "^4.18.2",
