@@ -16,6 +16,10 @@ const root = ReactDOM.createRoot(document.getElementById('root')!);
 // renders our App parent component on our root
 root.render(<App />);
 
+// this is kurt's test comment
+// this is jon's much better test comment
+
+
 // only changes to tsconfig were deleting the properties mentioned above. Minor changes to webpackconfig as well - deleted the
 // HTML plugin (made index.html in dist reset every build), changed entry point and output point to correct file names and locations.
 // Brief breakdown of how our webpack config works is in that file.
