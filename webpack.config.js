@@ -27,28 +27,3 @@ module.exports = {
   mode: 'development',
   watch: true,
 };
-
-/*
-{
-  entry: path.join(__dirname, '/client/src/index.jsx'),
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx'],
-  },
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, './client/dist'),
-  },
-  plugins: [new HtmlWebpackPlugin()],
-  mode: 'development',
-  watch: true,
-};
-*/
