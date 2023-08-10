@@ -4,7 +4,6 @@ import QuestionsAndAnswers from './components/QuestionsAndAnswers';
 import Overview from './components/Overview';
 import ReviewsRatings from './components/Reviews-Ratings/ReviewsRatings';
 
-// nothing special here
 function App() {
   return (
     <div>
