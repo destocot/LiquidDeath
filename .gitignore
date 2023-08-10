@@ -1,2 +1,4 @@
 node_modules
 exampleData
+.eslintrc.json
+.prettierrc.json
