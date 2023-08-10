@@ -22,6 +22,13 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         loader: 'ts-loader',
       },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
     ],
   },
   // resolves (compiles) extensions in the order in the array
