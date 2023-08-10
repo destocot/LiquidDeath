@@ -1,4 +1,5 @@
 import React from 'react';
+import QuestionsAndAnswers from './components/QuestionsAndAnswers';
 
 // nothing special here
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div>
       <h1>Ben Component</h1>
       <h1>Kurt Component</h1>
-      <h1>Khurram Component</h1>
+      <QuestionsAndAnswers />
       <h1>Jon Component</h1>
     </div>
   );
