@@ -2,6 +2,7 @@ import React from 'react';
 import './QuestionsAndAnswers.css';
 import Search from './Questions-Answers/Search';
 import QandA from './Questions-Answers/QandA';
+import ExpandAndAdd from './Questions-Answers/ExpandAndAdd';
 
 function QuestionsAndAnswers() {
   return (
@@ -9,7 +10,7 @@ function QuestionsAndAnswers() {
       <div>QUESTIONS & ANSWERS</div>
       <Search />
       <QandA />
-      <div>EXPAND QUESTIONS / ADD QUESTIONS COMPONENT</div>
+      <ExpandAndAdd />
     </div>
   );
 }
