@@ -3,3 +3,4 @@ exampleData
 bundle.js
 .eslintrc.json
 .prettierrc.json
+client/dist
