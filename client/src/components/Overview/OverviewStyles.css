@@ -1,6 +1,8 @@
 .overview-container {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: rgba(61, 171, 239, 0.2);
   position:relative;
+  justify-content: start;
 }
 
 .image-gallery-container {
@@ -9,6 +11,7 @@
   left:0;
   height: 50vh;
   width: 60vw;
+  margin-top: 1%;
 }
 
 .default-image-container {
@@ -28,9 +31,8 @@ img.default-image {
 .product-info-container {
   display: inline-block;
   position: absolute;
-  right:0;
-  height: 50vh;
-  width: 38vw;
+  margin-left: 2%;
+  margin-top: 3%;
 }
 
 html {
@@ -104,10 +106,21 @@ html {
   overflow: hidden;
 }
 
+.price {
+
+}
+
+.original-price {
+  text-decoration: line-through;
+  font-style: italic;
+  color:#E60023;
+  margin-right: 2%;
+}
+
 .media {
   display: flex;
   justify-content: space-evenly;
-  width: 18vw;
+  width: 100%;
   margin:auto;
 }
 
