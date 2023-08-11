@@ -103,6 +103,7 @@
 
 #breakdownLabel {
   margin-right: 10px;
+  cursor: pointer;
 }
 
 #breakdownBar {

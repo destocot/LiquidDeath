@@ -5,11 +5,17 @@ import { getReviewsMeta } from './exampleData.js'; // putting this here to until
 
 function BreakdownComp({filters, updateFilters}) {
   // data comes from getReviewsMeta
-  // console.log({filters});
+  console.log({ filters });
   const filterByRatings = (key) => {
+    key = Number(key);
     let prevFilters = filters.ratings;
-    prevFilters.push(Number(key));
-    // console.log(key);
+    let indexOfKey = prevFilters.indexOf(key);
+
+    if (indexOfKey === -1) {
+      prevFilters.push(key);
+    } else {
+      prevFilters.splice(indexOfKey, 1);
+    }
     updateFilters({ ratings: prevFilters});
   };
 
