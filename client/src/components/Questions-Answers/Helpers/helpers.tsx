@@ -21,4 +21,11 @@ const collapse = (setter, reset) => {
   return true;
 };
 
-export default { compare, expand, collapse };
+const search = (questionsDatabase, query) => {
+  return questionsDatabase
+    .filter(question => {
+      return question.question_body.includes(query)
+    });
+};
+
+export default { compare, expand, collapse, search };

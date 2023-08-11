@@ -20,8 +20,8 @@ function Answer({ answer }) {
 
   return (
     <div className="answer-container">
-      <div>{`A: ${body}`}</div>
-      <div>
+      <div className="answer-body">{`A: ${body}`}</div>
+      <div className="answer-info">
         {`by ${answerer_name}, ${date} | Helpful? `}
         <button type="button" id="answer-yes" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
         {` (${helpfulness[0]}) | `}

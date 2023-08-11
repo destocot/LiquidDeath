@@ -44,9 +44,9 @@ function Question({ question }) {
   const expandOrCollapseButtons = () => {
     if (numOfAnswers[1] > 2) {
       if (more) {
-        return <button type="button" onClick={expandOrCollapse}>LOAD MORE ANSWERS</button>;
+        return <button className="expand-answers-btn" type="button" onClick={expandOrCollapse}>LOAD MORE ANSWERS</button>;
       }
-      return <button type="button" onClick={expandOrCollapse}>COLLAPSE ANSWERS</button>;
+      return <button className="expand-answers-btn" type="button" onClick={expandOrCollapse}>COLLAPSE ANSWERS</button>;
     }
   };
 

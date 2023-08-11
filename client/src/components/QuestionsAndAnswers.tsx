@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './QuestionsAndAnswers.css';
+import Search from './Questions-Answers/Search';
 import ExpandAndAdd from './Questions-Answers/ExpandAndAdd';
 import QuestionList from './Questions-Answers/QuestionList';
+import utils from './Questions-Answers/Helpers/helpers';
 
 function QuestionsAndAnswers() {
   const [questionsDatabase, setQuestionsDatabase] = useState([]);
@@ -32,11 +34,19 @@ function QuestionsAndAnswers() {
     setQuestions(questionsDatabase.slice(0, numOfQuestions[0]));
   }, [numOfQuestions]);
 
+  // currently filtering from local database
+  const filterQuestions = (query) => {
+    if (query.length >= 3) {
+      setQuestions(utils.search(questionsDatabase, query));
+    } else {
+      setNumOfQuestions([4, questionsDatabase.length]);
+    }
+  };
+
   return (
     <div className="qa-main-container">
-      <div>QUESTIONS & ANSWERS</div>
-      <div>SEARCH COMPONENT HIDDEN</div>
-      {/* <Search filterQs={filterQs} /> */}
+      <h2>QUESTIONS & ANSWERS</h2>
+      <Search filterQuestions={filterQuestions} />
       <QuestionList questions={questions} />
       <ExpandAndAdd
         numOfQuestions={numOfQuestions}
