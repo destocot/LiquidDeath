@@ -20,9 +20,9 @@ function ExpandAndAdd({ numOfQuestions, setNumOfQuestions }) {
   const expandOrCollapseButtons = () => {
     if (numOfQuestions[1] > 4) {
       if (more) {
-        return <button type="button" onClick={expandOrCollapse}>MORE ANSWERED QUESTIONS</button>;
+        return <button className="expand-questions-btn" type="button" onClick={expandOrCollapse}>MORE ANSWERED QUESTIONS</button>;
       }
-      return <button type="button" onClick={expandOrCollapse}>COLLAPSE QUESTIONS</button>;
+      return <button className="expand-questions-btn" type="button" onClick={expandOrCollapse}>COLLAPSE QUESTIONS</button>;
     }
   };
 
@@ -31,7 +31,10 @@ function ExpandAndAdd({ numOfQuestions, setNumOfQuestions }) {
       {
         expandOrCollapseButtons()
       }
-      <button type="button" onClick={() => addQuestionModule()}>ADD A QUESTION +</button>
+      <button className="expand-questions-btn" type="button" onClick={() => addQuestionModule()}>
+        {'ADD A QUESTION '}
+        <i className="fa-solid fa-plus" />
+      </button>
     </div>
   );
 }

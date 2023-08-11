@@ -8,6 +8,9 @@ function QuestionList({ questions }) {
         // remove index later
         questions.map((question, index) => (<Question question={question} key={index} />))
       }
+      {
+        !questions.length && <span>no results found</span>
+      }
     </div>
   );
 }
