@@ -40,14 +40,12 @@ function BreakdownComp({filters, updateFilters}) {
     let sum = sumHelper(Object.values(result));
 
     // map jsx
-    return Object.keys(result).map((key) => {
-      return (
-        <div className="breakdownRating">
+    return Object.keys(result).map((key) => (
+      <div className="breakdownRating">
         <div id="breakdownLabel" onClick={() => filterByRatings(key)}>{key} stars</div>
-        <progress id="breakdownBar" max="1" value={result[key]/sum}>a bar</progress>
+        <progress id="breakdownBar" max="1" value={result[key] / sum}>a bar</progress>
       </div>
-      )
-    })
+    ));
   };
 
   const calcAvgRating = (ratingsObj) => {
@@ -66,12 +64,17 @@ function BreakdownComp({filters, updateFilters}) {
     }
   };
 
+  const resetFilters = () => {
+    updateFilters({ ratings: [] });
+  };
+
   const filtersApplied = () => {
     const ratingsDivs = filters.ratings.map((filter) => <div>{filter + ' stars'}</div>);
     return (
       <div>
         Filters Applied:
         <div>{ratingsDivs}</div>
+        <button onClick={resetFilters} type="button">Reset Filters</button>
       </div>
     );
   };

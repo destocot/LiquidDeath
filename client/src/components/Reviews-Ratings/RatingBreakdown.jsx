@@ -27,7 +27,6 @@ function RatingBreakdown({filters, updateFilters}) {
       <h2>Rating Breakdown</h2>
       <div>{calcAvgRating(getReviewsMeta.ratings)} ⭐⭐⭐⭐</div>
       <BreakdownComp filters={filters} updateFilters={updateFilters} />
-      <div>Filters Applied</div>
       <div>Reset Filters</div>
       <div>Product Breakdown</div>
     </div>
