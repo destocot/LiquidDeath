@@ -8,7 +8,6 @@ function StarsAndReviews({reviews}) {
       total += review.rating;
     });
     const average = total / reviews.results.length;
-    console.log(average);
     return average;
   }
   // creates stars
