@@ -11,7 +11,7 @@ function Overview() {
   let reviews = productReviews.results;
   return (
     <div className="overview-container">
-      <ImageGallery styles={productStyles.results} />
+      <ImageGallery styles={styles} />
       <ProductInfo product={product} styles={styles} reviews={reviews} />
       <StyleSelector />
       <AddCart />
