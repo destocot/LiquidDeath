@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './QuestionsAndAnswers.css';
-import Search from './Questions-Answers/Search';
+// import Search from './Questions-Answers/Search';
 import QandA from './Questions-Answers/QandA';
-import ExpandAndAdd from './Questions-Answers/ExpandAndAdd';
-import myData from './Questions-Answers/fakeData';
+// import ExpandAndAdd from './Questions-Answers/ExpandAndAdd';
+import myData from './Questions-Answers/Helpers/fakeData';
 
 function QuestionsAndAnswers() {
   const [fakeData, setFakeData] = useState(myData.fakeData);
