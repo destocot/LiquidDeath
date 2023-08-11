@@ -4,21 +4,32 @@
 
 .star-container {
   display: flex;
+  justify-content: space-evenly;
+  width: 12vw;
+  height: 1.5vh;
+}
+
+.stars {
+  display: flex;
   justify-content: space-between;
+}
+
+.empty-stars {
+  display: flex;
+  justify-content: space-between;
+  right:0;
 }
 
 .empty-star {
   display: inline-block;
   position: relative;
-  font-size: 100px;
-  color: #ddd;
+  color: #0b0b30;
 }
 
 .star {
   display: inline-block;
   position: relative;
-  font-size: 100px;
-  color: #ddd;
+  color: #0b0b30;
 }
 
 .star:after {
@@ -29,7 +40,7 @@
   top: 0;
   width: 100%;
   overflow: hidden;
-  color: #f80;
+  color: rgb(12, 12, 54);
 }
 
 .empty-star:after {
@@ -40,5 +51,4 @@
   top: 0;
   width: 0%;
   overflow: hidden;
-  color: #f80;
 }
