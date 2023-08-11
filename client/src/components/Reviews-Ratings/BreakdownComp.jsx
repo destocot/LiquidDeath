@@ -79,13 +79,10 @@ function BreakdownComp({filters, updateFilters}) {
     );
   };
 
-  // ben's star functionality goes here
-
   return (
     <div className="actualBreakdown">
-      {/* <h2>Actual Breakdown</h2> */}
       {generateObj()}
-      {filtersApplied()}
+      {filters.ratings.length > 0 ? filtersApplied() : <div></div>}
     </div>
   );
 }
