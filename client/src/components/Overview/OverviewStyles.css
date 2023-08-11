@@ -2,12 +2,15 @@
   background-color: rgba(61, 171, 239, 0.2);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .stars-reviews {
   position:relative;
   display:flex;
-  justify-content: space-between;
-  height: 1.5vh;
-  width: 25vw;
+  justify-content: start;
+  width: auto;
 }
 
 .reviews {
@@ -17,19 +20,12 @@
 .star-container {
   display: flex;
   justify-content: space-evenly;
-  width: 12vw;
-  height: 1.5vh;
+  padding-right: 5px;
 }
 
 .stars {
   display: flex;
   justify-content: space-between;
-}
-
-.empty-stars {
-  display: flex;
-  justify-content: space-between;
-  right:0;
 }
 
 .empty-star {
@@ -63,4 +59,9 @@
   top: 0;
   width: 0%;
   overflow: hidden;
+}
+
+.media {
+  display: flex;
+  justify-content: space-evenly;
 }

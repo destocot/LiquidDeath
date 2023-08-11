@@ -3,9 +3,11 @@ import React from 'react';
 function Sharing() {
   return (
     <div>
-      <p>Facebook</p>
-      <p>Pinterest</p>
-      <p>Twitter</p>
+      <p className="media">
+        <a href="https://www.facebook.com/">Facebook</a>
+        <a href="https://twitter.com/?lang=en">Twitter</a>
+        <a href="https://www.pinterest.com/">Pinterest</a>
+      </p>
     </div>
   );
 }

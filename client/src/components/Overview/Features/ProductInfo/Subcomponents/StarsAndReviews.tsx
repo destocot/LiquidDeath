@@ -27,24 +27,20 @@ function StarsAndReviews({reviews}) {
   // creates stars
   const reviewStars = (reviewScore) => {
     const stars = [];
-    const emptyStars = [];
     for (let i = 0; i < 5; i++) {
       if (i < Math.floor(reviewScore)) {
         stars.push(<i className="star fa-regular fa-star" />);
       } else if (i - Math.floor(reviewScore) < 1 && i - reviewScore !== 0) {
         // using base fa-star fontsize (18px)
         const percent = (quarterRound((reviewScore - Math.floor(reviewScore))) * 18);
-        stars.push(<i className="star fa-regular fa-star" style={{ width: percent }} />);
+        stars.push(<i className="star fa-regular fa-star" style={{ width: percent, marginRight: 18 - percent }} />);
       } else {
-        emptyStars.push(<i className="empty-star fa-regular fa-star" />);
+        stars.push(<i className="empty-star fa-regular fa-star" />);
       }
     }
     // needed separate containers to get proper spacing and account for partial star width
     return (
-      <>
-        <div className="stars">{stars}</div>
-        <div className="empty-stars">{emptyStars}</div>
-      </>
+      <div className="stars">{stars}</div>
     );
   };
   return (
@@ -52,8 +48,8 @@ function StarsAndReviews({reviews}) {
       <div className="star-container">
         {reviewStars(reviewAvg())}
       </div>
-      <span className="reviews">
-        <a href="https://www.youtube.com/watch?v=tYzMYcUty6s">Read all reviews</a>
+      <span className="reviews scroll">
+        <a href="#ratingsReviewsContainerId">Read all reviews</a>
       </span>
     </div>
   );
