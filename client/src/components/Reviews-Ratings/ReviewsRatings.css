@@ -20,7 +20,7 @@
 .reviewTile {
   border-style: groove;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   grid-auto-rows: minmax(10px, auto);
 }
@@ -31,7 +31,7 @@
 }
 
 .reviewDate {
-  grid-column: 3;
+  grid-column: 4;
   grid-row: 1;
 }
 
@@ -67,19 +67,28 @@
 }
 
 .reviewerName {
-  grid-column: 2;
-  grid-row: 4;
+  grid-column: 3;
+  grid-row: 1;
 
 }
-
 
 .reviewResponse {
   grid-column: 1/3;
   grid-row: 5;
+  background-color: rgb(211, 202, 202);
+  border-style: dotted;
 
 }
 
 .reviewHelpfulness {
   grid-column: 1;
   grid-row: 6;
+}
+
+#helpfulButton {
+
+}
+
+#reportButton {
+
 }

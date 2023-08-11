@@ -3,6 +3,21 @@ import { useState } from 'react';
 import ReviewTileBody from './ReviewTileBody';
 
 function ReviewTile({review}) {
+  // credit to Khurram for these helpfulness/report states!
+  const [helpfulness, setHelpfulness] = useState([review.helpfulness, false]);
+  const [report, setReport] = useState(['Report', false]);
+
+  const addHelpfulness = () => {
+    if (!helpfulness[1]) {
+      setHelpfulness([helpfulness[0] + 1, true]);
+    }
+  };
+
+  const reportFunction = () => {
+    if (!report[1]) {
+      setReport(['Reported', true]);
+    }
+  };
 
   // function renderStarRating(rating) {
   //   let star = '⭐';
@@ -46,10 +61,15 @@ function ReviewTile({review}) {
       <div className="reviewDate">{formattedDate}</div>
       <div className="reviewSummary">{reviewSummary()}</div>
       <ReviewTileBody review={review}/>
-      <div className="reviewRec">{review.Recommend()}</div>
+      <div className="reviewRec">{reviewRecommend()}</div>
       <div className="reviewerName">{review.reviewer_name}</div>
-      <div className="reviewResponse">{review.response}</div>
-      <div className="reviewHelpfulness">{review.helpfulness}</div>
+      <div className="reviewResponse">Response from seller: {review.response}</div>
+      <div className="reviewHelpfulness">
+        {`Helpful? `}
+        <button type="button" id="helpfulButton" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
+        {` (${helpfulness[0]}) | `}
+        <button type="button" id="reportButton" onClick={() => reportFunction()} onKeyDown={() => reportFunction()}>{report[0]}</button>
+      </div>
     </div>
   );
 }
