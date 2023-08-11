@@ -48,11 +48,13 @@ function StarsAndReviews({reviews}) {
     );
   };
   return (
-    <div>
+    <div className="stars-reviews">
       <div className="star-container">
         {reviewStars(reviewAvg())}
       </div>
-      <h4>Read all reviews</h4>
+      <span className="reviews">
+        <a href="https://www.youtube.com/watch?v=tYzMYcUty6s">Read all reviews</a>
+      </span>
     </div>
   );
 }

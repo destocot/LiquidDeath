@@ -2,6 +2,18 @@
   background-color: rgba(61, 171, 239, 0.2);
 }
 
+.stars-reviews {
+  position:relative;
+  display:flex;
+  justify-content: space-between;
+  height: 1.5vh;
+  width: 25vw;
+}
+
+.reviews {
+  display: inline;
+}
+
 .star-container {
   display: flex;
   justify-content: space-evenly;
