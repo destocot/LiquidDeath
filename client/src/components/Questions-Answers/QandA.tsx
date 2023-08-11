@@ -1,20 +1,12 @@
 import React from 'react';
 import Question from './Question';
 
-interface FakeDataProps {
-  fakeData: Object;
-}
-
-function QandA(props: FakeDataProps) {
-  const { fakeData } = props;
-
-  const fakeQuestions2 = fakeData.results;
-
+function QandA({ fakeData }) {
   return (
-    <div className="QandA-container">
+    <div>
       {
-        fakeQuestions2.map((fakeQuestion2: Object) =>
-          (<Question question={fakeQuestion2} key={fakeQuestion2} />))
+        fakeData.map((question) =>
+          (<Question question={question} key={question.question_id} />))
       }
     </div>
   );

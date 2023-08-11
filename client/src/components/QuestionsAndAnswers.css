@@ -1,7 +1,8 @@
-.main-QandA-container {
-  background-color: rgba(0, 0, 0, 0.1);
+.qa-main-container {
+  border: 2px solid black;
   padding: 10px;
-  width: 75vw;
+  width: 65vw;
+  font-size: 20px;
 }
 
 .search-container {
@@ -14,36 +15,48 @@
 .search-container input {
   padding: 10px;
   width: 95%;
+  height: 20px;
   border: 2px solid green;
   border-right: none;
 }
 
 .search-container i {
   background-color: white;
+  height: 20px;
   padding: 10px;
   border: 2px solid green;
-  /* border-left: none; */
 }
 
-.QandA-container {
-  background-color: rgba(0, 255, 0, 0.1);
-  margin-top: 5px;
-  border-top: 5px solid orange;
-}
-
-.Q-container {
-  background-color: rgba(0, 255, 0, 0.2);
+/* QUESTION CONTAINER */
+.question-container {
+  background-color: palevioletred;
   padding: 5px;
 }
 
-.Q-liner {
+ .question-title-container {
   display: flex;
   justify-content: space-between;
 }
 
-.A-container {
-  background-color: rgba(0, 255, 0, 0.3);
+#question-yes, #add-answer-btn, #answer-yes, #report-btn {
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#question-yes, #answer-yes {
+  text-decoration: underline;
+}
+
+#question-yes:hover, #add-answer-btn:hover, #answer-yes:hover  {
+  color: yellow;
+}
+
+/* ANSWER CONTAINER */
+.answer-container {
+  background-color: palegreen;
   margin: 5px 0;
-  border: 1px solid black;
-  padding: 5px;
 }

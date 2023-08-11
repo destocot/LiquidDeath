@@ -1,19 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './QuestionsAndAnswers.css';
 import Search from './Questions-Answers/Search';
 import QandA from './Questions-Answers/QandA';
 import ExpandAndAdd from './Questions-Answers/ExpandAndAdd';
-import myFakeData from './Questions-Answers/fakeData';
+import myData from './Questions-Answers/Helpers/fakeData';
+import utils from './Questions-Answers/Helpers/helpers';
+
+const listOfQuestions = myData.fakeData.results.sort(utils.compare('question_helpfulness'));
+const A = listOfQuestions.length;
 
 function QuestionsAndAnswers() {
-  const [fakeData, setFakeData] = useState(myFakeData.fakeData);
+  const [numOfQuestions, setNumOfQuestions] = useState(4);
+  const [loadQuestions, setLoadQuestions] = React.useState(true);
+  const [fakeData, setFakeData] = useState([]);
+
+  useEffect(() => {
+    setFakeData(listOfQuestions.slice(0, numOfQuestions));
+  }, [numOfQuestions]);
+  // console.log(listOfQuestions);
+  const add2 = () => {
+    setNumOfQuestions(numOfQuestions + 2);
+    if (numOfQuestions + 2 >= A) {
+      setLoadQuestions(false);
+    }
+  };
+
+  const collapse = () => {
+    setNumOfQuestions(4);
+    setLoadQuestions(true);
+  };
+
+  const filterQs = (query) => {
+    // only checks question edit for answers later
+    // try to reset search to 4 at a time;
+    const filtered = listOfQuestions.filter(question => question.question_body.toLowerCase().includes(query.toLowerCase()));
+
+    if (query.length >= 3) {
+      setFakeData(filtered);
+    } else {
+      setFakeData(listOfQuestions);
+    }
+  };
 
   return (
-    <div className="main-QandA-container">
+    <div className="qa-main-container">
       <div>QUESTIONS & ANSWERS</div>
-      <Search />
+      {/* <div>SEARCH COMPONENT HIDDEN</div> */}
+      <Search filterQs={filterQs} />
       <QandA fakeData={fakeData} />
-      <ExpandAndAdd />
+      <ExpandAndAdd add2={add2} collapse={collapse} loadQuestions={loadQuestions} />
+      {/* <div>EXPAND AND ADD COMPONENT HIDDEN</div> */}
     </div>
   );
 }
