@@ -13,7 +13,7 @@ function ExpandAndAdd({ numOfQuestions, setNumOfQuestions }) {
     if (more) {
       setMore(!utils.expand(numOfQuestions, setNumOfQuestions));
     } else {
-      setMore(utils.collapse(setNumOfQuestions, 4))
+      setMore(utils.collapse(setNumOfQuestions, 4));
     }
   };
 

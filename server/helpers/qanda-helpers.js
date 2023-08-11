@@ -6,7 +6,7 @@ const base_uri = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe';
 
 // hard coded for product_id=37313
 const questionsFetcher = () => {
-  const uri = `${base_uri}/qa/questions/?product_id=37313`;
+  const uri = `${base_uri}/qa/questions/?product_id=37324&page=2&count=10`;
 
   return axios.get(uri, {
     headers: {
