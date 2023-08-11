@@ -3,8 +3,15 @@ import { useState } from 'react';
 
 import { getReviewsMeta } from './exampleData.js'; // putting this here to until master updated with prev changes
 
-function BreakdownComp(/* props when getReviewsMeta is moved */) {
+function BreakdownComp({filters, updateFilters}) {
   // data comes from getReviewsMeta
+  // console.log({filters});
+  const filterByRatings = (key) => {
+    let prevFilters = filters.ratings;
+    prevFilters.push(Number(key));
+    // console.log(key);
+    updateFilters({ ratings: prevFilters});
+  };
 
   // sum helper
   const sumHelper = (array) => {
@@ -28,12 +35,9 @@ function BreakdownComp(/* props when getReviewsMeta is moved */) {
 
     // map jsx
     return Object.keys(result).map((key) => {
-      console.log('result @ key ', result[key]);
-      console.log({sum})
-      console.log(result[key] / sum);
       return (
         <div className="breakdownRating">
-        <div id="breakdownLabel">{key} stars</div>
+        <div id="breakdownLabel" onClick={() => filterByRatings(key)}>{key} stars</div>
         <progress id="breakdownBar" max="1" value={result[key]/sum}>a bar</progress>
       </div>
       )
@@ -56,33 +60,23 @@ function BreakdownComp(/* props when getReviewsMeta is moved */) {
     }
   };
 
+  const filtersApplied = () => {
+    const ratingsDivs = filters.ratings.map((filter) => <div>{filter + ' stars'}</div>);
+    return (
+      <div>
+        Filters Applied:
+        <div>{ratingsDivs}</div>
+      </div>
+    );
+  };
+
   // ben's star functionality goes here
 
   return (
     <div className="actualBreakdown">
       {/* <h2>Actual Breakdown</h2> */}
-      {/* {breakdown(getReviewsMeta.ratings)} */}
       {generateObj()}
-      {/* <div className="breakdownRating">
-        <div id="breakdownLabel">5 stars</div>
-        <progress id="breakdownBar" max="100" value={70}>a bar</progress>
-      </div>
-      <div className="breakdownRating">
-        <div id="breakdownLabel">4 stars</div>
-        <div id="breakdownBar">a bar</div>
-      </div> */}
-      {/* <div className="breakdownRating">
-        <div id="breakdownLabel">3 stars</div>
-        <div id="breakdownBar">a bar</div>
-      </div>
-      <div className="breakdownRating">
-        <div id="breakdownLabel">2 stars</div>
-        <div id="breakdownBar">a bar</div>
-      </div>
-      <div className="breakdownRating">
-        <div id="breakdownLabel">1 star</div>
-        <div id="breakdownBar">a bar</div>
-      </div> */}
+      {filtersApplied()}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import BreakdownComp from './BreakdownComp';
 
 import { getReviewsMeta } from './exampleData.js'; // putting this here to until master updated with prev changes
 
-function RatingBreakdown(/* props when getReviewsMeta is moved */) {
+function RatingBreakdown({filters, updateFilters}) {
   // data comes from getReviewsMeta
   const calcAvgRating = (ratingsObj) => {
     if (Object.keys(ratingsObj).length > 0) {
@@ -22,13 +22,11 @@ function RatingBreakdown(/* props when getReviewsMeta is moved */) {
     }
   };
 
-  // ben's star functionality goes here
-
   return (
     <div className="ratingBreakdown">
       <h2>Rating Breakdown</h2>
       <div>{calcAvgRating(getReviewsMeta.ratings)} ⭐⭐⭐⭐</div>
-      <BreakdownComp />
+      <BreakdownComp filters={filters} updateFilters={updateFilters} />
       <div>Filters Applied</div>
       <div>Reset Filters</div>
       <div>Product Breakdown</div>
