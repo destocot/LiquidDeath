@@ -5,7 +5,7 @@ import BreakdownComp from './BreakdownComp';
 import { getReviewsMeta } from './exampleData.js'; // putting this here to until master updated with prev changes
 
 function RatingBreakdown({filters, updateFilters}) {
-  // data comes from getReviewsMeta
+  // calculate and round avg rating
   const calcAvgRating = (ratingsObj) => {
     if (Object.keys(ratingsObj).length > 0) {
       let sumOfRatings = 0;
@@ -22,6 +22,7 @@ function RatingBreakdown({filters, updateFilters}) {
     }
   };
 
+  // render jsx
   return (
     <div className="ratingBreakdown">
       <h2>Rating Breakdown</h2>

@@ -5,21 +5,22 @@ import { getReviewsMeta } from './exampleData.js'; // putting this here to until
 
 function BreakdownComp({filters, updateFilters}) {
   // data comes from getReviewsMeta
-  console.log({ filters });
+
   const filterByRatings = (key) => {
     key = Number(key);
     let prevFilters = filters.ratings;
     let indexOfKey = prevFilters.indexOf(key);
 
+    // this either adds or removes a filter based on current filters
     if (indexOfKey === -1) {
       prevFilters.push(key);
     } else {
       prevFilters.splice(indexOfKey, 1);
     }
-    updateFilters({ ratings: prevFilters});
+    updateFilters({ ratings: prevFilters });
   };
 
-  // sum helper
+  // sum helper function
   const sumHelper = (array) => {
     let sum = 0;
     for (var i = 0; i < array.length; i++) {
@@ -28,9 +29,9 @@ function BreakdownComp({filters, updateFilters}) {
     return sum;
   };
 
+  // this function generates the average breakdown bars
   const generateObj = () => {
     const result = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0};
-
     // update result object w/ actual values
     for (var key in getReviewsMeta.ratings) {
       result[key] = getReviewsMeta.ratings[key];
@@ -39,7 +40,7 @@ function BreakdownComp({filters, updateFilters}) {
     // calculate sum of ratings to use later
     let sum = sumHelper(Object.values(result));
 
-    // map jsx
+    // map jsx and calculate percentage for each review
     return Object.keys(result).map((key) => (
       <div className="breakdownRating">
         <div id="breakdownLabel" onClick={() => filterByRatings(key)}>{key} stars</div>
@@ -48,26 +49,12 @@ function BreakdownComp({filters, updateFilters}) {
     ));
   };
 
-  const calcAvgRating = (ratingsObj) => {
-    if (Object.keys(ratingsObj).length > 0) {
-      let sumOfRatings = 0;
-      let product = 0;
-      for (var key in ratingsObj) {
-        let rating = key;
-        let numberOfRatings = ratingsObj[key];
-        product += rating * numberOfRatings;
-        sumOfRatings += numberOfRatings;
-      }
-      let avgRating = product / sumOfRatings;
-      avgRating = Math.round(avgRating * 10) / 10;
-      return avgRating;
-    }
-  };
-
+  // clears all filters
   const resetFilters = () => {
     updateFilters({ ratings: [] });
   };
 
+  // renders a list of applied filters
   const filtersApplied = () => {
     const ratingsDivs = filters.ratings.map((filter) => <div>{filter + ' stars'}</div>);
     return (
@@ -79,6 +66,7 @@ function BreakdownComp({filters, updateFilters}) {
     );
   };
 
+  // render jsx
   return (
     <div className="actualBreakdown">
       {generateObj()}
