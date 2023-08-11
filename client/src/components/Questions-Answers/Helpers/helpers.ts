@@ -1,7 +1,7 @@
 // here lies the helpers
 
-const compare = (identifier) => {
-  return (a, b) => {
+const compare = (identifier) =>
+  (a, b) => {
     if (a[identifier] < b[identifier]) {
       return 1;
     }
@@ -10,7 +10,7 @@ const compare = (identifier) => {
     }
     return 0;
   };
-};
+;
 const expand = (getter, setter) => {
   setter([getter[0] + 2, getter[1]]);
   return getter[0] + 2 >= getter[1];
@@ -21,11 +21,9 @@ const collapse = (setter, reset) => {
   return true;
 };
 
-const search = (questionsDatabase, query) => {
-  return questionsDatabase
-    .filter(question => {
-      return question.question_body.includes(query)
-    });
-};
+const search = (questionsDatabase, query) =>
+  questionsDatabase
+    .filter(question =>
+      question.question_body.includes(query));
 
 export default { compare, expand, collapse, search };

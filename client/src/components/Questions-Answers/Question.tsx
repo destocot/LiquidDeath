@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Answer from './Answer';
 import utils from './Helpers/helpers';
+import calls from './Helpers/fetchers';
+
+const getAnswers = calls.answersFetcher;
 
 function Question({ question }) {
   const [answersDatabase, setAnswersDatabase] = useState([]);
@@ -13,20 +16,9 @@ function Question({ question }) {
   const { question_helpfulness } = question;
   const [helpfulness, setHelpfulness] = useState([question_helpfulness, false]);
 
-  const realAnswersFetcher = () => {
-    axios.get(`/qa/questions/${question.question_id}/answers`)
-      .then((res) => {
-        setAnswersDatabase(res.data);
-        setNumOfAnswers([2, res.data.length]);
-        setAnswers(res.data.slice(0, 2));
-      })
-      .catch(() => {
-        console.log('err obtaining answers');
-      });
-  };
-
   React.useEffect(() => {
-    realAnswersFetcher();
+    // eslint-disable-next-line max-len
+    getAnswers(setAnswersDatabase, answersDatabase, setNumOfAnswers, numOfAnswers, setAnswers, question);
   }, []);
 
   React.useEffect(() => {
@@ -77,7 +69,7 @@ function Question({ question }) {
         answers.map((answer) => <Answer answer={answer} key={answer.answer_id} />)
       }
       {
-      expandOrCollapseButtons()
+        expandOrCollapseButtons()
       }
     </div>
   );

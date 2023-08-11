@@ -1,33 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './QuestionsAndAnswers.css';
 import Search from './Questions-Answers/Search';
 import ExpandAndAdd from './Questions-Answers/ExpandAndAdd';
 import QuestionList from './Questions-Answers/QuestionList';
 import utils from './Questions-Answers/Helpers/helpers';
+import calls from './Questions-Answers/Helpers/fetchers';
+
+const getQuestions = calls.questionsFetcher;
 
 function QuestionsAndAnswers() {
   const [questionsDatabase, setQuestionsDatabase] = useState([]);
   const [numOfQuestions, setNumOfQuestions] = useState([]);
   const [questions, setQuestions] = useState([]);
 
-  const realQuestionsFetcher = () => {
-    axios.get('/qa/questions')
-      .then((res) => {
-        const triple = res.data.results;
-        // const triple = res.data.results
-        //   .concat(res.data.results)
-        //   .concat(res.data.results);
-
-        setQuestionsDatabase(triple);
-        setNumOfQuestions([4, triple.length]);
-        setQuestions(triple.slice(0, 4));
-      })
-      .catch(() => console.log('err obtaining questions'));
-  };
-
   useEffect(() => {
-    realQuestionsFetcher();
+    getQuestions(setQuestionsDatabase, questionsDatabase, setNumOfQuestions, numOfQuestions, setQuestions);
   }, []);
 
   useEffect(() => {
