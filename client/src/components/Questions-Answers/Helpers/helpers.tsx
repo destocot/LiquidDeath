@@ -11,4 +11,6 @@ const compare = (identifier) => {
     return 0;
   };
 };
+
+
 export default { compare };
