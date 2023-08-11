@@ -33,12 +33,14 @@ function ReviewTile({review}) {
 
   // const starRating = renderStarRating(review.rating);
 
+  // format dates properly
   const formattedDate = new Date(review.date).toLocaleDateString("en-US", {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
   });
 
+  // if summary > 60 characters, truncate it
   const reviewSummary = () => {
     if (review.summary.length > 60) {
       return review.summary.slice(0, 57) + "...";
@@ -46,9 +48,10 @@ function ReviewTile({review}) {
     return review.summary;
   };
 
+  // based on whether product recommended, render element
   const reviewRecommend = () => {
     if (review.recommend) {
-      console.log('true');
+      // console.log('true');
       return <div>✔️ I recommend this product</div>;
     }
     return <div></div>;
