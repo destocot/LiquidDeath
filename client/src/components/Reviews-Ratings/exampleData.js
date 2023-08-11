@@ -7,8 +7,8 @@ module.exports = {
       {
         review_id: 5,
         rating: 3,
-        summary: 'Im enjoying wearing these shades but if it is over 60 characters then I have to truncate it so that it does not mess up',
-        recommend: false,
+        summary: 'Im enjoying wearing these shades but if it is over 60 characters then I have to truncate it so that it does not mess up and should not render the whole text unless it is under 60 characters but lets see. surely this is atleast 60 by now.',
+        recommend: true,
         response: null,
         body: 'In the realm of technology, innovation shapes our world, driving progress and transforming lives. From artificial intelligence to renewable energy, each breakthrough amplifies our potential and paves the way for a future defined by limitless possibilities.',
         date: '2019-04-14T00:00:00.000Z',
