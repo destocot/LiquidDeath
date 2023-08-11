@@ -2,7 +2,28 @@
   background-color: rgba(61, 171, 239, 0.2);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.stars-reviews {
+  position:relative;
+  display:flex;
+  justify-content: start;
+  width: auto;
+}
+
+.reviews {
+  display: inline;
+}
+
 .star-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 5px;
+}
+
+.stars {
   display: flex;
   justify-content: space-between;
 }
@@ -10,15 +31,13 @@
 .empty-star {
   display: inline-block;
   position: relative;
-  font-size: 100px;
-  color: #ddd;
+  color: #0b0b30;
 }
 
 .star {
   display: inline-block;
   position: relative;
-  font-size: 100px;
-  color: #ddd;
+  color: #0b0b30;
 }
 
 .star:after {
@@ -29,7 +48,7 @@
   top: 0;
   width: 100%;
   overflow: hidden;
-  color: #f80;
+  color: rgb(12, 12, 54);
 }
 
 .empty-star:after {
@@ -40,5 +59,9 @@
   top: 0;
   width: 0%;
   overflow: hidden;
-  color: #f80;
+}
+
+.media {
+  display: flex;
+  justify-content: space-evenly;
 }

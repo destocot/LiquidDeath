@@ -8,7 +8,9 @@ function App() {
   return (
     <div>
       <Overview />
-      <ReviewsRatings />
+      <div id="ratingsReviewsContainerId">
+        <ReviewsRatings />
+      </div>
       <QuestionsAndAnswers />
       <h1>Jon Component</h1>
     </div>

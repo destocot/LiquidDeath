@@ -8,30 +8,49 @@ function StarsAndReviews({reviews}) {
       total += review.rating;
     });
     const average = total / reviews.results.length;
-    console.log(average);
     return average;
   }
+  // "rounding", using 0.65 and 0.35 for more noticeable impact
+  function quarterRound(num) {
+    let quarters;
+    if (num > 0.875) {
+      quarters = 1;
+    } else if (num > 0.625) {
+      quarters = 0.65;
+    } else if (num > 0.375) {
+      quarters = 0.5;
+    } else {
+      quarters = 0.35;
+    }
+    return quarters;
+  }
   // creates stars
-  const reviewStars = (num) => {
+  const reviewStars = (reviewScore) => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
-      if (i < Math.floor(num)) {
+      if (i < Math.floor(reviewScore)) {
         stars.push(<i className="star fa-regular fa-star" />);
-      } else if (i - Math.floor(num) < 1) {
-        const percent = (num - Math.floor(num)) * 100;
-        stars.push(<i className="star fa-regular fa-star" style={{ width: percent }} />);
+      } else if (i - Math.floor(reviewScore) < 1 && i - reviewScore !== 0) {
+        // using base fa-star fontsize (18px)
+        const percent = (quarterRound((reviewScore - Math.floor(reviewScore))) * 18);
+        stars.push(<i className="star fa-regular fa-star" style={{ width: percent, marginRight: 18 - percent }} />);
       } else {
         stars.push(<i className="empty-star fa-regular fa-star" />);
       }
     }
-    return stars;
+    // needed separate containers to get proper spacing and account for partial star width
+    return (
+      <div className="stars">{stars}</div>
+    );
   };
   return (
-    <div>
+    <div className="stars-reviews">
       <div className="star-container">
         {reviewStars(reviewAvg())}
       </div>
-      <h4>Read all reviews</h4>
+      <span className="reviews scroll">
+        <a href="#ratingsReviewsContainerId">Read all reviews</a>
+      </span>
     </div>
   );
 }
