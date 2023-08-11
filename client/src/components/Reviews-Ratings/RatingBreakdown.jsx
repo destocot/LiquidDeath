@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import BreakdownComp from './BreakdownComp';
 
 import { getReviewsMeta } from './exampleData.js'; // putting this here to until master updated with prev changes
 
@@ -21,17 +22,13 @@ function RatingBreakdown(/* props when getReviewsMeta is moved */) {
     }
   };
 
-  // console.log(getReviewsMeta.ratings);
-  // const avgRating = calcAvgRating(getReviewsMeta.ratings);
-  // console.log({avgRating});
-
   // ben's star functionality goes here
 
   return (
     <div className="ratingBreakdown">
       <h2>Rating Breakdown</h2>
       <div>{calcAvgRating(getReviewsMeta.ratings)} ⭐⭐⭐⭐</div>
-      <div>Breakdown</div>
+      <BreakdownComp />
       <div>Filters Applied</div>
       <div>Reset Filters</div>
       <div>Product Breakdown</div>

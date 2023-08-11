@@ -92,3 +92,19 @@
 #reportButton {
 
 }
+
+.actualBreakdown {
+  border-style: dotted;
+}
+
+.breakdownRating {
+  display: flex;
+}
+
+#breakdownLabel {
+  margin-right: 10px;
+}
+
+#breakdownBar {
+
+}
