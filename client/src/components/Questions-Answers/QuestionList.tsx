@@ -9,7 +9,10 @@ function QuestionList({ setDisplayMore, numOfQuestions, query }) {
 
   useEffect(() => {
     axios.get('/qa/questions')
-      .then((res) => res.data.results.sort(utils.compare('question_helpfulness')))
+      .then((res) => {
+        return res.data.results.sort(utils.compare('question_helpfulness'))
+
+      })
       .then((sorted) => {
         setQuestionsDatabase(sorted);
         setKhurramsQuestions(sorted.slice(0, numOfQuestions));

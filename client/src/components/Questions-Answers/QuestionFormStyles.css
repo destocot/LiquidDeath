@@ -1,0 +1,45 @@
+#question-form-container {
+  position: fixed;
+  background: #00000075;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+
+#question-form-subcontainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 60vh;
+  width: 25vw;
+  margin: auto;
+  background-color: rgba(0, 0, 128, 0.8);
+  border: 1px solid black;
+  border-radius: 20px;
+  color: white;
+  padding: 1.25rem;
+}
+
+#question-form {
+  font-size: 1.125rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 40vh;
+}
+
+textarea,
+input[type="text"],
+input[type="email"] {
+  padding: 0.313rem;
+  width: 100%;
+}
+
+#q-submit-btn {
+  align-self: center;
+  padding: 0.313rem 0.625rem;
+
+}

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import QuestionForm from './QuestionForm';
 // currently all expanding / collapse behavior pulls from local database
 function ExpandAndAdd({ setNumOfQuestions, displayMore }) {
+  const [qForm, setQForm] = useState(true);
 
   const addQuestionModule = () => {
     console.log('ADD QUESTION FORM HERE');
+    setQForm(true);
   };
 
   const expandOrCollapse = () => {
@@ -25,6 +28,9 @@ function ExpandAndAdd({ setNumOfQuestions, displayMore }) {
         {'ADD A QUESTION '}
         <i className="fa-solid fa-plus" />
       </button>
+      {
+        qForm && <QuestionForm />
+      }
     </div>
   );
 }

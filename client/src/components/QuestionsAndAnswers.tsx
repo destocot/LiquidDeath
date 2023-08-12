@@ -10,6 +10,12 @@ function QuestionsAndAnswers() {
   const [numOfQuestions, setNumOfQuestions] = useState(2);
   const [query, setQuery] = useState('');
 
+  // I WILL HAVE TO GET THE PRODUCT ID HERE
+    // AND PASS THE PRODUCT ID TO QUESTIONLIST
+
+  // I WILL HAVE TO GET THE PRODUCT NAME HERE
+    // AND PASS THE PRODUCT NAME TO EXPANDANDADD
+
   return (
     <div className="qa-main-container">
       <h2 id="qa-main-title">QUESTIONS & ANSWERS</h2>
