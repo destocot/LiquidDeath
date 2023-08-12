@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Sorting() {
+function Sorting({ filteredReviews }) {
   return (
     <div>
       <label for="sortFilter">Sort Options:</label>
