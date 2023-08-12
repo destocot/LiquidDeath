@@ -24,8 +24,11 @@
 
 img.default-image {
   position:absolute;
-  bottom:0;
-  right:0;
+  top: 50%;
+  left: 50%;
+  min-height:100%;
+  min-width:100%;
+  transform: translate(-50%, -50%);
 }
 
 .product-info-container {
