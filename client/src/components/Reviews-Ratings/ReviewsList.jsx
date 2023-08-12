@@ -2,30 +2,22 @@ import React, { useState, useEffect } from 'react';
 import ReviewTile from './ReviewTile';
 import Sorting from './Sorting';
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 // test -delete later
 
-function ReviewsList({ getReviewsData }) {
-=======
-function ReviewsList({ getReviewsData, filters }) {
->>>>>>> a1ded3d (committing before branch changes)
-=======
 function ReviewsList({ filteredReviews, filters }) {
->>>>>>> 4cc3b44 (filters from breakdown affect list rendering now)
   let moreButton;
   const [listLength, setListLength] = useState(2);
   const [sortedFilteredReviews, setSortedFilteredReviews] = useState(filteredReviews);
 
   const updateSetSortedFilteredReviews = (sortedArray) => {
-    console.log(sortedArray);
+    // console.log(sortedArray);
     setSortedFilteredReviews(sortedArray);
   };
 
   // renders 2 review tiles at a time using .slice and the listLength state
   const reviewTile = () => {
-    console.log('rerunning reviewTile');
-    console.log(sortedFilteredReviews);
+    // console.log('rerunning reviewTile');
+    // console.log(sortedFilteredReviews);
     return sortedFilteredReviews.map((review) =>
     <div key={review.review_id}><ReviewTile review={review} /></div>).slice(0, listLength);
   };
