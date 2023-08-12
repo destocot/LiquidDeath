@@ -15,6 +15,8 @@ function ReviewsRatings() {
     setFilters(obj);
   };
 
+  // alter results asd on filters
+
   return (
     <div className="ratingsReviewsContainer" id="ratingsReviewsContainerId">
       <ReviewList getReviewsData={getReviewsData} filters={filters} />

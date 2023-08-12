@@ -52,33 +52,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./client/src/components/Reviews-Ratings/ReviewTile.jsx":
-/*!**************************************************************!*\
-  !*** ./client/src/components/Reviews-Ratings/ReviewTile.jsx ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ReviewTileBody__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReviewTileBody */ \"./client/src/components/Reviews-Ratings/ReviewTileBody.jsx\");\n/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ \"./node_modules/react/jsx-runtime.js\");\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }\nfunction _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : \"undefined\" != typeof Symbol && arr[Symbol.iterator] || arr[\"@@iterator\"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i[\"return\"] && (_r = _i[\"return\"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\n\n\n\n\nfunction ReviewTile(_ref) {\n  var review = _ref.review;\n  // credit to Khurram for these helpfulness/report states!\n  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([review.helpfulness, false]),\n    _useState2 = _slicedToArray(_useState, 2),\n    helpfulness = _useState2[0],\n    setHelpfulness = _useState2[1];\n  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(['Report', false]),\n    _useState4 = _slicedToArray(_useState3, 2),\n    report = _useState4[0],\n    setReport = _useState4[1];\n  var addHelpfulness = function addHelpfulness() {\n    if (!helpfulness[1]) {\n      setHelpfulness([helpfulness[0] + 1, true]);\n    }\n  };\n  var reportFunction = function reportFunction() {\n    if (!report[1]) {\n      setReport(['Reported', true]);\n    }\n  };\n\n  // function renderStarRating(rating) {\n  //   let star = '⭐';\n  //   let result = '';\n\n  //   let numberOfFullStars = Math.trunc(rating);\n  //   let decimal = rating % 1;\n  //   let numberOfPartialStars = (Math.round(decimal * 4) / 4).toFixed(2);\n\n  //   result = star.repeat(numberOfFullStars) /*+ numberOfPartialStars*/;\n  //   return result;\n  // }\n\n  // const starRating = renderStarRating(review.rating);\n\n  // format dates properly\n  var formattedDate = new Date(review.date).toLocaleDateString(\"en-US\", {\n    month: 'long',\n    day: 'numeric',\n    year: 'numeric'\n  });\n\n  // if summary > 60 characters, truncate it\n  var reviewSummary = function reviewSummary() {\n    if (review.summary.length > 60) {\n      return review.summary.slice(0, 57) + \"...\";\n    }\n    return review.summary;\n  };\n\n  // based on whether product recommended, render element\n  var reviewRecommend = function reviewRecommend() {\n    if (review.recommend) {\n      // console.log('true');\n      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"div\", {\n        children: \"\\u2714\\uFE0F I recommend this product\"\n      });\n    }\n    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"div\", {});\n  };\n  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(\"div\", {\n    className: \"reviewTile\",\n    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"div\", {\n      className: \"starRating\",\n      children: \"\\u2B50\\u2B50\\u2B50\"\n    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"div\", {\n      className: \"reviewDate\",\n      children: formattedDate\n    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"div\", {\n      className: \"reviewSummary\",\n      children: reviewSummary()\n    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ReviewTileBody__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n      review: review\n    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"div\", {\n      className: \"reviewRec\",\n      children: reviewRecommend()\n    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"div\", {\n      className: \"reviewerName\",\n      children: review.reviewer_name\n    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(\"div\", {\n      className: \"reviewResponse\",\n      children: [\"Response from seller: \", review.response]\n    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(\"div\", {\n      className: \"reviewHelpfulness\",\n      children: [\"Helpful? \", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"button\", {\n        type: \"button\",\n        id: \"helpfulButton\",\n        onClick: function onClick() {\n          return addHelpfulness();\n        },\n        onKeyDown: function onKeyDown() {\n          return addHelpfulness();\n        },\n        children: \"Yes\"\n      }), \" (\".concat(helpfulness[0], \") | \"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"button\", {\n        type: \"button\",\n        id: \"reportButton\",\n        onClick: function onClick() {\n          return reportFunction();\n        },\n        onKeyDown: function onKeyDown() {\n          return reportFunction();\n        },\n        children: report[0]\n      })]\n    })]\n  });\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewTile);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/components/Reviews-Ratings/ReviewTile.jsx?");
-
-/***/ }),
-
-/***/ "./client/src/components/Reviews-Ratings/ReviewTileBody.jsx":
-/*!******************************************************************!*\
-  !*** ./client/src/components/Reviews-Ratings/ReviewTileBody.jsx ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ \"./node_modules/react/jsx-runtime.js\");\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }\nfunction _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : \"undefined\" != typeof Symbol && arr[Symbol.iterator] || arr[\"@@iterator\"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i[\"return\"] && (_r = _i[\"return\"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\n\n\n\nfunction ReviewTileBody(_ref) {\n  var review = _ref.review;\n  var reviewLen = review.body.length;\n  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(reviewLen > 250),\n    _useState2 = _slicedToArray(_useState, 2),\n    expandBody = _useState2[0],\n    setExpandBody = _useState2[1];\n  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Show More'),\n    _useState4 = _slicedToArray(_useState3, 2),\n    buttonText = _useState4[0],\n    setButtonText = _useState4[1];\n\n  // expand body of review with button, utilizes expandBody state\n  var helpExpandBody = function helpExpandBody() {\n    if (buttonText === 'Show More') {\n      setButtonText('Show Less');\n    } else {\n      setButtonText('Show More');\n    }\n    setExpandBody(!expandBody);\n  };\n\n  // if body > 250 characters, truncate it\n  var renderBodyText = function renderBodyText() {\n    if (expandBody) {\n      return review.body.slice(0, 247) + \"...\";\n    }\n    return review.body;\n  };\n\n  // render showMoreButton only if body has to be truncated\n  var showMoreButton = function showMoreButton() {\n    if (reviewLen > 250) {\n      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(\"button\", {\n        className: \"expandReviewTextButton\",\n        onClick: helpExpandBody,\n        type: \"button\",\n        children: buttonText\n      });\n    }\n    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(\"div\", {});\n  };\n\n  // map photos into review body. will add onto this at later time\n  var renderPhotos = function renderPhotos() {\n    return review.photos.map(function (photo) {\n      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(\"img\", {\n        className: \"reviewPhotos\",\n        src: photo.url\n      });\n    });\n  };\n  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(\"div\", {\n    className: \"reviewBody\",\n    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(\"div\", {\n      className: \"reviewBodyText\",\n      children: renderBodyText()\n    }), showMoreButton(), renderPhotos()]\n  });\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewTileBody);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/components/Reviews-Ratings/ReviewTileBody.jsx?");
-
-/***/ }),
-
 /***/ "./client/src/components/Reviews-Ratings/ReviewsList.jsx":
 /*!***************************************************************!*\
   !*** ./client/src/components/Reviews-Ratings/ReviewsList.jsx ***!
   \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ReviewTile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReviewTile */ \"./client/src/components/Reviews-Ratings/ReviewTile.jsx\");\n/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ \"./node_modules/react/jsx-runtime.js\");\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }\nfunction _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : \"undefined\" != typeof Symbol && arr[Symbol.iterator] || arr[\"@@iterator\"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i[\"return\"] && (_r = _i[\"return\"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\n\n\n\n// test -delete later\n\n\nfunction ReviewsList(_ref) {\n  var getReviewsData = _ref.getReviewsData;\n  var moreButton;\n  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(2),\n    _useState2 = _slicedToArray(_useState, 2),\n    listLength = _useState2[0],\n    setListLength = _useState2[1];\n\n  // renders 2 review tiles at a time using .slice and the listLength state\n  var reviewTile = getReviewsData.results.map(function (review) {\n    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"div\", {\n      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ReviewTile__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n        review: review\n      })\n    }, review.review_id);\n  }).slice(0, listLength);\n\n  // increases listLength by 2, in turn rendering two more elements\n  var handleClick = function handleClick() {\n    var prevLength = listLength;\n    setListLength(prevLength + 2);\n  };\n\n  // decides whether or not button should be rendered based on length of results\n  if (getReviewsData.results.length > 2) {\n    moreButton = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"button\", {\n      className: \"moreReviewsButton\",\n      type: \"button\",\n      onClick: handleClick,\n      children: \"More Reviews\"\n    });\n  } else {\n    moreButton = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"div\", {});\n  }\n  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(\"div\", {\n    className: \"reviewsList\",\n    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(\"h2\", {\n      children: \"Reviews List\"\n    }), reviewTile, moreButton]\n  });\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewsList);\n\n//# sourceURL=webpack://front-end-capstone/./client/src/components/Reviews-Ratings/ReviewsList.jsx?");
@@ -583,7 +561,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -597,17 +575,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -620,7 +598,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -632,12 +610,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -648,7 +626,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -657,18 +635,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/nonce */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nc = undefined;
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./client/src/index.tsx");
-/******/ 	
+/******/
 /******/ })()
 ;

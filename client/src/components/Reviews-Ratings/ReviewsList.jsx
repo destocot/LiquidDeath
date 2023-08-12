@@ -1,10 +1,14 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ReviewTile from './ReviewTile';
+import Sorting from './Sorting';
 
+<<<<<<< HEAD
 // test -delete later
 
 function ReviewsList({ getReviewsData }) {
+=======
+function ReviewsList({ getReviewsData, filters }) {
+>>>>>>> a1ded3d (committing before branch changes)
   let moreButton;
   const [listLength, setListLength] = useState(2);
 
@@ -27,7 +31,7 @@ function ReviewsList({ getReviewsData }) {
   return (
     <div className="reviewsList">
       <h2>Reviews List</h2>
-      {/* <div>Sorting</div> */}
+      <Sorting getReviewsData={getReviewsData} />
       {reviewTile}
       {/* <div>Individual Review Tile</div> */}
       {moreButton}
