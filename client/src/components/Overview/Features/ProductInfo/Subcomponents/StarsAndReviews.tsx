@@ -46,7 +46,11 @@ function StarsAndReviews({reviews}) {
         {reviewStars(reviewAvg())}
       </div>
       <span className="reviews">
-        <a className="review-scroll" href="#ratingsReviewsContainerId">Read all reviews</a>
+        <a className="review-scroll" href="#ratingsReviewsContainerId">
+          Read all
+          {` ${reviews.length} `}
+          reviews
+        </a>
       </span>
     </div>
   );

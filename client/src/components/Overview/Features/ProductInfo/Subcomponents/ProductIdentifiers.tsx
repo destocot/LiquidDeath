@@ -1,6 +1,7 @@
 import React from 'react';
 
 function ProductIdentifiers({product, styles}) {
+  // checks for sales prices and
   function priceChecker(currentStyle) {
     if (currentStyle.sale_price === null) {
       return (
