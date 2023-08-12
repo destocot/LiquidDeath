@@ -1,6 +1,6 @@
 #question-form-container {
   position: fixed;
-  background: #00000075;
+  background: rgba(0, 0, 0, 0.75);
   height: 100vh;
   width: 100vw;
   top: 0;
@@ -16,11 +16,17 @@
   height: 60vh;
   width: 25vw;
   margin: auto;
-  background-color: rgba(0, 0, 128, 0.8);
+  background-image: linear-gradient(45deg, black 0 50%,  #000080 50% 100%);
   border: 1px solid black;
   border-radius: 20px;
   color: white;
   padding: 1.25rem;
+}
+
+#question-form-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #question-form {

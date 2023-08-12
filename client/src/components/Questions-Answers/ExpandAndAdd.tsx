@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import QuestionForm from './QuestionForm';
-// currently all expanding / collapse behavior pulls from local database
-function ExpandAndAdd({ setNumOfQuestions, displayMore }) {
-  const [qForm, setQForm] = useState(true);
 
-  const addQuestionModule = () => {
-    console.log('ADD QUESTION FORM HERE');
-    setQForm(true);
-  };
+function ExpandAndAdd({ setNumOfQuestions, displayMore }) {
+  const [qForm, setQForm] = useState(false);
 
   const expandOrCollapse = () => {
     setNumOfQuestions((state) => state + 2);
@@ -24,12 +19,12 @@ function ExpandAndAdd({ setNumOfQuestions, displayMore }) {
       {
         expandOrCollapseButtons()
       }
-      <button className="expand-questions-btn" type="button" onClick={() => addQuestionModule()}>
+      <button className="expand-questions-btn" type="button" onClick={() => setQForm(true)}>
         {'ADD A QUESTION '}
         <i className="fa-solid fa-plus" />
       </button>
       {
-        qForm && <QuestionForm />
+        qForm && <QuestionForm setQForm={setQForm} />
       }
     </div>
   );

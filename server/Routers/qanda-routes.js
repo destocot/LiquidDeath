@@ -28,14 +28,13 @@ router.get('/:questionId/answers', (req, res) => {
 
 // Post Questions
 router.post('/', (req, res) => {
-  utils.questionsPoster()
-    .then((results) => {
-      console.log(results.data);
-      res.status(201).send(results.data);
-    })
-    .catch(() => {
-      res.status(400).send();
-    });
+  utils.questionsPoster(req.body)
+  .then(() => {
+    res.status(200).send('POST SUCCESSFUL');
+  })
+  .catch(() => {
+    res.status(400).send();
+  });
 });
 
 module.exports = router;
