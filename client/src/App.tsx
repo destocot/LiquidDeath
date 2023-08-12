@@ -62,6 +62,12 @@ function App() {
     }
   }, [product]);
 
+  /*
+  Other possibilities:
+  - onCardClick fn that updates product
+  - onSearchProduct fn that updates product
+  */
+
   // TESTING TESTING
   useEffect(() => {
     console.log('styles array: ', styles);
