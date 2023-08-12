@@ -5,26 +5,32 @@ const axios = require('axios');
 
 const reviewsRouter = express.Router();
 
-// get all reviews for a product - specify count to absurd number
-reviewsRouter.get('/reviews/:product_id', (req, res) => {
+// reviews section API needs query params - seems you can't just add params to end of link
+// right now I have it set so you make a request with /id/sort/count/page from client...
+// this can probably be changed to be any order - i couldn't figure out how tho
+// to get all the reviews for a product - specify count to absurd number
+reviewsRouter.get('/:product_id/:sort/:count/:page', (req, res) => {
+  console.log(req.params);
   axios.get(
     path.join(process.env.API_URI, 'reviews'),
     {
       params: {
         product_id: req.params.product_id,
-        count: 9999,
+        sort: req.params.sort || 'newest',
+        count: req.params.count || 5,
+        page: req.params.page || 1,
       },
       headers: {
         Authorization: process.env.AUTH,
       },
     },
   )
-    .then((reviews) => res.status(200).send(reviews.data))
-    .catch(res.status(400).send());
+    .then((product) => res.status(200).send(product.data))
+    .catch((err) => res.status(400).send(err));
 });
 
-// get review metadata
-reviewsRouter.get('/reviews/meta/:product_id', (req, res) => {
+// get review metadata - also need to use query params for this, can't join the link together
+reviewsRouter.get('/meta/:product_id', (req, res) => {
   axios.get(
     path.join(process.env.API_URI, 'reviews/meta'),
     {
@@ -37,7 +43,7 @@ reviewsRouter.get('/reviews/meta/:product_id', (req, res) => {
     },
   )
     .then((reviewsMeta) => res.status(200).send(reviewsMeta.data))
-    .catch(res.status(400).send());
+    .catch((err) => res.status(400).send(err));
 });
 
 module.exports = reviewsRouter;
