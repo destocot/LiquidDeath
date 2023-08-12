@@ -11,6 +11,16 @@ const compare = (identifier) =>
     return 0;
   };
 ;
+
+const expandAnswers = (answersDatabase, setAnswers, shouldExpand) => {
+  if (shouldExpand) {
+    setAnswers(answersDatabase);
+  } else {
+    setAnswers(answersDatabase.slice(0, 2));
+  }
+  return !shouldExpand;
+};
+
 const expand = (getter, setter) => {
   setter([getter[0] + 2, getter[1]]);
   return getter[0] + 2 >= getter[1];
@@ -26,4 +36,4 @@ const search = (questionsDatabase, query) =>
     .filter(question =>
       question.question_body.includes(query));
 
-export default { compare, expand, collapse, search };
+export default { compare, expand, collapse, search, expandAnswers };

@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './SearchStyles.css'
 
-function Search({ filterQuestions }) {
-  const [query, setQuery] = useState('');
-
-  React.useEffect(() => {
-    filterQuestions(query);
-  }, [query]);
-
-  const setSearch = (event) => {
+function Search({ setQuery }) {
+  const setSearch = (event: any) => {
     setQuery(event.target.value)
   };
 
@@ -18,5 +13,5 @@ function Search({ filterQuestions }) {
     </div>
   );
 }
-// remove later
+
 export default Search;

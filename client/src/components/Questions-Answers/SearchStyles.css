@@ -1,0 +1,23 @@
+.search-container {
+  max-height: 10vh;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-container input {
+  border: none;
+  flex-grow: 1;
+}
+
+.search-container input:focus {
+  outline: none;
+  border-bottom: 1px solid black;
+}
+
+.search-container i {
+  padding: 5px;
+  font-size: 20px;
+}
