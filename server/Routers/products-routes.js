@@ -77,3 +77,5 @@ productRouter.get('/products/:product_id/related', (req, res) => {
     .then((related) => res.status(200).send(related.data))
     .catch(res.status(400).send());
 });
+
+module.exports = productRouter;

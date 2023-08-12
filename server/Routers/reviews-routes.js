@@ -36,13 +36,18 @@ reviewsRouter.get('/reviews/meta/:product_id', (req, res) => {
       },
     },
   )
-    .then((reviews) => res.status(200).send(reviews.data))
+    .then((reviewsMeta) => res.status(200).send(reviewsMeta.data))
     .catch(res.status(400).send());
 });
+
+module.exports = reviewsRouter;
 
 /*
 ======= TODO =======
 - Add POST request for reviews
 - Add PUT request for reviews to check for if review was helpful
 - Add PUT request for reviews to report a review
+- Add routes for Cart API
+- Add routes for Interactions API
+- Optimize authentication by adding middleware (?)
 */
