@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-
+import { sortHelpfulness, sortNewest, sortRelevance } from './helpers';
+console.log(sortHelpfulness);
 function Sorting({ sortedFilteredReviews, updateSetSortedFilteredReviews }) {
   const handleClick = (event) => {
     event.preventDefault();
-    const value = event.target.value;
     const tempArray = sortedFilteredReviews.slice(0);
 
-    tempArray.sort((a, b) => {
-      const revA = a.helpfulness;
-      const revB = b.helpfulness;
-      if (revA < revB) {
-        return 1;
-      }
-      if (revA > revB) {
-        return -1;
-      }
-      return 0;
-    });
+    const functionObjects = {
+      'helpful': sortHelpfulness,
+      'newest': sortNewest,
+      'relevant': sortRelevance,
+    }
+
+    const value = event.target.value;
+    const sortMethod = functionObjects[value];
+
+    tempArray.sort(sortMethod);
     updateSetSortedFilteredReviews(tempArray);
   };
 
