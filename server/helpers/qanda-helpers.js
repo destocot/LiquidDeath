@@ -5,9 +5,9 @@ require('dotenv').config();
 const base_uri = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe';
 axios.defaults.headers.common['Authorization'] = process.env.AUTH;
 
-// hard coded for product_id=37340
-const questionsFetcher = () => {
-  const uri = `${base_uri}/qa/questions/?product_id=37340&page=1&count=100`;
+//  coded for product_id=37324 via App.tsx
+const questionsFetcher = (productId) => {
+  const uri = `${base_uri}/qa/questions/?product_id=${productId}&page=1&count=100`;
   return axios.get(uri);
 };
 

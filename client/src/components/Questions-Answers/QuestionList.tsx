@@ -3,22 +3,22 @@ import axios from 'axios';
 import utils from './Helpers/helpers';
 import Question from './Question';
 
-function QuestionList({ setDisplayMore, numOfQuestions, query }) {
+function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId }) {
   const [questionsDatabase, setQuestionsDatabase] = useState([]);
   const [khurramsQuestions, setKhurramsQuestions] = useState([]);
 
   useEffect(() => {
-    axios.get('/qa/questions')
+    axios.get('/qa/questions', { params: { currProductId } })
       .then((res) => {
         return res.data.results.sort(utils.compare('question_helpfulness'))
-
       })
       .then((sorted) => {
         setQuestionsDatabase(sorted);
         setKhurramsQuestions(sorted.slice(0, numOfQuestions));
         setDisplayMore(sorted.length > 2);
       })
-  }, []);
+      .catch(() => console.log('error fetching questions', currProductId));
+  }, [currProductId]);
 
   useEffect(() => {
     setKhurramsQuestions(questionsDatabase.slice(0, numOfQuestions))

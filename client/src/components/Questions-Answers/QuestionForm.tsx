@@ -2,7 +2,7 @@ import React from 'react';
 import './QuestionFormStyles.css';
 import axios from 'axios';
 
-function QuestionForm({ setQForm }) {
+function QuestionForm({ setQForm, currProductId, currProductName }) {
 
   // prevents form from being submitted on enter
   const form = document.getElementById('question-form');
@@ -17,8 +17,7 @@ function QuestionForm({ setQForm }) {
     const body = e.target.body.value;
     const name = e.target.name.value;
     const email = e.target.email.value;
-    // // hard coded for product_id 37340
-    const product_id = 37340;
+    const product_id = currProductId;
     sendQuestion({ body, name, email, product_id });
     close();
     // console.log({ body, name, email, product_id });
@@ -42,7 +41,7 @@ function QuestionForm({ setQForm }) {
           <h2>Ask Your Question</h2>
           <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }} />
         </div>
-        <h3>About the [Product Name Here]</h3>
+        <h3>About the {currProductName}</h3>
         <form id="question-form" onSubmit={(e) => submitHandler(e)}>
           <label>Your Question<br />
             <textarea maxLength="1000" rows="3" defaultValue="does this run large?" name="body" required /></label>

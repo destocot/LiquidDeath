@@ -83,7 +83,7 @@ function App() {
       <div id="ratingsReviewsContainerId">
         <ReviewsRatings />
       </div>
-      <QuestionsAndAnswers />
+      <QuestionsAndAnswers currProductId={product.id} currProductName={product.name}/>
       <h1>Jon Component</h1>
     </div>
   );

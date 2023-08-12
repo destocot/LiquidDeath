@@ -6,7 +6,7 @@ const utils = require('../helpers/qanda-helpers');
 
 // Get Questions
 router.get('/', (req, res) => {
-  utils.questionsFetcher()
+  utils.questionsFetcher(req.query.currProductId)
     .then((questions) => {
       res.status(200).send(questions.data);
     })
