@@ -4,7 +4,7 @@ function Sorting({ sortedFilteredReviews, updateSetSortedFilteredReviews }) {
   const handleClick = (event) => {
     event.preventDefault();
     const value = event.target.value;
-    const tempArray = sortedFilteredReviews;
+    const tempArray = sortedFilteredReviews.slice(0);
 
     tempArray.sort((a, b) => {
       const revA = a.helpfulness;
