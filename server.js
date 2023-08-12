@@ -11,5 +11,5 @@ app.use('/qa/questions', QuestionAndAnswersRoutes);
 
 const port = 3000;
 app.listen(port, () => {
-  console.log(`Listening at port ${port}`);
+  console.log(`Listening at port http://localhost:${port}`);
 });

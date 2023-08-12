@@ -4,4 +4,3 @@ exampleData
 .prettierrc.json
 client/dist/bundle.js
 .env
-tsconfig.json
