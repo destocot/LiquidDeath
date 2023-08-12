@@ -5,8 +5,9 @@ import ExpandAndAdd from './Questions-Answers/ExpandAndAdd';
 import QuestionList from './Questions-Answers/QuestionList';
 import utils from './Questions-Answers/Helpers/helpers';
 import calls from './Questions-Answers/Helpers/fetchers';
+import axios from 'axios';
 
-const getQuestions = calls.questionsFetcher;
+// const getQuestions = calls.questionsFetcher;
 
 function QuestionsAndAnswers() {
   const [questionsDatabase, setQuestionsDatabase] = useState([]);
@@ -14,12 +15,23 @@ function QuestionsAndAnswers() {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    getQuestions(setQuestionsDatabase, questionsDatabase, setNumOfQuestions, numOfQuestions, setQuestions);
+    axios.get('/qa/questions')
+      .then((res) => {
+        // reminder to sort
+        setQuestionsDatabase(res.data.results);
+        setQuestions(res.data.results.slice(0, 4));
+      })
+      .catch(() => console.log('err obtaining questions'));
   }, []);
+  // useEffect(() => {
+  //   getQuestions(setQuestionsDatabase, questionsDatabase, setNumOfQuestions, numOfQuestions, setQuestions);
+  // }, []);
 
-  useEffect(() => {
-    setQuestions(questionsDatabase.slice(0, numOfQuestions[0]));
-  }, [numOfQuestions]);
+  // useEffect(() => {
+  //   setQuestions(questionsDatabase.slice(0, 4));
+
+  //   console.log(questions);
+  // }, [numOfQuestions]);
 
   // currently filtering from local database
   const filterQuestions = (query) => {
@@ -36,8 +48,10 @@ function QuestionsAndAnswers() {
       <Search filterQuestions={filterQuestions} />
       <QuestionList questions={questions} />
       <ExpandAndAdd
-        numOfQuestions={numOfQuestions}
-        setNumOfQuestions={setNumOfQuestions}
+        // numOfQuestions={numOfQuestions}
+        // setNumOfQuestions={setNumOfQuestions}
+        questionsDatabase={questionsDatabase}
+        setQuestions={setQuestions}
       />
     </div>
   );

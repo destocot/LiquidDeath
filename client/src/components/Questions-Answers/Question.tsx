@@ -65,12 +65,14 @@ function Question({ question }) {
           <button type="button" id="add-answer-btn" onClick={() => addAnswerModule()} onKeyDown={() => addAnswerModule()}>Add Answer</button>
         </div>
       </div>
-      {
-        answers.map((answer) => <Answer answer={answer} key={answer.answer_id} />)
-      }
-      {
-        expandOrCollapseButtons()
-      }
+      <div className="answers-container">
+        {
+          answers.map((answer) => <Answer answer={answer} key={answer.answer_id} />)
+        }
+        {
+          expandOrCollapseButtons()
+        }
+      </div>
     </div>
   );
 }
