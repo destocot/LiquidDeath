@@ -2,43 +2,34 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Answer from './Answer';
 import utils from './Helpers/helpers';
-import calls from './Helpers/fetchers';
-
-const getAnswers = calls.answersFetcher;
 
 function Question({ question }) {
   const [answersDatabase, setAnswersDatabase] = useState([]);
-  const [numOfAnswers, setNumOfAnswers] = React.useState([]);
   const [answers, setAnswers] = useState([]);
-
   const [more, setMore] = useState(true);
 
   const { question_helpfulness } = question;
   const [helpfulness, setHelpfulness] = useState([question_helpfulness, false]);
 
   React.useEffect(() => {
-    // eslint-disable-next-line max-len
-    getAnswers(setAnswersDatabase, answersDatabase, setNumOfAnswers, numOfAnswers, setAnswers, question);
+    axios.get(`/qa/questions/${question.question_id}/answers`)
+      .then((res) => res.data.sort(utils.compare('helpfulness')))
+      .then((sorted) => {
+        setAnswersDatabase(sorted);
+        setAnswers(sorted.slice(0, 2));
+      });
   }, []);
 
-  React.useEffect(() => {
-    setAnswers(answersDatabase.slice(0, numOfAnswers[0]));
-  }, [numOfAnswers]);
-
   const expandOrCollapse = () => {
-    if (more) {
-      setMore(!utils.expand(numOfAnswers, setNumOfAnswers));
-    } else {
-      setMore(utils.collapse(setNumOfAnswers, 2));
-    }
+    setMore(utils.expandAnswers(answersDatabase, setAnswers, more));
   };
 
   const expandOrCollapseButtons = () => {
-    if (numOfAnswers[1] > 2) {
+    if (answersDatabase.length > 2) {
       if (more) {
-        return <button className="expand-answers-btn" type="button" onClick={expandOrCollapse}>LOAD MORE ANSWERS</button>;
+        return <button className="expand-answers-btn" type="button" onClick={expandOrCollapse}>LOAD MORE ANSWERS</button>
       }
-      return <button className="expand-answers-btn" type="button" onClick={expandOrCollapse}>COLLAPSE ANSWERS</button>;
+      return <button className="expand-answers-btn" type="button" onClick={expandOrCollapse}>COLLAPSE ANSWERS</button>
     }
   };
 
@@ -65,12 +56,14 @@ function Question({ question }) {
           <button type="button" id="add-answer-btn" onClick={() => addAnswerModule()} onKeyDown={() => addAnswerModule()}>Add Answer</button>
         </div>
       </div>
-      {
-        answers.map((answer) => <Answer answer={answer} key={answer.answer_id} />)
-      }
-      {
-        expandOrCollapseButtons()
-      }
+      <div className="answers-container">
+        {
+          answers.map((answer: any) => <Answer answer={answer} key={answer.answer_id} />)
+        }
+        {
+          expandOrCollapseButtons()
+        }
+      </div>
     </div>
   );
 }
