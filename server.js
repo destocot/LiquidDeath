@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, './client/dist')));
 
-const QuestionAndAnswersRoutes = require('./server/qanda-routes');
+const QuestionAndAnswersRoutes = require('./server/Routers/qanda-routes');
 
 app.use('/qa/questions', QuestionAndAnswersRoutes);
 
