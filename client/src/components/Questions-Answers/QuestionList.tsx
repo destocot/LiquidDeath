@@ -3,7 +3,7 @@ import Question from './Question';
 
 function QuestionList({ questions }) {
   return (
-    <div>
+    <div className="questions-container">
       {
         // remove index later
         questions.map((question, index) => (<Question question={question} key={index} />))

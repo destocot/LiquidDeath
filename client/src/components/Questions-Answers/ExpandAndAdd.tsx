@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import utils from './Helpers/helpers';
 
 // currently all expanding / collapse behavior pulls from local database
-function ExpandAndAdd({ numOfQuestions, setNumOfQuestions }) {
+function ExpandAndAdd({ questionsDatabase, setQuestions, numOfQuestions, setNumOfQuestions }) {
   const [more, setMore] = useState(true);
 
   const addQuestionModule = () => {
@@ -11,14 +11,18 @@ function ExpandAndAdd({ numOfQuestions, setNumOfQuestions }) {
 
   const expandOrCollapse = () => {
     if (more) {
-      setMore(!utils.expand(numOfQuestions, setNumOfQuestions));
+      // setMore(!utils.expand(numOfQuestions, setNumOfQuestions));
+      setQuestions(questionsDatabase);
+      setMore(false);
     } else {
-      setMore(utils.collapse(setNumOfQuestions, 4));
+      // setMore(utils.collapse(setNumOfQuestions, 4));
+      setQuestions(questionsDatabase.slice(0, 4));
+      setMore(true);
     }
   };
 
   const expandOrCollapseButtons = () => {
-    if (numOfQuestions[1] > 4) {
+    if (questionsDatabase.length > 4) {
       if (more) {
         return <button className="expand-questions-btn" type="button" onClick={expandOrCollapse}>MORE ANSWERED QUESTIONS</button>;
       }

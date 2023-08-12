@@ -6,10 +6,13 @@ const questionsFetcher = (setQuestionsDatabase, questionsDatabase  setNumOfQuest
     .then((res) => res.data.results.sort(utils.compare('question_helpfulness')))
     .then((sorted) => {
       setQuestionsDatabase(sorted);
-      setNumOfQuestions([4, sorted.length]);
+      // setNumOfQuestions([4, sorted.length]);
+      return sorted;
     })
-    .then(() => {
-      setQuestions(questionsDatabase.slice(0, numOfQuestions[0]));
+    .then((sorted) => {
+      console.log(questionsDatabase);
+      // setQuestions(questionsDatabase.slice(0, numOfQuestions[0]));
+      setQuestions(questionsDatabase.slice(0, sorted.length));
     })
     .catch(() => console.log('err obtaining questions'));
 };
