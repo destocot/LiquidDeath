@@ -1,15 +1,12 @@
 .qa-main-container {
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Lato', sans-serif;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
-  width: 65vw;
+  width: 75vw;
   margin: 0 auto;
   padding: 10px;
-  border: 2px solid black;
-  color: white;
-  background-color: #004675;
-  background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+  color: #EFEFD0;
+  background-color: #1A659E;
 }
 
 .qa-main-container h2 {
@@ -36,21 +33,35 @@
   font-size: 25px;
 }
 
-/* QUESTION CONTAINER */
-.question-container {
-  /* background-color: palevioletred; */
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid black;
+/* QUESTIONs CONTAINER */
+.questions-container {
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
-.question-container:last-child {
-  margin-bottom: 0px;
+.questions-container::-webkit-scrollbar {
+  width: 5px;
+}
+.questions-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* QUESTION CONTAINER */
+.question-container {
+  background-color: #004E89;
+  padding: 10px;
+  margin: 0 auto 10px auto;
 }
 
 .question-title-container {
   display: flex;
   justify-content: space-between;
+  column-gap: 10px;
+}
+
+.question-title-container div:last-child {
+   white-space: nowrap;
 }
 
 #question-yes,
@@ -60,7 +71,7 @@
 .expand-answers-btn {
   font-family: 'Inconsolata', monospace;
   background: none;
-  color: white;
+  color: #EFEFD0;
   border: none;
   margin: 0;
   padding: 0;
@@ -77,13 +88,27 @@
 #add-answer-btn:hover,
 #answer-yes:hover,
 .expand-answers-btn:hover {
-  color: yellow;
+  color: #FF6B35;
+}
+
+/* ANSWERs CONTAINER */
+.answers-container {
+  max-height: 40vh;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.answers-container::-webkit-scrollbar {
+  width: 5px;
+}
+.answers-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* ANSWER CONTAINER */
 .answer-container {
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #F7C59F;
   margin: 5px 0;
 }
 
@@ -108,3 +133,11 @@
 .expand-questions-btn:hover {
   background-color: rgba(255, 255, 0, 0.2);
 }
+
+
+/* COLORS [orange (crayola), peache, beige, polynesian blue, lapis luzuli] */
+/* #FF6B35
+#F7C59F
+#EFEFD0
+#004E89
+#1A659E */
