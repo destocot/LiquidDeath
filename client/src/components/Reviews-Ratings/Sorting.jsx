@@ -16,6 +16,7 @@ function Sorting({ sortedFilteredReviews, updateSetSortedFilteredReviews }) {
     const sortMethod = functionObjects[value];
 
     tempArray.sort(sortMethod);
+    console.log(tempArray);
     updateSetSortedFilteredReviews(tempArray);
   };
 
