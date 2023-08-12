@@ -17,7 +17,7 @@ const questionsFetcher = (setQuestionsDatabase, questionsDatabase  setNumOfQuest
     .catch(() => console.log('err obtaining questions'));
 };
 
-const answersFetcher = (setAnswersDatabase, answersDatabase, setNumOfAnswers, numOfAnswers, setAnswers, question) => {
+const answers = (setAnswersDatabase, answersDatabase, setNumOfAnswers, numOfAnswers, setAnswers, question) => {
   axios.get(`/qa/questions/${question.question_id}/answers`)
     .then((res) => res.data.sort(utils.compare('helpfulness')))
     .then((sorted) => {
@@ -32,4 +32,4 @@ const answersFetcher = (setAnswersDatabase, answersDatabase, setNumOfAnswers, nu
     });
 };
 
-export default { questionsFetcher, answersFetcher };
+export default { questionsFetcher, answers };
