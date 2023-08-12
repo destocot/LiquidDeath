@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const utils = require('./helpers/qanda-helpers');
+const utils = require('../helpers/qanda-helpers');
 
 // Get Questions
 router.get('/', (req, res) => {
