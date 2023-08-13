@@ -29,7 +29,7 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
 
   useEffect(() => {
     if (query.length > 2) {
-      setQuestions(questionsDatabase.filter((q: any) => q.question_body.includes(query)));
+      setQuestions(questionsDatabase.filter((q: any) => q.question_body.toLowerCase().includes(query.toLowerCase())));
       setDisplayMore(false);
     } else {
       setQuestions(questionsDatabase.slice(0, numOfQuestions))
@@ -43,7 +43,7 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
 
   return (
     <div className="questions-container">
-      { // remove index later
+      {
         questions.map((question) => (<Question question={question} key={question.question_id} currProductName={currProductName} />))
       }
     </div>
