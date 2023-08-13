@@ -1,4 +1,4 @@
-#question-form-container {
+#question-form-container, #answer-form-container {
   position: fixed;
   background: rgba(0, 0, 0, 0.75);
   height: 100vh;
@@ -8,33 +8,42 @@
 }
 
 #question-form-subcontainer {
+  height: 55vh;
+  width: 25vw;
+  background-image: linear-gradient(45deg, black 0 50%,  #000080 50% 100%);
+}
+
+#answer-form-subcontainer {
+  height: 65vh;
+  width: 30vw;
+  background-image: linear-gradient(45deg, #000080 0 50%,  black 50% 100%);
+}
+
+#question-form-subcontainer, #answer-form-subcontainer {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  height: 60vh;
-  width: 25vw;
   margin: auto;
-  background-image: linear-gradient(45deg, black 0 50%,  #000080 50% 100%);
   border: 1px solid black;
   border-radius: 20px;
   color: white;
   padding: 1.25rem;
 }
 
-#question-form-title {
+#question-form-title, #answer-form-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 10vh;
 }
 
-#question-form {
+#question-form, #answer-form {
   font-size: 1.125rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 40vh;
 }
 
 textarea,
@@ -44,8 +53,7 @@ input[type="email"] {
   width: 100%;
 }
 
-#q-submit-btn {
+#q-submit-btn, #a-submit-btn {
   align-self: center;
   padding: 0.313rem 0.625rem;
-
 }

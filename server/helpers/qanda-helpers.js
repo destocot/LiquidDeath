@@ -21,8 +21,14 @@ const questionsPoster = (data) => {
   return axios.post(uri, data);
 };
 
+const answersPoster = (questionId, data) => {
+  const uri = `${base_uri}/qa/questions/${questionId}/answers`;
+  return axios.post(uri, data);
+};
+
 module.exports = {
   questionsFetcher,
   answersFetcher,
   questionsPoster,
+  answersPoster
 };

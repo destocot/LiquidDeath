@@ -5,12 +5,15 @@ import axios from 'axios';
 function QuestionForm({ setQForm, currProductId, currProductName }) {
 
   // prevents form from being submitted on enter
-  const form = document.getElementById('question-form');
-  form?.addEventListener('keydown', (e) => {
+  const checkKeyDown = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
     }
-  })
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      close();
+    }
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -25,8 +28,7 @@ function QuestionForm({ setQForm, currProductId, currProductName }) {
 
   const sendQuestion = (data) => {
     axios.post('/qa/questions', data)
-      .then(() => console.log('post succ'))
-      .catch(() => console.log('post errr'));
+      .catch(() => console.log('error posting question'));
   }
 
   const close = () => {
@@ -42,7 +44,7 @@ function QuestionForm({ setQForm, currProductId, currProductName }) {
           <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }} />
         </div>
         <h3>About the {currProductName}</h3>
-        <form id="question-form" onSubmit={(e) => submitHandler(e)}>
+        <form id="question-form" onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
           <label>Your Question<br />
             <textarea maxLength="1000" rows="3" defaultValue="does this run large?" name="body" required /></label>
           <label>Name<br />

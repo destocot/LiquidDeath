@@ -26,6 +26,7 @@ function QuestionsAndAnswers({ currProductId, currProductName }) {
       setDisplayMore={setDisplayMore}
       numOfQuestions={numOfQuestions}
       query={query}
+      currProductName={currProductName}
       currProductId={currProductId} />
       <ExpandAndAdd
       displayMore={displayMore}

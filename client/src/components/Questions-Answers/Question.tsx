@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Answer from './Answer';
 import utils from './Helpers/helpers';
+import AnswerForm from './AnswerForm';
 
-function Question({ question }) {
+function Question({ question, currProductName }) {
   const [answersDatabase, setAnswersDatabase] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [more, setMore] = useState(true);
+  const [aForm, setAForm] = useState(false);
 
   const { question_helpfulness } = question;
   const [helpfulness, setHelpfulness] = useState([question_helpfulness, false]);
@@ -39,10 +41,6 @@ function Question({ question }) {
     }
   };
 
-  const addAnswerModule = () => {
-    console.log('ADD ANSWER FORM HERE');
-  };
-
   return (
     <div className="question-container">
       <div className="question-title-container">
@@ -53,7 +51,7 @@ function Question({ question }) {
           {'Helpful? '}
           <button type="button" id="question-yes" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
           {` (${helpfulness[0]}) | `}
-          <button type="button" id="add-answer-btn" onClick={() => addAnswerModule()} onKeyDown={() => addAnswerModule()}>Add Answer</button>
+          <button type="button" id="add-answer-btn" onClick={() => setAForm(true)} onKeyDown={() => addAnswerModule()}>Add Answer</button>
         </div>
       </div>
       <div className="answers-container">
@@ -64,6 +62,9 @@ function Question({ question }) {
           expandOrCollapseButtons()
         }
       </div>
+      {
+        aForm && <AnswerForm setAForm={setAForm} currProductName={currProductName} questionBody={question.question_body} questionId={question.question_id} />
+      }
     </div>
   );
 }
