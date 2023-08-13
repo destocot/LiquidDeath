@@ -12,7 +12,7 @@ const productRouter = require('./server/Routers/products-routes');
 const reviewsRouter = require('./server/Routers/reviews-routes');
 
 // routes
-app.use('/qa/questions', QuestionAndAnswersRoutes);
+app.use('/qa', QuestionAndAnswersRoutes);
 app.use('/products', productRouter);
 app.use('/reviews', reviewsRouter);
 

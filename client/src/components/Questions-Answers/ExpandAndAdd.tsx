@@ -10,7 +10,7 @@ function ExpandAndAdd({ setNumOfQuestions, displayMore, currProductName, currPro
 
   const expandOrCollapseButtons = () => {
     if (displayMore) {
-      return <button className="expand-questions-btn" type="button" onClick={expandOrCollapse}>MORE ANSWERED QUESTIONS</button>;
+      return <button id="expand-questions-btn" type="button" onClick={expandOrCollapse}>MORE ANSWERED QUESTIONS</button>;
     }
   };
 
@@ -19,7 +19,7 @@ function ExpandAndAdd({ setNumOfQuestions, displayMore, currProductName, currPro
       {
         expandOrCollapseButtons()
       }
-      <button className="expand-questions-btn" type="button" onClick={() => setQForm(true)}>
+      <button id="add-questions-btn" type="button" onClick={() => setQForm(true)}>
         {'ADD A QUESTION '}
         <i className="fa-solid fa-plus" />
       </button>
