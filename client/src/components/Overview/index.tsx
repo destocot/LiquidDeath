@@ -7,7 +7,7 @@ import AddCart from './Features/AddCart';
 import './OverviewStyles.css';
 import { productReviews } from './ExampleData';
 
-function Overview({product, reviewsMeta}) {
+function Overview({ product, reviewsMeta}) {
   // states for styles and current style
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);

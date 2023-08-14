@@ -77,7 +77,6 @@ function App() {
       <div>
         <Overview
           product={product}
-          styles={styles}
           reviewsMeta={reviewsMeta}
           reviews={reviews}
         />
