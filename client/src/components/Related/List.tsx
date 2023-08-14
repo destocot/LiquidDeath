@@ -168,7 +168,7 @@ export const List: FunctionComponent = () => {
   };
 
   return (
-    <div className="bg-black">
+    <div className="flex flex-row">
       {allProducts.map((current) => {
         if (current.category === currentProduct.category) {
         }
