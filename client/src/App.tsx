@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './app.css';
-import QuestionsAndAnswers from './components/QuestionsAndAnswers';
-import Overview from './components/Overview';
-import ReviewsRatings from './components/Reviews-Ratings/ReviewsRatings';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./app.css";
+import QuestionsAndAnswers from "./components/QuestionsAndAnswers";
+import Overview from "./components/Overview";
+import ReviewsRatings from "./components/Reviews-Ratings/ReviewsRatings";
+import { List } from "./components/Related/List";
 
 function App() {
   /*
   ===== STATES AND STATE CHANGERS =====
   */
   // current product state - pass this (or id) as props for components to use
-  const [product, setProduct] = useState({ id: 42, name: 'Liquid Death' });
+  const [product, setProduct] = useState({ id: 42, name: "Liquid Death" });
   // other general states - these rerender when product changes
   const [styles, setStyles] = useState(null);
   const [related, setRelated] = useState(null);
@@ -26,8 +27,10 @@ function App() {
     return newRelated;
   };
   // defaults to relevant sorting order - use this in components with custom sorting order
-  const updReviews = async (sort = 'relevant', count = '5', page = '1') => {
-    const newReviews = await axios.get(`/reviews/${product.id}/${sort}/${count}/${page}`);
+  const updReviews = async (sort = "relevant", count = "5", page = "1") => {
+    const newReviews = await axios.get(
+      `/reviews/${product.id}/${sort}/${count}/${page}`
+    );
     return newReviews;
   };
   const updReviewsMeta = async () => {
@@ -40,7 +43,8 @@ function App() {
   */
   // on initialization, render a placeholder product (ID 37324)
   useEffect(() => {
-    axios.get('/products/37324')
+    axios
+      .get("/products/37324")
       .then((result) => {
         setProduct(result.data);
       })
@@ -49,7 +53,7 @@ function App() {
 
   // update states every time product changes
   useEffect(() => {
-    if (product.name !== 'Liquid Death') {
+    if (product.name !== "Liquid Death") {
       updStyles()
         .then((styleUpd) => setStyles(styleUpd.data.results))
         .then(() => updRelated())
@@ -71,11 +75,11 @@ function App() {
   // TESTING TESTING (changed how it logs information)
   useEffect(() => {
     console.log({
-    'styles array' : styles,
-    'related array' : related,
-    'reviews array' : reviews,
-    'reviews meta data' : reviewsMeta,
-    'current product' : product,
+      "styles array": styles,
+      "related array": related,
+      "reviews array": reviews,
+      "reviews meta data": reviewsMeta,
+      "current product": product,
     });
   }, [reviewsMeta]);
 
@@ -83,9 +87,17 @@ function App() {
   if (reviewsMeta) {
     return (
       <div>
-        <Overview product={product} styles={styles} reviewsMeta={reviewsMeta} reviews={reviews} />
-        <h1>Jon Component</h1>
-        <QuestionsAndAnswers currProductId={product.id} currProductName={product.name}/>
+        <Overview
+          product={product}
+          styles={styles}
+          reviewsMeta={reviewsMeta}
+          reviews={reviews}
+        />
+        <List />
+        <QuestionsAndAnswers
+          currProductId={product.id}
+          currProductName={product.name}
+        />
         <div id="ratingsReviewsContainerId">
           <ReviewsRatings />
         </div>
