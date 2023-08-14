@@ -5,7 +5,7 @@ import utils from './helpers/helpers';
 import requests from './helpers/requests';
 import AnswerForm from './AnswerForm';
 
-function Question({ question, currProductName }) {
+function Question({ question, currProductName, query }) {
   const [answersDatabase, setAnswersDatabase] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [more, setMore] = useState(true);
@@ -47,8 +47,13 @@ function Question({ question, currProductName }) {
   return (
     <div className="question-container">
       <div className="question-title-container">
-        <div>
-          {`Q: ${question.question_body}`}
+        <div className="question-labeler">
+          <div>
+            Q:
+          </div>
+          <div>
+            {question.question_body2 ? question.question_body2 : question.question_body}
+          </div>
         </div>
         <div>
           {'Helpful? '}
@@ -59,7 +64,7 @@ function Question({ question, currProductName }) {
       </div>
       <div className="answers-container">
         {
-          answers.map((answer: any) => <Answer answer={answer} key={answer.answer_id} />)
+          answers.map((answer: any) => <Answer answer={answer} key={answer.answer_id} query={query} />)
         }
         {
           expandOrCollapseButtons()
@@ -69,6 +74,7 @@ function Question({ question, currProductName }) {
         aForm && <AnswerForm setAForm={setAForm} currProductName={currProductName} questionBody={question.question_body} questionId={question.question_id} />
       }
     </div>
+
   );
 }
 
