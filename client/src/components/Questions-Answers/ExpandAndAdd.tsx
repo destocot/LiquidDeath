@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import QuestionForm from './QuestionForm';
 
-function ExpandAndAdd({ setNumOfQuestions, displayMore }) {
+function ExpandAndAdd({ setNumOfQuestions, displayMore, currProductName, currProductId }) {
   const [qForm, setQForm] = useState(false);
 
   const expandOrCollapse = () => {
@@ -24,7 +24,9 @@ function ExpandAndAdd({ setNumOfQuestions, displayMore }) {
         <i className="fa-solid fa-plus" />
       </button>
       {
-        qForm && <QuestionForm setQForm={setQForm} />
+        qForm && <QuestionForm setQForm={setQForm}
+        currProductName={currProductName}
+        currProductId={currProductId} />
       }
     </div>
   );

@@ -75,15 +75,14 @@ h6 {
 .answers-container {
   max-height: 40vh;
   overflow-y: auto;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
-  padding: 10px;
+  border: 1px solid black;
 }
 
 .answer-container {
   border: 1px dashed black;
+  margin-bottom: 5px;
 }
 
 .ExpandAndAdd-container {

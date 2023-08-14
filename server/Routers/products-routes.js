@@ -4,7 +4,6 @@ const express = require('express');
 const axios = require('axios');
 
 const productRouter = express.Router();
-
 // get all products - specify count to absurd number - useful for product search feature (extra)
 productRouter.get('/', (req, res) => {
   axios.get(

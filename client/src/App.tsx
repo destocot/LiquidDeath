@@ -68,13 +68,15 @@ function App() {
   - onSearchProduct fn that updates product
   */
 
-  // TESTING TESTING
+  // TESTING TESTING (changed how it logs information)
   useEffect(() => {
-    console.log('styles array: ', styles);
-    console.log('related array: ', related);
-    console.log('reviews array: ', reviews);
-    console.log('reviews meta data: ', reviewsMeta);
-    console.log('current product: ', product);
+    console.log({
+    'styles array' : styles,
+    'related array' : related,
+    'reviews array' : reviews,
+    'reviews meta data' : reviewsMeta,
+    'current product' : product,
+    });
   }, [reviewsMeta]);
 
   return (
@@ -83,7 +85,7 @@ function App() {
       <div id="ratingsReviewsContainerId">
         <ReviewsRatings />
       </div>
-      <QuestionsAndAnswers />
+      <QuestionsAndAnswers currProductId={product.id} currProductName={product.name}/>
       <h1>Jon Component</h1>
     </div>
   );

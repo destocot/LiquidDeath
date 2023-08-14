@@ -6,7 +6,7 @@ const utils = require('../helpers/qanda-helpers');
 
 // Get Questions
 router.get('/', (req, res) => {
-  utils.questionsFetcher()
+  utils.questionsFetcher(req.query.currProductId)
     .then((questions) => {
       res.status(200).send(questions.data);
     })
@@ -29,12 +29,23 @@ router.get('/:questionId/answers', (req, res) => {
 // Post Questions
 router.post('/', (req, res) => {
   utils.questionsPoster(req.body)
-  .then(() => {
-    res.status(200).send('POST SUCCESSFUL');
-  })
-  .catch(() => {
-    res.status(400).send();
-  });
+    .then(() => {
+      res.status(200).send('POST SUCCESSFUL');
+    })
+    .catch(() => {
+      res.status(400).send();
+    });
+});
+
+// Post Answers
+router.post('/:questionId/answers', (req, res) => {
+  utils.answersPoster(req.params.questionId, req.body)
+    .then(() => {
+      res.status(200).send('POST SUCCESSFUL');
+    })
+    .catch(() => {
+      res.status(400).send();
+    });
 });
 
 module.exports = router;
