@@ -157,7 +157,7 @@ const example = [
   },
 ];
 
-export const List: FunctionComponent<ListProps> = () => {
+export const List: FunctionComponent<ListProps> = ({ currentProduct }) => {
   const [allProducts, updateAllProducts] = React.useState<data>(example);
 
   const [relevantProducts, updateRelevant] = React.useState<data>();
