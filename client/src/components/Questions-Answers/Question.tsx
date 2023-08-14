@@ -17,9 +17,10 @@ function Question({ question, currProductName }) {
   React.useEffect(() => {
     axios.get(`/qa/questions/${question.question_id}/answers`)
       .then((res) => res.data.sort(utils.compare('helpfulness')))
-      .then((sorted) => {
-        setAnswersDatabase(sorted);
-        setAnswers(sorted.slice(0, 2));
+      .then((sortedHelpfulness) => utils.sortSellers(sortedHelpfulness))
+      .then((sortedSellers) => {
+        setAnswersDatabase(sortedSellers);
+        setAnswers(sortedSellers.slice(0, 2));
       });
   }, []);
 

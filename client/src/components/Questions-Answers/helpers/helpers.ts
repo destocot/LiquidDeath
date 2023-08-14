@@ -10,7 +10,13 @@ const compare = (identifier) =>
     }
     return 0;
   };
-;
+
+  const sortSellers = (sortedAnswers) => {
+    const Sellers = sortedAnswers.filter(answer => answer.answerer_name === 'Seller');
+    const nonSellers = sortedAnswers.filter(answer => answer.answerer_name !== 'Seller');
+
+    return Sellers.concat(nonSellers);
+  }
 
 const expandAnswers = (answersDatabase, setAnswers, shouldExpand) => {
   if (shouldExpand) {
@@ -21,19 +27,20 @@ const expandAnswers = (answersDatabase, setAnswers, shouldExpand) => {
   return !shouldExpand;
 };
 
-const expand = (getter, setter) => {
-  setter([getter[0] + 2, getter[1]]);
-  return getter[0] + 2 >= getter[1];
-};
+// const expand = (getter, setter) => {
+//   setter([getter[0] + 2, getter[1]]);
+//   return getter[0] + 2 >= getter[1];
+// };
 
-const collapse = (setter, reset) => {
-  setter((state) => [reset, state[1]]);
-  return true;
-};
+// const collapse = (setter, reset) => {
+//   setter((state) => [reset, state[1]]);
+//   return true;
+// };
 
-const search = (questionsDatabase, query) =>
-  questionsDatabase
-    .filter(question =>
-      question.question_body.includes(query));
+// const search = (questionsDatabase, query) =>
+//   questionsDatabase
+//     .filter(question =>
+//       question.question_body.includes(query));
 
-export default { compare, expand, collapse, search, expandAnswers };
+// export default { compare, expand, collapse, search, expandAnswers, sortSellers };
+export default { expandAnswers, compare, sortSellers };

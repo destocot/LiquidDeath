@@ -87,6 +87,10 @@ h6 {
   margin: 5px 0;
 }
 
+.user-seller {
+  font-weight: bold;
+}
+
 .ExpandAndAdd-container {
   max-height: 5vh;
   width: 100%;
