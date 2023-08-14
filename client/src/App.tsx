@@ -16,8 +16,8 @@ function App() {
 
   /*
   TODOS:
-  - Move related state to Jon's component
-  - Move reviews state to Kurt's component
+  - Move related state and updRelated fn to Jon's component
+  - Move reviews state and updReviews fn to Kurt's component
   */
   const [related, setRelated] = useState(initial.related);
   const [reviews, setReviews] = useState(initial.reviews);
