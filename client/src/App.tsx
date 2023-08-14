@@ -5,7 +5,7 @@ import QuestionsAndAnswers from "./components/QuestionsAndAnswers";
 import Overview from "./components/Overview";
 import ReviewsRatings from "./components/Reviews-Ratings/ReviewsRatings";
 import { List } from "./components/Related/List";
-import initial from './PlaceHolderData.js';
+import initial from "./PlaceHolderData.js";
 
 function App() {
   /*
@@ -40,7 +40,9 @@ function App() {
   };
   // defaults to relevant sorting order - change sort to desired sort order
   const updReviews = async (sort = "relevant", count = "5", page = "1") => {
-    const newReviews = await axios.get(`/reviews/${product.id}/${sort}/${count}/${page}`);
+    const newReviews = await axios.get(
+      `/reviews/${product.id}/${sort}/${count}/${page}`
+    );
     return newReviews;
   };
 
@@ -64,18 +66,35 @@ function App() {
   // TESTING TESTING
   useEffect(() => {
     console.log({
-    'reviews meta data' : reviewsMeta,
-    'current product' : product,
+      "reviews meta data": reviewsMeta,
+      "current product": product,
     });
   }, [reviewsMeta]);
 
   // changed order of components
+  if (reviewsMeta) {
+    return (
+      <div>
+        <Overview
+          product={product}
+          styles={styles}
+          reviewsMeta={reviewsMeta}
+          reviews={reviews}
+        />
+        <List currentProduct={product} />
+        <QuestionsAndAnswers
+          currProductId={product.id}
+          currProductName={product.name}
+        />
+        <div id="ratingsReviewsContainerId">
+          <ReviewsRatings />
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
-      <Overview
-        product={product}
-        reviewsMeta={reviewsMeta}
-      />
+      <Overview product={product} reviewsMeta={reviewsMeta} />
       <List />
       <QuestionsAndAnswers
         currProductId={product.id}

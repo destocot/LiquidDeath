@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import { useState } from "react";
 import { Links } from "./Links";
+import axios from "axios";
 export type product = {
   id: number;
   name: string;
@@ -18,6 +19,21 @@ export type product = {
   features?: Array<{ feature: string; value: string }>;
 };
 export type data = Array<product>;
+type ListProps = {
+  product: {
+    id: number;
+    name: string;
+    slogan: string;
+    description: string;
+    category: string;
+    default_price: string;
+    created_at?: string;
+    updated_at?: string;
+    features?: Array<{ feature: string; value: string }>;
+    data: data;
+  };
+  data: Array<product>;
+};
 const example = [
   {
     id: 37311,
@@ -141,22 +157,16 @@ const example = [
   },
 ];
 
-export const List: FunctionComponent = () => {
+export const List: FunctionComponent<ListProps> = () => {
   const [allProducts, updateAllProducts] = React.useState<data>(example);
 
   const [relevantProducts, updateRelevant] = React.useState<data>();
 
-  const [currentProduct, updateCurrentProduct] = React.useState<product>(
-    allProducts[0]
-  );
   useEffect(() => {
     let categoryToRelate = currentProduct.category;
     let relatedHolder: data = [];
-    allProducts.map((product) => {
-      if (product.category === categoryToRelate) relatedHolder.push(product);
-    });
-    updateRelevant(relatedHolder);
-  }, [currentProduct]);
+    axios.get("/${}/related");
+  }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -168,7 +178,7 @@ export const List: FunctionComponent = () => {
   };
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row bg-slate-400">
       {allProducts.map((current) => {
         if (current.category === currentProduct.category) {
         }
