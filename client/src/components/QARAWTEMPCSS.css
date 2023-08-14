@@ -55,11 +55,16 @@ h6 {
 }
 
 #qa-main-title {
-  max-height: 5vh;
+  height: 5vh;
+}
+
+.search-container {
+  height: 5vh;
+  margin-bottom: 1vh;
 }
 
 .questions-container {
-  max-height: 80vh;
+  max-height: 83vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -68,11 +73,14 @@ h6 {
 }
 
 .question-title-container {
-  border-top: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 }
 
-.question-title-container:first-child {
-  border-top: 1px solid transparent;
+.question-labeler, .answer-labeler {
+  display: flex;
+  column-gap: 5px;
 }
 
 .answers-container {
@@ -85,6 +93,7 @@ h6 {
 .answer-container {
   background-color: rgba(0, 0, 0, 0.1);
   margin: 5px 0;
+  padding: 5px;
 }
 
 .user-seller {
@@ -92,7 +101,8 @@ h6 {
 }
 
 .ExpandAndAdd-container {
-  max-height: 5vh;
+  margin-top: 1vh;
+  height: 5vh;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -126,7 +136,9 @@ h6 {
   color: red;
 }
 
-#answer-yes:hover, #question-yes:hover SALAD
+#answer-yes:hover, #question-yes:hover {
+  text-decoration: underline;
+}
 
 .expand-answers-btn:hover, #add-answer-btn:hover {
   font-weight: bold;
