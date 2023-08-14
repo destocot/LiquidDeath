@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./app.css";
-import QuestionsAndAnswers from "./components/QuestionsAndAnswers";
-import Overview from "./components/Overview";
-import ReviewsRatings from "./components/Reviews-Ratings/ReviewsRatings";
-import { List } from "./components/Related/List";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './app.css';
+import initial from './PlaceHolderData.js';
+import QuestionsAndAnswers from './components/QuestionsAndAnswers';
+import Overview from './components/Overview';
+import ReviewsRatings from './components/Reviews-Ratings/ReviewsRatings';
 
 function App() {
   /*
   ===== STATES AND STATE CHANGERS =====
   */
   // current product state - pass this (or id) as props for components to use
-  const [product, setProduct] = useState({ id: 42, name: "Liquid Death" });
+  const [product, setProduct] = useState(initial.product);
   // other general states - these rerender when product changes
-  const [styles, setStyles] = useState(null);
-  const [related, setRelated] = useState(null);
-  const [reviews, setReviews] = useState(null);
-  const [reviewsMeta, setReviewsMeta] = useState(null);
 
-  const updStyles = async () => {
-    const newStyles = await axios.get(`/products/${product.id}/styles`);
-    return newStyles;
-  };
+  /*
+  TODOS:
+  - Move related state to Jon's component
+  - Move reviews state to Kurt's component
+  */
+  const [related, setRelated] = useState(initial.related);
+  const [reviews, setReviews] = useState(initial.reviews);
+  const [reviewsMeta, setReviewsMeta] = useState(initial.reviewsMeta);
+
   const updRelated = async () => {
     const newRelated = await axios.get(`/products/${product.id}/related`);
     return newRelated;
@@ -41,72 +42,46 @@ function App() {
   /*
   ====== FUNCTIONALITY =====
   */
-  // on initialization, render a placeholder product (ID 37324)
-  useEffect(() => {
-    axios
-      .get("/products/37324")
-      .then((result) => {
-        setProduct(result.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
 
-  // update states every time product changes
+  // update reviewsMeta every time product changes
   useEffect(() => {
-    if (product.name !== "Liquid Death") {
-      updStyles()
-        .then((styleUpd) => setStyles(styleUpd.data.results))
-        .then(() => updRelated())
-        .then((relatedUpd) => setRelated(relatedUpd.data))
-        .then(() => updReviews())
-        .then((reviewsUpd) => setReviews(reviewsUpd.data.results))
-        .then(() => updReviewsMeta())
+    if (product.name !== 'Liquid Death') {
+      updReviewsMeta()
         .then((reviewsMetaUpd) => setReviewsMeta(reviewsMetaUpd.data))
         .catch((err) => console.error(err));
     }
   }, [product]);
 
   /*
-  Other possibilities:
+  TODOS:
   - onCardClick fn that updates product
+  //   axios.get('/products/:product_id')
+  //     .then((result) => {
+  //       setProduct(result.data);
+  //     })
+  //     .catch((err) => console.error(err));
   - onSearchProduct fn that updates product
   */
 
   // TESTING TESTING (changed how it logs information)
   useEffect(() => {
     console.log({
-      "styles array": styles,
-      "related array": related,
-      "reviews array": reviews,
-      "reviews meta data": reviewsMeta,
-      "current product": product,
+    'related array' : related,
+    'reviews array' : reviews,
+    'reviews meta data' : reviewsMeta,
+    'current product' : product,
     });
   }, [reviewsMeta]);
 
   // changed order of components
-  if (reviewsMeta) {
-    return (
-      <div>
-        <Overview
-          product={product}
-          styles={styles}
-          reviewsMeta={reviewsMeta}
-          reviews={reviews}
-        />
-        <List />
-        <QuestionsAndAnswers
-          currProductId={product.id}
-          currProductName={product.name}
-        />
-        <div id="ratingsReviewsContainerId">
-          <ReviewsRatings />
-        </div>
-      </div>
-    );
-  }
   return (
     <div>
-      <h1>LIQUID DEATH 4EVER</h1>
+      <Overview product={product} reviewsMeta={reviewsMeta} />
+      <h1>Jon Component</h1>
+      <QuestionsAndAnswers currProductId={product.id} currProductName={product.name}/>
+      <div id="ratingsReviewsContainerId">
+        <ReviewsRatings />
+      </div>
     </div>
   );
 }
