@@ -27,7 +27,7 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
   }
 
   const sendAnswer = (question_id, data) => {
-    console.log(question_id);
+    // console.log(question_id);
     axios.post(`/qa/questions/${question_id}/answers`, data)
       .catch(() => console.log('error posting question'));
   }
