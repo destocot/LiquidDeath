@@ -23,7 +23,6 @@ function RatingBreakdown({filters, updateFilters}) {
     }
   };
 
-  // render jsx
   return (
     <div className="ratingBreakdown">
       <h2>Rating Breakdown</h2>

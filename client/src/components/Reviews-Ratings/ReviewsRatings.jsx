@@ -10,6 +10,7 @@ import { getReviewsData, getReviewsMeta } from './exampleData.js';
 function ReviewsRatings() {
   const [filters, setFilters] = useState({ ratings: [] });
   const updateFilters = (obj) => {
+    // console.log('hello from top level! ', obj);
     setFilters(obj);
   };
 

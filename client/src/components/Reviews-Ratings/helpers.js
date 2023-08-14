@@ -21,7 +21,7 @@ module.exports = {
     }
     return 0;
   },
-  // I do plan to refactor this to be more concise, but could use insight as to if the method does a good job of weighting a rating's recent-ness vs. it's helpfulness
+  // I plan to refactor this to be more concise at some point, but would like to discuss with group if the method does a good job of weighting a rating's recent-ness vs. it's helpfulness
   sortRelevance: (a, b) => {
     let valA;
     let valB;
@@ -31,9 +31,11 @@ module.exports = {
     const dateB = new Date(b.date);
     const currentDate = new Date();
     // translate to value of 1 - 5
+    // divide by constant to convert from ms to days
     const daysFromNowA = (currentDate - dateA) / 86400000;
     const daysFromNowB = (currentDate - dateB) / 86400000;
 
+    // this essentially translates the date into a 1 - 5 numbers
     if (daysFromNowA <= 90) {
       valA = 5 * rateA;
     } else if (daysFromNowA <= 180) {
