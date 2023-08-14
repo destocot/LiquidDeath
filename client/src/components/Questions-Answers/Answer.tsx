@@ -34,21 +34,23 @@ function Answer({ answer, query }) {
     if (body.toLowerCase().includes(query.toLowerCase()) && query.length > 2) {
       const aIDX = body.toLowerCase().indexOf(query.toLowerCase());
       answer.body2 =
-      (<>
-        {body.slice(0, aIDX)}
-        <span className='highlight'>{query}</span>
-        {body.slice(aIDX + query.length)}
-      </>);
+        (<>
+          {body.slice(0, aIDX)}
+          <span className='highlight'>{query}</span>
+          {body.slice(aIDX + query.length)}
+        </>);
     }
   }, [query])
 
   return (
     <div className="answer-container">
-      <div className="answer-body">
-        A
-      </div>
-      <div>
-      {answer.body2 ? answer.body2 : body}
+      <div className="answer-labeler">
+        <div>
+          A:
+        </div>
+        <div>
+          {answer.body2 ? answer.body2 : body}
+        </div>
       </div>
       <div className="answer-info">
         {'by '}
