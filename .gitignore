@@ -1,7 +1,4 @@
 node_modules
 exampleData
-.eslintrc.json
-.prettierrc.json
 client/dist/bundle.js
-createQuestionForm
 .env

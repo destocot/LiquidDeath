@@ -26,7 +26,7 @@ function ProductIdentifiers({product, styles}) {
     <div>
       <h4>{product.category}</h4>
       <h2>{product.name}</h2>
-      {priceChecker(styles[7])}
+      {priceChecker(styles[0])}
       <h4>{product.slogan}</h4>
       <p>{product.description}</p>
     </div>

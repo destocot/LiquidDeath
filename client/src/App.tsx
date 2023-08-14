@@ -12,10 +12,10 @@ function App() {
   // current product state - pass this (or id) as props for components to use
   const [product, setProduct] = useState({ id: 42, name: 'Liquid Death' });
   // other general states - these rerender when product changes
-  const [styles, setStyles] = useState([]);
-  const [related, setRelated] = useState([]);
-  const [reviews, setReviews] = useState({});
-  const [reviewsMeta, setReviewsMeta] = useState({});
+  const [styles, setStyles] = useState(null);
+  const [related, setRelated] = useState(null);
+  const [reviews, setReviews] = useState(null);
+  const [reviewsMeta, setReviewsMeta] = useState(null);
 
   const updStyles = async () => {
     const newStyles = await axios.get(`/products/${product.id}/styles`);
@@ -80,14 +80,21 @@ function App() {
   }, [reviewsMeta]);
 
   // changed order of components
+  if (reviewsMeta) {
+    return (
+      <div>
+        <Overview product={product} styles={styles} reviewsMeta={reviewsMeta} reviews={reviews} />
+        <h1>Jon Component</h1>
+        <QuestionsAndAnswers currProductId={product.id} currProductName={product.name}/>
+        <div id="ratingsReviewsContainerId">
+          <ReviewsRatings />
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
-      <Overview />
-      <h1>Jon Component</h1>
-      <QuestionsAndAnswers currProductId={product.id} currProductName={product.name}/>
-      <div id="ratingsReviewsContainerId">
-        <ReviewsRatings />
-      </div>
+      <h1>LIQUID DEATH 4EVER</h1>
     </div>
   );
 }
