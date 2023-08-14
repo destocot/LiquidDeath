@@ -100,6 +100,16 @@ h6 {
   font-weight: bold;
 }
 
+.answer-photos-container {
+  display: flex;
+  column-gap: 5px;
+}
+
+.answer-photo {
+  max-height: 100px;
+  cursor: pointer;
+}
+
 .ExpandAndAdd-container {
   margin-top: 1vh;
   height: 5vh;
@@ -150,4 +160,33 @@ h6 {
 
 .highlight {
   background-color: #FBF719;
+}
+
+.full-answer-photo {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+
+.full-answer-photo img {
+  height: 95vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+
+.full-answer-photo i {
+  position: absolute;
+  top: 5vh;
+  right: 10vh;
+  /* bottom: 0;
+  left: 0; */
+  /* margin: auto; */
 }

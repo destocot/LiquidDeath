@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import requests from './helpers/requests';
+import AnswerPhoto from './AnswerPhoto';
 
 function Answer({ answer, query }) {
-  const { body, answerer_name, date } = answer;
+  const { body, answerer_name, date, photos } = answer;
   const newDate = new Date(date);
   const formatDate = `${newDate.toLocaleString('default', { month: 'long' })} ${newDate.getDate() + 1}, ${newDate.getFullYear()}`;
-
   const [helpfulness, setHelpfulness] = useState([answer.helpfulness, false]);
   const [report, setReport] = useState(['Report', false]);
 
@@ -42,6 +42,8 @@ function Answer({ answer, query }) {
     }
   }, [query])
 
+
+
   return (
     <div className="answer-container">
       <div className="answer-labeler">
@@ -51,6 +53,13 @@ function Answer({ answer, query }) {
         <div>
           {answer.body2 ? answer.body2 : body}
         </div>
+      </div>
+      <div className="answer-photos-container">
+        {
+          photos.map((photo, index) => (
+            <AnswerPhoto photo={photo} key={photo.id} index={index} />
+          ))
+        }
       </div>
       <div className="answer-info">
         {'by '}
