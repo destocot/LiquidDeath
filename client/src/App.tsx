@@ -79,14 +79,15 @@ function App() {
     });
   }, [reviewsMeta]);
 
+  // changed order of components
   return (
     <div>
       <Overview />
+      <h1>Jon Component</h1>
+      <QuestionsAndAnswers currProductId={product.id} currProductName={product.name}/>
       <div id="ratingsReviewsContainerId">
         <ReviewsRatings />
       </div>
-      <QuestionsAndAnswers currProductId={product.id} currProductName={product.name}/>
-      <h1>Jon Component</h1>
     </div>
   );
 }
