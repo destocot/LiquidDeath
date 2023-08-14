@@ -12,7 +12,7 @@ const questionsFetcher = (productId) => {
 };
 
 const answersFetcher = (questionId) => {
-  const uri = `${base_uri}/qa/questions/${questionId}/answers`;
+  const uri = `${base_uri}/qa/questions/${questionId}/answers?page=1&count=100`;
   return axios.get(uri);
 };
 
@@ -26,9 +26,33 @@ const answersPoster = (questionId, data) => {
   return axios.post(uri, data);
 };
 
+const markQuestionHelpful = (questionId) => {
+  const uri = `${base_uri}/qa/questions/${questionId}/helpful`;
+  return axios.put(uri);
+};
+
+const markAnswerHelpful = (answerId) => {
+  const uri = `${base_uri}/qa/answers/${answerId}/helpful`;
+  return axios.put(uri);
+};
+
+const reportQuestion = (questionId) => {
+  const uri = `${base_uri}/qa/questions/${questionId}/report`;
+  return axios.put(uri);
+};
+
+const reportAnswer = (answerId) => {
+  const uri = `${base_uri}/qa/answers/${answerId}/report`;
+  return axios.put(uri);
+};
+
 module.exports = {
   questionsFetcher,
   answersFetcher,
   questionsPoster,
-  answersPoster
+  answersPoster,
+  markQuestionHelpful,
+  markAnswerHelpful,
+  reportQuestion,
+  reportAnswer
 };

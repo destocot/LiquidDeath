@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Answer from './Answer';
-import utils from './Helpers/helpers';
+import utils from './helpers/helpers';
+import requests from './helpers/requests';
 import AnswerForm from './AnswerForm';
 
 function Question({ question, currProductName }) {
@@ -38,6 +39,7 @@ function Question({ question, currProductName }) {
   const addHelpfulness = () => {
     if (!helpfulness[1]) {
       setHelpfulness([helpfulness[0] + 1, true]);
+      requests.markQuestionHelpful(question.question_id);
     }
   };
 

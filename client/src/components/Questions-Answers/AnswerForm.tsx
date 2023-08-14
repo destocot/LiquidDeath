@@ -1,12 +1,11 @@
 import React from 'react';
-import './QuestionFormStyles.css';
+import './FormStyles.css';
 import axios from 'axios';
 
 function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
 
   // prevents form from being submitted on enter
   const checkKeyDown = (e) => {
-    console.log(e.key);
     if (e.key === 'Enter') {
       e.preventDefault();
     }
@@ -28,6 +27,7 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
   }
 
   const sendAnswer = (question_id, data) => {
+    console.log(question_id);
     axios.post(`/qa/questions/${question_id}/answers`, data)
       .catch(() => console.log('error posting question'));
   }
@@ -47,11 +47,13 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
         <h3>{questionBody}</h3>
         <form id="answer-form" onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
           <label>Answer<br />
-            <textarea maxLength="1000" rows="3" defaultValue="Woah!" name="body" required /></label>
+            <textarea maxLength="1000" rows="3" name="body" required /></label>
           <label>Name<br />
-            <input type="text" maxLength="60" placeholder="Example: jackson543!" name="name" defaultValue="Crash" required /></label>
+            <input type="text" maxLength="60" placeholder="Example: jackson543!" name="name" required /></label>
+            <h6>For privacy reasons, do not use your full name or email address</h6>
           <label >E-mail<br />
-            <input type="email" maxLength="60" placeholder="jack@email.com" defaultValue="cbandicoot@aol.com" name="email" required /></label>
+            <input type="email" maxLength="60" placeholder="jack@email.com" name="email" required /></label>
+            <h6>For authentication reasons, you will not be emailed</h6>
           <label >Upload your photos<br />
             <input type="file" name="photos" disabled /></label>
           <input id="a-submit-btn" type="submit" />

@@ -1,6 +1,6 @@
 #question-form-container, #answer-form-container {
   position: fixed;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.8);
   height: 100vh;
   width: 100vw;
   top: 0;
@@ -8,8 +8,8 @@
 }
 
 #question-form-subcontainer {
-  height: 55vh;
-  width: 25vw;
+  height: 65vh;
+  width: 30vw;
   background-image: linear-gradient(45deg, black 0 50%,  #000080 50% 100%);
 }
 
@@ -56,4 +56,10 @@ input[type="email"] {
 #q-submit-btn, #a-submit-btn {
   align-self: center;
   padding: 0.313rem 0.625rem;
+  margin-top: 1rem;
+}
+
+h6 {
+  color: orange;
+  font-style: italic;
 }
