@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from './Subcomponents/Image';
 
-function ImageGallery({styles}) {
+function ImageGallery({currentStyle}) {
   return (
     <div className="image-gallery-container">
-      <Image styles={styles} />
+      <Image currentStyle={currentStyle} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductIdentifiers({product, styles}) {
+function ProductIdentifiers({product, currentStyle}) {
     // checks for sales prices, sets price or sale price
     const priceChecker = (currentStyle) => {
       if (currentStyle.sale_price === null) {
@@ -26,7 +26,7 @@ function ProductIdentifiers({product, styles}) {
     <div>
       <h4>{product.category}</h4>
       <h2>{product.name}</h2>
-      {priceChecker(styles[0])}
+      {priceChecker(currentStyle)}
       <h4>{product.slogan}</h4>
       <p>{product.description}</p>
     </div>

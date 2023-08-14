@@ -3,7 +3,7 @@ import StarsAndReviews from './Subcomponents/StarsAndReviews';
 import ProductIdentifiers from './Subcomponents/ProductIdentifiers';
 import Sharing from './Subcomponents/Sharing';
 
-function ProductInfo({product, reviewsMeta, styles}) {
+function ProductInfo({product, reviewsMeta, currentStyle}) {
   // calculates avg review score
   const reviewScore = () => {
     let totalCount = 0;
@@ -20,7 +20,7 @@ function ProductInfo({product, reviewsMeta, styles}) {
   return (
     <div className="product-info-container">
       {reviewScore() ? <StarsAndReviews reviewScore={reviewScore()} /> : null}
-      <ProductIdentifiers product={product} styles={styles} />
+      <ProductIdentifiers product={product} currentStyle={currentStyle} />
       <Sharing />
     </div>
   );

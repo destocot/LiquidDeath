@@ -93,15 +93,16 @@ function App() {
   }
   return (
     <div>
-      <Overview product={product} reviewsMeta={reviewsMeta} />
+      <Overview
+        product={product}
+        reviewsMeta={reviewsMeta}
+      />
       <List />
       <QuestionsAndAnswers
         currProductId={product.id}
         currProductName={product.name}
       />
-      <div id="ratingsReviewsContainerId">
-        <ReviewsRatings />
-      </div>
+      <ReviewsRatings id="ratingsReviewsContainerId"/>
     </div>
   );
 }
