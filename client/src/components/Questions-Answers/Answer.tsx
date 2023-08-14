@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import requests from './helpers/requests';
 
-function Answer({ answer }) {
+function Answer({ answer, query }) {
   const { body, answerer_name, date } = answer;
   const newDate = new Date(date);
   const formatDate = `${newDate.toLocaleString('default', { month: 'long' })} ${newDate.getDate() + 1}, ${newDate.getFullYear()}`;
@@ -30,9 +30,26 @@ function Answer({ answer }) {
     return <span>{answerer_name}</span>
   }
 
+  React.useEffect(() => {
+    if (body.toLowerCase().includes(query.toLowerCase()) && query.length > 2) {
+      const aIDX = body.toLowerCase().indexOf(query.toLowerCase());
+      answer.body2 =
+      (<>
+        {body.slice(0, aIDX)}
+        <span className='highlight'>{query}</span>
+        {body.slice(aIDX + query.length)}
+      </>);
+    }
+  }, [query])
+
   return (
     <div className="answer-container">
-      <div className="answer-body">{`A: ${body}`}</div>
+      <div className="answer-body">
+        A
+      </div>
+      <div>
+      {answer.body2 ? answer.body2 : body}
+      </div>
       <div className="answer-info">
         {'by '}
         {usernameCheck()}
@@ -41,8 +58,10 @@ function Answer({ answer }) {
         {` (${helpfulness[0]}) | `}
         <button type="button" id="report-btn" onClick={() => reportFunction()} onKeyDown={() => reportFunction()}>{report[0]}</button>
       </div>
+      {
+        delete answer.body2
+      }
     </div>
-
   );
 }
 
