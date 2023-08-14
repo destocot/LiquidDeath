@@ -1,27 +1,27 @@
 import React from 'react';
 
 function ProductIdentifiers({product, styles}) {
-  // checks for sales prices and
-  function priceChecker(currentStyle) {
-    if (currentStyle.sale_price === null) {
+    // checks for sales prices, sets price or sale price
+    const priceChecker = (currentStyle) => {
+      if (currentStyle.sale_price === null) {
+        return (
+          <p className="price">
+            $
+            {currentStyle.original_price}
+          </p>
+        );
+      }
       return (
         <p className="price">
+          <span className="original-price">
+            $
+            {currentStyle.original_price}
+          </span>
           $
-          {currentStyle.original_price}
+          {currentStyle.sale_price}
         </p>
       );
     }
-    return (
-      <p className="price">
-        <span className="original-price">
-          $
-          {currentStyle.original_price}
-        </span>
-        $
-        {currentStyle.sale_price}
-      </p>
-    );
-  }
   return (
     <div>
       <h4>{product.category}</h4>

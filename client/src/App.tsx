@@ -5,108 +5,85 @@ import QuestionsAndAnswers from "./components/QuestionsAndAnswers";
 import Overview from "./components/Overview";
 import ReviewsRatings from "./components/Reviews-Ratings/ReviewsRatings";
 import { List } from "./components/Related/List";
+import initial from './PlaceHolderData.js';
 
 function App() {
   /*
   ===== STATES AND STATE CHANGERS =====
   */
-  // current product state - pass this (or id) as props for components to use
-  const [product, setProduct] = useState({ id: 42, name: "Liquid Death" });
-  // other general states - these rerender when product changes
-  const [styles, setStyles] = useState(null);
-  const [related, setRelated] = useState(null);
-  const [reviews, setReviews] = useState(null);
-  const [reviewsMeta, setReviewsMeta] = useState(null);
+  // states passed to multiple components
+  const [product, setProduct] = useState(initial.product);
+  const [reviewsMeta, setReviewsMeta] = useState(initial.reviewsMeta);
 
-  const updStyles = async () => {
-    const newStyles = await axios.get(`/products/${product.id}/styles`);
-    return newStyles;
+  const updProduct = async (id) => {
+    const newProduct = await axios.get(`/products/${id}`);
+    return newProduct;
   };
-  const updRelated = async () => {
-    const newRelated = await axios.get(`/products/${product.id}/related`);
-    return newRelated;
-  };
-  // defaults to relevant sorting order - use this in components with custom sorting order
-  const updReviews = async (sort = "relevant", count = "5", page = "1") => {
-    const newReviews = await axios.get(
-      `/reviews/${product.id}/${sort}/${count}/${page}`
-    );
-    return newReviews;
-  };
+
   const updReviewsMeta = async () => {
     const newReviewsMeta = await axios.get(`/reviews/meta/${product.id}`);
     return newReviewsMeta;
   };
 
   /*
+  TODOS:
+  - integrate related state and updRelated fn into Jon's component
+  - integrate reviews state and updReviews fn into Kurt's component
+  */
+
+  const [related, setRelated] = useState(initial.related);
+  const [reviews, setReviews] = useState(initial.reviews);
+
+  const updRelated = async () => {
+    const newRelated = await axios.get(`/products/${product.id}/related`);
+    return newRelated;
+  };
+  // defaults to relevant sorting order - change sort to desired sort order
+  const updReviews = async (sort = "relevant", count = "5", page = "1") => {
+    const newReviews = await axios.get(`/reviews/${product.id}/${sort}/${count}/${page}`);
+    return newReviews;
+  };
+
+  /*
   ====== FUNCTIONALITY =====
   */
-  // on initialization, render a placeholder product (ID 37324)
-  useEffect(() => {
-    axios
-      .get("/products/37324")
-      .then((result) => {
-        setProduct(result.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
 
-  // update states every time product changes
+  // update reviewsMeta every time product changes
   useEffect(() => {
-    if (product.name !== "Liquid Death") {
-      updStyles()
-        .then((styleUpd) => setStyles(styleUpd.data.results))
-        .then(() => updRelated())
-        .then((relatedUpd) => setRelated(relatedUpd.data))
-        .then(() => updReviews())
-        .then((reviewsUpd) => setReviews(reviewsUpd.data.results))
-        .then(() => updReviewsMeta())
-        .then((reviewsMetaUpd) => setReviewsMeta(reviewsMetaUpd.data))
-        .catch((err) => console.error(err));
-    }
+    updReviewsMeta()
+      .then((reviewsMetaUpd) => setReviewsMeta(reviewsMetaUpd.data))
+      .catch((err) => console.error(err));
   }, [product]);
 
   /*
-  Other possibilities:
+  TODOS:
   - onCardClick fn that updates product
   - onSearchProduct fn that updates product
   */
 
-  // TESTING TESTING (changed how it logs information)
+  // TESTING TESTING
   useEffect(() => {
     console.log({
-      "styles array": styles,
-      "related array": related,
-      "reviews array": reviews,
-      "reviews meta data": reviewsMeta,
-      "current product": product,
+    'reviews meta data' : reviewsMeta,
+    'current product' : product,
     });
   }, [reviewsMeta]);
 
   // changed order of components
-  if (reviewsMeta) {
-    return (
-      <div>
-        <Overview
-          product={product}
-          styles={styles}
-          reviewsMeta={reviewsMeta}
-          reviews={reviews}
-        />
-        <List />
-        <QuestionsAndAnswers
-          currProductId={product.id}
-          currProductName={product.name}
-        />
-        <div id="ratingsReviewsContainerId">
-          <ReviewsRatings />
-        </div>
-      </div>
-    );
-  }
   return (
     <div>
-      <h1>LIQUID DEATH 4EVER</h1>
+      <Overview
+        product={product}
+        reviewsMeta={reviewsMeta}
+      />
+      <List />
+      <QuestionsAndAnswers
+        currProductId={product.id}
+        currProductName={product.name}
+      />
+      <div id="ratingsReviewsContainerId">
+        <ReviewsRatings />
+      </div>
     </div>
   );
 }
