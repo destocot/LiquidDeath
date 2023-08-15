@@ -4,18 +4,18 @@ html {
   height: 100%;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 :root {
   --motion-ease: cubic-bezier(0.68, -0.6, 0.32, 1.6);
   --motion-duration: 0.3s;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 .overview-container {
   font-family: 'Rubik', sans-serif;
-  background-color: rgba(61, 171, 239, 0.2);
+  background-color: #f1f1f1;
   position:relative;
 }
 
@@ -70,15 +70,15 @@ img.default-image {
 }
 
 .review-scroll {
-  color:#000000;
+  color:#26232d;
 }
 
 .review-scroll:visited {
-  color:#000000
+  color:#26232d
 }
 
 .review-scroll:hover {
-  color:#686464;
+  color:#a1a1a1;
 }
 
 .stars-container {
@@ -95,13 +95,13 @@ img.default-image {
 .empty-star {
   display: inline-block;
   position: relative;
-  color: #0b0b30;
+  color: #1a254d;
 }
 
 .star {
   display: inline-block;
   position: relative;
-  color: #0b0b30;
+  color: #1a254d;
 }
 
 .star:after {
@@ -112,7 +112,7 @@ img.default-image {
   top: 0;
   width: 100%;
   overflow: hidden;
-  color: rgb(12, 12, 54);
+  color: #1a254d;
 }
 
 .empty-star:after {
@@ -170,12 +170,12 @@ img.style-thumbnail {
   position: absolute;
   left: 0;
   object-fit: cover;
-  border: 3px solid #797373
+  border: 1px solid #797373
 }
 
 img.style-thumbnail:hover {
   cursor: pointer;
-  border: 3px solid #b4afaf;
+  border: 2px solid #b4afaf;
   opacity: 0.7;
 }
 
@@ -195,17 +195,17 @@ img.style-thumbnail:hover {
   font: inherit;
   font-weight: 500;
   line-height: 1;
-  padding: 1em 1.5em;
+  padding: 2vh 12vw 2vh 9vw;
   position: relative;
   transition: filter var(--motion-duration);
 }
 
 .cool-button:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.2);
 }
 
 .cool-button:active {
-  filter: brightness(0.9);
+  filter: brightness(0.8);
 }
 
 .cool-button > span {
@@ -224,7 +224,7 @@ img.style-thumbnail:hover {
 }
 
 .cool-button > svg {
-  fill: #950cde;
+  fill: #1a254d;
   position: absolute;
   top: -5%;
   left: -5%;
@@ -262,4 +262,3 @@ img.style-thumbnail:hover {
 .fa-pinterest {
   color:#E60023;
 }
-
