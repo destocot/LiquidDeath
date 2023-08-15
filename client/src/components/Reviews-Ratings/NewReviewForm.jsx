@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { characteristicLabels, starMeaning } from './helpers';
+// import { characteristicLabels, starMeaning } from './helpers';
+import helpers from './helpers';
+const characteristicLabels = helpers.characteristicLabels;
+const starMeaning = helpers.starMeaning;
 
 function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
   const [rating, setRating] = useState(0);
@@ -36,9 +39,12 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
   // generates radio buttons for users to rank characteristics
   const renderCharacteristics = () => {
     return Object.keys(reviewsMeta.characteristics).map((characteristic) => {
+
       // characteristic refers to Size, Width, Comfort, etc.
       // characteristics refers to the state, an object with properties for each characteristic
       const currentCharValue = characteristics[characteristic] // could be null or a number
+      console.log(currentCharValue);
+
 
       return (
         <div id="charLabel">{characteristic} <br />

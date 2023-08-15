@@ -42,6 +42,7 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName })
 
   const addReviewButton = () => <button type="button" id="addReviewButton" onClick={() => setAForm(true)} >Add Review</button>
 
+  console.log(reviewsMeta);
   return (
     <div className="reviewsListContainer">
       <h3>Reviews List</h3>
