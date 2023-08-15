@@ -5,9 +5,8 @@ import StyleSelector from './Features/StyleSelector';
 import ImageGallery from './Features/ImageGallery';
 import AddCart from './Features/AddCart';
 import './OverviewStyles.css';
-import { productReviews } from './ExampleData';
 
-function Overview({ product, reviewsMeta}) {
+function Overview({product, reviewsMeta}) {
   // states for styles and current style
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
@@ -16,16 +15,27 @@ function Overview({ product, reviewsMeta}) {
     const newStyles = await axios.get(`/products/${product.id}/styles`);
     return newStyles;
   };
-  //
+
+  const styleClickHandler = (e) => {
+    e.preventDefault();
+    setCurrentStyle(styles[e.target.id]);
+  };
+
   useEffect(() => {
-    updStyles().then((newStyles) => setStyles(newStyles.data.results));
-  }, [product])
-  if (styles) {
+    updStyles()
+      .then((newStyles) => {
+        setStyles(newStyles.data.results);
+        setCurrentStyle(newStyles.data.results[0]);
+      })
+      .catch((err) => console.error(err));
+  }, [product]);
+
+  if (currentStyle) {
     return (
       <div className="overview-container">
-        <ImageGallery styles={styles} />
-        <ProductInfo product={product} styles={styles} reviews={productReviews} reviewsMeta={reviewsMeta} />
-        <StyleSelector styles={styles} />
+        <ImageGallery currentStyle={currentStyle} />
+        <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} />
+        <StyleSelector styles={styles} setCurrentStyle={styleClickHandler}/>
         <AddCart />
       </div>
     );
