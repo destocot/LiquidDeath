@@ -76,12 +76,12 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
         <h3>{currProductName}:</h3>
         <h3>{questionBody}</h3>
         <form id="answer-form" onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)} encType="multipart/form-data">
-          <label>Answer<br />
+          <label>Answer*<br />
             <textarea maxLength="1000" rows="2" name="body" required /></label>
-          <label>Name<br />
+          <label>Name*<br />
             <input type="text" maxLength="60" placeholder="Example: jackson543!" name="name" required /></label>
           <h6>For privacy reasons, do not use your full name or email address</h6>
-          <label >E-mail<br />
+          <label >E-mail*<br />
             <input type="email" maxLength="60" placeholder="jack@email.com" name="email" required /></label>
           <h6>For authentication reasons, you will not be emailed</h6>
           <label >Upload your photos<br />
