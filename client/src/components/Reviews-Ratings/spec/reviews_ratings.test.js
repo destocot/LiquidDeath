@@ -1,4 +1,4 @@
-import { sortHelpfulness, sortNewest, sortRelevance, sumHelper } from '../helpers.js';
+import { sortHelpfulness, sortNewest, sortRelevance, sumHelper } from '../helpers';
 
 const testReviewArray = [
   {

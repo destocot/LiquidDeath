@@ -21,15 +21,42 @@
   position: relative;
 }
 
-.reviewsList {
-  /* border-style: solid; */
-  /* height: 180px;*/
-  overflow: auto; /* Enable scrolling */
+.reviewsListContainer {
+  /* border-style: solid;
+  height: 400px;
+  overflow: auto; */
   width: 72%;
 }
 
-.moreReviewsButton {
+.reviewsList {
+  /* border-style: solid; */
+  height: 400px;
+  overflow: auto; /* Enable scrolling */
+  /* width: 72%; */
+}
 
+#addReviewButton, #moreReviewsButton {
+  padding: 5px;
+  border: 1px solid transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+#addReviewButton:hover, #moreReviewsButton:hover{
+  border: 1px solid black;
+}
+
+#moreReviewsButton {
+
+}
+
+#addReviewButton {
+  margin-left: auto;
+}
+
+#reviewsListButtons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .reviewTile {
@@ -234,4 +261,72 @@
   top: 0;
   width: 0%;
   overflow: hidden;
+}
+
+#reviewFormContainer {
+  border: 2px solid black;
+  position: fixed;
+  background: rgb(255, 255, 255);
+  height: 90vh;
+  width: 80vw;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  top: 0;
+  left: 15%;
+}
+
+#reviewFormSubContainer {
+  border: 2px solid black;
+  height: 65vh;
+  width: 30vw;
+  justify-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:rgb(234, 249, 219);
+}
+
+.newReviewStarRating {
+  padding-bottom: 0.7rem;
+}
+
+#charElement {
+
+}
+
+#charTitle {
+  font-size: larger;
+  margin-top: 20px;
+}
+
+#charLabel {
+  display: flex;
+  flex-direction: column;
+  font-size: medium;
+  margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+#charSelected {
+  font-size: small;
+  justify-content: center;
+}
+
+.charRadioButtons {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.charRadioButtons input[type="radio"]{
+  width: 20px;
+  height: 20px;
+}
+
+.characteristicsAxisLabels{
+  display: flex;
+  width: 300px;
+  font-size:x-small;
+  justify-content: space-between;
+
 }

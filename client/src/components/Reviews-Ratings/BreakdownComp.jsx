@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { getReviewsMeta } from './exampleData.js'; // putting this here to until master updated with prev changes
-import { sumHelper } from './helpers.js';
+// import { sumHelper } from './helpers';
+import helpers from './helpers';
 
-function BreakdownComp({filters, updateFilters}) {
-  // data comes from getReviewsMeta
+function BreakdownComp({filters, updateFilters, reviewsMeta}) {
+  // data comes from reviewsMeta
+  const sumHelper = helpers.sumHelper;
 
   const filterByRatings = (key) => {
     key = Number(key);
@@ -23,8 +24,8 @@ function BreakdownComp({filters, updateFilters}) {
   const generateObj = () => {
     const result = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0};
     // update result object w/ actual values
-    for (var key in getReviewsMeta.ratings) {
-      result[key] = getReviewsMeta.ratings[key];
+    for (var key in reviewsMeta.ratings) {
+      result[key] = Number(reviewsMeta.ratings[key]);
     };
 
     // calculate sum of ratings to use later
