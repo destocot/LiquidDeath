@@ -96,7 +96,7 @@ module.exports = {
     } else if (daysFromNowA <= 360) {
       valA = 2 * rateA;
     } else {
-      valB = rateA;
+      valA = rateA;
     }
 
     if (daysFromNowB <= 90) {
