@@ -31,9 +31,9 @@ function Question({ question, currProductName, query }) {
   const expandOrCollapseButtons = () => {
     if (answersDatabase.length > 2) {
       if (more) {
-        return <button className="hover:font-bold self-start" type="button" onClick={expandOrCollapse}>LOAD MORE ANSWERS</button>
+        return <button className="expand-answers-btn self-start" type="button" onClick={expandOrCollapse}>LOAD MORE ANSWERS</button>
       }
-      return <button className="hover:font-bold self-start" type="button" onClick={expandOrCollapse}>COLLAPSE ANSWERS</button>
+      return <button className="expand-answers-btn self-start" type="button" onClick={expandOrCollapse}>COLLAPSE ANSWERS</button>
     }
   };
 
@@ -58,7 +58,7 @@ function Question({ question, currProductName, query }) {
           {'Helpful? '}
           <button type="button" id="question-yes" className="hover:underline" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
           {` (${helpfulness[0]}) | `}
-          <button type="button" id="add-answer-btn" className="hover:font-bold" onClick={() => {
+          <button type="button" id="add-answer-btn" onClick={() => {
             document.body.style.overflow = 'hidden';
             setAForm(true)
           }} onKeyDown={() => addAnswerModule()}>Add Answer</button>

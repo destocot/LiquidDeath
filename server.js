@@ -16,7 +16,8 @@ app.use('/products', productRouter);
 app.use('/reviews', reviewsRouter);
 
 // added port into .env
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
+
 app.listen(port, () => {
   console.log(`Listening at port http://localhost:${port}`);
 });
