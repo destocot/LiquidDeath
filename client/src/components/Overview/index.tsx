@@ -11,8 +11,13 @@ function Overview({product, reviewsMeta}) {
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
 
+  // const updStyles = async () => {
+  //   const newStyles = await axios.get(`/products/${product.id}/styles`);
+  //   return newStyles;
+  // };
+
   const updStyles = async () => {
-    const newStyles = await axios.get(`/products/${product.id}/styles`);
+    const newStyles = await axios.get(`/products/37318/styles`);
     return newStyles;
   };
 
@@ -34,9 +39,12 @@ function Overview({product, reviewsMeta}) {
     return (
       <div className="overview-container">
         <ImageGallery currentStyle={currentStyle} />
-        <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} />
-        <StyleSelector styles={styles} setCurrentStyle={styleClickHandler}/>
-        <AddCart />
+        <div className="right-side-container">
+          <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} />
+          <StyleSelector styles={styles} setCurrentStyle={styleClickHandler}/>
+          <AddCart />
+        </div>
+
       </div>
     );
   }
