@@ -27,7 +27,7 @@ function StyleSelector({styles, currentStyle, setCurrentStyle}) {
 
   return (
     <div>
-      <h3 className="style-title">{currentStyle.name}</h3>
+      <div className="style-title">{currentStyle.name}</div>
       <div className="style-selector-container">
         {styleMatrix()}
       </div>

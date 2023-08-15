@@ -1,8 +1,12 @@
 import React from 'react';
 
-function CartForm({handleSubmit}) {
+function CartForm({currentStyle, handleSubmit}) {
+  // state for selected size
+  // if size value !== "" then mount options for quantity
+  // otherwise default value is - and that's the only value
+  //
   return (
-    <div>
+    <div className="cart-form-container">
       <form onSubmit={handleSubmit}>
         <select>
           <option value="" selected disabled hidden>Select Size</option>
@@ -30,5 +34,25 @@ function CartForm({handleSubmit}) {
     </div>
   );
 }
+
+// {
+//   "style_id": 221060,
+//   "name": "Salmon",
+//   "original_price": "278.00",
+//   "sale_price": null,
+//   "default?": true,
+//   "photos": [
+//       {
+//           "thumbnail_url": "https://images.unsplash.com/photo-1530821875964-91927b611bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+//           "url": "https://images.unsplash.com/photo-1544376664-80b17f09d399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80"
+//       }
+//   ],
+//   "skus": {
+//       "1281449": {
+//           "quantity": 26,
+//           "size": "One Size"
+//       }
+//   }
+// }
 
 export default CartForm;
