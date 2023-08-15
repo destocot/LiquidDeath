@@ -18,6 +18,7 @@ function StyleSelector({styles, setCurrentStyle}) {
       );
       if (row.length === 4) {
         matrix.push(<ul key={matrix.length} className="style-row">{row}</ul>)
+        matrix.push(<div className="break"></div>)
         row = [];
       }
     });
@@ -25,7 +26,7 @@ function StyleSelector({styles, setCurrentStyle}) {
   };
 
   return (
-    <div className="style-selector">
+    <div className="style-selector-container">
       {styleMatrix()}
     </div>
   )
