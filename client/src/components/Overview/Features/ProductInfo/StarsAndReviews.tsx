@@ -23,7 +23,9 @@ function StarsAndReviews({reviewScore}) {
         } else if (i - Math.floor(score) < 1 && i - score !== 0) {
           // using base fa-star fontsize (18px)
           const percent = (quarterRound((score - Math.floor(score))) * 18);
-          stars.push(<i key={i} className="star fa-regular fa-star" style={{ width: percent, marginRight: 18 - percent }} />);
+          stars.push(<i key={i} className="star fa-regular fa-star"
+            style={{ width: percent, marginRight: 18 - percent }} />
+          );
         } else {
           stars.push(<i key={i} className="empty-star fa-regular fa-star" />);
         }

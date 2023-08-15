@@ -1,7 +1,7 @@
 import React from 'react';
-import StarsAndReviews from './Subcomponents/StarsAndReviews';
-import ProductIdentifiers from './Subcomponents/ProductIdentifiers';
-import Sharing from './Subcomponents/Sharing';
+import StarsAndReviews from './StarsAndReviews';
+import ProductIdentifiers from './ProductIdentifiers';
+import Sharing from './Sharing';
 
 function ProductInfo({product, reviewsMeta, currentStyle}) {
   // calculates avg review score

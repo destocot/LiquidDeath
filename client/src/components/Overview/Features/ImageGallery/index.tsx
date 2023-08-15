@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from './Subcomponents/Image';
+import Image from './Image';
 
 function ImageGallery({currentStyle}) {
   return (

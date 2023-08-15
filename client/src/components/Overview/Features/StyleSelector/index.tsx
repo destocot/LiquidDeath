@@ -8,8 +8,12 @@ function StyleSelector({styles, setCurrentStyle}) {
     styles.forEach((style, i) => {
       row.push(
       <li key={style.style_id} className="style" >
-        <img id={i} className="style-thumbnail" src={style.photos[0].thumbnail_url}
-        alt={style.name} onClick={setCurrentStyle}/>
+        <img
+          id={i}
+          alt={style.name}
+          className="style-thumbnail"
+          src={style.photos[0].thumbnail_url}
+          onClick={setCurrentStyle}/>
       </li>
       );
       if (row.length === 4) {
