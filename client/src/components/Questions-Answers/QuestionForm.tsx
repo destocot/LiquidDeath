@@ -45,12 +45,12 @@ function QuestionForm({ setQForm, currProductId, currProductName }) {
         </div>
         <h3>About the {currProductName}</h3>
         <form id="question-form" onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
-          <label>Your Question<br />
+          <label>Your Question*<br />
             <textarea maxLength="1000" rows="3" name="body" required /></label>
-          <label>Name<br />
+          <label>Name*<br />
             <input type="text" maxLength="60" placeholder="Example: jackson11!" name="name" required /></label>
             <h6>For privacy reasons, do not use your full name or email address</h6>
-          <label >E-mail<br />
+          <label >E-mail*<br />
             <input type="email" maxLength="60" placeholder="jack@email.com" name="email" required /></label>
             <h6>For authentication reasons, you will not be emailed</h6>
           <input id="q-submit-btn" type="submit" />

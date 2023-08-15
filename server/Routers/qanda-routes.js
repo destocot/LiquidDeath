@@ -3,6 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 const utils = require('../helpers/qanda-helpers');
+const path = require('path');
+
+let multer = require('multer');
 
 // Get Questions
 router.get('/questions', (req, res) => {
@@ -37,11 +40,23 @@ router.post('/questions', (req, res) => {
     });
 });
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '../../client/dist/Images'));
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+
 // Post Answers
-router.post('/questions/:questionId/answers', (req, res) => {
-  utils.answersPoster(req.params.questionId, req.body)
+router.post('/questions/:questionId/answers', upload.array('photos'), (req, res) => {
+  utils.answersPoster(req.params.questionId, req.body, req.files)
     .then(() => {
-      res.status(201).send();
+    res.status(200).send();
     })
     .catch(() => {
       res.status(400).send();

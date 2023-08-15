@@ -1,4 +1,5 @@
 const axios = require('axios');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -21,9 +22,10 @@ const questionsPoster = (data) => {
   return axios.post(uri, data);
 };
 
-const answersPoster = (questionId, data) => {
+const answersPoster = (questionId, data, photos) => {
+  const ph = photos.map(photo => path.join('/Images', photo.filename));
   const uri = `${base_uri}/qa/questions/${questionId}/answers`;
-  return axios.post(uri, data);
+  return axios.post(uri, {...data, photos: ph});
 };
 
 const markQuestionHelpful = (questionId) => {
