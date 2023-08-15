@@ -1,9 +1,6 @@
 /*!************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./client/src/components/QARAWTEMPCSS.css ***!
   \************************************************************************************************************************************/
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* 1. Use a more-intuitive box-sizing model. */
 *,

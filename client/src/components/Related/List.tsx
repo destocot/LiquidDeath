@@ -7,6 +7,7 @@ import React, {
 import { useState } from "react";
 import { Links } from "./Links";
 import axios from "axios";
+import "./app.css";
 export type product = {
   id: number;
   name: string;
@@ -33,6 +34,10 @@ type ListProps = {
     data: data;
   };
   data: Array<product>;
+  currentProduct: {
+    id: number;
+    name: string;
+  };
 };
 const example = [
   {
@@ -163,7 +168,6 @@ export const List: FunctionComponent<ListProps> = ({ currentProduct }) => {
   const [relevantProducts, updateRelevant] = React.useState<data>();
 
   useEffect(() => {
-    let categoryToRelate = currentProduct.category;
     let relatedHolder: data = [];
     axios.get("/${}/related");
   }, []);
