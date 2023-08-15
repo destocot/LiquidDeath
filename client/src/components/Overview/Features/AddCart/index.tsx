@@ -7,7 +7,7 @@ function AddCart() {
     console.log('form submitted');
   }
   return (
-    <div>
+    <div className="cart-form-container">
       <CartForm handleSubmit={formSubmit} />
     </div>
   );
