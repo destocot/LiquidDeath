@@ -122,12 +122,16 @@ html {
   margin-right: 2%;
 }
 
+.style-title {
+  position: relative;
+  left: 20%;
+}
+
 .style-selector-container {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   left: 20%;
-  margin-top: 3%;
 }
 
 .style-row {
