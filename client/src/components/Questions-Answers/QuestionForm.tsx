@@ -1,5 +1,5 @@
 import React from 'react';
-import './FormStyles.css';
+import './qa-styles/Form.styles.css';
 import axios from 'axios';
 
 function QuestionForm({ setQForm, currProductId, currProductName }) {
@@ -23,7 +23,6 @@ function QuestionForm({ setQForm, currProductId, currProductName }) {
     const product_id = currProductId;
     sendQuestion({ body, name, email, product_id });
     close();
-    // console.log({ body, name, email, product_id });
   }
 
   const sendQuestion = (data) => {
@@ -34,7 +33,6 @@ function QuestionForm({ setQForm, currProductId, currProductName }) {
   const close = () => {
     setQForm(false);
   }
-
 
   return (
     <div id="question-form-container">

@@ -70,7 +70,6 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
     <div className="questions-container">
       {
         questions.map((question) => {
-
           return (<Question question={question} key={question.question_id} currProductName={currProductName} highlightedQuestion={highlightedQuestion}
             query={query} />)
         })

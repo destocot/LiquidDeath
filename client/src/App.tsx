@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import QuestionsAndAnswers from "./components/QuestionsAndAnswers";
+import QuestionsAndAnswers from "./components/Questions-Answers/QuestionsAndAnswers";
 import Overview from "./components/Overview";
 import ReviewsRatings from "./components/Reviews-Ratings/ReviewsRatings";
 import { List } from "./components/Related/List";

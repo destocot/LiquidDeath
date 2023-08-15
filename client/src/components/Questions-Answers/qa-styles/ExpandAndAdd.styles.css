@@ -1,0 +1,28 @@
+.ExpandAndAdd-container {
+  margin-top: 1vh;
+  height: 5vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 10px;
+}
+
+#add-questions-btn, #expand-questions-btn {
+  padding: 5px;
+  border: 1px solid transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+#add-questions-btn:hover, #expand-questions-btn:hover {
+  border: 1px solid black;
+}
+
+.expand-answers-btn:hover, #add-answer-btn:hover {
+  /* font-weight: bold; */
+  text-shadow: 1px 0px 0px black;
+}
+
+.expand-answers-btn {
+  align-self: flex-start;
+}

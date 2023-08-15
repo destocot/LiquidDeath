@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import './FormStyles.css';
+import React from 'react';
+import './qa-styles/Form.styles.css';
 import axios from 'axios';
 
 function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
-  const [myPhotos, setMyPhotos] = useState([]);
 
   // prevents form from being submitted on enter
   const checkKeyDown = (e) => {
@@ -16,7 +15,6 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
     }
   };
 
-  const [uploadNum, setUploadNum] = useState(0);
   const imageChecker = (e) => {
     const files = e.target.files;
     setUploadNum(files.length);
@@ -43,14 +41,10 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (uploadNum > 5) {
-      alert('You can only upload up to 5 photos!');
-    } else {
-      const form = document.getElementById('answer-form');
-      const formData = new FormData(form);
-      sendAnswer(questionId, formData);
-      close();
-    }
+    const form = document.getElementById('answer-form');
+    const formData = new FormData(form);
+    sendAnswer(questionId, formData);
+    close();
   }
 
   const sendAnswer = (question_id, data) => {

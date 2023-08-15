@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import QuestionForm from './QuestionForm';
+import './qa-styles/ExpandAndAdd.styles.css';
 
 function ExpandAndAdd({ setNumOfQuestions, displayMore, currProductName, currProductId }) {
   const [qForm, setQForm] = useState(false);
