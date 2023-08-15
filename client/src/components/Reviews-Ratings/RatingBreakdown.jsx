@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import BreakdownComp from './BreakdownComp';
 import ProductBreakdown from './ProductBreakdown';
 
-import { getReviewsMeta } from './exampleData.js'; // putting this here to until master updated with prev changes
-
 const reviewStars = (score) => {
   const stars = [];
   // "rounding", using 0.65 and 0.35 for more noticeable impact
@@ -35,7 +33,7 @@ const reviewStars = (score) => {
   );
 }
 
-function RatingBreakdown({filters, updateFilters}) {
+function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
   // calculate and round avg rating
   const calcAvgRating = (ratingsObj) => {
     if (Object.keys(ratingsObj).length > 0) {
@@ -43,7 +41,7 @@ function RatingBreakdown({filters, updateFilters}) {
       let product = 0;
       for (var key in ratingsObj) {
         let rating = key;
-        let numberOfRatings = ratingsObj[key];
+        let numberOfRatings = Number(ratingsObj[key]);
         product += rating * numberOfRatings;
         sumOfRatings += numberOfRatings;
       }
@@ -53,19 +51,19 @@ function RatingBreakdown({filters, updateFilters}) {
     }
   };
 
-  const avgRating = calcAvgRating(getReviewsMeta.ratings);
+  const avgRating = calcAvgRating(reviewsMeta.ratings);
 
   return (
     <div className="ratingBreakdown">
       <h3>Rating Breakdown</h3>
       <div className="stars-container">
-        <div>{calcAvgRating(getReviewsMeta.ratings)}{reviewStars(avgRating)}</div>
+        <div>{avgRating}</div>
+        <div>{reviewStars(avgRating)}</div>
       </div>
-      <BreakdownComp filters={filters} updateFilters={updateFilters} />
-      <ProductBreakdown getReviewsMeta={getReviewsMeta} />
+      <BreakdownComp filters={filters} updateFilters={updateFilters} reviewsMeta={reviewsMeta} />
+      <ProductBreakdown reviewsMeta={reviewsMeta} />
     </div>
   );
 }
-//asdf
 
 export default RatingBreakdown;

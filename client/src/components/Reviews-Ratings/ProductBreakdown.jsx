@@ -1,7 +1,7 @@
 import React from 'react';
 
-function ProductBreakdown({ getReviewsMeta }) {
-  const { characteristics } = getReviewsMeta;
+function ProductBreakdown({ reviewsMeta }) {
+  const { characteristics } = reviewsMeta;
   const refObj = {
     Size: { low: 'A size too small', high: 'A size too wide' },
     Width: { low: 'Too narrow', high: 'Too wide' },

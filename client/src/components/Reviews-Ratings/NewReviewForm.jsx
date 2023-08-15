@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { characteristicLabels, starMeaning } from './helpers';
 
-function NewReviewForm({ setAForm, getReviewsMeta }) {
+function NewReviewForm({ setAForm, reviewsMeta }) {
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(false);
   const [characteristics, setCharacteristics] = useState({Size: null, Width: null, Comfort: null, Quality: null, Length: null, Fit: null});
@@ -35,7 +35,7 @@ function NewReviewForm({ setAForm, getReviewsMeta }) {
 
   // generates radio buttons for users to rank characteristics
   const renderCharacteristics = () => {
-    return Object.keys(getReviewsMeta.characteristics).map((characteristic) => {
+    return Object.keys(reviewsMeta.characteristics).map((characteristic) => {
       // characteristic refers to Size, Width, Comfort, etc.
       // characteristics refers to the state, an object with properties for each characteristic
       const currentCharValue = characteristics[characteristic] // could be null or a number
@@ -82,7 +82,7 @@ function NewReviewForm({ setAForm, getReviewsMeta }) {
 
   // Part of Khurram's code
   const close = () => {
-    setForm(false);
+    setAForm(false);
   };
 
   // TODO - update this to store all values in a massive state
