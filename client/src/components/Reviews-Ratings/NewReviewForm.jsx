@@ -109,7 +109,7 @@ function NewReviewForm({ setAForm, getReviewsMeta }) {
       <div id="reviewFormSubContainer">
         <div>
           <h2>Write a Review</h2>
-          <i onClick={() => close()} />
+          <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }}/>
         </div>
         <form onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
           {/* Overall Rating by Clicking Number of Stars */}
