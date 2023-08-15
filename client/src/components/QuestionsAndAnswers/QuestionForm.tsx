@@ -39,10 +39,10 @@ function QuestionForm({ setQForm, currProductId, currProductName }) {
     <div id="question-form-container">
       <div id="question-form-subcontainer">
         <div id="question-form-title">
-          <h2>Ask Your Question</h2>
+          <h2 className="text-[1.5em]">Ask Your Question</h2>
           <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }} />
         </div>
-        <h3>About the {currProductName}</h3>
+        <h3 className="text-[1.17em]">About the {currProductName}</h3>
         <form id="question-form" onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
           <label>Your Question*<br />
             <textarea maxLength="1000" rows="3" name="body" required /></label>

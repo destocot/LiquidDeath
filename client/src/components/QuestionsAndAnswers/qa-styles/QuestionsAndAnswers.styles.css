@@ -56,7 +56,7 @@ h6 {
 }
 
 .questions-container {
-  max-height: 83vh;
+  max-height: 80vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -82,6 +82,18 @@ h6 {
   cursor: pointer;
 }
 
+#add-answer-btn:hover, .expand-answers-btn:hover {
+  text-shadow: -0.06ex 0 0 rgba(0, 0, 0, 0.65), 0.06ex 0 0 rgba(0, 0, 0, 0.65);
+}
+
+#expand-questions-btn, #add-questions-btn {
+  border: 1px solid transparent;
+}
+
+#expand-questions-btn:hover, #add-questions-btn:hover {
+  border: 1px solid black;;
+}
+
 .full-answer-photo {
   position: fixed;
   background: rgba(0, 0, 0, 0.9);
@@ -89,6 +101,7 @@ h6 {
   width: 100vw;
   top: 0;
   left: 0;
+  z-index: 2;
 }
 
 .full-answer-photo img {
