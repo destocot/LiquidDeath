@@ -31,6 +31,7 @@ function QuestionForm({ setQForm, currProductId, currProductName }) {
   }
 
   const close = () => {
+    document.body.style.overflow = 'visible';
     setQForm(false);
   }
 

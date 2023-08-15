@@ -13,16 +13,3 @@
   background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
-
-#add-questions-btn:hover, #expand-questions-btn:hover {
-  border: 1px solid black;
-}
-
-.expand-answers-btn:hover, #add-answer-btn:hover {
-  /* font-weight: bold; */
-  text-shadow: 1px 0px 0px black;
-}
-
-.expand-answers-btn {
-  align-self: flex-start;
-}

@@ -1,4 +1,5 @@
 /* 1. Use a more-intuitive box-sizing model. */
+
 *,
 *::before,
 *::after {
@@ -54,30 +55,6 @@ h6 {
   margin: 0 auto;
 }
 
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-h2 {
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-h3 {
-  font-size: 1.17em;
-  font-weight: bold;
-}
-
-h6 {
-  font-size: .67em;
-  font-weight: bold;
-}
-
-#qa-main-title {
-  height: 5vh;
-}
-
 .questions-container {
   max-height: 83vh;
   overflow-y: auto;
@@ -86,42 +63,11 @@ h6 {
   padding: 0 10px 10px 10px;
 }
 
-.question-title-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-}
-
-.question-labeler, .answer-labeler {
-  display: flex;
-  column-gap: 5px;
-}
-
 .answers-container {
   max-height: 40vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-}
-
-.answer-container {
-  background-color: rgba(0, 0, 0, 0.1);
-  margin: 5px 0;
-  padding: 5px;
-}
-
-.user-seller {
-  font-weight: bold;
-}
-
-.answer-photos-container {
-  display: flex;
-  column-gap: 5px;
-}
-
-.answer-photo {
-  max-height: 100px;
-  cursor: pointer;
 }
 
 #question-yes,
@@ -136,21 +82,9 @@ h6 {
   cursor: pointer;
 }
 
-#report-btn:hover {
-  color: red;
-}
-
-#answer-yes:hover, #question-yes:hover {
-  text-decoration: underline;
-}
-
-.highlight {
-  background-color: #FBF719;
-}
-
 .full-answer-photo {
   position: fixed;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   height: 100vh;
   width: 100vw;
   top: 0;

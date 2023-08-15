@@ -11,7 +11,7 @@ function QuestionsAndAnswers({ currProductId, currProductName }) {
 
   return (
     <div className="qa-main-container">
-      <h2 id="qa-main-title">QUESTIONS & ANSWERS</h2>
+      <h2 id="qa-main-title" className="h-[5vh] text-[2rem]">QUESTIONS & ANSWERS</h2>
       <Search setQuery={setQuery} />
       <QuestionList
       setDisplayMore={setDisplayMore}

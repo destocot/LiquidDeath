@@ -25,7 +25,7 @@ function Answer({ answer, query }) {
 
   const usernameCheck = () => {
     if (answerer_name === 'Seller') {
-      return <span className='user-seller'>{answerer_name}</span>
+      return <span className='font-bold'>{answerer_name}</span>
     }
     return <span>{answerer_name}</span>
   }
@@ -36,17 +36,15 @@ function Answer({ answer, query }) {
       answer.body2 =
         (<>
           {body.slice(0, aIDX)}
-          <span className='highlight'>{query}</span>
+          <span className='bg-[#FBF719]'>{query}</span>
           {body.slice(aIDX + query.length)}
         </>);
     }
   }, [query])
 
-
-
   return (
-    <div className="answer-container">
-      <div className="answer-labeler">
+    <div className="answer-container bg-black/[0.1] p-[0.313rem] mx-0 my-[0.313rem]">
+      <div className="answer-labeler flex gap-x-[0.313rem]">
         <div>
           A:
         </div>
@@ -54,7 +52,7 @@ function Answer({ answer, query }) {
           {answer.body2 ? answer.body2 : body}
         </div>
       </div>
-      <div className="answer-photos-container">
+      <div className="answer-photos-container flex gap-x-[0.313rem]">
         {
           photos.map((photo, index) => (
             <AnswerPhoto photo={photo} key={photo.id} index={index} />
@@ -65,9 +63,9 @@ function Answer({ answer, query }) {
         {'by '}
         {usernameCheck()}
         {`, ${formatDate} | Helpful? `}
-        <button type="button" id="answer-yes" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
+        <button type="button" id="answer-yes" className="hover:underline" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
         {` (${helpfulness[0]}) | `}
-        <button type="button" id="report-btn" onClick={() => reportFunction()} onKeyDown={() => reportFunction()}>{report[0]}</button>
+        <button type="button" id="report-btn" className="hover:text-red-500" onClick={() => reportFunction()} onKeyDown={() => reportFunction()}>{report[0]}</button>
       </div>
       {
         delete answer.body2
