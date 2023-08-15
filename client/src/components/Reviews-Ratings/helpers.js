@@ -1,4 +1,55 @@
 module.exports = {
+  starMeaning: {
+    1: "Poor",
+    2: "Fair",
+    3: "Average",
+    4: "Good",
+    5: "Great"
+  },
+  characteristicLabels: {
+    Size: {
+      1: 'A size too small',
+      2: '1/2 a size too small',
+      3: 'Perfect',
+      4: '1/2 a size too big',
+      5: 'A size too wide'
+    },
+    Width: {
+      1: 'Too narrow',
+      2: 'Slightly narrow',
+      3: 'Perfect',
+      4: 'Slightly wide',
+      5: 'Too wide'
+    },
+    Comfort: {
+      1: 'Uncomfortable',
+      2: 'Slightly uncomfortable',
+      3: 'OK',
+      4: 'Comfortable',
+      5: 'Perfect'
+    },
+    Quality: {
+      1: 'Poor',
+      2: 'Below average',
+      3: 'What I expected',
+      4: 'Pretty great',
+      5: 'Perfect'
+    },
+    Length: {
+      1: 'Runs Short',
+      2: 'Runs slightly short',
+      3: 'Perfect',
+      4: 'Runs slightly long',
+      5: 'Runs long'
+    },
+    Fit: {
+      1: 'Runs tight',
+      2: 'Runs slightly tight',
+      3: 'Perfect',
+      4: 'Runs slightly long',
+      5: 'Runs long'
+    },
+  },
   sortHelpfulness: (a, b) => {
     const revA = a.helpfulness;
     const revB = b.helpfulness;
@@ -68,4 +119,41 @@ module.exports = {
     }
     return 0;
   },
+  sumHelper: (array) => {
+    let sum = 0;
+    for (var i = 0; i < array.length; i++) {
+      sum += array[i];
+    }
+    return sum;
+  },
+  // reviewStars: (score) => {
+  //   const stars = [];
+  //   // "rounding", using 0.65 and 0.35 for more noticeable impact
+  //   const quarterRound = (num) => {
+  //     let quarters;
+  //     if (num > 0.625) {
+  //       quarters = 0.65;
+  //     } else if (num > 0.375) {
+  //       quarters = 0.5;
+  //     } else {
+  //       quarters = 0.35;
+  //     }
+  //     return quarters;
+  //   };
+  //   // adds to stars array
+  //   for (let i = 0; i < 5; i++) {
+  //     if (i < Math.floor(score)) {
+  //       stars.push(<i key={i} className="star fa-regular fa-star" />);
+  //     } else if (i - Math.floor(score) < 1 && i - score !== 0) {
+  //       // using base fa-star fontsize (18px)
+  //       const percent = (quarterRound((score - Math.floor(score))) * 18);
+  //       stars.push(<i key={i} className="star fa-regular fa-star" style={{ width: percent, marginRight: 18 - percent }} />);
+  //     } else {
+  //       stars.push(<i key={i} className="empty-star fa-regular fa-star" />);
+  //     }
+  //   }
+  //   return (
+  //     <div className="stars">{stars}</div>
+  //   );
+  // }
 };

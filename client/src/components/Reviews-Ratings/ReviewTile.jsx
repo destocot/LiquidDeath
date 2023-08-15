@@ -1,6 +1,39 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ReviewTileBody from './ReviewTileBody';
+// const reviewStars = require('./helpers.js');
+// import { reviewStars } from './helpers.js';
+
+// issues importing when I put this in the helpers.js file
+const reviewStars = (score) => {
+  const stars = [];
+  // "rounding", using 0.65 and 0.35 for more noticeable impact
+  const quarterRound = (num) => {
+    let quarters;
+    if (num > 0.625) {
+      quarters = 0.65;
+    } else if (num > 0.375) {
+      quarters = 0.5;
+    } else {
+      quarters = 0.35;
+    }
+    return quarters;
+  };
+  // adds to stars array
+  for (let i = 0; i < 5; i++) {
+    if (i < Math.floor(score)) {
+      stars.push(<i key={i} className="star fa-regular fa-star" />);
+    } else if (i - Math.floor(score) < 1 && i - score !== 0) {
+      // using base fa-star fontsize (18px)
+      const percent = (quarterRound((score - Math.floor(score))) * 18);
+      stars.push(<i key={i} className="star fa-regular fa-star" style={{ width: percent, marginRight: 18 - percent }} />);
+    } else {
+      stars.push(<i key={i} className="empty-star fa-regular fa-star" />);
+    }
+  }
+  return (
+    <div className="stars">{stars}</div>
+  );
+}
 
 function ReviewTile({review}) {
   // credit to Khurram for these helpfulness/report states!
@@ -19,26 +52,14 @@ function ReviewTile({review}) {
     }
   };
 
-  // function renderStarRating(rating) {
-  //   let star = '⭐';
-  //   let result = '';
-
-  //   let numberOfFullStars = Math.trunc(rating);
-  //   let decimal = rating % 1;
-  //   let numberOfPartialStars = (Math.round(decimal * 4) / 4).toFixed(2);
-
-  //   result = star.repeat(numberOfFullStars) /*+ numberOfPartialStars*/;
-  //   return result;
-  // }
-
-  // const starRating = renderStarRating(review.rating);
-
   // format dates properly
   const formattedDate = new Date(review.date).toLocaleDateString("en-US", {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
   });
+
+  const userAndDate = review.reviewer_name + ',  ' + formattedDate;
 
   // if summary > 60 characters, truncate it
   const reviewSummary = () => {
@@ -54,18 +75,21 @@ function ReviewTile({review}) {
       // console.log('true');
       return <div>✔️ I recommend this product</div>;
     }
-    return <div></div>;
+    return null;
   };
 
   return (
     <div className="reviewTile">
       {/* <h2>Review Tile</h2> */}
-      <div className="starRating">⭐⭐⭐</div>
-      <div className="reviewDate">{formattedDate}</div>
+      <div className="starRating">{reviewStars(review.rating)}</div>
+      <div className="topRightReviewTile">{userAndDate}
+        {/* <div className="reviewerName">{review.reviewer_name}</div>
+        <div className="reviewDate">{formattedDate}</div> */}
+      </div>
+      <div className="break"></div>
       <div className="reviewSummary">{reviewSummary()}</div>
       <ReviewTileBody review={review}/>
       <div className="reviewRec">{reviewRecommend()}</div>
-      <div className="reviewerName">{review.reviewer_name}</div>
       <div className="reviewResponse">Response from seller: {review.response}</div>
       <div className="reviewHelpfulness">
         {`Helpful? `}

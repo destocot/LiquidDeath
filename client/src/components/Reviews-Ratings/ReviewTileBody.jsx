@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState }  from 'react';
 
 function ReviewTileBody({review}) {
   const reviewLen = review.body.length;
@@ -29,7 +28,7 @@ function ReviewTileBody({review}) {
     if (reviewLen > 250) {
       return <button className="expandReviewTextButton" onClick={helpExpandBody} type="button">{buttonText}</button>;
     }
-    return <div></div>;
+    return null;
   };
 
   // map photos into review body. will add onto this at later time
