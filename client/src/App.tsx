@@ -31,18 +31,10 @@ function App() {
   */
 
   const [related, setRelated] = useState(initial.related);
-  const [reviews, setReviews] = useState(initial.reviews);
 
   const updRelated = async () => {
     const newRelated = await axios.get(`/products/${product.id}/related`);
     return newRelated;
-  };
-  // defaults to relevant sorting order - change sort to desired sort order
-  const updReviews = async (sort = "relevant", count = "5", page = "1") => {
-    const newReviews = await axios.get(
-      `/reviews/${product.id}/${sort}/${count}/${page}`
-    );
-    return newReviews;
   };
 
   /*
@@ -83,7 +75,7 @@ function App() {
           currProductId={product.id}
           currProductName={product.name}
         />
-        <ReviewsRatings id="ratingsReviewsContainerId"/>
+        <ReviewsRatings id="ratingsReviewsContainerId" reviewsMeta={reviewsMeta} currProductId={product.id} initial={initial}/>
       </div>
     );
   }
