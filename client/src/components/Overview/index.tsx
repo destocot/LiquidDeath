@@ -41,10 +41,9 @@ function Overview({product, reviewsMeta}) {
         <ImageGallery currentStyle={currentStyle} />
         <div className="right-side-container">
           <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} />
-          <StyleSelector styles={styles} setCurrentStyle={styleClickHandler}/>
+          <StyleSelector styles={styles} setCurrentStyle={styleClickHandler} currentStyle={currentStyle} />
           <AddCart />
         </div>
-
       </div>
     );
   }
