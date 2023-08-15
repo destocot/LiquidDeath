@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import './FormStyles.css';
+import React from 'react';
+import './qa-styles/Form.styles.css';
 import axios from 'axios';
 
 function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
-  const [myPhotos, setMyPhotos] = useState([]);
 
   // prevents form from being submitted on enter
   const checkKeyDown = (e) => {
@@ -16,14 +15,12 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
     }
   };
 
-  const [uploadNum, setUploadNum] = useState(0);
   const imageChecker = (e) => {
     const files = e.target.files;
-    setUploadNum(files.length);
     let imageDiv = document.getElementById('my-images-div');
     let imageInput = document.getElementById('ans-photos');
     imageDiv.innerHTML = '';
-
+    console.log('HERE');
     if (files.length > 5) {
       alert('You can only upload up to 5 photos!');
       imageInput.value = '';
@@ -43,14 +40,10 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (uploadNum > 5) {
-      alert('You can only upload up to 5 photos!');
-    } else {
-      const form = document.getElementById('answer-form');
-      const formData = new FormData(form);
-      sendAnswer(questionId, formData);
-      close();
-    }
+    const form = document.getElementById('answer-form');
+    const formData = new FormData(form);
+    sendAnswer(questionId, formData);
+    close();
   }
 
   const sendAnswer = (question_id, data) => {
@@ -63,6 +56,7 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
   }
 
   const close = () => {
+    document.body.style.overflow = 'visible';
     setAForm(false);
   }
 
@@ -70,11 +64,11 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
     <div id="answer-form-container">
       <div id="answer-form-subcontainer">
         <div id="answer-form-title">
-          <h2>Submit your Answer</h2>
+          <h2 className="text-[1.5em]">Submit your Answer</h2>
           <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }} />
         </div>
-        <h3>{currProductName}:</h3>
-        <h3>{questionBody}</h3>
+        <h3 className="text-[1.17em]">{currProductName}:</h3>
+        <h3 className="text-[1.17em]">{questionBody}</h3>
         <form id="answer-form" onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)} encType="multipart/form-data">
           <label>Answer*<br />
             <textarea maxLength="1000" rows="2" name="body" required /></label>

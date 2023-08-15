@@ -1,0 +1,110 @@
+/* 1. Use a more-intuitive box-sizing model. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Add accessible line-height 4. Improve text rendering */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Remove built-in form typography styles */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* END OF CSS RESET */
+
+.qa-main-container {
+  font-family: 'Lato', sans-serif;
+  padding: 10px;
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.questions-container {
+  max-height: 83vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px 10px 10px;
+}
+
+.answers-container {
+  max-height: 40vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#question-yes,
+#add-answer-btn,
+#answer-yes,
+#report-btn,
+.expand-answers-btn {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.full-answer-photo {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.9);
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+
+.full-answer-photo img {
+  max-height: 90vh;
+  max-width: 90vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.full-answer-photo i {
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
+  margin: auto;
+}
