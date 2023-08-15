@@ -5,6 +5,7 @@
   width: 100vw;
   top: 0;
   left: 0;
+  z-index: 2;
 }
 
 #question-form-subcontainer, #answer-form-subcontainer {
@@ -14,20 +15,28 @@
   bottom: 0;
   left: 0;
   margin: auto;
-  border: 1px solid black;
+  border: 2px solid white;
   border-radius: 20px;
-  color: white;
   padding: 1.25rem;
-  height: 75vh;
-  width: 40vw;
-  background-image: linear-gradient(45deg, #000080 0 50%,  black 50% 100%);
+  width: fit-content;
+  background-color: #A9A9A9;
+  background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+
+}
+
+#question-form-subcontainer {
+  height: fit-content;
+}
+
+#answer-form-subcontainer {
+  height: fit-content;
 }
 
 #question-form-title, #answer-form-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 10vh;
+  height: 5vh;
 }
 
 #question-form, #answer-form {
@@ -82,5 +91,6 @@ input[type="email"] {
 
 h6 {
   color: orange;
-  font-style: italic;
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 2px;
 }
