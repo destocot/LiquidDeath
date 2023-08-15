@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { characteristicLabels, starMeaning } from './helpers';
 
-function NewReviewForm({ setAForm, reviewsMeta }) {
+function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(false);
   const [characteristics, setCharacteristics] = useState({Size: null, Width: null, Comfort: null, Quality: null, Length: null, Fit: null});
@@ -108,7 +108,7 @@ function NewReviewForm({ setAForm, reviewsMeta }) {
     <div id="reviewFormContainer">
       <div id="reviewFormSubContainer">
         <div>
-          <h2>Write a Review</h2>
+          <h2>{currProductName}</h2>
           <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }}/>
         </div>
         <form onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>

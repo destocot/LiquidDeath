@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import BreakdownComp from './BreakdownComp';
 import ProductBreakdown from './ProductBreakdown';
+import helpers from './helpers';
+
+const sumHelper = helpers.sumHelper;
 
 const reviewStars = (score) => {
   const stars = [];
@@ -34,6 +37,7 @@ const reviewStars = (score) => {
 }
 
 function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
+  console.log('RM: ', reviewsMeta);
   // calculate and round avg rating
   const calcAvgRating = (ratingsObj) => {
     if (Object.keys(ratingsObj).length > 0) {
@@ -56,6 +60,7 @@ function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
   return (
     <div className="ratingBreakdown">
       <h3>Rating Breakdown</h3>
+      <div>Total Reviews - {sumHelper(Object.values(reviewsMeta.ratings))}</div>
       <div className="stars-container">
         <div>{avgRating}</div>
         <div>{reviewStars(avgRating)}</div>

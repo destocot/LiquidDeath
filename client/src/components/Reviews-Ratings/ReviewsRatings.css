@@ -21,15 +21,42 @@
   position: relative;
 }
 
-.reviewsList {
-  border-style: solid;
+.reviewsListContainer {
+  /* border-style: solid;
   height: 400px;
-  overflow: auto; /* Enable scrolling */
+  overflow: auto; */
   width: 72%;
 }
 
-.moreReviewsButton {
+.reviewsList {
+  /* border-style: solid; */
+  height: 400px;
+  overflow: auto; /* Enable scrolling */
+  /* width: 72%; */
+}
 
+#addReviewButton, #moreReviewsButton {
+  padding: 5px;
+  border: 1px solid transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+#addReviewButton:hover, #moreReviewsButton:hover{
+  border: 1px solid black;
+}
+
+#moreReviewsButton {
+
+}
+
+#addReviewButton {
+  margin-left: auto;
+}
+
+#reviewsListButtons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .reviewTile {

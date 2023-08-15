@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { sumHelper } from './helpers.js';
+// import { sumHelper } from './helpers';
+import helpers from './helpers';
 
 function BreakdownComp({filters, updateFilters, reviewsMeta}) {
   // data comes from reviewsMeta
+  const sumHelper = helpers.sumHelper;
 
   const filterByRatings = (key) => {
     key = Number(key);

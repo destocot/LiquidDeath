@@ -3,7 +3,7 @@ import ReviewTile from './ReviewTile';
 import Sorting from './Sorting';
 import NewReviewForm from './NewReviewForm';
 
-function ReviewsList({ filteredReviews, filters, reviewsMeta }) {
+function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName }) {
   // console.log('filteredReviews: ', filteredReviews);
   let moreButton;
   const [listLength, setListLength] = useState(2);
@@ -34,23 +34,27 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta }) {
   };
 
   // decides whether or not button should be rendered based on length of results
-  if (sortedFilteredReviews.length > 2) {
-    moreButton = <button className="moreReviewsButton" type="button" onClick={handleClick}>More Reviews</button>;
+  if (sortedFilteredReviews.length > 2 && listLength < sortedFilteredReviews.length ) {
+    moreButton = <button id="moreReviewsButton" type="button" onClick={handleClick}>More Reviews</button>;
   } else {
     moreButton = null;
   }
 
-  const addReviewButton = () => <button type="button" onClick={() => setAForm(true)} >Add Review</button>
+  const addReviewButton = () => <button type="button" id="addReviewButton" onClick={() => setAForm(true)} >Add Review</button>
 
   return (
-    <div className="reviewsList">
+    <div className="reviewsListContainer">
       <h3>Reviews List</h3>
-      {/* TESTING ONLY <NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta} /> */}
-      <Sorting sortedFilteredReviews={sortedFilteredReviews} updateSetSortedFilteredReviews={updateSetSortedFilteredReviews} />
-      {reviewTile()}
-      {moreButton}
-      {addReviewButton()}
-      { aForm ? (<NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta}/>) : null}
+        <Sorting sortedFilteredReviews={sortedFilteredReviews} updateSetSortedFilteredReviews={updateSetSortedFilteredReviews} />
+      <div className="reviewsList">
+        {/* TESTING ONLY <NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta} /> */}
+        {reviewTile()}
+      </div>
+      <div id="reviewsListButtons">
+        {moreButton}
+        {addReviewButton()}
+        { aForm ? (<NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta} currProductName={currProductName}/>) : null}
+      </div>
     </div>
   );
 }
