@@ -1,3 +1,5 @@
+import React from 'react';
+
 let helpers = {
   reviewScore: (meta) => {
     let totalCount = 0;
@@ -177,6 +179,85 @@ let helpers = {
 
   //     );
   // },
+
+  // creates stars
+  reviewStars: (score) => {
+    const stars = [];
+    // "rounding", using 0.65 and 0.35 for more noticeable impact
+    const quarterRound = (num) => {
+      let quarters;
+      if (num > 0.625) {
+        quarters = 0.65;
+      } else if (num > 0.375) {
+        quarters = 0.5;
+      } else {
+        quarters = 0.35;
+      }
+      return quarters;
+    };
+    // adds to stars array
+    for (let i = 0; i < 5; i++) {
+      if (i < Math.floor(score)) {
+        stars.push(<i key={i} className="star fa-regular fa-star" />);
+      } else if (i - Math.floor(score) < 1 && i - score !== 0) {
+        // using base fa-star fontsize (18px)
+        const percent = (quarterRound((score - Math.floor(score))) * 18);
+        stars.push(<i key={i} className="star fa-regular fa-star"
+          style={{ width: percent, marginRight: 18 - percent }} />
+        );
+      } else {
+        stars.push(<i key={i} className="empty-star fa-regular fa-star" />);
+      }
+    }
+    return (
+      <div className="stars">{stars}</div>
+    );
+  },
+
+  // checks for sales prices, sets price or sale price
+  priceChecker: (currentStyle) => {
+    if (currentStyle.sale_price === null) {
+      return (
+        <p className="price">
+          $
+          {currentStyle.original_price}
+        </p>
+      );
+    }
+    return (
+      <p className="price">
+        <span className="original-price">
+          $
+          {currentStyle.original_price}
+        </span>
+        $
+        {currentStyle.sale_price}
+      </p>
+    );
+  },
+    // creates matrix with style rows
+    styleMatrix: (styles, setStyleFn) => {
+      let row = [];
+      let matrix = [];
+      styles.forEach((style, i) => {
+        row.push(
+        <li key={style.style_id} className="style" >
+          <img
+            id={i}
+            alt={style.name}
+            className="style-thumbnail"
+            src={style.photos[0].thumbnail_url}
+            onClick={setStyleFn}/>
+        </li>
+        );
+        if (row.length === 4) {
+          matrix.push(<ul key={matrix.length} className="style-row">{row}</ul>)
+          matrix.push(<div key={`break${matrix.length}`} className="break"></div>)
+          row = [];
+        }
+      });
+      return matrix;
+    },
 }
 
 export default helpers;
