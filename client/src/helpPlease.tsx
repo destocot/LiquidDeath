@@ -83,6 +83,14 @@ let helpers = {
     photos: [],
     characteristics: {},
   },
+  removeNullValues: (obj) => {
+    for (var key in obj) {
+      if (!obj[key]) {
+        delete obj[key];
+      }
+    }
+    return obj;
+  },
   sortHelpfulness: (a, b) => {
     const revA = a.helpfulness;
     const revB = b.helpfulness;

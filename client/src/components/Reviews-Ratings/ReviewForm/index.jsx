@@ -7,12 +7,13 @@ const sumHelper = helpers.sumHelper;
 const charChecker = helpers.charChecker;
 const defaultCharacteristics = helpers.defaultCharacteristics;
 const defaultReviewPostBody = helpers.defaultReviewPostBody;
+const removeNullValues = helpers.removeNullValues;
 
-function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
+function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }) {
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(true);
   const [characteristics, setCharacteristics] = useState(defaultCharacteristics);
-  const [postBody, setPostBody] = useState(defaultReviewPostBody);
+  // const [postBody, setPostBody] = useState(defaultReviewPostBody);
 
 
   // used to update the boolean recommend
@@ -99,15 +100,8 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
   // TODO - update this to store all values in a massive state
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('event: ', e);
     console.log('submitHandler clicked');
-    console.log('overall Rating', rating); // wrong
-    console.log('recommend ', recommendation);
-    console.log('characteristics obj: ', characteristics);
-    console.log('review summary: ', e.target.summary.value);
-    console.log('review body: ', e.target.body.value);
-    console.log('review body: ', e.target.nickname.value);
-    console.log('review body: ', e.target.email.value);
+
 
     if (rating === 0) {
       alert('Rating must be given.');
@@ -119,18 +113,26 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
       return;
     }
 
-    // const body = e.target.body.value;
-    // const name = e.target.name.value;
-    // const email = e.target.email.value;
-    // const product_id = currProductId;
-    // sendQuestion({ body, name, email, product_id });
+    const tempPostObj = {
+      "product_id": currProductId,
+      "rating": rating,
+      "summary": e.target.summary.value,
+      "body": e.target.body.value,
+      "recommend": recommendation,
+      "name": e.target.nickname.value,
+      "email": e.target.email.value,
+      "photos": [],
+      "characteristics": removeNullValues(characteristics)
+    }
+
+    console.log(tempPostObj);
+
     // close();
-    // ({ body, name, email, product_id });
   };
 
   // TODO - update this to post to reviews
-  // const sendQuestion = (data) => {
-  //   axios.post('/qa/questions', data)
+  // const sendReview = (data) => {
+  //   axios.post('/reviews/questions', data)
   //     .catch(() => ('error posting question'));
   // }
 
@@ -166,7 +168,7 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
           <label>Review Summary <br />
             <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></label>
           <label>Review Body <br />
-            <textarea maxLength="1000" /*minLength="50"*/ rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br /></label>
+            <textarea maxLength="1000" minLength="50" rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br /></label>
           <label>Nickname<br />
             <input type="text" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
             <div>For privacy reasons, do not use your full name or email address</div></label>

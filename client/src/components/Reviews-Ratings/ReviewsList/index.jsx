@@ -3,7 +3,7 @@ import ReviewTile from './ReviewTile';
 import Sorting from './Sorting';
 import NewReviewForm from '../ReviewForm';
 
-function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName }) {
+function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, currProductId }) {
   // console.log('filteredReviews: ', filteredReviews);
   let moreButton;
   const [listLength, setListLength] = useState(2);
@@ -53,7 +53,7 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName })
       <div id="reviewsListButtons">
         {moreButton}
         {addReviewButton()}
-        { aForm ? (<NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta} currProductName={currProductName}/>) : null}
+        { aForm ? (<NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta} currProductName={currProductName} currProductId={currProductId}/>) : null}
       </div>
     </div>
   );
