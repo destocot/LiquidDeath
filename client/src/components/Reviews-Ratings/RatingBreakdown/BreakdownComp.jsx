@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import { sumHelper } from './helpers';
-import helpers from './helpers';
+import helpers from '../../../helpPlease';
 
 function BreakdownComp({filters, updateFilters, reviewsMeta}) {
   // data comes from reviewsMeta
