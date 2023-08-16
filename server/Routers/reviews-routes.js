@@ -60,8 +60,8 @@ reviewsRouter.post('/newreview', (req, res) => {
   req.body
   )
   .then((result) => console.log(result))
-  .catch((err) => res.status(404).send(err));
-  // .catch((err) => console.log(err));
+  // .catch((err) => res.status(404).send(err));
+  .catch((err) => console.log(err));
 })
 
 module.exports = reviewsRouter;

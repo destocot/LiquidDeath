@@ -15,7 +15,7 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   const [characteristics, setCharacteristics] = useState(defaultCharacteristics);
   // const [postBody, setPostBody] = useState(defaultReviewPostBody);
 
-
+  console.log('reviewsMeta: ', reviewsMeta);
   // used to update the boolean recommend
   const updateRecommendation = (value) => {
     setRecommendation(value);
