@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import { characteristicLabels, starMeaning } from './helpers';
-import helpers from '../../../helpPlease';
+import helpers from './helpers';
 const characteristicLabels = helpers.characteristicLabels;
 const starMeaning = helpers.starMeaning;
 
