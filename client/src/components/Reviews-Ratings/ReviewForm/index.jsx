@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import helpers from '../../../helpPlease';
+
+// destructuring not working after moving to helpPlease.tsx
 const characteristicLabels = helpers.characteristicLabels;
 const starMeaning = helpers.starMeaning;
 const sumHelper = helpers.sumHelper;
@@ -9,10 +11,12 @@ const defaultCharacteristics = helpers.defaultCharacteristics;
 const defaultReviewPostBody = helpers.defaultReviewPostBody;
 const removeNullValues = helpers.removeNullValues;
 
+// main function
 function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }) {
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(true);
   const [characteristics, setCharacteristics] = useState(defaultCharacteristics);
+  const [charObj, setCharObj] = useState({});
   // const [postBody, setPostBody] = useState(defaultReviewPostBody);
 
   console.log('reviewsMeta: ', reviewsMeta);
@@ -51,9 +55,9 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
       const currentCharValue = characteristics[characteristic] // could be null or a number
 
       return (
-        <div key={characteristic} data-testid="review-form-parent-id" id="charLabel">{characteristic} <br />
+        <div key={characteristic.id} data-testid="review-form-parent-id" id="charLabel">{characteristic} <br />
           {!currentCharValue ? <div id="charSelected">none selected</div> : <div id="charSelected">{characteristicLabels[characteristic][currentCharValue]}</div>}
-          <div className="charRadioButtons">
+          <div name="charId" value={characteristic.id} className="charRadioButtons">
             {
               [1, 2, 3, 4, 5].map((index) => {
                 return (
@@ -106,7 +110,8 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   const submitHandler = (e) => {
     e.preventDefault();
     console.log('submitHandler clicked');
-
+    // const charId = e.target.charId.value;
+    // console.log('test - ', charId);
 
     if (rating === 0) {
       alert('Rating must be given.');
@@ -127,10 +132,13 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
       "name": e.target.nickname.value,
       "email": e.target.email.value,
       "photos": [],
-      "characteristics": removeNullValues(characteristics)
+      // "characteristics": {} // { "14": 5, "15": 5 //...}
+      // "characteristics": {charId: removeNullValues(characteristics)}
     }
 
-    sendReview(tempPostObj);
+    //
+
+    // sendReview(tempPostObj);
 
     console.log(tempPostObj);
 
