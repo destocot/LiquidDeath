@@ -97,6 +97,11 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     setAForm(false);
   };
 
+  const sendReview = (data) => {
+    axios.post('/reviews/newreview', data)
+      .catch(() => ('error posting question'));
+  }
+
   // TODO - update this to store all values in a massive state
   const submitHandler = (e) => {
     e.preventDefault();
@@ -125,16 +130,15 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
       "characteristics": removeNullValues(characteristics)
     }
 
+    sendReview(tempPostObj);
+
     console.log(tempPostObj);
 
     // close();
   };
 
   // TODO - update this to post to reviews
-  // const sendReview = (data) => {
-  //   axios.post('/reviews/questions', data)
-  //     .catch(() => ('error posting question'));
-  // }
+
 
   return (
     <div id="reviewFormContainer">

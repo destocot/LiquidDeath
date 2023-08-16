@@ -46,6 +46,24 @@ reviewsRouter.get('/meta/:product_id', (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
+reviewsRouter.post('/newreview', (req, res) => {
+  console.log('post request received!');
+  console.log(req.body);
+  axios.post(
+    path.join(process.env.API_URI, 'reviews'),
+    req.body,
+  {
+    headers: {
+      Authorization: process.env.AUTH,
+    },
+  },
+  req.body
+  )
+  .then((result) => console.log(result))
+  .catch((err) => res.status(404).send(err));
+  // .catch((err) => console.log(err));
+})
+
 module.exports = reviewsRouter;
 
 /*
