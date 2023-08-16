@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
-// import { characteristicLabels, starMeaning } from './helpers';
+import axios from 'axios';
 import helpers from '../../../helpPlease';
 const characteristicLabels = helpers.characteristicLabels;
 const starMeaning = helpers.starMeaning;
+const sumHelper = helpers.sumHelper;
+const charChecker = helpers.charChecker;
+const defaultCharacteristics = helpers.defaultCharacteristics;
+const defaultReviewsPostBody = helpers.defaultReviewsPostBody;
 
 function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
   const [rating, setRating] = useState(0);
-  const [recommendation, setRecommendation] = useState(false);
-  const [characteristics, setCharacteristics] = useState({Size: null, Width: null, Comfort: null, Quality: null, Length: null, Fit: null});
+  const [recommendation, setRecommendation] = useState(true);
+  const [characteristics, setCharacteristics] = useState(defaultCharacteristics);
+  const [postBody, setPostBody] = useState(defaultReviewPostBody);
+
+  console.log(reviewsMeta.characteristics); // returns object
 
   // used to update the boolean recommend
   const updateRecommendation = (value) => {
@@ -67,6 +74,8 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
     })
   };
 
+  // require product recommendation to be clicked
+
   // TODO - update this to generate popup window where user can add photos
   const renderPhotoPage = () => {
     ('click');
@@ -92,12 +101,22 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log('submitHandler clicked');
+    if (rating === 0) {
+      alert('Rating must be given.');
+      return;
+    }
+
+    if (!charChecker(characteristics, reviewsMeta.characteristics)) {
+      alert('Characteristics must be selected.');
+      return;
+    }
+
     // const body = e.target.body.value;
     // const name = e.target.name.value;
     // const email = e.target.email.value;
     // const product_id = currProductId;
     // sendQuestion({ body, name, email, product_id });
-    close();
+    // close();
     // ({ body, name, email, product_id });
   };
 
@@ -123,12 +142,12 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
             </div>
           </label>
           {/* Boolean Product Recommendation - utilizes radio buttons */}
-          <label required>Do you recommend this product?<br />
+          <label id="recommendationForm">Do you recommend this product?<br />
             <label>Yes
-              <input type="radio" name="recommendation_true" value={true} checked={recommendation} onChange={() => updateRecommendation(true)}/>
+              <input type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)}/>
             </label>
             <label>No
-              <input type="radio" name="recommendation_false" value={false} checked={!recommendation}  onChange={() => updateRecommendation(false)} />
+              <input type="radio" name="recommendation" value={false} checked={!recommendation}  onChange={() => updateRecommendation(false)} />
             <br /></label>
           </label>
           {/* Characteristics */}
@@ -139,13 +158,15 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
           <label>Review Summary <br />
             <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></label>
           <label>Review Body <br />
-            <textarea maxLength="1000" minLength="50" rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br /></label>
+            <textarea maxLength="1000" /*minLength="50"*/ rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br /></label>
           <label>Nickname<br />
-            <input type="text" name="nickname" placeholder="jackson11!" required /><br /></label>
+            <input type="text" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
+            <div>For privacy reasons, do not use your full name or email address</div></label>
           <label >E-mail<br />
-            <input type="email" maxLength="60" placeholder="jack@email.com" name="email" required /> <br /> </label>
+            <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
+            <div>For authentication reasons, you will not be emailed</div></label>
           <button onClick={renderPhotoPage}>Add Photos  </button><br />
-          <input id="q-submit-btn" type="submit" />
+          <input type="submit" value="Submit"/>
         </form>
       </div>
     </div>

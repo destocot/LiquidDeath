@@ -64,6 +64,17 @@ let helpers = {
       5: 'Runs long'
     },
   },
+  defaultCharacteristics: {
+    Size: null,
+    Width: null,
+    Comfort: null,
+    Quality: null,
+    Length: null,
+    Fit: null
+  },
+  defaultReviewsPostBody: {
+
+  },
   sortHelpfulness: (a, b) => {
     const revA = a.helpfulness;
     const revB = b.helpfulness;
@@ -143,6 +154,19 @@ let helpers = {
       sum += currentElem;
     }
     return sum;
+  },
+  charChecker: (stateObj, productChars) => {
+    let productCharArray = Object.keys(productChars); // ['Quality']
+    for (var i = 0; i < productCharArray.length; i++) {
+      if (!stateObj[productCharArray[i]]) {
+        return false;
+      }
+    }
+    return true;
+    // stateObj = object
+    // product Chars object
+
+    // return boolean
   },
   // reviewStars: (score) => {
   //   const stars = [];
