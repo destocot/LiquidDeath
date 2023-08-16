@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { sortHelpfulness, sortNewest, sortRelevance } from './helpers';
+import { sortHelpfulness, sortNewest, sortRelevance } from '../../../helpPlease';
 
 function Sorting({ sortedFilteredReviews, updateSetSortedFilteredReviews }) {
   // this is a single function that sorts the array in three different ways depending on what user selects in the dropdown. It references functions in helpers.js file

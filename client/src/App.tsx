@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import QuestionsAndAnswers from "./components/QuestionsAndAnswers/QuestionsAndAnswers";
 import Overview from "./components/Overview";
-import ReviewsRatings from "./components/Reviews-Ratings/ReviewsRatings";
+import ReviewsRatings from "./components/Reviews-Ratings";
 import { List } from "./components/Related/List";
 import initial from "./PlaceHolderData.js";
 

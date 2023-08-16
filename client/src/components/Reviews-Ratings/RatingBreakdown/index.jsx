@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BreakdownComp from './BreakdownComp';
 import ProductBreakdown from './ProductBreakdown';
-import helpers from './helpers';
+import helpers from '../../../helpPlease';
 
 const sumHelper = helpers.sumHelper;
 

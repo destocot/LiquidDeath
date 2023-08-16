@@ -5,7 +5,7 @@ import ReviewsList from './ReviewsList';
 import RatingBreakdown from './RatingBreakdown';
 import './ReviewsRatings.css';
 import axios from 'axios';
-import helpers from './helpers';
+import helpers from '../../helpPlease';
 
 function ReviewsRatings({ reviewsMeta, currProductId, currProductName, initial }) {
   const sumHelper = helpers.sumHelper;

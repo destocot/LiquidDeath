@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// import { sumHelper } from './helpers';
-import helpers from './helpers';
+import helpers from '../../../helpPlease';
 
 function BreakdownComp({filters, updateFilters, reviewsMeta}) {
   // data comes from reviewsMeta
@@ -47,7 +46,7 @@ function BreakdownComp({filters, updateFilters, reviewsMeta}) {
 
   // renders a list of applied filters
   const filtersApplied = () => {
-    const ratingsDivs = filters.ratings.map((filter) => <div>{filter + ' stars'}</div>);
+    const ratingsDivs = filters.ratings.map((filter) => <div key={filter} >{filter + ' stars'}</div>);
     return (
       <div>
         Filters Applied:
