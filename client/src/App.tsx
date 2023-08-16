@@ -32,9 +32,12 @@ function App() {
 
   const [related, setRelated] = useState(initial.related);
 
-  const updRelated = async () => {
-    const newRelated = await axios.get(`/products/${product.id}/related`);
-    return newRelated;
+  // defaults to relevant sorting order - change sort to desired sort order
+  const updReviews = async (sort = "relevant", count = "5", page = "1") => {
+    const newReviews = await axios.get(
+      `/reviews/${product.id}/${sort}/${count}/${page}`
+    );
+    return newReviews;
   };
 
   /*
@@ -66,16 +69,18 @@ function App() {
   if (reviewsMeta) {
     return (
       <div>
-        <Overview
-          product={product}
-          reviewsMeta={reviewsMeta}
+        <Overview product={product} reviewsMeta={reviewsMeta} />
+        <List
+          currentProduct={product}
+          updateCurrentProduct={updProduct}
+          hide={hide}
+          setHidden={updateHide}
         />
-        <List currentProduct={product}/>
         <QuestionsAndAnswers
           currProductId={product.id}
           currProductName={product.name}
         />
-        <ReviewsRatings id="ratingsReviewsContainerId" reviewsMeta={reviewsMeta} currProductId={product.id} currProductName={product.name} initial={initial}/>
+        <ReviewsRatings id="ratingsReviewsContainerId" />
       </div>
     );
   }
