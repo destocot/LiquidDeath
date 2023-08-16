@@ -11,13 +11,8 @@ function Overview({product, reviewsMeta}) {
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
 
-  // const updStyles = async () => {
-  //   const newStyles = await axios.get(`/products/${product.id}/styles`);
-  //   return newStyles;
-  // };
-
   const updStyles = async () => {
-    const newStyles = await axios.get(`/products/37318/styles`);
+    const newStyles = await axios.get(`/products/${product.id}/styles`);
     return newStyles;
   };
 

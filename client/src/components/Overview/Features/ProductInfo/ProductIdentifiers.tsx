@@ -3,7 +3,7 @@ import helpers from '../../../../helpPlease';
 
 function ProductIdentifiers({product, currentStyle}) {
   return (
-    <div>
+    <div data-testid="product-identifiers">
       <h4>{product.category}</h4>
       <h2>{product.name}</h2>
       {helpers.priceChecker(currentStyle)}

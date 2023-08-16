@@ -252,7 +252,7 @@ let helpers = {
         );
         if (row.length === 4) {
           matrix.push(<ul key={matrix.length} className="style-row">{row}</ul>)
-          matrix.push(<div className="break"></div>)
+          matrix.push(<div key={`break${matrix.length}`} className="break"></div>)
           row = [];
         }
       });
