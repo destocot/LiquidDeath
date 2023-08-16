@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { sortHelpfulness, sortNewest, sortRelevance } from './helpers';
+import helpers from '../../../helpPlease';
+const sortHelpfulness = helpers.sortHelpfulness;
+const sortNewest = helpers.sortNewest;
+const sortRelevance = helpers.sortRelevance;
 
 function Sorting({ sortedFilteredReviews, updateSetSortedFilteredReviews }) {
   // this is a single function that sorts the array in three different ways depending on what user selects in the dropdown. It references functions in helpers.js file
@@ -22,7 +25,7 @@ function Sorting({ sortedFilteredReviews, updateSetSortedFilteredReviews }) {
 
   return (
     <div>
-      <label for="sortFilter">Sort Options:</label>
+      <label htmlFor="sortFilter">Sort Options:</label>
       <select name="sortFilter" onChange={handleClick}>
         <option value="relevant">Relevant</option>
         <option value="helpful">Helpful</option>

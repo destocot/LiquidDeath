@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// import { sumHelper } from './helpers';
-import helpers from './helpers';
+import helpers from '../../../helpPlease';
 
 function BreakdownComp({filters, updateFilters, reviewsMeta}) {
   // data comes from reviewsMeta
@@ -33,7 +32,7 @@ function BreakdownComp({filters, updateFilters, reviewsMeta}) {
 
     // map jsx and calculate percentage for each review
     return Object.keys(result).map((key) => (
-      <div className="breakdownRating">
+      <div key={key} className="breakdownRating">
         <div id="breakdownLabel" onClick={() => filterByRatings(key)}>{key} stars</div>
         <progress id="breakdownBar" max="1" value={result[key] / sum}>a bar</progress>
       </div>
@@ -47,7 +46,7 @@ function BreakdownComp({filters, updateFilters, reviewsMeta}) {
 
   // renders a list of applied filters
   const filtersApplied = () => {
-    const ratingsDivs = filters.ratings.map((filter) => <div>{filter + ' stars'}</div>);
+    const ratingsDivs = filters.ratings.map((filter) => <div key={filter} >{filter + ' stars'}</div>);
     return (
       <div>
         Filters Applied:

@@ -32,7 +32,11 @@ function ReviewTileBody({review}) {
   };
 
   // map photos into review body. will add onto this at later time
-  const renderPhotos = () => review.photos.map((photo) => <img className="reviewPhotos" src={photo.url}/>);
+  const renderPhotos = () => review.photos.map((photo) => {
+    return (
+      <img key={photo.id}className="reviewPhotos" src={photo.url}/>
+    )
+  });
 
   return (
     <div className="reviewBody">

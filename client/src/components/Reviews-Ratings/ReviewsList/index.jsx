@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReviewTile from './ReviewTile';
 import Sorting from './Sorting';
-import NewReviewForm from './NewReviewForm';
+import NewReviewForm from '../ReviewForm';
 
 function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName }) {
   // console.log('filteredReviews: ', filteredReviews);

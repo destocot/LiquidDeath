@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import { characteristicLabels, starMeaning } from './helpers';
-import helpers from './helpers';
+import helpers from '../../../helpPlease';
 const characteristicLabels = helpers.characteristicLabels;
 const starMeaning = helpers.starMeaning;
 
@@ -44,13 +44,13 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
       const currentCharValue = characteristics[characteristic] // could be null or a number
 
       return (
-        <div data-testid="review-form-parent-id" id="charLabel">{characteristic} <br />
+        <div key={characteristic} data-testid="review-form-parent-id" id="charLabel">{characteristic} <br />
           {!currentCharValue ? <div id="charSelected">none selected</div> : <div id="charSelected">{characteristicLabels[characteristic][currentCharValue]}</div>}
           <div className="charRadioButtons">
             {
               [1, 2, 3, 4, 5].map((index) => {
                 return (
-                    <label>
+                    <label key={index}>
                       <input type="radio" name={characteristic} value={index} checked={characteristics[characteristic] === index} onChange={() => updateCharacteristics(characteristic, index)}/>
                     </label>
                 )
