@@ -22,7 +22,7 @@ function Sorting({ sortedFilteredReviews, updateSetSortedFilteredReviews }) {
 
   return (
     <div>
-      <label for="sortFilter">Sort Options:</label>
+      <label htmlFor="sortFilter">Sort Options:</label>
       <select name="sortFilter" onChange={handleClick}>
         <option value="relevant">Relevant</option>
         <option value="helpful">Helpful</option>

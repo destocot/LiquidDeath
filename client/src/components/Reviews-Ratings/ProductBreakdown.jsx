@@ -18,11 +18,11 @@ function ProductBreakdown({ reviewsMeta }) {
     const lowValue = refObj[char].low;
     const highValue = refObj[char].high;
     return (
-      <div className="productBreakdownIndividual">
+      <div key={char} className="productBreakdownIndividual">
         <p className="productBreakdownTitle">{char}</p>
         <div name="triangle" style={
           {
-          "margin-left": pointerPosition,
+          "marginLeft": pointerPosition,
           "width": 0,
           "height": 0,
           "borderLeft": "5px solid transparent",
