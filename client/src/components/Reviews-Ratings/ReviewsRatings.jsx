@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import ReviewsList from './ReviewsList';
 import RatingBreakdown from './RatingBreakdown';
-import './ReviewsRatings.css';
+// import './ReviewsRatings.css';
 import axios from 'axios';
 import helpers from './helpers';
 
@@ -33,7 +33,7 @@ function ReviewsRatings({ reviewsMeta, currProductId, currProductName, initial }
   const filteredReviews = reviews.results.filter((review) => filters.ratings.indexOf(review.rating) !== -1 || filters.ratings.length === 0);
 
   return (
-    <div className="ratingsReviewsContainer" id="ratingsReviewsContainerId">
+    <div data-testid="test-1" className="ratingsReviewsContainer" id="ratingsReviewsContainerId">
       <h2>Ratings & Reviews</h2>
       <div className="ratingsReviewsContent">
         <RatingBreakdown filters={filters} updateFilters={updateFilters} reviewsMeta={reviewsMeta}/>

@@ -1,4 +1,30 @@
-import { sortHelpfulness, sortNewest, sortRelevance, sumHelper } from '../helpers';
+import helpers from '../helpers';
+import { render, screen, cleanup } from '@testing-library/react';
+// import App from '../../../App';
+import NewReviewForm from '../NewReviewForm';
+import { getReviewsMeta } from '../ExampleData';
+
+/**
+ * @jest-environment jsdom
+ */
+
+const sortHelpfulness = helpers.sortHelpfulness;
+const sortNewest = helpers.sortNewest;
+const sortRelevance = helpers.sortRelevance;
+const sumHelper = helpers.sumHelper;
+
+test('use jsdom in this test file', () => {
+  const element = document.createElement('div');
+  expect(element).not.toBeNull();
+});
+
+describe('ReviewsRatings Component', () => {
+  test('should render ReviewsRatings component', () => {
+    render(<NewReviewForm setAForm={() => console.log('test') } reviewsMeta={getReviewsMeta} currProductName="jordans"/>);
+    const reviewsRatingsElement = screen.getAllByTestId('review-form-parent-id');
+    expect(reviewsRatingsElement).toHaveLength(3);
+  })
+});
 
 const testReviewArray = [
   {

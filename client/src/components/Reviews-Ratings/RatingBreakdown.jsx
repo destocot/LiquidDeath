@@ -37,7 +37,6 @@ const reviewStars = (score) => {
 }
 
 function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
-  console.log('RM: ', reviewsMeta);
   // calculate and round avg rating
   const calcAvgRating = (ratingsObj) => {
     if (Object.keys(ratingsObj).length > 0) {
