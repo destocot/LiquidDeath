@@ -17,6 +17,7 @@ body {
   font-family: 'Rubik', sans-serif;
   background-color: #f1f1f1;
   position:relative;
+  height: 70vh;
 }
 
 .image-gallery-container {
@@ -31,6 +32,7 @@ body {
 .right-side-container {
   display: inline-block;
   position: absolute;
+  height: 100%;
 }
 
 .default-image-container {
@@ -130,6 +132,51 @@ img.default-image {
   font-style: italic;
   color:#E60023;
   margin-right: 2%;
+}
+
+.description-container {
+  position: relative;
+  display: block;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  height: 18vh;
+  overflow: hidden;
+}
+
+.description-left {
+  position: relative;
+  display: inline-block;
+  width: 51vw;
+  margin-top: 1.5vh;
+  margin-left: 6vw;
+  margin-right: 3vw;
+  margin-bottom: 1vh;
+}
+
+.vertical-line {
+  position: relative;
+  border-left: 2px solid black;
+  min-height: 14vh;
+  top: 1.5vh;
+  display: inline-flex;
+}
+
+.description-right {
+  display: inline-flex;
+  flex-direction: column;
+  position: absolute;
+  width: 30vw;
+  margin-top: 3vh;
+  margin-left: 3vw;
+}
+
+.d-checkbox {
+  margin-bottom: 1vh;
+}
+
+.check-text {
+  margin-left: 0.5vw;
 }
 
 .style-title {
@@ -249,6 +296,7 @@ img.style-thumbnail:hover {
   justify-content: space-evenly;
   width: 100%;
   margin:auto;
+  margin-top: 1vh;
 }
 
 .fa-facebook {

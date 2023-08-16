@@ -1,7 +1,6 @@
 import React from 'react';
 import StarsAndReviews from './StarsAndReviews';
 import ProductIdentifiers from './ProductIdentifiers';
-import Sharing from './Sharing';
 import helpers from '../../../../helpPlease';
 
 function ProductInfo({product, reviewsMeta, currentStyle}) {
@@ -10,7 +9,6 @@ function ProductInfo({product, reviewsMeta, currentStyle}) {
       {helpers.reviewScore(reviewsMeta) ?
         <StarsAndReviews reviewScore={helpers.reviewScore(reviewsMeta)} /> : null}
       <ProductIdentifiers product={product} currentStyle={currentStyle} />
-      <Sharing />
     </div>
   );
 }

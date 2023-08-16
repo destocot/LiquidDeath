@@ -4,6 +4,7 @@ import ProductInfo from './Features/ProductInfo';
 import StyleSelector from './Features/StyleSelector';
 import ImageGallery from './Features/ImageGallery';
 import AddCart from './Features/AddCart';
+import Description from './Features/ProductInfo/Description';
 import './OverviewStyles.css';
 
 function Overview({product, reviewsMeta}) {
@@ -11,8 +12,13 @@ function Overview({product, reviewsMeta}) {
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
 
+  // const updStyles = async () => {
+  //   const newStyles = await axios.get(`/products/${product.id}/styles`);
+  //   return newStyles;
+  // };
+
   const updStyles = async () => {
-    const newStyles = await axios.get(`/products/${product.id}/styles`);
+    const newStyles = await axios.get(`/products/37318/styles`);
     return newStyles;
   };
 
@@ -38,6 +44,9 @@ function Overview({product, reviewsMeta}) {
           <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} />
           <StyleSelector styles={styles} setCurrentStyle={styleClickHandler} currentStyle={currentStyle} />
           <AddCart currentStyle={currentStyle} />
+        </div>
+        <div className="description-container">
+          <Description product={product} />
         </div>
       </div>
     );
