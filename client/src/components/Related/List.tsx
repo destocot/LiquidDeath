@@ -30,21 +30,17 @@ export type ListProps = {
     name: string;
   };
   updateCurrentProduct: React.Dispatch<React.SetStateAction<ProdBase>>;
-  hide: boolean;
-  setHidden: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const List: FunctionComponent<ListProps> = ({
   currentProduct,
   updateCurrentProduct,
-  hide,
-  setHidden,
 }) => {
   const [related, setRelated] = useState<Array<product>>([]);
   const updRelated = async () => {};
   useEffect(async () => {}, [currentProduct]);
 
-  return hide ? null : (
+  return (
     <div className=" flex flex-row overflow-scroll ">
       {related.map((current) => {
         return (

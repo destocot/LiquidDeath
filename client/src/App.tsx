@@ -70,12 +70,7 @@ function App() {
     return (
       <div>
         <Overview product={product} reviewsMeta={reviewsMeta} />
-        <List
-          currentProduct={product}
-          updateCurrentProduct={updProduct}
-          hide={hide}
-          setHidden={updateHide}
-        />
+        <List currentProduct={product} updateCurrentProduct={updProduct} />
         <QuestionsAndAnswers
           currProductId={product.id}
           currProductName={product.name}
