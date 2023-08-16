@@ -1,8 +1,8 @@
 import helpers from '../helpers';
 import { render, screen, cleanup } from '@testing-library/react';
-// import App from '../../../App';
 import NewReviewForm from '../NewReviewForm';
 import { getReviewsMeta } from '../ExampleData';
+// import App from '../../../App';
 
 /**
  * @jest-environment jsdom
