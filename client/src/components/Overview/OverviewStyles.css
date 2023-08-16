@@ -202,12 +202,16 @@ img.default-image {
   height: 0;
 }
 
+.style-list-item {
+  margin-right: 4%;
+}
+
 .style {
   position: relative;
   width: 6vw;
+  height: 6vw;
   display: inline-flex;
   padding-bottom: 25%;
-  margin-right: 4%;
 }
 
 img.style-thumbnail {
@@ -218,6 +222,15 @@ img.style-thumbnail {
   left: 0;
   object-fit: cover;
   border: 1px solid #797373
+}
+
+.style-overlay {
+  position: absolute;
+  top:0;
+  right: 0;
+  opacity: 0.3;
+  transition: 0.3s ease;
+  background-color: transparent;
 }
 
 img.style-thumbnail:hover {
@@ -296,7 +309,7 @@ img.style-thumbnail:hover {
   justify-content: space-evenly;
   width: 100%;
   margin:auto;
-  margin-top: 1vh;
+  margin-top: 2vh;
 }
 
 .fa-facebook {
