@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import requests from './helpers/requests';
+import requests from '../../helpers/requests';
 import AnswerPhoto from './AnswerPhoto';
+import utils from '../../helpers/helpers';
 
 function Answer({ answer, query }) {
   const { body, answerer_name, date, photos } = answer;
@@ -27,30 +28,25 @@ function Answer({ answer, query }) {
     if (answerer_name === 'Seller') {
       return <span className='font-bold'>{answerer_name}</span>
     }
-    return <span>{answerer_name}</span>
+    return <span className='text-[#007185]'>{answerer_name}</span>
   }
 
   React.useEffect(() => {
     if (body.toLowerCase().includes(query.toLowerCase()) && query.length > 2) {
       const aIDX = body.toLowerCase().indexOf(query.toLowerCase());
-      answer.body2 =
-        (<>
-          {body.slice(0, aIDX)}
-          <span className='bg-[#FBF719]'>{query}</span>
-          {body.slice(aIDX + query.length)}
-        </>);
+      answer.body2 = utils.highlighter(body, aIDX, query.length);
     }
   }, [query])
 
   return (
     <div className="answer-container bg-black/[0.1] p-[0.313rem] mx-0 my-[0.313rem]">
       <div className="answer-labeler flex gap-x-[0.313rem]">
-        <div>
+        <h3 className="text-[1.17em] font-bold">
           A:
-        </div>
-        <div>
+        </h3>
+        <h3 className="text-[1.17em]">
           {answer.body2 ? answer.body2 : body}
-        </div>
+        </h3>
       </div>
       <div className="answer-photos-container flex gap-x-[0.313rem]">
         {
@@ -59,14 +55,14 @@ function Answer({ answer, query }) {
           ))
         }
       </div>
-      <div className="answer-info">
+      <h4 className="text-[1em]">
         {'by '}
         {usernameCheck()}
         {`, ${formatDate} | Helpful? `}
         <button type="button" id="answer-yes" className="hover:underline" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
         {` (${helpfulness[0]}) | `}
         <button type="button" id="report-btn" className="hover:text-red-500" onClick={() => reportFunction()} onKeyDown={() => reportFunction()}>{report[0]}</button>
-      </div>
+      </h4>
       {
         delete answer.body2
       }

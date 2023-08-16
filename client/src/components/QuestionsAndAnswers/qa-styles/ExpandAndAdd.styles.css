@@ -1,5 +1,5 @@
 .ExpandAndAdd-container {
-  margin-top: 1vh;
+  margin-top: 0.5vh;
   height: 5vh;
   width: 100%;
   display: flex;
@@ -12,4 +12,8 @@
   border: 1px solid transparent;
   background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
+}
+
+#add-questions-btn {
+  margin-left: auto;
 }

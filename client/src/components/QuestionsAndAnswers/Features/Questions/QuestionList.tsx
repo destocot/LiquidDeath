@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import utils from './helpers/helpers';
+import utils from '../../helpers/helpers';
 import Question from './Question';
 
 function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, currProductName }) {
   const [questionsDatabase, setQuestionsDatabase] = useState([]);
   const [questions, setQuestions] = useState([]);
-  const [highlightedQuestion, setHighlightedQuestion] = useState([false, null]);
 
   const fetch = () => {
     axios.get('/qa/questions', { params: { currProductId } })
@@ -39,21 +38,14 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
           .map(answer => answer.body)
           .filter(body =>  body.toLowerCase().includes(query.toLowerCase())).length;
 
-
         if (q.question_body.toLowerCase().includes(query.toLowerCase()) || answerHasQuery) {
           const qIDX = q.question_body.toLowerCase().indexOf(query.toLowerCase());
-
-          q.question_body2 =
-            (<>
-              {q.question_body.slice(0, qIDX)}
-              <span className='highlight'>{query}</span>
-              {q.question_body.slice(qIDX + query.length)}
-            </>);
+          q.question_body2 = utils.highlighter(q.question_body, qIDX, query.length);
           return true;
         }
       }));
       setDisplayMore(false);
-    } else if (query.length === 2) {
+    } else if (query.length <= 2) {
       fetch();
     }
     else {
@@ -70,7 +62,7 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
     <div className="questions-container">
       {
         questions.map((question) => {
-          return (<Question question={question} key={question.question_id} currProductName={currProductName} highlightedQuestion={highlightedQuestion}
+          return (<Question question={question} key={question.question_id} currProductName={currProductName}
             query={query} />)
         })
       }
