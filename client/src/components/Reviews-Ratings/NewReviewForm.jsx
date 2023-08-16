@@ -39,15 +39,12 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
   // generates radio buttons for users to rank characteristics
   const renderCharacteristics = () => {
     return Object.keys(reviewsMeta.characteristics).map((characteristic) => {
-
       // characteristic refers to Size, Width, Comfort, etc.
       // characteristics refers to the state, an object with properties for each characteristic
       const currentCharValue = characteristics[characteristic] // could be null or a number
-      console.log(currentCharValue);
-
 
       return (
-        <div id="charLabel">{characteristic} <br />
+        <div data-testid="review-form-parent-id" id="charLabel">{characteristic} <br />
           {!currentCharValue ? <div id="charSelected">none selected</div> : <div id="charSelected">{characteristicLabels[characteristic][currentCharValue]}</div>}
           <div className="charRadioButtons">
             {
