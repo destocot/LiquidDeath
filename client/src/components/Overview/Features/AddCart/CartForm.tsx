@@ -8,15 +8,15 @@ function CartForm({currentStyle, handleSubmit}) {
   return (
     <div className="cart-form-container">
       <form onSubmit={handleSubmit}>
-        <select>
-          <option value="" selected disabled hidden>Select Size</option>
+        <select defaultValue="Select Size">
+          <option value="Select Size" disabled hidden>Select Size</option>
           <option value="S">Small</option>
           <option value="M">Medium</option>
           <option value="L">Large</option>
           <option value="XL">Extra Large</option>
         </select>
-        <select>
-          <option value="" selected disabled hidden>Select Quantity</option>
+        <select defaultValue="Select Quantity">
+          <option value="Select Quantity" disabled hidden>Select Quantity</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
