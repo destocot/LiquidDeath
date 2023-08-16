@@ -73,7 +73,15 @@ let helpers = {
     Fit: null
   },
   defaultReviewsPostBody: {
-
+    product_id: null,
+    rating: null,
+    summary: null,
+    body: null,
+    recommend: null,
+    name: null,
+    email: null,
+    photos: [],
+    characteristics: {},
   },
   sortHelpfulness: (a, b) => {
     const revA = a.helpfulness;

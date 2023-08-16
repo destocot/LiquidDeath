@@ -6,7 +6,7 @@ const starMeaning = helpers.starMeaning;
 const sumHelper = helpers.sumHelper;
 const charChecker = helpers.charChecker;
 const defaultCharacteristics = helpers.defaultCharacteristics;
-const defaultReviewsPostBody = helpers.defaultReviewsPostBody;
+const defaultReviewPostBody = helpers.defaultReviewPostBody;
 
 function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
   const [rating, setRating] = useState(0);
@@ -14,7 +14,6 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
   const [characteristics, setCharacteristics] = useState(defaultCharacteristics);
   const [postBody, setPostBody] = useState(defaultReviewPostBody);
 
-  console.log(reviewsMeta.characteristics); // returns object
 
   // used to update the boolean recommend
   const updateRecommendation = (value) => {
@@ -100,7 +99,16 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName }) {
   // TODO - update this to store all values in a massive state
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log('event: ', e);
     console.log('submitHandler clicked');
+    console.log('overall Rating', rating); // wrong
+    console.log('recommend ', recommendation);
+    console.log('characteristics obj: ', characteristics);
+    console.log('review summary: ', e.target.summary.value);
+    console.log('review body: ', e.target.body.value);
+    console.log('review body: ', e.target.nickname.value);
+    console.log('review body: ', e.target.email.value);
+
     if (rating === 0) {
       alert('Rating must be given.');
       return;
