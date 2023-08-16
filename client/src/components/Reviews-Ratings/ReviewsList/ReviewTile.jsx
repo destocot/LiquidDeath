@@ -3,6 +3,9 @@ import ReviewTileBody from './ReviewTileBody';
 // const reviewStars = require('./helpers.js');
 // import { reviewStars } from './helpers.js';
 
+// import helpers from '../../../helpPlease';
+// const reviewStars = helpers.reviewStars;
+
 // issues importing when I put this in the helpers.js file
 const reviewStars = (score) => {
   const stars = [];
