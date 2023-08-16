@@ -75,7 +75,7 @@ function App() {
           currProductId={product.id}
           currProductName={product.name}
         />
-        <ReviewsRatings id="ratingsReviewsContainerId" />
+        <ReviewsRatings id="ratingsReviewsContainerId" reviewsMeta={reviewsMeta} currProductId={product.id} currProductName={product.name} initial={initial} />
       </div>
     );
   }
