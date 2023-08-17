@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Answer from '../Answers/Answer';
 import utils from '../../helpers/helpers';
@@ -10,18 +10,20 @@ function Question({ question, currProductName, query }) {
   const [answers, setAnswers] = useState([]);
   const [more, setMore] = useState(true);
   const [aForm, setAForm] = useState(false);
-
   const { question_helpfulness } = question;
   const [helpfulness, setHelpfulness] = useState([question_helpfulness, false]);
 
-  React.useEffect(() => {
-    axios.get(`/qa/questions/${question.question_id}/answers`)
+  const ansFetcher = async () => {
+    await axios.get(`/qa/questions/${question.question_id}/answers`)
       .then((res) => res.data.sort(utils.compare('helpfulness')))
       .then((sortedHelpfulness) => utils.sortSellers(sortedHelpfulness))
       .then((sortedSellers) => {
         setAnswersDatabase(sortedSellers);
         setAnswers(sortedSellers.slice(0, 2));
-      });
+      })
+  }
+  useEffect(() => {
+    ansFetcher();
   }, []);
 
   const expandOrCollapse = () => {
@@ -37,12 +39,28 @@ function Question({ question, currProductName, query }) {
     }
   };
 
+  useEffect(() => {
+    // if (query.length >= 3) {
+      setAnswers(answersDatabase.reduce((filtered, ans) => {
+        if (ans.body.toLowerCase().includes(query.toLowerCase())) {
+          const aIDX = ans.body.toLowerCase().indexOf(query.toLowerCase());
+          ans.body2 = utils.highlighter(ans.body, aIDX, query.length);
+          filtered.push(ans);
+        }
+        return filtered;
+      }, []))
+    // } else {
+    //   ansFetcher();
+    // }
+  }, [query])
+
   const addHelpfulness = () => {
     if (!helpfulness[1]) {
       setHelpfulness([helpfulness[0] + 1, true]);
       requests.markQuestionHelpful(question.question_id);
     }
   };
+
   return (
     <div className="question-container">
       <div className="flex justify-between p-[0.313rem] items-end">
@@ -61,12 +79,12 @@ function Question({ question, currProductName, query }) {
           <button type="button" id="add-answer-btn" onClick={() => {
             document.body.style.overflow = 'hidden';
             setAForm(true)
-          }} onKeyDown={() => addAnswerModule()}>Add Answer</button>
+          }}>Add Answer</button>
         </h4>
       </div>
       <div className="answers-container">
         {
-          answers.map((answer: any) => <Answer answer={answer} key={answer.answer_id} query={query} />)
+          answers.map((answer: any) => (<Answer answer={answer} key={answer.answer_id} query={query} />))
         }
         {
           expandOrCollapseButtons()
@@ -75,7 +93,7 @@ function Question({ question, currProductName, query }) {
       {
         aForm && <AnswerForm setAForm={setAForm} currProductName={currProductName} questionBody={question.question_body} questionId={question.question_id} />
       }
-      <hr className="mt-[0.313rem]"/>
+      <hr className="mt-[0.313rem]" />
     </div>
 
   );
