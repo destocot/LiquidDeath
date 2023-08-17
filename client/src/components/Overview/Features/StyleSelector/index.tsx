@@ -23,7 +23,7 @@ function StyleSelector({styles, currentStyle, setCurrentStyle}) {
             src={style.photos[0].thumbnail_url}
             onClick={setCurrentStyle}
           />
-          {currentStyle.name === style.name ? selected() : null}
+          {currentStyle.style_id === style.style_id ? selected() : null}
         </div>
       </li>
       );
