@@ -3,12 +3,12 @@ import helpers from '../../../../helpPlease';
 
 function StarsAndReviews({reviewScore}) {
   return (
-    <div className="stars-reviews">
+    <div className="stars-reviews mt-3">
       <div className="stars-container">
         {helpers.reviewStars(reviewScore.score)}
       </div>
       <span className="reviews">
-        <a className="review-scroll" href="#ratingsReviewsContainerId">
+        <a className="review-scroll underline" href="#ratingsReviewsContainerId">
           Read all
           {` ${reviewScore.count} `}
           reviews
