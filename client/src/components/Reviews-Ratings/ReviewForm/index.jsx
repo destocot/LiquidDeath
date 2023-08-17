@@ -69,7 +69,7 @@ function NewReviewForm({ setAForm, /*reviewsMeta,*/ currProductName, currProduct
       console.log(currCharValue);
 
       return (
-        <div key={currCharId} data-testid="review-form-parent-id" id="charLabel">{charName} <br />
+        <div key={currCharId} data-testid="review-form-parent-id" id="charLabel">{charName}
           {(charObj[currCharId] === undefined) ? <div id="charSelected">none selected</div> : <div id="charSelected">{characteristicLabels[charName][currCharValue]}</div>}
           <div name="charId" value={currCharId} className="charRadioButtons">
             {
@@ -160,46 +160,48 @@ function NewReviewForm({ setAForm, /*reviewsMeta,*/ currProductName, currProduct
 
 
   return (
-    <div id="reviewFormContainer">
-      <div id="reviewFormSubContainer">
-        <div>
-          <h2>{currProductName}</h2>
+    <div className="reviewFormContainer">
+      <div className="reviewFormSubContainer">
+        <div id="reviewFormHeader">
+          <h2 id="reviewFormTitle">{currProductName}</h2>
           <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }}/>
         </div>
         <form onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
           {/* Overall Rating by Clicking Number of Stars */}
-          <label required>Overall Rating<br />
+          <label className="reviewFormSectionHeader"required>Overall Rating<br />
             <div className="newReviewStarRating">
               {renderStars()}
               {(rating !== 0) ? <div>{starMeaning[rating]}</div> : null}
             </div>
           </label>
           {/* Boolean Product Recommendation - utilizes radio buttons */}
-          <label id="recommendationForm">Do you recommend this product?<br />
+          <label className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?<br />
             <label>Yes
-              <input type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)}/>
+              <input id="buttonLeft" type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)}/>
             </label>
             <label>No
-              <input type="radio" name="recommendation" value={false} checked={!recommendation}  onChange={() => updateRecommendation(false)} />
+              <input id="buttonRight" type="radio" name="recommendation" value={false} checked={!recommendation}  onChange={() => updateRecommendation(false)} />
             <br /></label>
           </label>
           {/* Characteristics */}
-          <label id="charTitle" required>Characteristics <br />
+          <label id="charTitle" className="reviewFormSectionHeader" required>Characteristics <br />
             <div id="charElement">{renderCharacteristics()}</div>
           </label>
           {/* Text Inputs */}
-          <label>Review Summary <br />
+          <label className="reviewFormSectionHeader" >Review Summary <br />
             <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></label>
-          <label>Review Body <br />
+          <label className="reviewFormSectionHeader" >Review Body <br />
             <textarea maxLength="1000" minLength="50" rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br /></label>
-          <label>Nickname<br />
+          <label className="reviewFormSectionHeader" >Nickname<br />
             <input type="text" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
-            <div>For privacy reasons, do not use your full name or email address</div></label>
-          <label >E-mail<br />
+            <div className="reviewFormWarning">For privacy reasons, do not use your full name or email address</div></label>
+          <label className="reviewFormSectionHeader">E-mail<br />
             <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
-            <div>For authentication reasons, you will not be emailed</div></label>
-          <button onClick={renderPhotoPage}>Add Photos  </button><br />
-          <input type="submit" value="Submit"/>
+            <div className="reviewFormWarning">For authentication reasons, you will not be emailed</div></label>
+          <div className="reviewFormbuttons">
+            <button id="photoInputButton"onClick={renderPhotoPage}>Add Photos </button><br />
+            <input id="submitButton" type="submit" value="Submit"/>
+          </div>
         </form>
       </div>
     </div>
