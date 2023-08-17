@@ -15,11 +15,10 @@ function handleClick(
   updatePropInFocus: LinkProps["changePropInFocus"]
 ) {
   e.preventDefault();
-  console.log(e.currentTarget.id);
+
   let currentProd: Array<string> = e.currentTarget.id.split("name");
-  console.log(currentProd);
+
   updatePropInFocus(currentProd[0]).then((resp: AxiosResponse) => {
-    console.log(resp);
     changePropInFocus(resp.data);
   });
 }

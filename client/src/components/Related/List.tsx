@@ -82,7 +82,6 @@ export const List: FunctionComponent<ListProps> = ({
     <div className=" container-xl flex flex-row overflow-auto max-w-full min-w-screen space-x-24 ">
       {related
         ? related.map((current, index) => {
-            console.log(relatedStyles[index]);
             return (
               <div className="min-w-max">
                 <Links
