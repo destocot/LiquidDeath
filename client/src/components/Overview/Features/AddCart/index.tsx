@@ -4,7 +4,7 @@ import CartForm from './CartForm';
 function AddCart({currentStyle}) {
   const formSubmit = (e) => {
     e.preventDefault();
-    console.log('form submitted');
+    console.log(e.target.value);
   }
   return (
     <div>
