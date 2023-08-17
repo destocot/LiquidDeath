@@ -9,6 +9,7 @@
 
 .modal {
   font-size: 12px;
+  background-color: white;
   width: 50vw;
   height: 50vh;
   border: 1px solid black;
