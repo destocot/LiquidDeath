@@ -4,7 +4,7 @@ import React, {
   SetStateAction,
   useEffect,
 } from "react";
-import initial from "../PlaceHolderData.js";
+
 import { useState } from "react";
 import { Links } from "./Links";
 import axios, { Axios, AxiosResponse } from "axios";
@@ -40,6 +40,7 @@ export const List: FunctionComponent<ListProps> = ({
 }) => {
   const [relatedIDs, setRelatedIDs] = useState<Array<number>>([]);
   const [related, setRelated] = useState<Array<object>>();
+  const [relatedStyles, setRelatedStyles] = useState<Array<object>>([]);
   var getRelatedObjs = (ID: number) => {
     return axios.get(`products/${ID}`);
   };
@@ -50,30 +51,45 @@ export const List: FunctionComponent<ListProps> = ({
   }, [currentProduct]);
   useEffect(() => {
     let relatedObjHolder: Array<object> = [];
+    let styleHolder: Array<object> = [];
     relatedIDs.forEach((ID) => {
       getRelatedObjs(ID)
         .then((resp) => {
           relatedObjHolder.push(resp.data);
-
           return relatedObjHolder;
         })
         .then(() => {
           if (relatedObjHolder.length === relatedIDs.length)
             setRelated(relatedObjHolder);
+        })
+        .then(() => {
+          axios
+            .get(`/products/${ID}/styles`)
+            .then((resp) => {
+              styleHolder.push(resp.data.results[0].photos[0]);
+
+              return styleHolder;
+            })
+            .then(() => {
+              if (styleHolder.length === relatedIDs.length)
+                setRelatedStyles(styleHolder);
+            });
         });
     });
   }, [relatedIDs]);
 
   return (
-    <div className=" container-xl flex flex-row overflow-auto max-w-full min-w-screen  ">
+    <div className=" container-xl flex flex-row overflow-auto max-w-full min-w-screen space-x-24 ">
       {related
-        ? related.map((current) => {
+        ? related.map((current, index) => {
+            console.log(relatedStyles[index]);
             return (
               <div className="min-w-max">
                 <Links
                   currListProduct={current}
                   updatePropInFocus={updateCurrentProduct}
                   changePropInFocus={setCurrentProduct}
+                  style={relatedStyles[index]}
                 />
               </div>
             );
