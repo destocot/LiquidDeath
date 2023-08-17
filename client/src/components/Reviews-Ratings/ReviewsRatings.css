@@ -22,15 +22,6 @@
   position: relative;
 }
 
-.stars-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  align-items: center;
-}
-
-/* -- BreakdownComp -- */
-
 .actualBreakdown {
   margin-top: 10px;
 }
@@ -50,24 +41,14 @@
 #breakdownLabel {
   margin-left: 10px;
   margin-right: 10px;
-  width: 50px;
+  cursor: pointer;
+}
+
+#breakdownLabel:hover {
+  background-color: rgb(213, 193, 233);
 }
 
 #breakdownBar {
-  margin-left: 5px;
-  width: 225px;
-  height: 10px;
-}
-
-progress::-webkit-progress-bar {
-  background-color: rgb(228, 228, 228);
-  border-radius: 7px;
-}
-
-progress::-webkit-progress-value {
-  background-color: rgb(124, 188, 82);
-  border-radius: 7px;
-  box-shadow: 1px 1px 3px 3px rgb(109, 109, 109);
 }
 
 /* -- ProductBreakdown -- */
