@@ -58,8 +58,10 @@ function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
 
   return (
     <div className="ratingBreakdown">
-      <h3>Rating Breakdown</h3>
-      <div>Total Reviews - {sumHelper(Object.values(reviewsMeta.ratings))}</div>
+      <div className="flex text-lg space-x-4">
+        <div className="font-bold">{sumHelper(Object.values(reviewsMeta.ratings))}</div>
+        <div>{` total reviews`}</div>
+      </div>
       <div className="stars-container">
         <div>{avgRating}</div>
         <div>{reviewStars(avgRating)}</div>
