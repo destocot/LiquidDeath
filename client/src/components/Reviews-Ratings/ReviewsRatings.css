@@ -89,7 +89,7 @@ progress::-webkit-progress-value {
   background-color: #d9d9d9;
 }
 
-/**/
+/*
 .pointer {
   position: relative;
 }
@@ -97,10 +97,10 @@ progress::-webkit-progress-value {
 .pointer::before {
   content: attr(value);
   position: absolute;
-  bottom: -20px; /* Adjust the vertical position of the value */
+  bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(2, 2, 2);
   color: white;
   padding: 5px;
   border-radius: 4px;
@@ -112,7 +112,7 @@ progress::-webkit-progress-value {
 .pointer:hover::before {
   opacity: 1;
 }
-/**/
+*/
 
 .productBreakdownLabels {
   display: flex;
@@ -127,11 +127,11 @@ progress::-webkit-progress-value {
   margin-left: 0;
 }
 
-
 .productBreakdownLabelsHigh {
   margin-right: 0;
 }
 
+/* -- End -- */
 
 .newReviewStarRating {
   display: flex;
@@ -175,6 +175,115 @@ progress::-webkit-progress-value {
   overflow: hidden;
 }
 
+/* ----- REVIEWS LIST ----- */
+/* ----- REVIEWS LIST ----- */
+/* ----- REVIEWS LIST ----- */
+
+.reviewsListContainer {
+  width: 72%;
+}
+
+.reviewsList {
+  height: 68vh;
+  overflow: auto; /* Enable scrolling */
+}
+
+#addReviewButton,
+#moreReviewsButton {
+  padding: 5px;
+  border: 1px solid transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+#addReviewButton:hover,
+#moreReviewsButton:hover {
+  border: 1px solid black;
+}
+
+#moreReviewsButton {
+}
+
+#addReviewButton {
+  margin-left: auto;
+}
+
+#reviewsListButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reviewTile {
+  border: 2px;
+  margin-bottom: 12px;
+  padding: 8px;
+  border-style: groove;
+}
+
+.reviewTileTop {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+  width: 100%;
+}
+
+.starRating {
+  margin-left: 0;
+}
+
+.topRightReviewTile {
+  margin-right: 0;
+}
+
+.reviewerName {
+}
+
+.reviewDate {
+}
+
+.reviewSummary {
+  font-weight: bold;
+}
+
+.reviewBody {
+}
+
+.reviewBodyText {
+}
+
+.expandReviewTextButton {
+  margin: 6px;
+  padding: 3px;
+  border: 2px solid black;
+  background-color: rgb(224, 224, 224);
+}
+
+.reviewPhotos {
+  max-width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.reviewResponse {
+  border: 1px;
+  background-color: rgba(238, 238, 238, 0.89);
+  max-width: 600px;
+}
+
+.reviewHelpfulness {
+  align-items: center;
+}
+
+#helpfulButton {
+  margin-top: 15px;
+}
+
+#reportButton {
+  margin-top: 15px;
+}
+
+/* ------ REVIEW FORM ----- */
+/* ------ REVIEW FORM ----- */
 /* ------ REVIEW FORM ----- */
 
 .reviewFormContainer {
