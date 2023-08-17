@@ -46,9 +46,9 @@
   justify-content: space-around;
 }
 
-textarea,
-input[type="text"],
-input[type="email"] {
+#quesiton-form textarea, #answer-form textarea,
+#quesiton-form input[type="text"], #answer-form input[type="text"],
+#quesiton-form input[type="email"], #answer-form input[type="email"] {
   padding: 0.313rem;
   width: 100%;
   color: black;
@@ -89,7 +89,7 @@ input[type="email"] {
   border: 1px solid white;
 }
 
-h6 {
+#question-form h6, #answer-form h6 {
   color: orange;
   background-color: rgba(0, 0, 0, 0.25);
   padding: 2px;

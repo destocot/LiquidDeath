@@ -12,6 +12,7 @@ function Question({ question, currProductName, query }) {
   const [aForm, setAForm] = useState(false);
   const { question_helpfulness } = question;
   const [helpfulness, setHelpfulness] = useState([question_helpfulness, false]);
+  const [report, setReport] = useState(['Report', false]);
 
   const ansFetcher = async () => {
     await axios.get(`/qa/questions/${question.question_id}/answers`)
@@ -41,14 +42,14 @@ function Question({ question, currProductName, query }) {
 
   useEffect(() => {
     // if (query.length >= 3) {
-      setAnswers(answersDatabase.reduce((filtered, ans) => {
-        if (ans.body.toLowerCase().includes(query.toLowerCase())) {
-          const aIDX = ans.body.toLowerCase().indexOf(query.toLowerCase());
-          ans.body2 = utils.highlighter(ans.body, aIDX, query.length);
-          filtered.push(ans);
-        }
-        return filtered;
-      }, []))
+    setAnswers(answersDatabase.reduce((filtered, ans) => {
+      if (ans.body.toLowerCase().includes(query.toLowerCase())) {
+        const aIDX = ans.body.toLowerCase().indexOf(query.toLowerCase());
+        ans.body2 = utils.highlighter(ans.body, aIDX, query.length);
+        filtered.push(ans);
+      }
+      return filtered;
+    }, []))
     // } else {
     //   ansFetcher();
     // }
@@ -58,6 +59,13 @@ function Question({ question, currProductName, query }) {
     if (!helpfulness[1]) {
       setHelpfulness([helpfulness[0] + 1, true]);
       requests.markQuestionHelpful(question.question_id);
+    }
+  };
+
+  const reportFunction = () => {
+    if (!report[1]) {
+      setReport(['Reported', true]);
+      requests.reportQuestion(question.question_id);
     }
   };
 
@@ -76,6 +84,7 @@ function Question({ question, currProductName, query }) {
           {'Helpful? '}
           <button type="button" id="question-yes" className="hover:underline" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
           {` (${helpfulness[0]}) | `}
+          <button type="button" id="report-btn" className="hover:text-red-500" onClick={() => reportFunction()} onKeyDown={() => reportFunction()}>{report[0]}</button>{' | '}
           <button type="button" id="add-answer-btn" onClick={() => {
             document.body.style.overflow = 'hidden';
             setAForm(true)

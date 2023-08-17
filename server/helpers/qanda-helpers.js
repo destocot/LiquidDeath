@@ -1,10 +1,10 @@
-const axios = require('axios');
-const path = require('path');
+const axios = require("axios");
+const path = require("path");
 
-require('dotenv').config();
+require("dotenv").config();
 
-const base_uri = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe';
-axios.defaults.headers.common['Authorization'] = process.env.AUTH;
+const base_uri = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe";
+axios.defaults.headers.common["Authorization"] = process.env.AUTH;
 
 //  coded for product_id=37324 via App.tsx
 const questionsFetcher = (productId) => {
@@ -23,9 +23,9 @@ const questionsPoster = (data) => {
 };
 
 const answersPoster = (questionId, data, photos) => {
-  const ph = photos.map(photo => path.join('/Images', photo.filename));
+  const ph = photos.map((photo) => path.join("/Images", photo.filename));
   const uri = `${base_uri}/qa/questions/${questionId}/answers`;
-  return axios.post(uri, {...data, photos: ph});
+  return axios.post(uri, { ...data, photos: ph });
 };
 
 const markQuestionHelpful = (questionId) => {
@@ -56,5 +56,5 @@ module.exports = {
   markQuestionHelpful,
   markAnswerHelpful,
   reportQuestion,
-  reportAnswer
+  reportAnswer,
 };
