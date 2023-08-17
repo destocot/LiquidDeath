@@ -71,7 +71,11 @@ function App() {
     return (
       <div>
         <Overview product={product} reviewsMeta={reviewsMeta} />
-        <List currentProduct={product} updateCurrentProduct={updProduct} />
+        <List
+          currentProduct={product}
+          updateCurrentProduct={updProduct}
+          setCurrentProduct={setProduct}
+        />
         <button onClick={() => changeProduct()}>CHANGE PRODUCT</button>
         <QuestionsAndAnswers
           currProductId={product.id}

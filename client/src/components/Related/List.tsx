@@ -30,11 +30,13 @@ export type ListProps = {
     name: string;
   };
   updateCurrentProduct: React.Dispatch<React.SetStateAction<ProdBase>>;
+  setCurrentProduct: React.Dispatch<React.SetStateAction<ProdBase>>;
 };
 
 export const List: FunctionComponent<ListProps> = ({
   currentProduct,
   updateCurrentProduct,
+  setCurrentProduct,
 }) => {
   const [relatedIDs, setRelatedIDs] = useState<Array<number>>([]);
   const [related, setRelated] = useState<Array<object>>();
@@ -63,7 +65,7 @@ export const List: FunctionComponent<ListProps> = ({
   }, [relatedIDs]);
 
   return (
-    <div className=" container-xl flex flex-row overflow-auto max-w-full content-start first: float-left ">
+    <div className=" container-xl flex flex-row overflow-auto max-w-full min-w-screen  ">
       {related
         ? related.map((current) => {
             return (
@@ -71,6 +73,7 @@ export const List: FunctionComponent<ListProps> = ({
                 <Links
                   currListProduct={current}
                   updatePropInFocus={updateCurrentProduct}
+                  changePropInFocus={setCurrentProduct}
                 />
               </div>
             );
