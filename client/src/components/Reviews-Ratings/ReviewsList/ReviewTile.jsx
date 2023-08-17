@@ -42,7 +42,8 @@ function ReviewTile({review}) {
     if (!helpfulness[1]) {
       setHelpfulness([helpfulness[0] + 1, true]);
       // put request
-      axios.put(`/reviews/${review.review_id}/helpful`);
+      axios.put(`/reviews/${review.review_id}/helpful`)
+      .catch((err) => console.error(err));
     }
   };
 
@@ -50,7 +51,8 @@ function ReviewTile({review}) {
     if (!report[1]) {
       setReport(['Reported', true]);
       // put request
-      axios.put(`/reviews/${review.review_id}/report`);
+      axios.put(`/reviews/${review.review_id}/report`)
+      .catch((err) => console.error(err));
     }
   };
 
