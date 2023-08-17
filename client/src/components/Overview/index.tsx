@@ -25,6 +25,7 @@ function Overview({product, reviewsMeta}) {
   useEffect(() => {
     updStyles()
       .then((newStyles) => {
+        console.log('styles for this: ', newStyles.data.results);
         setStyles(newStyles.data.results);
         setCurrentStyle(newStyles.data.results[0]);
       })

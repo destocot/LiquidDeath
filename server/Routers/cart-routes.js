@@ -15,8 +15,8 @@ cartRouter.get('/', (req, res) => {
 
 // add to cart
 cartRouter.post('/', (req, res) => {
-  axios.post(path.join(process.env.API_URI, 'carts'), req.body)
-    .then(() => { console.log(req.body) })
+  axios.post(path.join(process.env.API_URI, 'cart'), req.body)
+    .then(() => { res.status(201).send() })
     .catch((err) => res.status(400).send(err));
 });
 

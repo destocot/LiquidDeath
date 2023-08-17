@@ -1,10 +1,15 @@
 import React from 'react';
 import CartForm from './CartForm';
+import helpers from '../../../../helpPlease';
+import axios from 'axios';
 
 function AddCart({currentStyle}) {
   const formSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    let cartBody = helpers.formParser(e.target.elements);
+    axios.post('/cart', cartBody)
+      .then(() => console.log('Added Items to Cart!'))
+      .catch((err) => console.error(err));
   }
   return (
     <div>
