@@ -48,6 +48,7 @@
 }
 
 #breakdownLabel {
+  margin-left: 10px;
   margin-right: 10px;
   width: 50px;
 }
@@ -88,7 +89,7 @@ progress::-webkit-progress-value {
   background-color: #d9d9d9;
 }
 
-/*
+/**/
 .pointer {
   position: relative;
 }
@@ -96,10 +97,10 @@ progress::-webkit-progress-value {
 .pointer::before {
   content: attr(value);
   position: absolute;
-  bottom: -20px;
+  bottom: -20px; /* Adjust the vertical position of the value */
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgb(2, 2, 2);
+  background-color: rgb(255, 255, 255);
   color: white;
   padding: 5px;
   border-radius: 4px;
@@ -111,7 +112,7 @@ progress::-webkit-progress-value {
 .pointer:hover::before {
   opacity: 1;
 }
-*/
+/**/
 
 .productBreakdownLabels {
   display: flex;
@@ -129,8 +130,6 @@ progress::-webkit-progress-value {
 .productBreakdownLabelsHigh {
   margin-right: 0;
 }
-
-/* -- End -- */
 
 .newReviewStarRating {
   display: flex;
