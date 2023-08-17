@@ -36,20 +36,48 @@ export const List: FunctionComponent<ListProps> = ({
   currentProduct,
   updateCurrentProduct,
 }) => {
-  const [related, setRelated] = useState<Array<product>>([]);
-  const updRelated = async () => {};
-  // useEffect(async () => {}, [currentProduct]);
+  const [relatedIDs, setRelatedIDs] = useState<Array<number>>([]);
+  const [related, setRelated] = useState<Array<object>>();
+  var getRelatedObjs = (ID: number) => {
+    return axios.get(`products/${ID}`);
+  };
+  useEffect(() => {
+    axios.get(`/products/${currentProduct.id}/related`).then((resp) => {
+      setRelatedIDs(resp.data);
+    });
+  }, [currentProduct]);
+  useEffect(() => {
+    let relatedObjHolder: Array<object> = [];
+    relatedIDs.forEach((ID) => {
+      getRelatedObjs(ID)
+        .then((resp) => {
+          relatedObjHolder.push(resp.data);
+          console.log(relatedObjHolder);
+          return relatedObjHolder;
+        })
+        .then(() => {
+          console.log(relatedObjHolder);
+          if (relatedObjHolder.length === relatedIDs.length)
+            setRelated(relatedObjHolder);
+        });
+    });
+  }, [relatedIDs]);
 
   return (
-    <div className=" flex flex-row overflow-scroll ">
-      {related.map((current) => {
-        return (
-          <Links
-            currListProduct={current}
-            updatePropInFocus={updateCurrentProduct}
-          />
-        );
-      })}
+    <div className=" container flex flex-row overflow-scroll space-x-6 ">
+      {related
+        ? related.map((current) => {
+            console.log(current);
+            return (
+              <>
+                <Links
+                  currListProduct={current}
+                  updatePropInFocus={updateCurrentProduct}
+                />
+              </>
+            );
+          })
+        : null}
     </div>
   );
 };

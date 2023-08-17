@@ -1,5 +1,6 @@
 import React, { ReactEventHandler } from "react";
 import { ListProps, product } from "./List";
+import "./app.css";
 type LinkProps = {
   currListProduct: product;
   updatePropInFocus: ListProps["updateCurrentProduct"];
@@ -13,10 +14,10 @@ export const Links: React.FC<LinkProps> = ({
   updatePropInFocus,
 }) => (
   <div
-    className="container space-x-6 space-y-6 content-center"
+    className="container space-x-6 space-y-6  "
     id={currListProduct.id.toString()}
   >
-    <em className="whitespace-nowrap snap-center">{currListProduct.name}</em>
+    <em className="whitespace-nowrap ">{currListProduct.name}</em>
     <div>
       <img
         src={
