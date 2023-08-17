@@ -89,7 +89,7 @@ progress::-webkit-progress-value {
   background-color: #d9d9d9;
 }
 
-/**/
+/*
 .pointer {
   position: relative;
 }
@@ -97,10 +97,10 @@ progress::-webkit-progress-value {
 .pointer::before {
   content: attr(value);
   position: absolute;
-  bottom: -20px; /* Adjust the vertical position of the value */
+  bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(2, 2, 2);
   color: white;
   padding: 5px;
   border-radius: 4px;
@@ -112,7 +112,7 @@ progress::-webkit-progress-value {
 .pointer:hover::before {
   opacity: 1;
 }
-/**/
+*/
 
 .productBreakdownLabels {
   display: flex;
@@ -130,6 +130,8 @@ progress::-webkit-progress-value {
 .productBreakdownLabelsHigh {
   margin-right: 0;
 }
+
+/* -- End -- */
 
 .newReviewStarRating {
   display: flex;
@@ -182,7 +184,7 @@ progress::-webkit-progress-value {
 }
 
 .reviewsList {
-  height: 400px;
+  height: 68vh;
   overflow: auto; /* Enable scrolling */
 }
 
@@ -212,81 +214,72 @@ progress::-webkit-progress-value {
 }
 
 .reviewTile {
+  border: 2px;
+  margin-bottom: 12px;
+  padding: 8px;
   border-style: groove;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  /* grid-template-columns: repeat(4, 1fr); */
-  gap: 10px;
-  /* grid-auto-rows: minmax(10px, auto); */
 }
 
-.break {
-  flex-basis: 100%;
-  height: 0;
+.reviewTileTop {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+  width: 100%;
 }
 
 .starRating {
-  padding-left: 2%;
+  margin-left: 0;
 }
 
 .topRightReviewTile {
-  padding-right: 2%;
-  display: flex;
+  margin-right: 0;
 }
+
 .reviewerName {
-  /* grid-column: 3;
-  grid-row: 1; */
 }
 
 .reviewDate {
-  /* padding-right: 2%; */
-  /* font-size: large; */
 }
 
 .reviewSummary {
-  /* grid-column: 1 / 3;
-  grid-row: 2; */
   font-weight: bold;
 }
 
 .reviewBody {
-  /* grid-column: 1 / 3;
-  grid-row: 3; */
 }
 
 .reviewBodyText {
 }
 
 .expandReviewTextButton {
+  margin: 6px;
+  padding: 3px;
+  border: 2px solid black;
+  background-color: rgb(224, 224, 224);
 }
 
 .reviewPhotos {
-  max-width: 50px;
+  max-width: 100px;
   height: auto;
-}
-
-.reviewRec {
-  /* grid-column: 1;
-  grid-row: 4; */
+  margin-right: 10px;
 }
 
 .reviewResponse {
-  /* grid-column: 1/3;
-  grid-row: 5; */
-  background-color: rgb(211, 202, 202);
-  border-style: dotted;
+  border: 1px;
+  background-color: rgba(238, 238, 238, 0.89);
+  max-width: 600px;
 }
 
 .reviewHelpfulness {
-  /* grid-column: 1;
-  grid-row: 6; */
+  align-items: center;
 }
 
 #helpfulButton {
+  margin-top: 15px;
 }
 
 #reportButton {
+  margin-top: 15px;
 }
 
 /* ------ REVIEW FORM ----- */

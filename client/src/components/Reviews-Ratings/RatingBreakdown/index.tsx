@@ -59,12 +59,6 @@ function RatingBreakdown({ filters, updateFilters, reviewsMeta }) {
 
   return (
     <div className="ratingBreakdown">
-      <div className="flex justify-between text-lg">
-        <span className="font-bold">
-          {`${sumHelper(Object.values(reviewsMeta.ratings))} `}
-          <span className="font-normal">total reviews</span>
-        </span>
-      </div>
       <div className="stars-container">
         <h1 className="text-6xl font-bold text-[#14532d]">{avgRating}</h1>
         <div>{reviewStars(avgRating)}</div>
