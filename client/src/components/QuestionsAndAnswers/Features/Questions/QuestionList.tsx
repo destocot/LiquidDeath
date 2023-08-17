@@ -21,7 +21,7 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
   }
 
   useEffect(() => {
-    console.log('Q U E S T I O N S  F E T C H E D')
+    // console.log('Q U E S T I O N S  F E T C H E D')
     questionsFetcher();
   }, [currProductId]);
 
@@ -65,7 +65,7 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
     <div className="questions-container">
       {
         questions.map((question) => (<Question question={question} key={question.question_id} currProductName={currProductName}
-            query={query} questions={questions} />))
+          query={query} questions={questions} />))
       }
     </div>
   );
