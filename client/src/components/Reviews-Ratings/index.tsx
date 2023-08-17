@@ -41,7 +41,7 @@ function ReviewsRatings({ reviewsMeta, currProductId, currProductName, initial }
 
   return (
     <div data-testid="test-1" className="ratingsReviewsContainer" id="ratingsReviewsContainerId">
-      <h2>Ratings & Reviews</h2>
+      <h2 className="h-[5vh] text-[2rem]">RATINGS & REVIEWS</h2>
       <div className="ratingsReviewsContent">
         <RatingBreakdown filters={filters} updateFilters={updateFilters} reviewsMeta={reviewsMeta}/>
         <ReviewsList filteredReviews={filteredReviews} filters={filters} reviewsMeta={reviewsMeta} currProductName={currProductName} currProductId={currProductId} updReviews={updReviews} />

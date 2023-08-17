@@ -1,15 +1,9 @@
 import React from 'react';
+import helpers from '../../../helpPlease';
+const refObj = helpers.refObj;
 
 function ProductBreakdown({ reviewsMeta }) {
   const { characteristics } = reviewsMeta;
-  const refObj = {
-    Size: { low: 'A size too small', high: 'A size too wide' },
-    Width: { low: 'Too narrow', high: 'Too wide' },
-    Comfort: { low: 'Uncomfortable', high: 'Perfect' },
-    Quality: { low: 'Poor', high: 'Perfect' },
-    Length: { low: 'Runs short', high: 'Runs long' },
-    Fit: { low: 'Runs tight', high: 'Runs long' },
-  };
 
   const renderCharBreakdown = Object.keys(characteristics).map((char) => {
     const charValue = Number(characteristics[char].value);
@@ -17,17 +11,18 @@ function ProductBreakdown({ reviewsMeta }) {
     const pointerPosition = charPercent.toString().concat('', '%');
     const lowValue = refObj[char].low;
     const highValue = refObj[char].high;
+
     return (
       <div key={char} className="productBreakdownIndividual">
-        <p className="productBreakdownTitle">{char}</p>
-        <div name="triangle" style={
+        <p className="text-lg font-serif font-semibold ">{char}</p>
+        <div name="triangle" className="pointer" value={charValue} style={
           {
           "marginLeft": pointerPosition,
           "width": 0,
           "height": 0,
           "borderLeft": "5px solid transparent",
           "borderRight": "5px solid transparent",
-          "borderTop": "10px solid #555"
+          "borderTop": "10px solid #000000",
           }
         }>
         </div>

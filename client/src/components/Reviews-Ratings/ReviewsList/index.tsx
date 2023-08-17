@@ -2,12 +2,19 @@ import React, { useState, useEffect } from 'react';
 import ReviewTile from './ReviewTile';
 import Sorting from './Sorting';
 import NewReviewForm from '../ReviewForm';
+import helpers from '../../../helpPlease';
+const sumHelper = helpers.sumHelper;
+
 
 function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, currProductId, updReviews }) {
 
   let moreButton;
   const [listLength, setListLength] = useState(2);
   const [aForm, setAForm] = useState(false);
+
+  useEffect(() => {
+    setListLength(2);
+  }, [filteredReviews])
 
   // renders 2 review tiles at a time using .slice and the listLength state
   const reviewTile = () => {
@@ -18,7 +25,7 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, c
   // increases listLength by 2, in turn rendering two more elements
   const handleClick = () => {
     const prevLength = listLength;
-    setListLength(prevLength + 2);
+    setListLength(prevLength + filteredReviews.length - 2);
   };
 
   // decides whether or not button should be rendered based on length of results
@@ -32,10 +39,13 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, c
 
   return (
     <div className="reviewsListContainer">
-      <h3>Reviews List</h3>
+      <div className="flex justify-between text-2xl">
+        <span className="font-bold">{`${sumHelper(Object.values(reviewsMeta.ratings))} `}
+          <span className="font-normal">Total Reviews</span>
+        </span>
+      </div>
         <Sorting filteredReviews={filteredReviews} updReviews={updReviews}/>
       <div className="reviewsList">
-        {/* TESTING ONLY <NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta} /> */}
         {reviewTile()}
       </div>
       <div id="reviewsListButtons">

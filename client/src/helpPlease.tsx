@@ -83,6 +83,14 @@ let helpers = {
     photos: [],
     characteristics: {},
   },
+  refObj: {
+    Size: { low: 'A size too small', high: 'A size too wide' },
+    Width: { low: 'Too narrow', high: 'Too wide' },
+    Comfort: { low: 'Uncomfortable', high: 'Perfect' },
+    Quality: { low: 'Poor', high: 'Perfect' },
+    Length: { low: 'Runs short', high: 'Runs long' },
+    Fit: { low: 'Runs tight', high: 'Runs long' },
+  },
   removeNullValues: (obj) => {
     for (var key in obj) {
       if (!obj[key]) {

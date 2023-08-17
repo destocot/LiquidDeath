@@ -12,7 +12,7 @@ function Sorting({ updReviews }) {
   };
 
   return (
-    <div>
+    <div className="text-lg pb-3">
       <label htmlFor="sortFilter">Sort Options:</label>
       <select name="sortFilter" onChange={handleClick}>
         <option value="relevant">Relevant</option>
