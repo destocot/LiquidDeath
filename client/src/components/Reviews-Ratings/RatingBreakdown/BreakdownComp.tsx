@@ -32,9 +32,10 @@ function BreakdownComp({filters, updateFilters, reviewsMeta}) {
 
     // map jsx and calculate percentage for each review
     return Object.keys(result).map((key) => (
-      <div key={key} className="breakdownRating">
-        <div id="breakdownLabel" onClick={() => filterByRatings(key)}>{key} stars</div>
+      <div key={key} className="breakdownRating" onClick={() => filterByRatings(key)}>
+        <div id="breakdownLabel" >{key} stars</div>
         <progress id="breakdownBar" max="1" value={result[key] / sum}>a bar</progress>
+        <div className="ml-1">{result[key]}</div>
       </div>
     ));
   };
