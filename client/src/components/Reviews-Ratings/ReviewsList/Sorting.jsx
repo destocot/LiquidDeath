@@ -4,23 +4,11 @@ const sortHelpfulness = helpers.sortHelpfulness;
 const sortNewest = helpers.sortNewest;
 const sortRelevance = helpers.sortRelevance;
 
-function Sorting({ sortedFilteredReviews, updateSetSortedFilteredReviews }) {
-  // this is a single function that sorts the array in three different ways depending on what user selects in the dropdown. It references functions in helpers.js file
+function Sorting({ updReviews }) {
   const handleClick = (event) => {
     event.preventDefault();
-    const tempArray = sortedFilteredReviews.slice(0);
-
-    const functionObjects = {
-      'helpful': sortHelpfulness,
-      'newest': sortNewest,
-      'relevant': sortRelevance,
-    }
-
     const value = event.target.value;
-    const sortMethod = functionObjects[value];
-
-    tempArray.sort(sortMethod);
-    updateSetSortedFilteredReviews(tempArray);
+    updReviews(value, 9999, 1);
   };
 
   return (

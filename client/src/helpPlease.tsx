@@ -91,34 +91,47 @@ let helpers = {
     }
     return obj;
   },
-  sortHelpfulness: (a, b) => {
-    const revA = a.helpfulness;
-    const revB = b.helpfulness;
-    if (revA < revB) {
-      return 1;
-    }
-    if (revA > revB) {
-      return -1;
-    }
-    return 0;
-  },
-  sortNewest: (a, b) => {
-    const revA = a.date;
-    const revB = b.date;
-    if (revA < revB) {
-      return 1;
-    }
-    if (revA > revB) {
-      return -1;
-    }
-    return 0;
-  },
+  // sortHelpfulness: (a, b) => {
+  //   const revA = a.helpfulness;
+  //   const revB = b.helpfulness;
+  //   if (revA < revB) {
+  //     return 1;
+  //   }
+  //   if (revA > revB) {
+  //     return -1;
+  //   }
+  //   return 0;
+  // },
+  // sortNewest: (a, b) => {
+  //   const revA = a.date;
+  //   const revB = b.date;
+  //   if (revA < revB) {
+  //     return 1;
+  //   }
+  //   if (revA > revB) {
+  //     return -1;
+  //   }
+  //   return 0;
+  // },
   // I plan to refactor this to be more concise at some point, but would like to discuss with group if the method does a good job of weighting a rating's recent-ness vs. it's helpfulness
-  sortRelevance: (a, b) => {
+  sortRelevance: (arrayOfObjects) => {
+    // console.log('prior to sort: ', arrayOfObjects);
+    var result =  arrayOfObjects.sort(helpers.sortRelevanceCB);
+    console.log('after sort: ', result);
+    return result;
+  },
+  sortRelevanceCB: (a, b) => {
     let valA;
     let valB;
-    const rateA = a.helpfulness;
-    const rateB = b.helpfulness;
+
+    let rateA = a.helpfulness / 10;
+    let rateB = b.helpfulness / 10;
+    if (rateA === 0) {
+      rateA = 1;
+    }
+    if (rateB === 0) {
+      rateB = 1;
+    }
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
     const currentDate = new Date();
@@ -151,6 +164,8 @@ let helpers = {
     } else {
       valB = rateB;
     }
+
+    // console.log({rateA, daysFromNowA, valA});
 
     if (valA < valB) {
       return 1;
