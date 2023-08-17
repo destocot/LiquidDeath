@@ -36,20 +36,46 @@ export const List: FunctionComponent<ListProps> = ({
   currentProduct,
   updateCurrentProduct,
 }) => {
-  const [related, setRelated] = useState<Array<product>>([]);
-  const updRelated = async () => {};
-  // useEffect(async () => {}, [currentProduct]);
+  const [relatedIDs, setRelatedIDs] = useState<Array<number>>([]);
+  const [related, setRelated] = useState<Array<object>>();
+  var getRelatedObjs = (ID: number) => {
+    return axios.get(`products/${ID}`);
+  };
+  useEffect(() => {
+    axios.get(`/products/${currentProduct.id}/related`).then((resp) => {
+      setRelatedIDs(resp.data);
+    });
+  }, [currentProduct]);
+  useEffect(() => {
+    let relatedObjHolder: Array<object> = [];
+    relatedIDs.forEach((ID) => {
+      getRelatedObjs(ID)
+        .then((resp) => {
+          relatedObjHolder.push(resp.data);
+
+          return relatedObjHolder;
+        })
+        .then(() => {
+          if (relatedObjHolder.length === relatedIDs.length)
+            setRelated(relatedObjHolder);
+        });
+    });
+  }, [relatedIDs]);
 
   return (
-    <div className=" flex flex-row overflow-scroll ">
-      {related.map((current) => {
-        return (
-          <Links
-            currListProduct={current}
-            updatePropInFocus={updateCurrentProduct}
-          />
-        );
-      })}
+    <div className=" container-xl flex flex-row overflow-auto max-w-full content-start first: float-left ">
+      {related
+        ? related.map((current) => {
+            return (
+              <div className="min-w-max">
+                <Links
+                  currListProduct={current}
+                  updatePropInFocus={updateCurrentProduct}
+                />
+              </div>
+            );
+          })
+        : null}
     </div>
   );
 };

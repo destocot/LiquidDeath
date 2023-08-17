@@ -1,5 +1,6 @@
 import React, { ReactEventHandler } from "react";
 import { ListProps, product } from "./List";
+import "./app.css";
 type LinkProps = {
   currListProduct: product;
   updatePropInFocus: ListProps["updateCurrentProduct"];
@@ -13,16 +14,16 @@ export const Links: React.FC<LinkProps> = ({
   updatePropInFocus,
 }) => (
   <div
-    className="container space-x-6 space-y-6 content-center"
+    className="container flex-col  max-h-fill min-w-full text-center "
     id={currListProduct.id.toString()}
   >
-    <em className="whitespace-nowrap snap-center">{currListProduct.name}</em>
+    <em className="whitespace-nowrap">{currListProduct.name}</em>
     <div>
       <img
         src={
           "https://cdn.vox-cdn.com/thumbor/di8N7rxlSJkVTYZFZdMvmgvGknI=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/23067861/LD_duo_alt.jpg"
         }
-        className="object-scale-down"
+        className="object-scale-down h-48 w-96 left-0"
       />
     </div>
     <br />

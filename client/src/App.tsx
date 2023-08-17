@@ -50,16 +50,19 @@ function App() {
     });
   }, [reviewsMeta]);
 
-
   const changeProduct = () => {
     if (product.id === 37324) {
       updProduct(37325)
-      .then((result) => { setProduct(result.data) })
-      .catch((err) => console.error(err));
+        .then((result) => {
+          setProduct(result.data);
+        })
+        .catch((err) => console.error(err));
     } else {
       updProduct(37324)
-      .then((result) => { setProduct(result.data)} )
-      .catch((err) => console.error(err));
+        .then((result) => {
+          setProduct(result.data);
+        })
+        .catch((err) => console.error(err));
     }
   };
 
@@ -74,7 +77,13 @@ function App() {
           currProductId={product.id}
           currProductName={product.name}
         />
-        <ReviewsRatings id="ratingsReviewsContainerId" reviewsMeta={reviewsMeta} currProductId={product.id} currProductName={product.name} initial={initial} />
+        <ReviewsRatings
+          id="ratingsReviewsContainerId"
+          reviewsMeta={reviewsMeta}
+          currProductId={product.id}
+          currProductName={product.name}
+          initial={initial}
+        />
       </div>
     );
   }
