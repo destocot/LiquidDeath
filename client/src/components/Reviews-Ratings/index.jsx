@@ -9,7 +9,7 @@ import helpers from '../../helpPlease';
 
 function ReviewsRatings({ reviewsMeta, currProductId, currProductName, initial }) {
   const sumHelper = helpers.sumHelper;
-  const sortRelevance = helpers.sortRelevance1;
+  const sortRelevance = helpers.sortRelevance;
   const [reviews, setReviews] = useState(initial.reviews);
   const [filters, setFilters] = useState({ ratings: [] });
 
@@ -17,27 +17,15 @@ function ReviewsRatings({ reviewsMeta, currProductId, currProductName, initial }
     setFilters(obj);
   };
 
-  // const tempArray = sortedFilteredReviews.slice(0);
-  // const functionObjects = {
-  //   'helpful': sortHelpfulness,
-  //   'newest': sortNewest,
-  //   'relevant': sortRelevance,
-  // }
-  // const value = event.target.value;
-  // const sortMethod = functionObjects[value];
-  // tempArray.sort(sortMethod);
-  // updateSetSortedFilteredReviews(tempArray);
-
   const updReviews = (sort = "relevant", count = "9999", page = "1") => {
     axios.get(`/reviews/${currProductId}/${sort}/${count}/${page}`)
       .then((result) => {
         if (sort === "relevant") {
-          console.log('calling sortRelevance');
-          // setReviews(result.data);
-          return sortRelevance(result.data);
-          // call function passing in result
+          const resultObj = result;
+          const sortedArray = sortRelevance(result.data.results);
+          resultObj.results = sortedArray;
+          return resultObj;
         } else {
-          // setReviews(result.data);
           return result.data;
         }
       })
@@ -49,8 +37,6 @@ function ReviewsRatings({ reviewsMeta, currProductId, currProductName, initial }
     updReviews("relevant", "9999", "1");
   }, [currProductId]);
 
-  // console.log(reviews.results); // [ {}, {}, {} ]
-  // console.log(filters); // [1, 2];
   const filteredReviews = reviews.results.filter((review) => filters.ratings.indexOf(review.rating) !== -1 || filters.ratings.length === 0);
 
   return (
