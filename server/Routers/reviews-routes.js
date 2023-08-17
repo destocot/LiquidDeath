@@ -4,6 +4,7 @@ const express = require('express');
 const axios = require('axios');
 
 const reviewsRouter = express.Router();
+axios.defaults.headers.common["Authorization"] = process.env.AUTH;
 
 // reviews section API needs query params - seems you can't just add params to end of link
 // right now I have it set so you make a request with /id/sort/count/page from client...
@@ -20,9 +21,6 @@ reviewsRouter.get('/:product_id/:sort/:count/:page', (req, res) => {
         count: req.params.count || 5,
         page: req.params.page || 1,
       },
-      headers: {
-        Authorization: process.env.AUTH,
-      },
     },
   )
     .then((product) => res.status(200).send(product.data))
@@ -37,9 +35,6 @@ reviewsRouter.get('/meta/:product_id', (req, res) => {
       params: {
         product_id: req.params.product_id,
       },
-      headers: {
-        Authorization: process.env.AUTH,
-      },
     },
   )
     .then((reviewsMeta) => res.status(200).send(reviewsMeta.data))
@@ -52,11 +47,6 @@ reviewsRouter.post('/newreview', (req, res) => {
   axios.post(
     path.join(process.env.API_URI, 'reviews'),
     req.body,
-    {
-      headers: {
-        Authorization: process.env.AUTH,
-      },
-    },
   )
   .then((result) => console.log(result))
   .catch((err) => res.status(400).send(err));
