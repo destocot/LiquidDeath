@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import BreakdownComp from './BreakdownComp';
-import ProductBreakdown from './ProductBreakdown';
+import React, { useState } from "react";
+import BreakdownComp from "./BreakdownComp";
+import ProductBreakdown from "./ProductBreakdown";
 
 const reviewStars = (score) => {
   const stars = [];
@@ -22,18 +22,22 @@ const reviewStars = (score) => {
       stars.push(<i key={i} className="star fa-regular fa-star" />);
     } else if (i - Math.floor(score) < 1 && i - score !== 0) {
       // using base fa-star fontsize (18px)
-      const percent = (quarterRound((score - Math.floor(score))) * 18);
-      stars.push(<i key={i} className="star fa-regular fa-star" style={{ width: percent, marginRight: 18 - percent }} />);
+      const percent = quarterRound(score - Math.floor(score)) * 18;
+      stars.push(
+        <i
+          key={i}
+          className="star fa-regular fa-star"
+          style={{ width: percent, marginRight: 18 - percent }}
+        />
+      );
     } else {
       stars.push(<i key={i} className="empty-star fa-regular fa-star" />);
     }
   }
-  return (
-    <div className="stars">{stars}</div>
-  );
-}
+  return <div className="stars">{stars}</div>;
+};
 
-function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
+function RatingBreakdown({ filters, updateFilters, reviewsMeta }) {
   // calculate and round avg rating
   const calcAvgRating = (ratingsObj) => {
     if (Object.keys(ratingsObj).length > 0) {
@@ -55,11 +59,21 @@ function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
 
   return (
     <div className="ratingBreakdown">
+      <div className="flex text-lg space-x-4">
+        <div className="font-bold">
+          {sumHelper(Object.values(reviewsMeta.ratings))}
+        </div>
+        <div>{` total reviews`}</div>
+      </div>
       <div className="stars-container">
         <h1 className="text-6xl font-bold text-[#14532d]">{avgRating}</h1>
         <div>{reviewStars(avgRating)}</div>
       </div>
-      <BreakdownComp filters={filters} updateFilters={updateFilters} reviewsMeta={reviewsMeta} />
+      <BreakdownComp
+        filters={filters}
+        updateFilters={updateFilters}
+        reviewsMeta={reviewsMeta}
+      />
       <ProductBreakdown reviewsMeta={reviewsMeta} />
     </div>
   );
