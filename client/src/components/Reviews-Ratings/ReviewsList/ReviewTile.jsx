@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import ReviewTileBody from './ReviewTileBody';
-// const reviewStars = require('./helpers.js');
-// import { reviewStars } from './helpers.js';
-
-// import helpers from '../../../helpPlease';
-// const reviewStars = helpers.reviewStars;
+import axios from 'axios';
 
 // issues importing when I put this in the helpers.js file
 const reviewStars = (score) => {
@@ -26,7 +22,6 @@ const reviewStars = (score) => {
     if (i < Math.floor(score)) {
       stars.push(<i key={i} className="star fa-regular fa-star" />);
     } else if (i - Math.floor(score) < 1 && i - score !== 0) {
-      // using base fa-star fontsize (18px)
       const percent = (quarterRound((score - Math.floor(score))) * 18);
       stars.push(<i key={i} className="star fa-regular fa-star" style={{ width: percent, marginRight: 18 - percent }} />);
     } else {
@@ -46,12 +41,18 @@ function ReviewTile({review}) {
   const addHelpfulness = () => {
     if (!helpfulness[1]) {
       setHelpfulness([helpfulness[0] + 1, true]);
+      // put request
+      axios.put(`/reviews/${review.review_id}/helpful`)
+      .catch((err) => console.error(err));
     }
   };
 
   const reportFunction = () => {
     if (!report[1]) {
       setReport(['Reported', true]);
+      // put request
+      axios.put(`/reviews/${review.review_id}/report`)
+      .catch((err) => console.error(err));
     }
   };
 
