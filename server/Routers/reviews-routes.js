@@ -57,7 +57,6 @@ reviewsRouter.post('/newreview', (req, res) => {
         Authorization: process.env.AUTH,
       },
     },
-    req.body
   )
   .then((result) => console.log(result))
   .catch((err) => res.status(400).send(err));
