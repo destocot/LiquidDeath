@@ -4,11 +4,12 @@ import '../../qa-styles/ExpandAndAdd.styles.css';
 
 import QuestionForm from './QuestionForm';
 
-function ExpandAndAdd({ setNumOfQuestions, displayMore, currProductName, currProductId }) {
+function ExpandAndAdd({ setNumOfQuestions, setTriggor, displayMore, currProductName, currProductId }) {
   // const [qForm, setQForm] = useState(false);
 
   const expandOrCollapse = () => {
-    setNumOfQuestions((state) => state + 2);
+    // setNumOfQuestions((state) => state + 2);
+    setTriggor(true);
   };
 
   const expandOrCollapseButtons = () => {

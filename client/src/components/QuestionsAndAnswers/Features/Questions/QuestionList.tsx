@@ -3,7 +3,7 @@ import axios from 'axios';
 import utils from '../../helpers/helpers';
 import Question from './Question';
 
-function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, currProductName }) {
+function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, currProductName, triggor }) {
   const [questionsDatabase, setQuestionsDatabase] = useState([]);
   const [questions, setQuestions] = useState([]);
 
@@ -14,7 +14,7 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
       })
       .then((sorted) => {
         setQuestionsDatabase(sorted);
-        setQuestions(sorted.slice(0, numOfQuestions));
+        setQuestions(sorted.slice(0, 2));
         setDisplayMore(sorted.length > 2);
       })
       .catch(() => console.log('error fetching questions', currProductId));
@@ -24,6 +24,13 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
     // console.log('Q U E S T I O N S  F E T C H E D')
     questionsFetcher();
   }, [currProductId]);
+
+  useEffect(() => {
+    setQuestions(questionsDatabase);
+    // if (triggor) {
+    setDisplayMore(false);
+    // }
+  }, [triggor])
 
   useEffect(() => {
     setQuestions(questionsDatabase.slice(0, numOfQuestions))
