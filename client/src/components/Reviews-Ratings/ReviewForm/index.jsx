@@ -11,11 +11,15 @@ const defaultCharacteristics = helpers.defaultCharacteristics;
 const defaultReviewPostBody = helpers.defaultReviewPostBody;
 const removeNullValues = helpers.removeNullValues;
 
+// testing multiple characteristics
+import { getReviewsMeta } from '../exampleData';
+const reviewsMeta = getReviewsMeta;
+
 // main function
-function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }) {
+function NewReviewForm({ setAForm, /*reviewsMeta,*/ currProductName, currProductId }) {
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(true);
-  const [characteristics, setCharacteristics] = useState(defaultCharacteristics); // <-- this state keeps track of user selections
+  // const [characteristics, setCharacteristics] = useState(defaultCharacteristics); // <-- this state keeps track of user selections
   const [charObj, setCharObj] = useState({});
   // const [postBody, setPostBody] = useState(defaultReviewPostBody);
 
@@ -26,11 +30,11 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   };
 
   // update characteristics
-  const updateCharacteristics = (key, value, id) => {
-    const newCharacteristics = { ...characteristics, [key]: value };
+  const updateCharacteristics = (key, value) => {
+    const newCharacteristics = { ...charObj, [key]: value };
     ('updated: ', newCharacteristics);
-    setCharacteristics(newCharacteristics);
-    setCharObj({[id]: value});
+    // setCharacteristics(newCharacteristics);
+    setCharObj(newCharacteristics);
   };
 
   useEffect(() => {
@@ -55,30 +59,32 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   // generates radio buttons for users to rank characteristics
   const renderCharacteristics = () => {
     // for every characteristic in a given reviewMeta Obj
-    return Object.keys(reviewsMeta.characteristics).map((characteristic) => {
+    return Object.keys(reviewsMeta.characteristics).map((charName) => {
       // console.log('map char: ', characteristic);
       // characteristic refers to Size, Width, Comfort, etc.
       // characteristics refers to the state, an object with properties for each characteristic
-      const currentCharValue = characteristics[characteristic]; // could be null or a number
-      const currCharId = reviewsMeta.characteristics[characteristic].id;
+      // const currentCharValue = characteristics[characteristic]; // could be null or a number
+      const currCharId = reviewsMeta.characteristics[charName].id;
+      const currCharValue = charObj[currCharId];
+      console.log(currCharValue);
 
       return (
-        <div key={currCharId} data-testid="review-form-parent-id" id="charLabel">{characteristic} <br />
-          {!currentCharValue ? <div id="charSelected">none selected</div> : <div id="charSelected">{characteristicLabels[characteristic][currentCharValue]}</div>}
+        <div key={currCharId} data-testid="review-form-parent-id" id="charLabel">{charName} <br />
+          {(charObj[currCharId] === undefined) ? <div id="charSelected">none selected</div> : <div id="charSelected">{characteristicLabels[charName][currCharValue]}</div>}
           <div name="charId" value={currCharId} className="charRadioButtons">
             {
               [1, 2, 3, 4, 5].map((index) => {
                 return (
                     <label key={index}>
-                      <input type="radio" name={characteristic} value={index} checked={characteristics[characteristic] === index} onChange={() => updateCharacteristics(characteristic, index, currCharId)}/>
+                      <input type="radio" name={charName} value={index} checked={charObj[currCharId] === index} onChange={() => updateCharacteristics(currCharId, index)}/>
                     </label>
                 )
               })
             }
           </div>
           <div className="characteristicsAxisLabels">
-            {<div>{characteristicLabels[characteristic]['1']}</div>}
-            {<div>{characteristicLabels[characteristic]['5']}</div>}
+            {<div>{characteristicLabels[charName]['1']}</div>}
+            {<div>{characteristicLabels[charName]['5']}</div>}
           </div>
 
         </div>
@@ -126,10 +132,10 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
       return;
     }
 
-    if (!charChecker(characteristics, reviewsMeta.characteristics)) {
-      alert('Characteristics must be selected.');
-      return;
-    }
+    // if (!charChecker(characteristics, reviewsMeta.characteristics)) {
+    //   alert('Characteristics must be selected.');
+    //   return;
+    // }
 
     const tempPostObj = {
       "product_id": currProductId,
@@ -140,11 +146,8 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
       "name": e.target.nickname.value,
       "email": e.target.email.value,
       "photos": [],
-      // "characteristics": {} // { "14": 5, "15": 5 //...}
-      // "characteristics": {charId: removeNullValues(characteristics)}
+      "characteristics": charObj,
     }
-
-    //
 
     // sendReview(tempPostObj);
 
