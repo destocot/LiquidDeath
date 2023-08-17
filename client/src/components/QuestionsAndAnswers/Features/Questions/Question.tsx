@@ -32,7 +32,7 @@ function Question({ question, currProductName, query }) {
   };
 
   const expandOrCollapseButtons = () => {
-    if (answersDatabase.length > 2) {
+    if (answersDatabase.length > 2 && query.length < 3) {
       if (more) {
         return <button className="expand-answers-btn self-start" type="button" onClick={expandOrCollapse}>LOAD MORE ANSWERS</button>
       }
@@ -40,20 +40,21 @@ function Question({ question, currProductName, query }) {
     }
   };
 
+  const [theNews, setTheNews] = useState(false);
   useEffect(() => {
-    // if (query.length >= 3) {
-    setAnswers(answersDatabase.reduce((filtered, ans) => {
-      if (ans.body.toLowerCase().includes(query.toLowerCase())) {
-        const aIDX = ans.body.toLowerCase().indexOf(query.toLowerCase());
-        ans.body2 = utils.highlighter(ans.body, aIDX, query.length);
-        filtered.push(ans);
-      }
-      return filtered;
-    }, []))
-    // } else {
-    //   ansFetcher();
-    // }
-  }, [query])
+    if (query.length >= 3) {
+      setAnswers(answersDatabase.reduce((filtered, ans) => {
+        if (ans.body.toLowerCase().includes(query.toLowerCase())) {
+          const aIDX = ans.body.toLowerCase().indexOf(query.toLowerCase());
+          ans.body2 = utils.highlighter(ans.body, aIDX, query.length);
+          filtered.push(ans);
+        }
+        return filtered;
+      }, []))
+    } else {
+      ansFetcher();
+    }
+  }, [query, theNews])
 
   const addHelpfulness = () => {
     if (!helpfulness[1]) {
@@ -93,7 +94,10 @@ function Question({ question, currProductName, query }) {
       </div>
       <div className="answers-container">
         {
-          answers.map((answer: any) => (<Answer answer={answer} key={answer.answer_id} query={query} />))
+          answers.map((answer: any) => (<Answer answer={answer} key={answer.answer_id}
+            setTheNews={setTheNews}
+            query={query}
+          />))
         }
         {
           expandOrCollapseButtons()
