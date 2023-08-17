@@ -39,6 +39,7 @@ function App() {
   TODOS:
   - onCardClick fn that updates product
   - onSearchProduct fn that updates product
+  - hello from Add To Cart
   */
 
   // TESTING TESTING
