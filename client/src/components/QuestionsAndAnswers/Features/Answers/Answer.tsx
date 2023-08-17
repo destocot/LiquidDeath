@@ -3,7 +3,7 @@ import requests from '../../helpers/requests';
 import AnswerPhoto from './AnswerPhoto';
 import utils from '../../helpers/helpers';
 
-function Answer({ answer, query }) {
+function Answer({ answer, setTheNews, query }) {
   const { body, answerer_name, date, photos } = answer;
   const newDate = new Date(date);
   const formatDate = `${newDate.toLocaleString('default', { month: 'long' })} ${newDate.getDate() + 1}, ${newDate.getFullYear()}`;
@@ -44,6 +44,15 @@ function Answer({ answer, query }) {
   // if (!body.toLowerCase().includes(query.toLowerCase()) && query.length >= 3) {
   //   return null;
   // }
+
+  useEffect(() => {
+    if (query.length === 3) {
+      setTimeout(() => {
+        setTheNews(true)
+      }, 100)
+    }
+
+  }, [])
 
   return (
     <div className="answer-container bg-black/[0.1] p-[0.313rem] mx-0 my-[0.313rem]">
