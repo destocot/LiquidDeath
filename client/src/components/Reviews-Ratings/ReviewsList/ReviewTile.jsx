@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReviewTileBody from './ReviewTileBody';
+import axios from 'axios';
 
 // issues importing when I put this in the helpers.js file
 const reviewStars = (score) => {
@@ -21,7 +22,6 @@ const reviewStars = (score) => {
     if (i < Math.floor(score)) {
       stars.push(<i key={i} className="star fa-regular fa-star" />);
     } else if (i - Math.floor(score) < 1 && i - score !== 0) {
-      // using base fa-star fontsize (18px)
       const percent = (quarterRound((score - Math.floor(score))) * 18);
       stars.push(<i key={i} className="star fa-regular fa-star" style={{ width: percent, marginRight: 18 - percent }} />);
     } else {
@@ -42,6 +42,7 @@ function ReviewTile({review}) {
     if (!helpfulness[1]) {
       setHelpfulness([helpfulness[0] + 1, true]);
       // put request
+      axios.put(`/reviews/${review.review_id}/helpful`);
     }
   };
 
@@ -49,6 +50,7 @@ function ReviewTile({review}) {
     if (!report[1]) {
       setReport(['Reported', true]);
       // put request
+      axios.put(`/reviews/${review.review_id}/report`);
     }
   };
 
@@ -94,7 +96,7 @@ function ReviewTile({review}) {
       <div className="reviewHelpfulness">
         {`Helpful? `}
         <button type="button" id="helpfulButton" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
-        {` (${helpfulness[0]}) | `}
+        {` (${review.helpfulness}) | `}
         <button type="button" id="reportButton" onClick={() => reportFunction()} onKeyDown={() => reportFunction()}>{report[0]}</button>
       </div>
     </div>
