@@ -64,17 +64,17 @@ export const List: FunctionComponent<ListProps> = ({
   }, [relatedIDs]);
 
   return (
-    <div className=" container flex flex-row overflow-scroll space-x-6 ">
+    <div className=" container flex flex-row overflow-auto  max-h-80  max-w-full content-start first: float-left ">
       {related
         ? related.map((current) => {
             console.log(current);
             return (
-              <>
+              <div className="min-w-max">
                 <Links
                   currListProduct={current}
                   updatePropInFocus={updateCurrentProduct}
                 />
-              </>
+              </div>
             );
           })
         : null}
