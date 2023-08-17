@@ -48,7 +48,7 @@ reviewsRouter.get('/meta/:product_id', (req, res) => {
 
 reviewsRouter.post('/newreview', (req, res) => {
   console.log('post request received!');
-  console.log(req.body);
+  // console.log(req.body);
   axios.post(
     path.join(process.env.API_URI, 'reviews'),
     req.body,
@@ -60,15 +60,13 @@ reviewsRouter.post('/newreview', (req, res) => {
   req.body
   )
   .then((result) => console.log(result))
-  // .catch((err) => res.status(404).send(err));
-  .catch((err) => console.log(err));
+  .catch((err) => res.status(400).send(err));
 })
 
 module.exports = reviewsRouter;
 
 /*
 ======= TODO =======
-- Add POST request for reviews
 - Add PUT request for reviews to check for if review was helpful
 - Add PUT request for reviews to report a review
 - Add routes for Cart API

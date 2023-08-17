@@ -11,26 +11,26 @@ const defaultCharacteristics = helpers.defaultCharacteristics;
 const defaultReviewPostBody = helpers.defaultReviewPostBody;
 const removeNullValues = helpers.removeNullValues;
 
-// testing multiple characteristics
-// import { getReviewsMeta } from '../exampleData';
-// const reviewsMeta = getReviewsMeta;
-
 // main function
 function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }) {
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(true);
+  const [characteristics, setCharacteristics] = useState(defaultCharacteristics); // <-- this state keeps track of user selections
   const [charObj, setCharObj] = useState({});
+  // const [postBody, setPostBody] = useState(defaultReviewPostBody);
 
+  console.log('reviewsMeta: ', reviewsMeta);
   // used to update the boolean recommend
   const updateRecommendation = (value) => {
     setRecommendation(value);
   };
 
   // update characteristics
-  const updateCharacteristics = (key, value) => {
-    const newCharacteristics = { ...charObj, [key]: value };
+  const updateCharacteristics = (key, value, id) => {
+    const newCharacteristics = { ...characteristics, [key]: value };
     ('updated: ', newCharacteristics);
-    setCharObj(newCharacteristics);
+    setCharacteristics(newCharacteristics);
+    setCharObj({[id]: value});
   };
 
   useEffect(() => {
@@ -54,31 +54,39 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
 
   // generates radio buttons for users to rank characteristics
   const renderCharacteristics = () => {
-    return Object.keys(reviewsMeta.characteristics).map((charName) => {
-      const currCharId = reviewsMeta.characteristics[charName].id;
-      const currCharValue = charObj[currCharId];
+    // for every characteristic in a given reviewMeta Obj
+    return Object.keys(reviewsMeta.characteristics).map((characteristic) => {
+      // console.log('map char: ', characteristic);
+      // characteristic refers to Size, Width, Comfort, etc.
+      // characteristics refers to the state, an object with properties for each characteristic
+      const currentCharValue = characteristics[characteristic]; // could be null or a number
+      const currCharId = reviewsMeta.characteristics[characteristic].id;
+
       return (
-        <div key={currCharId} data-testid="review-form-parent-id" id="charLabel">{charName}
-          {(charObj[currCharId] === undefined) ? <div id="charSelected">none selected</div> : <div id="charSelected">{characteristicLabels[charName][currCharValue]}</div>}
+        <div key={currCharId} data-testid="review-form-parent-id" id="charLabel">{characteristic} <br />
+          {!currentCharValue ? <div id="charSelected">none selected</div> : <div id="charSelected">{characteristicLabels[characteristic][currentCharValue]}</div>}
           <div name="charId" value={currCharId} className="charRadioButtons">
             {
               [1, 2, 3, 4, 5].map((index) => {
                 return (
                     <label key={index}>
-                      <input type="radio" name={charName} value={index} checked={charObj[currCharId] === index} onChange={() => updateCharacteristics(currCharId, index)}/>
+                      <input type="radio" name={characteristic} value={index} checked={characteristics[characteristic] === index} onChange={() => updateCharacteristics(characteristic, index, currCharId)}/>
                     </label>
                 )
               })
             }
           </div>
           <div className="characteristicsAxisLabels">
-            {<div>{characteristicLabels[charName]['1']}</div>}
-            {<div>{characteristicLabels[charName]['5']}</div>}
+            {<div>{characteristicLabels[characteristic]['1']}</div>}
+            {<div>{characteristicLabels[characteristic]['5']}</div>}
           </div>
+
         </div>
       )
     })
   };
+
+  // require product recommendation to be clicked
 
   // TODO - update this to generate popup window where user can add photos
   const renderPhotoPage = () => {
@@ -96,6 +104,7 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     }
   };
 
+  // Part of Khurram's code
   const close = () => {
     setAForm(false);
   };
@@ -108,13 +117,16 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   // TODO - update this to store all values in a massive state
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log('submitHandler clicked');
+    // const charId = e.target.charId.value;
+    // console.log('test - ', charId);
 
     if (rating === 0) {
       alert('Rating must be given.');
       return;
     }
 
-    if (!charChecker(charObj, reviewsMeta.characteristics)) {
+    if (!charChecker(characteristics, reviewsMeta.characteristics)) {
       alert('Characteristics must be selected.');
       return;
     }
@@ -128,56 +140,63 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
       "name": e.target.nickname.value,
       "email": e.target.email.value,
       "photos": [],
-      "characteristics": charObj,
+      // "characteristics": {} // { "14": 5, "15": 5 //...}
+      // "characteristics": {charId: removeNullValues(characteristics)}
     }
 
-    sendReview(tempPostObj);
-    close();
+    //
+
+    // sendReview(tempPostObj);
+
+    console.log(tempPostObj);
+
+    // close();
   };
 
+  // TODO - update this to post to reviews
+
+
   return (
-    <div className="reviewFormContainer">
-      <div className="reviewFormSubContainer">
-        <div id="reviewFormHeader">
-          <h2 id="reviewFormTitle">{currProductName}</h2>
+    <div id="reviewFormContainer">
+      <div id="reviewFormSubContainer">
+        <div>
+          <h2>{currProductName}</h2>
           <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }}/>
         </div>
         <form onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
           {/* Overall Rating by Clicking Number of Stars */}
-          <label className="reviewFormSectionHeader"required>Overall Rating<br />
+          <label required>Overall Rating<br />
             <div className="newReviewStarRating">
               {renderStars()}
               {(rating !== 0) ? <div>{starMeaning[rating]}</div> : null}
             </div>
           </label>
           {/* Boolean Product Recommendation - utilizes radio buttons */}
-          <label className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?<br />
+          <label id="recommendationForm">Do you recommend this product?<br />
             <label>Yes
-              <input id="buttonLeft" type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)}/>
+              <input type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)}/>
             </label>
             <label>No
-              <input id="buttonRight" type="radio" name="recommendation" value={false} checked={!recommendation}  onChange={() => updateRecommendation(false)} />
+              <input type="radio" name="recommendation" value={false} checked={!recommendation}  onChange={() => updateRecommendation(false)} />
             <br /></label>
           </label>
           {/* Characteristics */}
-          <label id="charTitle" className="reviewFormSectionHeader" required>Characteristics <br />
+          <label id="charTitle" required>Characteristics <br />
             <div id="charElement">{renderCharacteristics()}</div>
           </label>
           {/* Text Inputs */}
-          <label className="reviewFormSectionHeader" >Review Summary <br />
+          <label>Review Summary <br />
             <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></label>
-          <label className="reviewFormSectionHeader" >Review Body <br />
+          <label>Review Body <br />
             <textarea maxLength="1000" minLength="50" rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br /></label>
-          <label className="reviewFormSectionHeader" >Nickname<br />
+          <label>Nickname<br />
             <input type="text" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
-            <div className="reviewFormWarning">For privacy reasons, do not use your full name or email address</div></label>
-          <label className="reviewFormSectionHeader">E-mail<br />
+            <div>For privacy reasons, do not use your full name or email address</div></label>
+          <label >E-mail<br />
             <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
-            <div className="reviewFormWarning">For authentication reasons, you will not be emailed</div></label>
-          <div className="reviewFormbuttons">
-            <button id="photoInputButton"onClick={renderPhotoPage}>Add Photos </button><br />
-            <input id="submitButton" type="submit" value="Submit"/>
-          </div>
+            <div>For authentication reasons, you will not be emailed</div></label>
+          <button onClick={renderPhotoPage}>Add Photos  </button><br />
+          <input type="submit" value="Submit"/>
         </form>
       </div>
     </div>
