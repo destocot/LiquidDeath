@@ -34,7 +34,7 @@ function ReviewTileBody({review}) {
   // map photos into review body. will add onto this at later time
   const renderPhotos = () => review.photos.map((photo) => {
     return (
-      <img key={photo.id}className="reviewPhotos" src={photo.url}/>
+      <img key={photo.id} className="reviewPhotos" src={photo.url}/>
     )
   });
 
@@ -42,7 +42,9 @@ function ReviewTileBody({review}) {
     <div className="reviewBody">
       <div className="reviewBodyText">{renderBodyText()}</div>
       {showMoreButton()}
-      {renderPhotos()}
+      <div className="flex">
+        {renderPhotos()}
+      </div>
     </div>
   );
 }

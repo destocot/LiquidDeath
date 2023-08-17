@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import BreakdownComp from './BreakdownComp';
 import ProductBreakdown from './ProductBreakdown';
-import helpers from '../../../helpPlease';
-
-const sumHelper = helpers.sumHelper;
 
 const reviewStars = (score) => {
   const stars = [];
@@ -58,10 +55,8 @@ function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
 
   return (
     <div className="ratingBreakdown">
-      <h3>Rating Breakdown</h3>
-      <div>Total Reviews - {sumHelper(Object.values(reviewsMeta.ratings))}</div>
       <div className="stars-container">
-        <div>{avgRating}</div>
+        <h1 className="text-6xl font-bold text-[#14532d]">{avgRating}</h1>
         <div>{reviewStars(avgRating)}</div>
       </div>
       <BreakdownComp filters={filters} updateFilters={updateFilters} reviewsMeta={reviewsMeta} />

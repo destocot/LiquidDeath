@@ -77,24 +77,32 @@ function ReviewTile({review}) {
   const reviewRecommend = () => {
     if (review.recommend) {
       // console.log('true');
-      return <div>✔️ I recommend this product</div>;
+      return <div className="text-lg my-6 text-[#14532d]">✔️ I recommend this product</div>;
     }
-    return null;
   };
+
+  const reviewResponse = () => {
+    if (review.response) {
+      return (
+        <div className="text-lg my-4">
+          <div className="font-semibold">Response from seller: </div>
+          <div>{review.response}</div>
+        </div>
+      )
+    }
+  }
 
   return (
     <div className="reviewTile">
-      {/* <h2>Review Tile</h2> */}
-      <div className="starRating">{reviewStars(review.rating)}</div>
-      <div className="topRightReviewTile">{userAndDate}
-        {/* <div className="reviewerName">{review.reviewer_name}</div>
-        <div className="reviewDate">{formattedDate}</div> */}
+      <div className="reviewTileTop">
+        <div className="starRating">{reviewStars(review.rating)}</div>
+        <div className="topRightReviewTile">{userAndDate}</div>
       </div>
-      <div className="break"></div>
+
       <div className="reviewSummary">{reviewSummary()}</div>
       <ReviewTileBody review={review}/>
       <div className="reviewRec">{reviewRecommend()}</div>
-      <div className="reviewResponse">Response from seller: {review.response}</div>
+      <div className="reviewResponse">{reviewResponse()}</div>
       <div className="reviewHelpfulness">
         {`Helpful? `}
         <button type="button" id="helpfulButton" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
