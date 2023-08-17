@@ -12,18 +12,15 @@ const defaultReviewPostBody = helpers.defaultReviewPostBody;
 const removeNullValues = helpers.removeNullValues;
 
 // testing multiple characteristics
-import { getReviewsMeta } from '../exampleData';
-const reviewsMeta = getReviewsMeta;
+// import { getReviewsMeta } from '../exampleData';
+// const reviewsMeta = getReviewsMeta;
 
 // main function
-function NewReviewForm({ setAForm, /*reviewsMeta,*/ currProductName, currProductId }) {
+function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }) {
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(true);
-  // const [characteristics, setCharacteristics] = useState(defaultCharacteristics); // <-- this state keeps track of user selections
   const [charObj, setCharObj] = useState({});
-  // const [postBody, setPostBody] = useState(defaultReviewPostBody);
 
-  console.log('reviewsMeta: ', reviewsMeta);
   // used to update the boolean recommend
   const updateRecommendation = (value) => {
     setRecommendation(value);
@@ -33,7 +30,6 @@ function NewReviewForm({ setAForm, /*reviewsMeta,*/ currProductName, currProduct
   const updateCharacteristics = (key, value) => {
     const newCharacteristics = { ...charObj, [key]: value };
     ('updated: ', newCharacteristics);
-    // setCharacteristics(newCharacteristics);
     setCharObj(newCharacteristics);
   };
 
@@ -58,16 +54,9 @@ function NewReviewForm({ setAForm, /*reviewsMeta,*/ currProductName, currProduct
 
   // generates radio buttons for users to rank characteristics
   const renderCharacteristics = () => {
-    // for every characteristic in a given reviewMeta Obj
     return Object.keys(reviewsMeta.characteristics).map((charName) => {
-      // console.log('map char: ', characteristic);
-      // characteristic refers to Size, Width, Comfort, etc.
-      // characteristics refers to the state, an object with properties for each characteristic
-      // const currentCharValue = characteristics[characteristic]; // could be null or a number
       const currCharId = reviewsMeta.characteristics[charName].id;
       const currCharValue = charObj[currCharId];
-      console.log(currCharValue);
-
       return (
         <div key={currCharId} data-testid="review-form-parent-id" id="charLabel">{charName}
           {(charObj[currCharId] === undefined) ? <div id="charSelected">none selected</div> : <div id="charSelected">{characteristicLabels[charName][currCharValue]}</div>}
@@ -86,13 +75,10 @@ function NewReviewForm({ setAForm, /*reviewsMeta,*/ currProductName, currProduct
             {<div>{characteristicLabels[charName]['1']}</div>}
             {<div>{characteristicLabels[charName]['5']}</div>}
           </div>
-
         </div>
       )
     })
   };
-
-  // require product recommendation to be clicked
 
   // TODO - update this to generate popup window where user can add photos
   const renderPhotoPage = () => {
@@ -110,7 +96,6 @@ function NewReviewForm({ setAForm, /*reviewsMeta,*/ currProductName, currProduct
     }
   };
 
-  // Part of Khurram's code
   const close = () => {
     setAForm(false);
   };
@@ -123,19 +108,16 @@ function NewReviewForm({ setAForm, /*reviewsMeta,*/ currProductName, currProduct
   // TODO - update this to store all values in a massive state
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('submitHandler clicked');
-    // const charId = e.target.charId.value;
-    // console.log('test - ', charId);
 
     if (rating === 0) {
       alert('Rating must be given.');
       return;
     }
 
-    // if (!charChecker(characteristics, reviewsMeta.characteristics)) {
-    //   alert('Characteristics must be selected.');
-    //   return;
-    // }
+    if (!charChecker(charObj, reviewsMeta.characteristics)) {
+      alert('Characteristics must be selected.');
+      return;
+    }
 
     const tempPostObj = {
       "product_id": currProductId,
@@ -149,15 +131,9 @@ function NewReviewForm({ setAForm, /*reviewsMeta,*/ currProductName, currProduct
       "characteristics": charObj,
     }
 
-    // sendReview(tempPostObj);
-
-    console.log(tempPostObj);
-
-    // close();
+    sendReview(tempPostObj);
+    close();
   };
-
-  // TODO - update this to post to reviews
-
 
   return (
     <div className="reviewFormContainer">

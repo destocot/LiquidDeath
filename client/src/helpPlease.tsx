@@ -172,17 +172,19 @@ let helpers = {
     return sum;
   },
   charChecker: (stateObj, productChars) => {
-    let productCharArray = Object.keys(productChars); // ['Quality']
+    let productCharArray = Object.values(productChars);
+    /* productCharArray = [
+     * { id: 14, value: '4.0'},
+     * { id: 15, value: '3.5'},
+     * ];
+     */
     for (var i = 0; i < productCharArray.length; i++) {
-      if (!stateObj[productCharArray[i]]) {
+      let id = productCharArray[i].id;
+      if (!stateObj[id]) {
         return false;
       }
     }
     return true;
-    // stateObj = object
-    // product Chars object
-
-    // return boolean
   },
 
   // creates stars
