@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
 import ReviewTileBody from './ReviewTileBody';
-// const reviewStars = require('./helpers.js');
-// import { reviewStars } from './helpers.js';
-
-// import helpers from '../../../helpPlease';
-// const reviewStars = helpers.reviewStars;
 
 // issues importing when I put this in the helpers.js file
 const reviewStars = (score) => {
@@ -46,12 +41,14 @@ function ReviewTile({review}) {
   const addHelpfulness = () => {
     if (!helpfulness[1]) {
       setHelpfulness([helpfulness[0] + 1, true]);
+      // put request
     }
   };
 
   const reportFunction = () => {
     if (!report[1]) {
       setReport(['Reported', true]);
+      // put request
     }
   };
 

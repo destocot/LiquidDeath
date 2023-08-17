@@ -52,12 +52,29 @@ reviewsRouter.post('/newreview', (req, res) => {
   axios.post(
     path.join(process.env.API_URI, 'reviews'),
     req.body,
-  {
-    headers: {
-      Authorization: process.env.AUTH,
+    {
+      headers: {
+        Authorization: process.env.AUTH,
+      },
     },
-  },
-  req.body
+    req.body
+  )
+  .then((result) => console.log(result))
+  .catch((err) => res.status(400).send(err));
+})
+
+reviewsRouter.put('/:review_id/helpful', (req, res) => {
+  console.log('put request received for helpful update!');
+  axios.put(
+    path.join(process.env.API_URI, 'reviews'),
+    {
+      params: {
+        review_id: req.params.review_id,
+      },
+      headers: {
+        Authorization: process.env.AUTH,
+      },
+    },
   )
   .then((result) => console.log(result))
   .catch((err) => res.status(400).send(err));
