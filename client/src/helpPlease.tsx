@@ -91,29 +91,42 @@ let helpers = {
     }
     return obj;
   },
-  sortHelpfulness: (a, b) => {
-    const revA = a.helpfulness;
-    const revB = b.helpfulness;
-    if (revA < revB) {
-      return 1;
-    }
-    if (revA > revB) {
-      return -1;
-    }
-    return 0;
-  },
-  sortNewest: (a, b) => {
-    const revA = a.date;
-    const revB = b.date;
-    if (revA < revB) {
-      return 1;
-    }
-    if (revA > revB) {
-      return -1;
-    }
-    return 0;
-  },
+  // sortHelpfulness: (a, b) => {
+  //   const revA = a.helpfulness;
+  //   const revB = b.helpfulness;
+  //   if (revA < revB) {
+  //     return 1;
+  //   }
+  //   if (revA > revB) {
+  //     return -1;
+  //   }
+  //   return 0;
+  // },
+  // sortNewest: (a, b) => {
+  //   const revA = a.date;
+  //   const revB = b.date;
+  //   if (revA < revB) {
+  //     return 1;
+  //   }
+  //   if (revA > revB) {
+  //     return -1;
+  //   }
+  //   return 0;
+  // },
   // I plan to refactor this to be more concise at some point, but would like to discuss with group if the method does a good job of weighting a rating's recent-ness vs. it's helpfulness
+  sortRelevance1: (arrayOfObjects) => {
+    console.log('inside sortRelevance');
+    // const tempArray = sortedFilteredReviews.slice(0);
+    // const functionObjects = {
+    //   'helpful': sortHelpfulness,
+    //   'newest': sortNewest,
+    //   'relevant': sortRelevance,
+    // }
+    // const value = event.target.value;
+    // const sortMethod = functionObjects[value];
+    console.log(arrayOfObjects);
+    return arrayOfObjects.sort(helpers.sortRelevance);
+  },
   sortRelevance: (a, b) => {
     let valA;
     let valB;
