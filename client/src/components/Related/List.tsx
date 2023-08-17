@@ -52,11 +52,10 @@ export const List: FunctionComponent<ListProps> = ({
       getRelatedObjs(ID)
         .then((resp) => {
           relatedObjHolder.push(resp.data);
-          console.log(relatedObjHolder);
+
           return relatedObjHolder;
         })
         .then(() => {
-          console.log(relatedObjHolder);
           if (relatedObjHolder.length === relatedIDs.length)
             setRelated(relatedObjHolder);
         });
@@ -67,7 +66,6 @@ export const List: FunctionComponent<ListProps> = ({
     <div className=" container-xl flex flex-row overflow-auto max-w-full content-start first: float-left ">
       {related
         ? related.map((current) => {
-            console.log(current);
             return (
               <div className="min-w-max">
                 <Links
