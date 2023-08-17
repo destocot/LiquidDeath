@@ -32,8 +32,8 @@ function QuestionForm({ currProductName, currProductId }) {
       {(close) => (
         <div className="popup-modal-container">
           <div className="modal">
-            <div className="flex flex-col mb-3">
-              <div className="flex justify-between items-center relative">
+            <div className="flex flex-col mb-3 border-b-[black] border-b border-solid">
+              <div className="flex justify-between items-center relative ">
                 <div className="text-[1.5em]">Ask Your Question</div>
                 <i
                   className="fa-regular fa-circle-xmark fa-2xl cursor-pointer absolute z-2 top-[-20px] right-[-20px] bg-white leading-5 text-[24px] hover:leading-6 hover:text-[32px]"
@@ -62,7 +62,7 @@ function QuestionForm({ currProductName, currProductId }) {
                     placeholder="Example: jackson11!"
                     name="name"
                     required /></label>
-                <h6>For privacy reasons, do not use your full name or email address</h6>
+                <h6 className="text-[#ff6700] italic">For privacy reasons, do not use your full name or email address</h6>
               </div>
               <div>
                 <label >E-mail*<br />
@@ -73,7 +73,7 @@ function QuestionForm({ currProductName, currProductId }) {
                     placeholder="jack@email.com"
                     name="email"
                     required /></label>
-                <h6>For authentication reasons, you will not be emailed</h6>
+                <h6 className="text-[#ff6700] italic">For authentication reasons, you will not be emailed</h6>
               </div>
               <input
                 className="border-2 hover:border-[black] cursor-pointer self-center px-6 py-[0.313rem] m-1"
@@ -81,8 +81,9 @@ function QuestionForm({ currProductName, currProductId }) {
               <button className="border hover:border-[black] self-center px-2 py-1" onClick={close}>Close</button>
             </form>
           </div>
-        </div>
-      )}
+        </div >
+      )
+      }
     </Popup >
   );
 }
