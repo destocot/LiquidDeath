@@ -6,7 +6,6 @@ function StyleSelector({styles, currentStyle, setCurrentStyle}) {
     <div className="fa-stack">
       <i className="solid-check fa-solid fa-lg fa-circle-check fa-stack-1x" />
       <i className="regular-check fa-regular fa-lg fa-circle-check fa-stack-1x" />
-      {/* <i className="fa-solid fa-lg fa-circle-check"></i> */}
     </div>
   );
   // creates matrix with style rows

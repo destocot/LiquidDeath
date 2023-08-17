@@ -1,28 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function CartForm({currentStyle, handleSubmit}) {
-  // state for selected size
-  // if size value !== "" then mount options for quantity
-  // otherwise default value is - and that's the only value
-  //
+  // state for selected SKU (gets selected after picking a size) and array of sku id's
+  const [size, setSize] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const stock = Object.values(currentStyle.skus);
+  // reset SKU on style change
+  useEffect(() => {
+    setSize('');
+    setQuantity('');
+  }, [currentStyle]);
+  // returns array of sizes
+  const sizes = () => {
+    let sizeArr = [];
+    stock.forEach((unit) => {
+      sizeArr.push(unit.size);
+    })
+    return sizeArr;
+  };
+  // create select options for size
+  const sizeOptions = sizes().map((size) => {
+    return <option value={size} >{size}</option>
+  });
+  // create select options for quantity
+  const qtyOptions = () => {
+      let qtyArr = [];
+      for (let i = 1; i <= quantity && i < 16; i++) {
+        qtyArr.push(<option value={i} >{i}</option>)
+      }
+      return qtyArr;
+  };
+
   return (
     <div className="cart-form-container">
-      <form onSubmit={handleSubmit}>
-        <select defaultValue="Select Size">
+      <form id="cart-form" onSubmit={handleSubmit}>
+        <select className="select-cart-form" defaultValue="Select Size"
+          onChange={(e) => {
+            setSize(e.target.value);
+            setQuantity(stock[sizes().indexOf(e.target.value)].quantity);
+            }}>
           <option value="Select Size" disabled hidden>Select Size</option>
-          <option value="S">Small</option>
-          <option value="M">Medium</option>
-          <option value="L">Large</option>
-          <option value="XL">Extra Large</option>
+          {sizeOptions}
         </select>
-        <select defaultValue="Select Quantity">
-          <option value="Select Quantity" disabled hidden>Select Quantity</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="all">ALL THE THINGS</option>
-        </select>
+        { size.length > 0 ?
+          <select id="cart-quantity-select" className="select-cart-form" defaultValue="Select Quantity"
+          onChange={(e) => { setQuantity(e.target.value)}}>
+            <option value="Select Quantity" disabled hidden>Select Quantity</option>
+            {qtyOptions()}
+          </select>
+          :
+          <select className="select-cart-form" defaultValue="-">
+            <option value="-" disabled hidden>-</option>
+          </select>
+        }
         <hr />
         <button type="submit" className="add-cart cool-button">
           <span>Add to Cart</span>
