@@ -69,7 +69,8 @@ function App() {
   // changed order of components
   if (reviewsMeta) {
     return (
-      <div>
+      <div
+        className="bg-white bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')]">
         <Overview product={product} reviewsMeta={reviewsMeta} />
         <List
           currentProduct={product}

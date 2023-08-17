@@ -60,7 +60,6 @@ function AnswerForm2({ currProductName, questionBody, questionId }) {
               <div className="text-[1.17em]">{currProductName}</div>
               <div className="text-[1.17em]">{questionBody}</div>
             </div>
-            s
             <form
               id="answer-form"
               className="flex flex-col justify-between h-[40vh] text-base p-2"
