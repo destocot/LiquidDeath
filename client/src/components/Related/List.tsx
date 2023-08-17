@@ -38,7 +38,7 @@ export const List: FunctionComponent<ListProps> = ({
 }) => {
   const [related, setRelated] = useState<Array<product>>([]);
   const updRelated = async () => {};
-  useEffect(async () => {}, [currentProduct]);
+  // useEffect(async () => {}, [currentProduct]);
 
   return (
     <div className=" flex flex-row overflow-scroll ">
