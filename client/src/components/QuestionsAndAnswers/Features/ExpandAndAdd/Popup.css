@@ -10,9 +10,29 @@
 .modal {
   background-color: white;
   background-image: url("https://www.transparenttextures.com/patterns/white-tiles.png");
-  width: 50vw;
-  height: 50vh;
+  width: 65vw;
+  height: 65vh;
   border: 1px solid black;
   padding: 10px;
   border-radius: 5px;
+}
+
+#my-images-div {
+  display: flex;
+  height: 110px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#my-images-div img {
+  aspect-ratio: 3/2;
+  max-height: 75px;
+  object-fit: cover;
+  border: 1px solid transparent;
+}
+
+#my-images-div img:hover {
+  border: 1px solid black;
 }

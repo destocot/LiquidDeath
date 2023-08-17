@@ -1,4 +1,4 @@
-#question-form-container, #answer-form-container {
+/* #question-form-container, #answer-form-container {
   position: fixed;
   background: rgba(0, 0, 0, 0.9);
   height: 100vh;
@@ -93,4 +93,4 @@
   color: orange;
   background-color: rgba(0, 0, 0, 0.25);
   padding: 2px;
-}
+} */
