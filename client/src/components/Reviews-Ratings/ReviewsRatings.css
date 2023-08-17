@@ -22,6 +22,15 @@
   position: relative;
 }
 
+.stars-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+/* -- BreakdownComp -- */
+
 .actualBreakdown {
   margin-top: 10px;
 }
@@ -39,7 +48,6 @@
 }
 
 #breakdownLabel {
-  margin-left: 10px;
   margin-right: 10px;
   width: 50px;
 }
