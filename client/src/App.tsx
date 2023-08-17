@@ -5,6 +5,7 @@ import Overview from "./components/Overview";
 import ReviewsRatings from "./components/Reviews-Ratings";
 import { List } from "./components/Related/List";
 import initial from "./PlaceHolderData.js";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   /*
@@ -66,11 +67,20 @@ function App() {
   //   }
   // };
 
+  const [colorMode, setColorMode] = useState('Dark Mode')
+  const [colorStyle, setColorStyle] = useState("bg-[#f0f4f8] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[#333333]")
+
   // changed order of components
   if (reviewsMeta) {
     return (
-      <div
-        className="bg-white bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')]">
+      <div id="the-main-app-container" className={colorStyle}>
+        {/* // className={colorStyle}
+        // <button onClick={() => changeColor()}>{colorMode}</button> */}
+        <Navbar
+          setColorMode={setColorMode}
+          setColorStyle={setColorStyle}
+          colorMode={colorMode}
+        />
         <Overview product={product} reviewsMeta={reviewsMeta} />
         <List
           currentProduct={product}
