@@ -5,7 +5,7 @@ import ExpandAndAdd from './Features/ExpandAndAdd/ExpandAndAdd';
 import QuestionList from './Features/Questions/QuestionList';
 
 function QuestionsAndAnswers({ currProductId, currProductName }) {
-  const [displayMore, setDisplayMore] = useState(false);
+  const [displayMore, setDisplayMore] = useState(true);
   const [numOfQuestions, setNumOfQuestions] = useState(2);
   const [query, setQuery] = useState('');
 

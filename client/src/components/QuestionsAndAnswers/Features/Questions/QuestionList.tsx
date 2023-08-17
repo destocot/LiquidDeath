@@ -55,17 +55,19 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
         }
       }));
       setDisplayMore(false);
-    } else if (query.length <= 3) {
+    } else
+    // if (query.length < 3)
+    {
       questionsFetcher();
     }
-    else {
-      setQuestions(questionsDatabase.slice(0, numOfQuestions))
-      if (numOfQuestions >= questionsDatabase.length) {
-        setDisplayMore(false)
-      } else {
-        setDisplayMore(true)
-      }
-    }
+    // else {
+    //   setQuestions(questionsDatabase)
+    //   // if (numOfQuestions >= questionsDatabase.length) {
+    //   setDisplayMore(false)
+    //   // } else {
+    //   // setDisplayMore(true)
+    //   // }
+    // }
   }, [query])
 
   return (

@@ -15,7 +15,6 @@ function QuestionForm({ currProductName, currProductId }) {
     const email = e.target.email.value;
     const product_id = currProductId;
     sendQuestion({ body, name, email, product_id });
-    console.log({ body, name, email, product_id });
   }
 
   // onClick={() => {
