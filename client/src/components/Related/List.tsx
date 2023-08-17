@@ -64,7 +64,7 @@ export const List: FunctionComponent<ListProps> = ({
   }, [relatedIDs]);
 
   return (
-    <div className=" container flex flex-row overflow-auto  max-h-80  max-w-full content-start first: float-left ">
+    <div className=" container-xl flex flex-row overflow-auto max-w-full content-start first: float-left ">
       {related
         ? related.map((current) => {
             console.log(current);

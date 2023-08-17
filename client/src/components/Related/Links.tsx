@@ -14,7 +14,7 @@ export const Links: React.FC<LinkProps> = ({
   updatePropInFocus,
 }) => (
   <div
-    className="container text-center max-h-fill min-w-full "
+    className="container flex-col  max-h-fill min-w-full text-center "
     id={currListProduct.id.toString()}
   >
     <em className="whitespace-nowrap">{currListProduct.name}</em>
@@ -23,7 +23,7 @@ export const Links: React.FC<LinkProps> = ({
         src={
           "https://cdn.vox-cdn.com/thumbor/di8N7rxlSJkVTYZFZdMvmgvGknI=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/23067861/LD_duo_alt.jpg"
         }
-        className="object-scale-down h-48 w-96"
+        className="object-scale-down h-48 w-96 left-0"
       />
     </div>
     <br />
