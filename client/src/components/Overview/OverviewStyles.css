@@ -39,8 +39,9 @@ body {
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content:space-evenly;
   height: 35vh;
+  left: 5vw;
+  margin-top: 15px;
 }
 
 .default-image-container {
@@ -64,9 +65,8 @@ img.default-image {
   display: inline-block;
   position: relative;
   height: 10vh;
-  margin-left: 2%;
-  margin-top: 3%;
-  margin-right: 1%;
+  margin-left: 12px;;
+  margin-bottom: 14px;
 }
 
 .stars-reviews {
@@ -192,7 +192,6 @@ img.default-image {
 
 .style-title {
   position: relative;
-  left: 20%;
   margin-bottom: 0.5vh;
 }
 
@@ -200,7 +199,7 @@ img.default-image {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  left: 20%;
+  align-items: center;
 }
 
 .style-row {
@@ -271,7 +270,7 @@ img.style-thumbnail:hover {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  left: 30%;
+  left: 2vw;
 }
 
 .select-cart-form {
