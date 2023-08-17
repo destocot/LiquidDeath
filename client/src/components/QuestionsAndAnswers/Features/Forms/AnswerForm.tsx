@@ -20,7 +20,6 @@ function AnswerForm({ setAForm, currProductName, questionBody, questionId }) {
     let imageDiv = document.getElementById('my-images-div');
     let imageInput = document.getElementById('ans-photos');
     imageDiv.innerHTML = '';
-    console.log('HERE');
     if (files.length > 5) {
       alert('You can only upload up to 5 photos!');
       imageInput.value = '';

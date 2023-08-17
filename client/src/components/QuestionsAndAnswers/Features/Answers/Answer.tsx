@@ -51,7 +51,6 @@ function Answer({ answer, setTheNews, query }) {
         setTheNews(true)
       }, 100)
     }
-
   }, [])
 
   return (
