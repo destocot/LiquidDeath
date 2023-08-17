@@ -1,6 +1,8 @@
 .ratingsReviewsContainer {
+  /* border-style: solid; */
+  /* background-color: rgba(255, 255, 255, 0.828); */
+  /* khurram removed this */
   margin-top: 50px;
-  background-color: rgba(255, 255, 255, 0.828);
   width: 75vw;
   margin: 0 auto;
   padding: 10px;
@@ -33,7 +35,6 @@
 
 .actualBreakdown {
   margin-top: 10px;
-  margin-top: 10px;
 }
 
 .breakdownRating {
@@ -49,7 +50,6 @@
 }
 
 #breakdownLabel {
-  margin-left: 10px;
   margin-left: 10px;
   margin-right: 10px;
   width: 50px;
