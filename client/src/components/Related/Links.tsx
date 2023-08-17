@@ -30,7 +30,7 @@ export const Links: React.FC<LinkProps> = ({
   style,
 }) => (
   <div
-    className="container flex-col  max-h-fill min-w-full text-center hover:bg-gradient hover:scale-125"
+    className="container flex-col  max-h-fill min-w-full text-center hover:bg-gradient hover:scale-125 left-6"
     id={
       currListProduct.id.toString() + "name" + currListProduct.name.toString()
     }
@@ -38,13 +38,12 @@ export const Links: React.FC<LinkProps> = ({
       handleClick(e, changePropInFocus, updatePropInFocus);
     }}
   >
-    <em className="whitespace-nowrap">{currListProduct.name}</em>
     <div>
       {style ? (
         <img src={`${style.url}`} className=" object-fit h-48 w-96 left-0" />
       ) : null}
     </div>
     <br />
-    <div>{currListProduct.default_price}$</div>
+    <div className="font-semibold">{currListProduct.default_price}$</div>
   </div>
 );
