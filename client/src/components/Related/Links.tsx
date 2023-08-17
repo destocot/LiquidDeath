@@ -4,18 +4,35 @@ import "./app.css";
 type LinkProps = {
   currListProduct: product;
   updatePropInFocus: ListProps["updateCurrentProduct"];
+  changePropInFocus: ListProps["setCurrentProduct"];
 };
-function handleClick(e: React.MouseEvent<HTMLDivElement>) {
+function handleClick(
+  e: React.MouseEvent<HTMLDivElement>,
+  changePropInFocus,
+  updatePropInFocus
+) {
   e.preventDefault();
-  e.currentTarget.id;
+  console.log(e.currentTarget.id);
+  let currentProd = e.currentTarget.id.split("name");
+  console.log(currentProd);
+  updatePropInFocus(currentProd[0]).then((resp) => {
+    console.log(resp);
+    changePropInFocus(resp.data);
+  });
 }
 export const Links: React.FC<LinkProps> = ({
   currListProduct,
   updatePropInFocus,
+  changePropInFocus,
 }) => (
   <div
     className="container flex-col  max-h-fill min-w-full text-center "
-    id={currListProduct.id.toString()}
+    id={
+      currListProduct.id.toString() + "name" + currListProduct.name.toString()
+    }
+    onClick={(e) => {
+      handleClick(e, changePropInFocus, updatePropInFocus);
+    }}
   >
     <em className="whitespace-nowrap">{currListProduct.name}</em>
     <div>
