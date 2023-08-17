@@ -98,7 +98,7 @@ function ReviewTile({review}) {
       <div className="reviewHelpfulness">
         {`Helpful? `}
         <button type="button" id="helpfulButton" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
-        {` (${review.helpfulness}) | `}
+        {` (${helpfulness[0]}) | `}
         <button type="button" id="reportButton" onClick={() => reportFunction()} onKeyDown={() => reportFunction()}>{report[0]}</button>
       </div>
     </div>
