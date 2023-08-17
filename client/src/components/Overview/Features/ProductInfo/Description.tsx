@@ -5,7 +5,7 @@ function Description({product}) {
   return (
     <div>
       <div className="description-left">
-        <span className="slogan">{product.slogan}</span>
+        <span className="slogan font-bold font-size text-[120%]">{product.slogan}</span>
         <p className="description-text">{product.description}</p>
         <Sharing />
       </div>

@@ -25,22 +25,6 @@ function App() {
   };
 
   /*
-  TODOS:
-  - integrate related state and updRelated fn into Jon's component
-  - integrate reviews state and updReviews fn into Kurt's component
-  */
-
-  const [related, setRelated] = useState(initial.related);
-
-  // defaults to relevant sorting order - change sort to desired sort order
-  const updReviews = async (sort = "relevant", count = "5", page = "1") => {
-    const newReviews = await axios.get(
-      `/reviews/${product.id}/${sort}/${count}/${page}`
-    );
-    return newReviews;
-  };
-
-  /*
   ====== FUNCTIONALITY =====
   */
 
@@ -55,6 +39,7 @@ function App() {
   TODOS:
   - onCardClick fn that updates product
   - onSearchProduct fn that updates product
+  - hello from Add To Cart
   */
 
   // TESTING TESTING

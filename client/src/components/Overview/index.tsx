@@ -12,13 +12,8 @@ function Overview({product, reviewsMeta}) {
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
 
-  // const updStyles = async () => {
-  //   const newStyles = await axios.get(`/products/${product.id}/styles`);
-  //   return newStyles;
-  // };
-
   const updStyles = async () => {
-    const newStyles = await axios.get(`/products/37318/styles`);
+    const newStyles = await axios.get(`/products/${product.id}/styles`);
     return newStyles;
   };
 
@@ -42,8 +37,10 @@ function Overview({product, reviewsMeta}) {
         <ImageGallery currentStyle={currentStyle} />
         <div className="right-side-container">
           <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} />
-          <StyleSelector styles={styles} setCurrentStyle={styleClickHandler} currentStyle={currentStyle} />
-          <AddCart currentStyle={currentStyle} />
+          <div className="styles-cart-container">
+            <StyleSelector styles={styles} setCurrentStyle={styleClickHandler} currentStyle={currentStyle} />
+            <AddCart currentStyle={currentStyle} />
+          </div>
         </div>
         <div className="description-container">
           <Description product={product} />
