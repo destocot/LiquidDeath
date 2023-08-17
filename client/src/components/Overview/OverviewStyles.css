@@ -182,6 +182,7 @@ img.default-image {
 .style-title {
   position: relative;
   left: 20%;
+  margin-bottom: 1vh;
 }
 
 .style-selector-container {
@@ -224,13 +225,29 @@ img.style-thumbnail {
   border: 1px solid #797373
 }
 
-.style-overlay {
+.fa-stack {
   position: absolute;
-  top:0;
-  right: 0;
-  opacity: 0.3;
+  top:-0.5vh;
+  right: -2.6vw;
+  width: 100%;
   transition: 0.3s ease;
   background-color: transparent;
+}
+
+.solid-check {
+  color: #f1f1f1;
+  position: absolute;
+  font-size: 1.5vw;
+  top:0;
+  right:0;
+}
+
+.regular-check {
+  color:#1a254d;
+  position: absolute;
+  font-size: 1.5vw;
+  top:0;
+  right:0;
 }
 
 img.style-thumbnail:hover {
