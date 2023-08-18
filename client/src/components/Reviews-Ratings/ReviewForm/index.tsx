@@ -77,8 +77,27 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   };
 
   // TODO - update this to generate popup window where user can add photos
-  const renderPhotoPage = () => {
+  const imageChecker = (e) => {
     ('click');
+    const files = e.target.files;
+    let imageDiv = document.getElementById('rev-images-div');
+    let imageInput = document.getElementById('reviewPhotos');
+    imageDiv.innerHTML = '';
+    if (files.length > 5) {
+      alert('You can only upload up to 5 photos!');
+      imageInput.value = '';
+    } else {
+      for (var i = 0; i < files.length; i++) {
+        var reader = new FileReader();
+        reader.addEventListener("load", (event) => {
+          const picFile = event.target;
+          const div = document.createElement('div');
+          div.innerHTML = `<img className="thumbnail" src="${picFile.result}" alt="${picFile.name}" />`;
+          imageDiv?.appendChild(div);
+        })
+        reader.readAsDataURL(files[i])
+      }
+    }
   };
 
   // Part of Khurram's code
@@ -170,9 +189,9 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
           <label className="reviewFormSectionHeader">E-mail<br />
             <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
             <div className="reviewFormWarning">For authentication reasons, you will not be emailed</div></label>
+            <div id="rev-images-div"></div>
           <div className="reviewFormbuttons">
-          <input id="reviewPhotos" type="file" name="photos" accept="image/png, image/jpeg" onChange={(e) => renderPhotoPage()} multiple />
-            {/* <button id="photoInputButton"onClick={renderPhotoPage}>Add Photos </button><br /> */}
+            <input id="reviewPhotos" type="file" name="photos" accept="image/png, image/jpeg" onChange={(e) => imageChecker()} multiple />
             <input id="submitButton" type="submit" value="Submit"/>
           </div>
         </form>
