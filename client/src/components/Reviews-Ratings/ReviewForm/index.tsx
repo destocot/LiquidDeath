@@ -5,15 +5,11 @@ import helpers from '../../../helpPlease';
 // destructuring not working after moving to helpPlease.tsx
 const characteristicLabels = helpers.characteristicLabels;
 const starMeaning = helpers.starMeaning;
-const sumHelper = helpers.sumHelper;
+// const sumHelper = helpers.sumHelper;
 const charChecker = helpers.charChecker;
-const defaultCharacteristics = helpers.defaultCharacteristics;
-const defaultReviewPostBody = helpers.defaultReviewPostBody;
+// const defaultCharacteristics = helpers.defaultCharacteristics;
+// const defaultReviewPostBody = helpers.defaultReviewPostBody;
 const removeNullValues = helpers.removeNullValues;
-
-// testing multiple characteristics
-// import { getReviewsMeta } from '../exampleData';
-// const reviewsMeta = getReviewsMeta;
 
 // main function
 function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }) {
@@ -175,7 +171,8 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
             <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
             <div className="reviewFormWarning">For authentication reasons, you will not be emailed</div></label>
           <div className="reviewFormbuttons">
-            <button id="photoInputButton"onClick={renderPhotoPage}>Add Photos </button><br />
+          <input id="reviewPhotos" type="file" name="photos" accept="image/png, image/jpeg" onChange={(e) => renderPhotoPage()} multiple />
+            {/* <button id="photoInputButton"onClick={renderPhotoPage}>Add Photos </button><br /> */}
             <input id="submitButton" type="submit" value="Submit"/>
           </div>
         </form>

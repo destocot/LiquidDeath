@@ -260,11 +260,11 @@ progress::-webkit-progress-value {
   background-color: rgb(224, 224, 224);
 }
 
-.reviewPhotos {
+/* .reviewPhotos {
   max-width: 100px;
   height: auto;
   margin-right: 10px;
-}
+} */
 
 .reviewResponse {
   border: 1px;
