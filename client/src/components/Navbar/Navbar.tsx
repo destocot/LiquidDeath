@@ -13,11 +13,11 @@ function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
   const changeColor = () => {
     if (colorMode === 'Dark Mode') {
       setColorMode('Light Mode')
-      setColorStyle("bg-[#121212] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[gold]");
+      setColorStyle("bg-[#121212] bg-[url('https://www.transparenttextures.com/patterns/real-carbon-fibre.png');] text-[gold]");
       setHeaderColors("gold");
     } else {
       setColorMode('Dark Mode')
-      setColorStyle("bg-[rgb(250,249,248)] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[#333333]");
+      setColorStyle("bg-[rgb(250, 249, 248)] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[#333333]");
       setHeaderColors("black");
     }
   }
