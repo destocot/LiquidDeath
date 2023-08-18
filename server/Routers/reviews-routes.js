@@ -60,28 +60,36 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+const reviewsPoster = (data, photos) => {
+  const ph = photos.map((photo) => path.join("/Images", photo.filename));
+  console.log('ph: ', ph);
+  const uri = path.join(process.env.API_URI, 'reviews');
+  console.log('uri: ', uri);
+  data.photos = ph;
+  // const uri = `${base_uri}/qa/questions/${questionId}/answers`;
+  data.characteristics = JSON.parse(data.characteristics);
+  data.product_id = JSON.parse(data.product_id);
+  data.rating = JSON.parse(data.rating);
+  data.recommend = JSON.parse(data.recommend);
+  console.log(data);
+  return axios.post(uri, data);
+  // return axios.post(uri, { ...data, photos: ph });
+};
+
 reviewsRouter.post("/newreview",
   upload.array('imageFiles'),
   (req, res) => {
     console.log('post request received!');
     console.log('Form Fields:', req.body);
-    console.log('URL Parameters:', req.params);
+    // console.log('URL Parameters:', req.params);
     console.log('Uploaded Files:', req.files);
-    // utils
-    //   .answersPoster(req.params.questionId, req.body, req.files)
-    //   .then(() => {
-    //     res.status(200).send();
-    //   })
-    //   .catch(() => {
-    //     res.status(400).send();
-    //   });
+    reviewsPoster(req.body, req.files)
+    .then((result) => console.log('successfully posted review.'))
+    .catch((err) => console.log('nope.'))
+    // .catch((err) => console.log(err));
+    // .catch((err) => res.status(400).send(err));
   }
 );
-// const answersPoster = (questionId, data, photos) => {
-//   const ph = photos.map((photo) => path.join("/Images", photo.filename));
-//   const uri = `${base_uri}/qa/questions/${questionId}/answers`;
-//   return axios.post(uri, { ...data, photos: ph });
-// };
 
 
 /* -- end -- */

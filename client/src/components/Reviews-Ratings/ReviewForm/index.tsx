@@ -94,7 +94,7 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     formData.append("recommend", recommendation);
     formData.append("name", e.target.nickname.value);
     formData.append("email", e.target.email.value);
-    formData.append("photos", JSON.stringify(photoUrlArray));
+    // formData.append("photos", JSON.stringify(photoUrlArray));
     formData.append("characteristics", JSON.stringify(charObj));
 
     const imageInput = document.getElementById('reviewPhotos'); // Adjust the ID accordingly
