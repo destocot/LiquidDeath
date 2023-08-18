@@ -3,15 +3,12 @@ const path = require('path');
 const express = require('express');
 const axios = require('axios');
 
+const utils = require("../helpers/reviews-helpers.js");
+
 const reviewsRouter = express.Router();
 axios.defaults.headers.common["Authorization"] = process.env.AUTH;
 
-// reviews section API needs query params - seems you can't just add params to end of link
-// right now I have it set so you make a request with /id/sort/count/page from client...
-// this can probably be changed to be any order - i couldn't figure out how tho
-// to get all the reviews for a product - specify count to absurd number
 reviewsRouter.get('/:product_id/:sort/:count/:page', (req, res) => {
-  console.log(req.params);
   axios.get(
     path.join(process.env.API_URI, 'reviews'),
     {
@@ -27,7 +24,6 @@ reviewsRouter.get('/:product_id/:sort/:count/:page', (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
-// get review metadata - also need to use query params for this, can't join the link together
 reviewsRouter.get('/meta/:product_id', (req, res) => {
   axios.get(
     path.join(process.env.API_URI, 'reviews/meta'),
@@ -41,22 +37,20 @@ reviewsRouter.get('/meta/:product_id', (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
-reviewsRouter.post('/newreview', (req, res) => {
-  console.log('post request received!');
-  // console.log(req.body);
-  axios.post(
-    path.join(process.env.API_URI, 'reviews'),
-    req.body,
-  )
-  .then((result) => console.log(result))
-  .catch((err) => res.status(400).send(err));
-})
+reviewsRouter.post("/newreview",
+  utils.upload.array('imageFiles'),
+  (req, res) => {
+    utils.reviewsPoster(req.body, req.files)
+    .then((result) => res.status(200).send('Success.'))
+    .catch((err) => res.status(400).send(err));
+  }
+);
 
 reviewsRouter.put('/:review_id/helpful', (req, res) => {
   axios.put(
     path.join(process.env.API_URI, `reviews/${req.params.review_id}/helpful`),
   )
-  .then((result) => console.log(result))
+  .then((result) => res.status(200).send('Success.'))
   .catch((err) => res.status(400).send(err));
 })
 
@@ -64,17 +58,8 @@ reviewsRouter.put('/:review_id/report', (req, res) => {
   axios.put(
     path.join(process.env.API_URI, `reviews/${req.params.review_id}/report`),
   )
-  .then((result) => console.log(result))
+  .then((result) => res.status(200).send('Success.'))
   .catch((err) => res.status(400).send(err));
 })
 
 module.exports = reviewsRouter;
-
-/*
-======= TODO =======
-- Add PUT request for reviews to check for if review was helpful
-- Add PUT request for reviews to report a review
-- Add routes for Cart API
-- Add routes for Interactions API
-- Optimize authentication by adding middleware (?)
-*/

@@ -263,11 +263,11 @@ progress::-webkit-progress-value {
   background-color: rgb(224, 224, 224);
 }
 
-.reviewPhotos {
+/* .reviewPhotos {
   max-width: 100px;
   height: auto;
   margin-right: 10px;
-}
+} */
 
 .reviewResponse {
   border: 1px;
@@ -306,6 +306,7 @@ progress::-webkit-progress-value {
 .reviewFormSubContainer {
   background-color: white;
   padding: 20px;
+  height: 90%;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-size: medium;
