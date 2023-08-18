@@ -2,7 +2,8 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const axios = require('axios');
-const multer = require('multer');
+
+const utils = require("../helpers/reviews-helpers.js");
 
 const reviewsRouter = express.Router();
 axios.defaults.headers.common["Authorization"] = process.env.AUTH;
@@ -36,69 +37,20 @@ reviewsRouter.get('/meta/:product_id', (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
-// old post route
-// reviewsRouter.post('/newreview', (req, res) => {
-//   console.log('post request received!');
-//   axios.post(
-//     path.join(process.env.API_URI, 'reviews'),
-//     req.body,
-//   )
-//   .then((result) => console.log('successfully posted review.'))
-//   // .catch((err) => console.log(err));
-//   .catch((err) => res.status(400).send(err));
-// })
-
-/* -- post w/ photos -- */
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../../client/dist/Images"));
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
-
-const reviewsPoster = (data, photos) => {
-  const ph = photos.map((photo) => path.join("/Images", photo.filename));
-  console.log('ph: ', ph);
-  const uri = path.join(process.env.API_URI, 'reviews');
-  console.log('uri: ', uri);
-  data.photos = ph;
-  // const uri = `${base_uri}/qa/questions/${questionId}/answers`;
-  data.characteristics = JSON.parse(data.characteristics);
-  data.product_id = JSON.parse(data.product_id);
-  data.rating = JSON.parse(data.rating);
-  data.recommend = JSON.parse(data.recommend);
-  console.log(data);
-  return axios.post(uri, data);
-  // return axios.post(uri, { ...data, photos: ph });
-};
-
 reviewsRouter.post("/newreview",
-  upload.array('imageFiles'),
+  utils.upload.array('imageFiles'),
   (req, res) => {
-    console.log('post request received!');
-    console.log('Form Fields:', req.body);
-    // console.log('URL Parameters:', req.params);
-    console.log('Uploaded Files:', req.files);
-    reviewsPoster(req.body, req.files)
-    .then((result) => console.log('successfully posted review.'))
-    .catch((err) => console.log('nope.'))
-    // .catch((err) => console.log(err));
-    // .catch((err) => res.status(400).send(err));
+    utils.reviewsPoster(req.body, req.files)
+    .then((result) => res.status(200).send('Success.'))
+    .catch((err) => res.status(400).send(err));
   }
 );
-
-
-/* -- end -- */
 
 reviewsRouter.put('/:review_id/helpful', (req, res) => {
   axios.put(
     path.join(process.env.API_URI, `reviews/${req.params.review_id}/helpful`),
   )
-  .then((result) => console.log('successfully updated helpful'))
+  .then((result) => res.status(200).send('Success.'))
   .catch((err) => res.status(400).send(err));
 })
 
@@ -106,7 +58,7 @@ reviewsRouter.put('/:review_id/report', (req, res) => {
   axios.put(
     path.join(process.env.API_URI, `reviews/${req.params.review_id}/report`),
   )
-  .then((result) => console.log('successfully reported'))
+  .then((result) => res.status(200).send('Success.'))
   .catch((err) => res.status(400).send(err));
 })
 

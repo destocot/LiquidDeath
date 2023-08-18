@@ -5,7 +5,7 @@ import helpers from '../../../helpPlease';
 const characteristicLabels = helpers.characteristicLabels;
 const starMeaning = helpers.starMeaning;
 const charChecker = helpers.charChecker;
-const removeNullValues = helpers.removeNullValues;
+// const removeNullValues = helpers.removeNullValues;
 
 function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }) {
   const [rating, setRating] = useState(0);
@@ -38,10 +38,8 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   };
 
   const imageChecker = (e) => {
-    ('click');
     const files = e.target.files;
     let tempFileArray = [];
-    // console.log(files);
     let imageDiv = document.getElementById('rev-images-div');
     imageDiv.innerHTML = '';
 
@@ -59,7 +57,6 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
           imageDiv?.appendChild(div);
         })
         reader.readAsDataURL(files[i])
-        // console.log('tempArray: ', tempFileArray);
         setPhotoUrlArray(tempFileArray);
       }
     }
@@ -94,17 +91,16 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     formData.append("recommend", recommendation);
     formData.append("name", e.target.nickname.value);
     formData.append("email", e.target.email.value);
-    // formData.append("photos", JSON.stringify(photoUrlArray));
     formData.append("characteristics", JSON.stringify(charObj));
 
-    const imageInput = document.getElementById('reviewPhotos'); // Adjust the ID accordingly
+    const imageInput = document.getElementById('reviewPhotos');
     const imageFiles = imageInput.files;
     for (let i = 0; i < imageFiles.length; i++) {
       formData.append('imageFiles', imageFiles[i]);
     }
 
     sendReview(formData);
-    // close();
+    close();
   };
 
   const renderStars = () => {
