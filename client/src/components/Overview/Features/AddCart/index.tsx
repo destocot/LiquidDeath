@@ -3,7 +3,7 @@ import CartForm from './CartForm';
 import helpers from '../../../../helpPlease';
 import axios from 'axios';
 
-function AddCart({currentStyle}) {
+function AddCart({currentStyle, setConfetti}) {
   const [needed, setNeeded] = useState('');
   const formSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +16,7 @@ function AddCart({currentStyle}) {
       return;
     }
     axios.post('/cart', cartBody)
+      .then(() => setConfetti(true))
       .then(() => alert('Added Items to Cart!'))
       .catch((err) => console.error(err));
   }

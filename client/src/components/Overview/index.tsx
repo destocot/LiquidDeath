@@ -7,7 +7,7 @@ import AddCart from './Features/AddCart';
 import Description from './Features/ProductInfo/Description';
 import './OverviewStyles.css';
 
-function Overview({product, reviewsMeta}) {
+function Overview({product, reviewsMeta, setConfetti}) {
   // states for styles and current style
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
@@ -40,7 +40,7 @@ function Overview({product, reviewsMeta}) {
           <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} />
           <div className="styles-cart-container">
             <StyleSelector styles={styles} setCurrentStyle={styleClickHandler} currentStyle={currentStyle} />
-            <AddCart currentStyle={currentStyle} />
+            <AddCart currentStyle={currentStyle} setConfetti={setConfetti} />
           </div>
         </div>
         <div className="description-container">
