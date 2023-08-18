@@ -53,6 +53,7 @@ h6 {
   padding: 10px;
   width: 80vw;
   margin: 0 auto;
+  background-color: rgba(158, 158, 158, 0.1);
 }
 
 .questions-container {
@@ -147,7 +148,7 @@ h6 {
 #add-questions-btn, #expand-questions-btn {
   padding: 5px;
   border: 1px solid transparent;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(158, 158, 158, 0.2);
   cursor: pointer;
 }
 
@@ -195,6 +196,31 @@ h6 {
   border: 1px solid black;
 }
 
+.qa-main-container ::-webkit-scrollbar {
+  width: 12px;
+}
+
+.qa-main-container ::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.qa-main-container ::-webkit-scrollbar-thumb {
+  background-color: rgba(158, 158, 158, 0.5);
+}
+
+.qa-main-container ::-webkit-scrollbar-thumb {
+  background-color: rgba(158, 158, 158, 0.5);
+  border-radius: 20px;
+}
+
+.qa-main-container ::-webkit-scrollbar-thumb {
+  background-color: rgba(158, 158, 158, 0.5);
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* MEDIA QUERIES */
 /* Styles for max-width: 1025px */
 @media screen and (max-width: 1025px) {
   .qa-main-container {

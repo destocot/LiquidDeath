@@ -53,7 +53,7 @@ function Answer({ answer, setTheNews, query }: AnswerProps) {
   }, [])
 
   return (
-    <div className="answer-container bg-gray-500 bg-opacity-20 p-[0.313rem] mx-0 my-[0.313rem]">
+    <div className="answer-container bg-gray-500 bg-opacity-10 p-[0.313rem] mx-0 my-[0.313rem]">
       <div className="answer-labeler flex gap-x-[0.313rem]">
         <h3 className="text-[1.17em] font-bold">
           A:

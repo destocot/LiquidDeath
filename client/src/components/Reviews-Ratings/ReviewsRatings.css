@@ -3,10 +3,12 @@
   /* background-color: rgba(255, 255, 255, 0.828); */
   /* khurram removed this */
   margin-top: 50px;
+  /* width: 75vw; */
   width: 80vw;
-  /* width: 100vw; */
   margin: 0 auto;
   padding: 10px;
+  /* khurram added this as a test */
+  background-color: rgba(158, 158, 158, 0.1);
 }
 
 .ratingsReviewsContent {

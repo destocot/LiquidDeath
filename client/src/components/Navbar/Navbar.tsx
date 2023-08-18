@@ -11,14 +11,49 @@ interface NavbarProps {
 
 function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
   const changeColor = () => {
+    const starContainers = document.querySelectorAll('.stars');
+    const selects = document.querySelectorAll('select');
+    const mediaLinks = document.querySelectorAll('.media a');
+
     if (colorMode === 'Dark Mode') {
       setColorMode('Light Mode')
       setColorStyle("bg-[#121212] bg-[url('https://www.transparenttextures.com/patterns/real-carbon-fibre.png');] text-[gold]");
       setHeaderColors("gold");
+
+      // gives all stars a white background in dark mode
+      for (let starContainer of starContainers) {
+        starContainer.style.padding = '2px';
+        starContainer.style.background = 'rgba(255, 255, 255, 0.5)';
+      }
+
+      // gives all social media links a white background in dark mode
+      for (let mediaLink of mediaLinks) {
+        mediaLink.style.padding = '2px';
+        mediaLink.style.background = 'rgba(255, 255, 255, 0.5)';
+      }
+
+      // gives all select drop downs a white background in dark mode
+      for (let select of selects) {
+        select.style.background = 'black';
+      };
     } else {
       setColorMode('Dark Mode')
       setColorStyle("bg-[rgb(250, 249, 248)] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[#333333]");
       setHeaderColors("black");
+
+      for (let starContainer of starContainers) {
+        starContainer.style.padding = '';
+        starContainer.style.background = '';
+      }
+
+      for (let mediaLink of mediaLinks) {
+        mediaLink.style.padding = '';
+        mediaLink.style.background = '';
+      }
+
+      for (let select of selects) {
+        select.style.background = '';
+      };
     }
   }
 
