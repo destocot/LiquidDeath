@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Answer from '../Answers/Answer';
+import Answer from './Answer';
 import utils from '../../helpers/helpers';
 import requests from '../../helpers/requests';
-import AnswerForm from '../Forms/AnswerForm';
-import AnswerForm2 from './AnswerForm2';
+import AnswerForm from './AnswerForm';
 
-function Question({ question, currProductName, query }) {
+interface QuestionProps {
+  question: {
+    question_helpfulness: number;
+    question_id: number
+    question_body: string;
+    question_body2: JSX.Element;
+  };
+  currProductName: string;
+  query: string
+}
+
+function Question({ question, currProductName, query }: QuestionProps) {
   const [answersDatabase, setAnswersDatabase] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [more, setMore] = useState(true);
-  const [aForm, setAForm] = useState(false);
   const { question_helpfulness } = question;
-  const [helpfulness, setHelpfulness] = useState([question_helpfulness, false]);
+  const [helpfulness, setHelpfulness] = useState<[number, boolean]>([question_helpfulness, false]);
   const [report, setReport] = useState(['Report', false]);
 
   const ansFetcher = async () => {
@@ -41,10 +50,15 @@ function Question({ question, currProductName, query }) {
     }
   };
 
-  const [theNews, setTheNews] = useState(false);
+  interface FilteredAnsProps {
+    body: string;
+    body2: JSX.Element;
+  }
+
+  const [theNews, setTheNews] = useState<boolean>(false);
   useEffect(() => {
     if (query.length >= 3) {
-      setAnswers(answersDatabase.reduce((filtered, ans) => {
+      setAnswers(answersDatabase.reduce((filtered: any, ans: FilteredAnsProps) => {
         if (ans.body.toLowerCase().includes(query.toLowerCase())) {
           const aIDX = ans.body.toLowerCase().indexOf(query.toLowerCase());
           ans.body2 = utils.highlighter(ans.body, aIDX, query.length);
@@ -87,11 +101,7 @@ function Question({ question, currProductName, query }) {
           <button type="button" id="question-yes" className="hover:underline" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
           {` (${helpfulness[0]}) | `}
           <button type="button" id="report-btn" className="hover:text-red-500" onClick={() => reportFunction()} onKeyDown={() => reportFunction()}>{report[0]}</button>{' | '}
-          {/* <button type="button" id="add-answer-btn" onClick={() => {
-            document.body.style.overflow = 'hidden';
-            setAForm(true)
-          }}>Add Answer</button> */}
-          <AnswerForm2 currProductName={currProductName} questionBody={question.question_body} questionId={question.question_id} />
+          <AnswerForm currProductName={currProductName} questionBody={question.question_body} questionId={question.question_id} />
         </h4>
       </div>
       <div className="answers-container">
@@ -105,9 +115,6 @@ function Question({ question, currProductName, query }) {
           expandOrCollapseButtons()
         }
       </div>
-      {/* {
-        aForm && <AnswerForm setAForm={setAForm} currProductName={currProductName} questionBody={question.question_body} questionId={question.question_id} />
-      } */}
       <hr className="mt-[0.313rem]" />
     </div>
 

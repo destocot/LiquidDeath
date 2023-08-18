@@ -2,10 +2,8 @@
 import React from 'react';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
-// import './Popup.css';
 
-function AnswerForm2({ currProductName, questionBody, questionId }) {
-
+function AnswerForm({ currProductName, questionBody, questionId }) {
   const imageChecker = (e) => {
     const files = e.target.files;
     let imageDiv = document.getElementById('my-images-div');
@@ -96,4 +94,4 @@ function AnswerForm2({ currProductName, questionBody, questionId }) {
   );
 }
 
-export default AnswerForm2
+export default AnswerForm

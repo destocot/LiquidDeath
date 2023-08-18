@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 
-function AnswerPhoto({ photo }) {
+interface AnswerPhotoProps {
+  photo: {
+    id: number;
+    url: string;
+  }
+}
+
+function AnswerPhoto({ photo }: AnswerPhotoProps) {
   const [fullPhoto, setFullPhoto] = useState(false);
 
   const close = () => {

@@ -1,11 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import axios from 'axios';
-
-//POPUP TEST
 import Popup from 'reactjs-popup';
-import './Popup.css';
-// import 'reactjs-popup/dist/index.css';
 
 function QuestionForm({ currProductName, currProductId }) {
   const submitHandler = (e) => {
@@ -16,11 +12,6 @@ function QuestionForm({ currProductName, currProductId }) {
     const product_id = currProductId;
     sendQuestion({ body, name, email, product_id });
   }
-
-  // onClick={() => {
-  //   document.body.style.overflow = 'hidden';
-  //   setQForm(true)
-  // }
 
   const sendQuestion = (data) => {
     axios.post('/qa/questions', data)
@@ -44,7 +35,8 @@ function QuestionForm({ currProductName, currProductId }) {
 
             <form
               className="flex flex-col justify-around h-[40vh] text-base p-2"
-              onSubmit={(e) => { submitHandler(e); close(); }}>
+              onSubmit={(e) => { submitHandler(e); close(); }}
+              onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault() }}>
               <label>Your Question*<br />
                 <textarea
                   className="w-full border-2 p-1"
