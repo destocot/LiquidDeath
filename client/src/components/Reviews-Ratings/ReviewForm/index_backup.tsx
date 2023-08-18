@@ -117,7 +117,7 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   // TODO - update this to store all values in a massive state
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('submitHandler clicked');
+    // console.log('submitHandler clicked');
     // const charId = e.target.charId.value;
     // console.log('test - ', charId);
 

@@ -40,7 +40,7 @@ function ReviewTileBody({review}) {
   // map photos into review body. will add onto this at later time
   const renderPhotos = () => review.photos.map((photo) => {
     return (
-      <div>
+      <div key={photo.id}>
         <img key={photo.id} /*className="reviewPhotos"*/ className="answer-photo aspect-[3/2] max-h-[75px] object-cover border border-solid border-transparent hover:border-[black] cursor-pointer" src={photo.url} alt={`photo${photo.id}`} onClick={() => {
           document.body.style.overflow = 'hidden';
           setFullPhoto(true)

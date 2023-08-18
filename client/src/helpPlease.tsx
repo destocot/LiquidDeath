@@ -125,7 +125,7 @@ let helpers = {
   sortRelevance: (arrayOfObjects) => {
     // console.log('prior to sort: ', arrayOfObjects);
     var result =  arrayOfObjects.sort(helpers.sortRelevanceCB);
-    console.log('after sort: ', result);
+    // console.log('after sort: ', result);
     return result;
   },
   sortRelevanceCB: (a, b) => {
