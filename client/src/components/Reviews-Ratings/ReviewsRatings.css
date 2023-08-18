@@ -44,7 +44,7 @@
 }
 
 .breakdownRating:hover {
-  background-color:rgba(142, 142, 142, 0.505);
+  background-color: rgba(142, 142, 142, 0.505);
   border-radius: 7px;
   cursor: pointer;
 }
@@ -129,13 +129,11 @@ progress::-webkit-progress-value {
   margin-left: 0;
 }
 
-
 .productBreakdownLabelsHigh {
   margin-right: 0;
 }
 
 /* -- End -- */
-
 
 .newReviewStarRating {
   display: flex;
@@ -192,19 +190,20 @@ progress::-webkit-progress-value {
   overflow: auto; /* Enable scrolling */
 }
 
-#addReviewButton, #moreReviewsButton {
+#addReviewButton,
+#moreReviewsButton {
   padding: 5px;
   border: 1px solid transparent;
   background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
-#addReviewButton:hover, #moreReviewsButton:hover{
+#addReviewButton:hover,
+#moreReviewsButton:hover {
   border: 1px solid black;
 }
 
 #moreReviewsButton {
-
 }
 
 #addReviewButton {
@@ -227,7 +226,7 @@ progress::-webkit-progress-value {
   display: flex;
   justify-content: space-between;
   padding: 4px;
-  width: 100%
+  width: 100%;
 }
 
 .starRating {
@@ -252,7 +251,6 @@ progress::-webkit-progress-value {
 }
 
 .reviewBodyText {
-
 }
 
 .expandReviewTextButton {
@@ -285,7 +283,6 @@ progress::-webkit-progress-value {
 #reportButton {
   margin-top: 15px;
 }
-
 
 /* ------ REVIEW FORM ----- */
 /* ------ REVIEW FORM ----- */
@@ -366,7 +363,6 @@ progress::-webkit-progress-value {
 }
 
 #charElement {
-
 }
 
 #charTitle {
@@ -393,13 +389,13 @@ progress::-webkit-progress-value {
   justify-content: space-between;
 }
 
-.charRadioButtons input[type="radio"]{
+.charRadioButtons input[type="radio"] {
   width: 20px;
   height: 20px;
 }
 
-.characteristicsAxisLabels{
+.characteristicsAxisLabels {
   display: flex;
   justify-content: space-between;
-  font-size:small;
+  font-size: small;
 }
