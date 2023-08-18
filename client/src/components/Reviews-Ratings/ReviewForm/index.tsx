@@ -159,19 +159,20 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     <div className="reviewFormContainer">
       <div className="reviewFormSubContainer">
         <div id="reviewFormHeader">
-          <h2 id="reviewFormTitle">{currProductName}</h2>
+          <h1 className="text-2xl font-bold">Write Your Review</h1><br />
           <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }}/>
         </div>
+        <h2 id="reviewFormTitle">About the {currProductName}</h2>
         <form onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
           {/* Overall Rating by Clicking Number of Stars */}
-          <label className="reviewFormSectionHeader"required>Overall Rating<br />
+          <label className="reviewFormSectionHeader"required>Overall Rating*<br />
             <div className="newReviewStarRating">
               {renderStars()}
               {(rating !== 0) ? <div>{starMeaning[rating]}</div> : null}
             </div>
           </label>
           {/* Boolean Product Recommendation - utilizes radio buttons */}
-          <label className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?<br />
+          <label className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?*<br />
             <label>Yes
               <input id="buttonLeft" type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)}/>
             </label>
@@ -180,20 +181,20 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
             <br /></label>
           </label>
           {/* Characteristics */}
-          <label id="charTitle" className="reviewFormSectionHeader" required>Characteristics <br />
+          <label id="charTitle" className="reviewFormSectionHeader" required>Characteristics* <br />
             <div id="charElement">{renderCharacteristics()}</div>
           </label>
           {/* Text Inputs */}
           <label className="reviewFormSectionHeader" >Review Summary <br />
             <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></label>
-          <label className="reviewFormSectionHeader" >Review Body <br />
-            <textarea maxLength="1000" /*minLength="50"*/ onChange={countCharLeft} rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br />
+          <label className="reviewFormSectionHeader" >Review Body* <br />
+            <textarea maxLength="1000" minLength="50" onChange={countCharLeft} rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br />
             {(!charCountCheck) ? <div><span>Minimum required characters left: </span><span>{charCount}</span></div> : <div>Minimum reached</div>}
           </label><br />
-          <label className="reviewFormSectionHeader" >Nickname<br />
+          <label className="reviewFormSectionHeader" >Nickname*<br />
             <input type="text" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
             <div className="reviewFormWarning">For privacy reasons, do not use your full name or email address</div></label>
-          <label className="reviewFormSectionHeader">E-mail<br />
+          <label className="reviewFormSectionHeader">E-mail*<br />
             <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
             <div className="reviewFormWarning">For authentication reasons, you will not be emailed</div></label>
             <div id="rev-images-div" className="flex"></div>
