@@ -28,6 +28,7 @@ function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
   // English, Spanish, Japanese, French, Korean, Urdu, Chinese, Arabic, Italian
   const choices = ['Liquid Death', 'muerte liquida', '液体の死', 'Mort liquide', '액체 죽음', 'مائع موت', '液体死亡', 'الموت السائل', 'Morte liquida'];
   const title = choices[Math.floor(Math.random() * choices.length)];
+
   const [headerColors, setHeaderColors] = useState("black");
 
   return (
@@ -113,7 +114,7 @@ function Chat({ setChat }) {
   return (
     <div className="fixed bottom-0 right-10 h-[375px] w-[300px] border-[1px] border-[black] z-[2]">
       <i
-        className="fa-regular fa-circle-xmark fa-2xl cursor-pointer absolute z-[3] top-[-10px] right-[-10px] bg-white leading-5 text-[20px] hover:leading-6 hover:text-[28px] rounded-full"
+        className="fa-regular fa-circle-xmark fa-2xl cursor-pointer absolute z-[3] top-[-10px] right-[-10px] bg-white leading-5 text-[20px] hover:leading-6 hover:text-[28px] rounded-full" style={{ color: 'black' }}
         onClick={() => setChat(false)}
       />
       <MainContainer >
