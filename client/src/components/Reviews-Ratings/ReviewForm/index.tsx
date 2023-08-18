@@ -41,7 +41,7 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     ('click');
     const files = e.target.files;
     let tempFileArray = [];
-    console.log(files);
+    // console.log(files);
     let imageDiv = document.getElementById('rev-images-div');
     imageDiv.innerHTML = '';
 
@@ -59,14 +59,18 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
           imageDiv?.appendChild(div);
         })
         reader.readAsDataURL(files[i])
-        console.log('tempArray: ', tempFileArray);
+        // console.log('tempArray: ', tempFileArray);
         setPhotoUrlArray(tempFileArray);
       }
     }
   };
 
   const sendReview = (data) => {
-    axios.post('/reviews/newreview', data)
+    axios.post('/reviews/newreview', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
       .catch(() => ('error posting question'));
   }
 
@@ -82,20 +86,25 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
       return;
     }
 
-    const tempPostObj = {
-      "product_id": currProductId,
-      "rating": rating,
-      "summary": e.target.summary.value,
-      "body": e.target.body.value,
-      "recommend": recommendation,
-      "name": e.target.nickname.value,
-      "email": e.target.email.value,
-      "photos": photoUrlArray,
-      "characteristics": charObj,
+    const formData = new FormData();
+    formData.append("product_id", currProductId);
+    formData.append("rating", rating);
+    formData.append("summary", e.target.summary.value);
+    formData.append("body", e.target.body.value);
+    formData.append("recommend", recommendation);
+    formData.append("name", e.target.nickname.value);
+    formData.append("email", e.target.email.value);
+    formData.append("photos", JSON.stringify(photoUrlArray));
+    formData.append("characteristics", JSON.stringify(charObj));
+
+    const imageInput = document.getElementById('reviewPhotos'); // Adjust the ID accordingly
+    const imageFiles = imageInput.files;
+    for (let i = 0; i < imageFiles.length; i++) {
+      formData.append('imageFiles', imageFiles[i]);
     }
 
-    sendReview(tempPostObj);
-    close();
+    sendReview(formData);
+    // close();
   };
 
   const renderStars = () => {
