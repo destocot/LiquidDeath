@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import BreakdownComp from './BreakdownComp';
 import ProductBreakdown from './ProductBreakdown';
+import helpers from '../../../helpPlease';
+const sumHelper = helpers.sumHelper;
 
 const reviewStars = (score) => {
   const stars = [];
-  // "rounding", using 0.65 and 0.35 for more noticeable impact
   const quarterRound = (num) => {
     let quarters;
     if (num > 0.625) {
@@ -34,7 +35,7 @@ const reviewStars = (score) => {
 }
 
 function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
-  // calculate and round avg rating
+  // console.log({reviewsMeta});
   const calcAvgRating = (ratingsObj) => {
     if (Object.keys(ratingsObj).length > 0) {
       let sumOfRatings = 0;
@@ -53,12 +54,19 @@ function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
 
   const avgRating = calcAvgRating(reviewsMeta.ratings);
 
+  const recommended = () => {
+    let total = sumHelper(Object.values(reviewsMeta.recommended));
+    let decimal = reviewsMeta.recommended.true / total;
+    return (decimal.toFixed(2) * 100).toString() + '%';
+  }
+
   return (
     <div className="ratingBreakdown">
       <div className="stars-container">
         <h1 className="text-6xl font-bold text-[#14532d]">{avgRating}</h1>
         <div>{reviewStars(avgRating)}</div>
       </div>
+      <div><span>{recommended()}</span><span> of reviewers recommend this product.</span></div>
       <BreakdownComp filters={filters} updateFilters={updateFilters} reviewsMeta={reviewsMeta} />
       <ProductBreakdown reviewsMeta={reviewsMeta} />
     </div>

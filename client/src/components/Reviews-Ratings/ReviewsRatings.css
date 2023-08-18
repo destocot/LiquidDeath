@@ -3,7 +3,8 @@
   /* background-color: rgba(255, 255, 255, 0.828); */
   /* khurram removed this */
   margin-top: 50px;
-  width: 75vw;
+  width: 80vw;
+  /* width: 100vw; */
   margin: 0 auto;
   padding: 10px;
 }
@@ -260,11 +261,11 @@ progress::-webkit-progress-value {
   background-color: rgb(224, 224, 224);
 }
 
-.reviewPhotos {
+/* .reviewPhotos {
   max-width: 100px;
   height: auto;
   margin-right: 10px;
-}
+} */
 
 .reviewResponse {
   border: 1px;
@@ -303,6 +304,7 @@ progress::-webkit-progress-value {
 .reviewFormSubContainer {
   background-color: white;
   padding: 20px;
+  height: 90%;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-size: medium;

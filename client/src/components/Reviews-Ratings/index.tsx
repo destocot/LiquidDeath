@@ -8,7 +8,10 @@ import axios from 'axios';
 import helpers from '../../helpPlease';
 
 function ReviewsRatings({ reviewsMeta, currProductId, currProductName, initial }) {
-  const sumHelper = helpers.sumHelper;
+  // console.log({reviewsMeta});
+  // console.log({currProductId});
+  // console.log({currProductName});
+  // console.log({initial});
   const sortRelevance = helpers.sortRelevance;
   const [reviews, setReviews] = useState(initial.reviews);
   const [filters, setFilters] = useState({ ratings: [] });
