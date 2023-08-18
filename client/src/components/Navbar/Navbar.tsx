@@ -1,4 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
+import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
+import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
+import axios from 'axios';
 
 interface NavbarProps {
   setColorMode: Dispatch<SetStateAction<string>>;
@@ -7,7 +10,6 @@ interface NavbarProps {
 }
 
 function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
-
   const changeColor = () => {
     if (colorMode === 'Dark Mode') {
       setColorMode('Light Mode')
@@ -19,6 +21,9 @@ function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
       setHeaderColors("black");
     }
   }
+
+  // chat test
+  const [chat, setChat] = useState(false);
 
   // English, Spanish, Japanese, French, Korean, Urdu, Chinese, Arabic, Italian
   const choices = ['Liquid Death', 'muerte liquida', '液体の死', 'Mort liquide', '액체 죽음', 'مائع موت', '液体死亡', 'الموت السائل', 'Morte liquida'];
@@ -40,7 +45,7 @@ function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
       </div>
       <div className="row-start-1 row-end-2 col-start-5 col-end-7 justify-self-end">
         <div className="flex-1 flex justify-center mr-auto">
-          <span className="cursor:pointer hover:underline">Customer Sevice</span>
+          <span className="cursor:pointer hover:underline" onClick={() => setChat(true)}>Customer Sevice</span>
           <span className="ml-[16px]">Students get 20% off</span>
           <span className="ml-[16px]">Find a store</span>
         </div>
@@ -53,35 +58,78 @@ function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
           <i className="fa-solid fa-cart-shopping fa-lg ml-2" />
         </div>
       </div>
+      {
+        chat && <Chat setChat={setChat} />
+      }
     </div>
-    // <div className=" bg-[rgba(250,249,248,0.65)] px-[28px] py-[12px] text-[black] h-fit">
-    //   <div className="flex items-center">
-    //     <div className="flex-1 flex justify-center mr-auto">
-    //       <span className="mr-[16px] cursor:pointer hover:underline">Customer Sevice</span>
-    //       <span className="mr-[16px]">Students get 20% off</span>
-    //       <span className="mr-[16px]">Find a store</span>
-    //       <span>. . .</span>
-    //     </div>
-    //     <h1 className="flex-1 flex justify-center text-[32px] self-end italic bg-[rgba(0,0,0,0.1)] ">{title}<i className="fa-solid fa-skull leading-normal ml-[10px]" /></h1>
-    //     <div className="flex-1 flex justify-center ml-auto">
-    //       <span className="mr-[12px]"><i className="fa-regular fa-user mr-[5px]" />Sign in</span>
-    //       <span className="mr-[12px]"><i className="fa-regular fa-heart  mr-[5px]" />Favorites</span>
-    //       <span><i className="fa-solid fa-cart-shopping mr-[5px]" />Shopping bag(0)</span>
-    //     </div>
-    //   </div>
-    //   <div className="flex items-center">
-    //     <div className="flex-1 flex justify-center mr-auto"></div>
-    //     <div className="flex-1 flex justify-center">
-    //       <span className="mr-[16px]">Home</span>
-    //       <span className="mr-[16px]">Sale</span>
-    //       <span className="mr-[16px]">About</span>
-    //       <button className="hover:underline" onClick={() => changeColor()}>{colorMode}</button>
-    //     </div>
-    //     <div className="flex-1 flex justify-center ml-auto" >
-    //       <input className="border-2 p-[2px]" type="text" value="Search products"></input>
-    //     </div>
-    //   </div>
-    // </div >
+  )
+}
+
+function Chat({ setChat }) {
+  const [typing, setTyping] = useState(false);
+  const [messages, setMessages] = useState([
+    {
+      message: 'Hi I\'m Liquid Death\'s helpful bot. How can I assist you?',
+      sender: 'ChatGPT'
+    }
+  ])
+  const handleSend = async (message) => {
+    const newMessage = {
+      message: message,
+      sender: "user",
+      direction: "outgoing" // shows on right of chat
+    }
+
+    const newMessages = [...messages, newMessage];
+    setMessages(newMessages);
+
+    setTyping(true);
+
+    await processMessageToChatGPT(newMessages);
+  }
+
+  const processMessageToChatGPT = async (chatMessages) => {
+    let apiMessages = chatMessages.map((messageObject) => {
+      let role = "";
+      if (messageObject.sender === 'ChatGPT') {
+        role = "assistant"
+      } else {
+        role = "user"
+      }
+      return { role: role, content: messageObject.message }
+    });
+
+    await axios.post('/customerservice', apiMessages)
+      .then((results) => {
+        setMessages([...chatMessages, {
+          message: results.data.choices[0].message.content,
+          sender: "ChatGPT"
+        }]);
+        setTyping(false);
+      })
+      .catch(() => console.log('error'))
+  }
+
+  return (
+    <div className="fixed bottom-0 right-10 h-[375px] w-[300px] border-[1px] border-[black]">
+      <i
+        className="fa-regular fa-circle-xmark fa-2xl cursor-pointer absolute z-[2] top-[-10px] right-[-10px] bg-white leading-5 text-[20px] hover:leading-6 hover:text-[28px]"
+        onClick={() => setChat(false)}
+      />
+      <MainContainer >
+        <ChatContainer>
+          <MessageList
+            scrollBehavior='auto'
+            typingIndicator={typing ? <TypingIndicator content="ChatGPT is typing" /> : null}
+          >
+            {messages.map((message, i) => {
+              return <Message key={i} model={message} />
+            })}
+          </MessageList>
+          <MessageInput placeholder="Type message here" onSend={handleSend} />
+        </ChatContainer>
+      </MainContainer>
+    </div>
   )
 }
 

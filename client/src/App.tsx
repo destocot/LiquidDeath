@@ -57,9 +57,9 @@ function App() {
   useEffect(() => {
     window.onresize = () => handleWindowResize();
     confetti &&
-    setTimeout(() => {
-      setConfetti(false)
-    }, 10000)
+      setTimeout(() => {
+        setConfetti(false)
+      }, 10000)
   }, [confetti])
 
   /*
@@ -79,9 +79,7 @@ function App() {
   if (reviewsMeta) {
     return (
       <div id="the-main-app-container" className={colorStyle}>
-        {confetti ? <Confetti width={windowSize.width} height={windowSize.height}/> : null }
-        {/* // className={colorStyle}
-        // <button onClick={() => changeColor()}>{colorMode}</button> */}
+        {confetti ? <Confetti width={windowSize.width} height={windowSize.height} /> : null}
         <Navbar
           setColorMode={setColorMode}
           setColorStyle={setColorStyle}
@@ -97,7 +95,6 @@ function App() {
           updateCurrentProduct={updProduct}
           setCurrentProduct={setProduct}
         />
-        {/* <button onClick={() => changeProduct()}>CHANGE PRODUCT</button> */}
         <QuestionsAndAnswers
           currProductId={product.id}
           currProductName={product.name}
