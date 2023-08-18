@@ -6,7 +6,6 @@ const sumHelper = helpers.sumHelper;
 
 const reviewStars = (score) => {
   const stars = [];
-  // "rounding", using 0.65 and 0.35 for more noticeable impact
   const quarterRound = (num) => {
     let quarters;
     if (num > 0.625) {
@@ -36,7 +35,6 @@ const reviewStars = (score) => {
 }
 
 function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
-  // calculate and round avg rating
   console.log({reviewsMeta});
   const calcAvgRating = (ratingsObj) => {
     if (Object.keys(ratingsObj).length > 0) {
@@ -60,8 +58,6 @@ function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
     let total = sumHelper(Object.values(reviewsMeta.recommended));
     let decimal = reviewsMeta.recommended.true / total;
     return (decimal.toFixed(2) * 100).toString() + '%';
-
-
   }
 
   return (

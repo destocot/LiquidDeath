@@ -99,90 +99,136 @@ let helpers = {
     }
     return obj;
   },
-  // sortHelpfulness: (a, b) => {
-  //   const revA = a.helpfulness;
-  //   const revB = b.helpfulness;
-  //   if (revA < revB) {
-  //     return 1;
-  //   }
-  //   if (revA > revB) {
-  //     return -1;
-  //   }
-  //   return 0;
-  // },
-  // sortNewest: (a, b) => {
-  //   const revA = a.date;
-  //   const revB = b.date;
-  //   if (revA < revB) {
-  //     return 1;
-  //   }
-  //   if (revA > revB) {
-  //     return -1;
-  //   }
-  //   return 0;
-  // },
-  // I plan to refactor this to be more concise at some point, but would like to discuss with group if the method does a good job of weighting a rating's recent-ness vs. it's helpfulness
+  scaleValue: (value, oldMin, oldMax, newMin, newMax) => {
+    return ((value - oldMin) / (oldMax - oldMin)) * (newMax - newMin) + newMin;
+  },
+  findMinMaxArray: (arrayOfObjects) => {
+    let tempArray = arrayOfObjects.map((obj) => obj.helpfulness);
+    return {
+      min: Math.min(...tempArray),
+      max: Math.max(...tempArray),
+    }
+  },
   sortRelevance: (arrayOfObjects) => {
-    // console.log('prior to sort: ', arrayOfObjects);
-    var result =  arrayOfObjects.sort(helpers.sortRelevanceCB);
-    // console.log('after sort: ', result);
+    console.log('prior to sort: ', arrayOfObjects);
+    var helpRange = helpers.findMinMaxArray(arrayOfObjects);
+    var result =  arrayOfObjects.sort((a, b) => {
+      let valA;
+      let valB;
+
+      let rateA = a.helpfulness;
+      // console.log('original helpfulness rating: ', rateA);
+      let rateB = b.helpfulness;
+      if (rateA === 0) {
+        rateA = 1;
+      }
+      if (rateB === 0) {
+        rateB = 1;
+      }
+      // rateA = helpers.scaleValue(rateA, 1, helpRange.max, 1, 5);
+      // rateB = helpers.scaleValue(rateB, 1, helpRange.max, 1, 5);
+      // console.log('scaled helpfulness: ', rateA);
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      const currentDate = new Date();
+      // translate to value of 1 - 5
+      // divide by constant to convert from ms to days
+      const daysFromNowA = (currentDate - dateA) / 86400000;
+      const daysFromNowB = (currentDate - dateB) / 86400000;
+
+      // this essentially translates the date into a 1 - 5 numbers
+      if (daysFromNowA <= 90) {
+        valA = 5 * rateA;
+      } else if (daysFromNowA <= 180) {
+        valA = 4 * rateA;
+      } else if (daysFromNowA <= 270) {
+        valA = 3 * rateA;
+      } else if (daysFromNowA <= 360) {
+        valA = 2 * rateA;
+      } else {
+        valA = rateA;
+      }
+
+      if (daysFromNowB <= 90) {
+        valB = 5 * rateB;
+      } else if (daysFromNowB <= 180) {
+        valB = 4 * rateB;
+      } else if (daysFromNowB <= 270) {
+        valB = 3 * rateB;
+      } else if (daysFromNowB <= 360) {
+        valB = 2 * rateB;
+      } else {
+        valB = rateB;
+      }
+
+      // console.log({rateA, daysFromNowA, valA});
+
+      if (valA < valB) {
+        return 1;
+      }
+      if (valA > valB) {
+        return -1;
+      }
+      return 0;
+      });
+    console.log('after sort: ', result);
     return result;
   },
-  sortRelevanceCB: (a, b) => {
-    let valA;
-    let valB;
+  // sortRelevanceCB: (a, b) => {
+  //   let valA;
+  //   let valB;
 
-    let rateA = a.helpfulness / 10;
-    let rateB = b.helpfulness / 10;
-    if (rateA === 0) {
-      rateA = 1;
-    }
-    if (rateB === 0) {
-      rateB = 1;
-    }
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    const currentDate = new Date();
-    // translate to value of 1 - 5
-    // divide by constant to convert from ms to days
-    const daysFromNowA = (currentDate - dateA) / 86400000;
-    const daysFromNowB = (currentDate - dateB) / 86400000;
+  //   let rateA = a.helpfulness / 10;
+  //   let rateB = b.helpfulness / 10;
+  //   if (rateA === 0) {
+  //     rateA = 1;
+  //   }
+  //   if (rateB === 0) {
+  //     rateB = 1;
+  //   }
+  //   const dateA = new Date(a.date);
+  //   const dateB = new Date(b.date);
+  //   const currentDate = new Date();
+  //   // translate to value of 1 - 5
+  //   // divide by constant to convert from ms to days
+  //   const daysFromNowA = (currentDate - dateA) / 86400000;
+  //   const daysFromNowB = (currentDate - dateB) / 86400000;
 
-    // this essentially translates the date into a 1 - 5 numbers
-    if (daysFromNowA <= 90) {
-      valA = 5 * rateA;
-    } else if (daysFromNowA <= 180) {
-      valA = 4 * rateA;
-    } else if (daysFromNowA <= 270) {
-      valA = 3 * rateA;
-    } else if (daysFromNowA <= 360) {
-      valA = 2 * rateA;
-    } else {
-      valA = rateA;
-    }
+  //   // this essentially translates the date into a 1 - 5 numbers
+  //   if (daysFromNowA <= 90) {
+  //     valA = 5 * rateA;
+  //   } else if (daysFromNowA <= 180) {
+  //     valA = 4 * rateA;
+  //   } else if (daysFromNowA <= 270) {
+  //     valA = 3 * rateA;
+  //   } else if (daysFromNowA <= 360) {
+  //     valA = 2 * rateA;
+  //   } else {
+  //     valA = rateA;
+  //   }
 
-    if (daysFromNowB <= 90) {
-      valB = 5 * rateB;
-    } else if (daysFromNowB <= 180) {
-      valB = 4 * rateB;
-    } else if (daysFromNowB <= 270) {
-      valB = 3 * rateB;
-    } else if (daysFromNowB <= 360) {
-      valB = 2 * rateB;
-    } else {
-      valB = rateB;
-    }
+  //   if (daysFromNowB <= 90) {
+  //     valB = 5 * rateB;
+  //   } else if (daysFromNowB <= 180) {
+  //     valB = 4 * rateB;
+  //   } else if (daysFromNowB <= 270) {
+  //     valB = 3 * rateB;
+  //   } else if (daysFromNowB <= 360) {
+  //     valB = 2 * rateB;
+  //   } else {
+  //     valB = rateB;
+  //   }
 
-    // console.log({rateA, daysFromNowA, valA});
+  //   // console.log({rateA, daysFromNowA, valA});
 
-    if (valA < valB) {
-      return 1;
-    }
-    if (valA > valB) {
-      return -1;
-    }
-    return 0;
-  },
+  //   if (valA < valB) {
+  //     return 1;
+  //   }
+  //   if (valA > valB) {
+  //     return -1;
+  //   }
+  //   return 0;
+  // },
   sumHelper: (array) => {
     let sum = 0;
     for (var i = 0; i < array.length; i++) {
