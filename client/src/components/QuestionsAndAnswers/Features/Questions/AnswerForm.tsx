@@ -2,9 +2,19 @@
 import React from 'react';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
-// import './Popup.css';
 
-function AnswerForm2({ currProductName, questionBody, questionId }) {
+function AnswerForm({ currProductName, questionBody, questionId }) {
+
+  // // prevents form from being submitted on enter
+  // const checkKeyDown = (e) => {
+  //   if (e.key === 'Enter') {
+  //     e.preventDefault();
+  //   }
+  //   if (e.key === 'Escape') {
+  //     e.preventDefault();
+  //     close();
+  //   }
+  // };
 
   const imageChecker = (e) => {
     const files = e.target.files;
@@ -96,4 +106,4 @@ function AnswerForm2({ currProductName, questionBody, questionId }) {
   );
 }
 
-export default AnswerForm2
+export default AnswerForm

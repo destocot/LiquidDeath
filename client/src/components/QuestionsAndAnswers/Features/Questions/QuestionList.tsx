@@ -3,7 +3,7 @@ import axios from 'axios';
 import utils from '../../helpers/helpers';
 import Question from './Question';
 
-function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, currProductName, triggor }) {
+function QuestionList({ setDisplayMore, query, currProductId, currProductName, moreQuestions }) {
   const [questionsDatabase, setQuestionsDatabase] = useState([]);
   const [questions, setQuestions] = useState([]);
 
@@ -21,23 +21,13 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
   }
 
   useEffect(() => {
-    // console.log('Q U E S T I O N S  F E T C H E D')
     questionsFetcher();
   }, [currProductId]);
 
   useEffect(() => {
     setQuestions(questionsDatabase);
-    // if (triggor) {
     setDisplayMore(false);
-    // }
-  }, [triggor])
-
-  useEffect(() => {
-    setQuestions(questionsDatabase.slice(0, numOfQuestions))
-    if (numOfQuestions >= questionsDatabase.length) {
-      setDisplayMore(false);
-    }
-  }, [numOfQuestions, query])
+  }, [moreQuestions])
 
   useEffect(() => {
     if (query.length >= 3) {
@@ -55,19 +45,9 @@ function QuestionList({ setDisplayMore, numOfQuestions, query, currProductId, cu
         }
       }));
       setDisplayMore(false);
-    } else
-    // if (query.length < 3)
-    {
+    } else {
       questionsFetcher();
     }
-    // else {
-    //   setQuestions(questionsDatabase)
-    //   // if (numOfQuestions >= questionsDatabase.length) {
-    //   setDisplayMore(false)
-    //   // } else {
-    //   // setDisplayMore(true)
-    //   // }
-    // }
   }, [query])
 
   return (

@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
-// import OldQuestionForm from '../Forms/OldQuestionForm';
-import '../../qa-styles/ExpandAndAdd.styles.css';
-
+import React from 'react';
 import QuestionForm from './QuestionForm';
 
-function ExpandAndAdd({ setNumOfQuestions, setTriggor, displayMore, currProductName, currProductId }) {
-  // const [qForm, setQForm] = useState(false);
-
+function ExpandAndAdd({ setMoreQuestions, displayMore, currProductName, currProductId }) {
   const expandOrCollapse = () => {
-    // setNumOfQuestions((state) => state + 2);
-    setTriggor(true);
+    setMoreQuestions(true);
   };
 
   const expandOrCollapseButtons = () => {
@@ -23,18 +17,6 @@ function ExpandAndAdd({ setNumOfQuestions, setTriggor, displayMore, currProductN
       {
         expandOrCollapseButtons()
       }
-      {/* <button id="add-questions-btn" type="button" onClick={() => {
-        document.body.style.overflow = 'hidden';
-        setQForm(true)
-      }}>
-        {'ADD A QUESTION '}
-        <i className="fa-solid fa-plus" />
-      </button> */}
-      {/* {
-        qForm && <OldQuestionForm setQForm={setQForm}
-          currProductName={currProductName}
-          currProductId={currProductId} />
-      } */}
       <QuestionForm currProductName={currProductName} currProductId={currProductId} />
     </div>
   );

@@ -121,3 +121,76 @@ h6 {
   right: 5vw;
   margin: auto;
 }
+
+/* Search Component */
+.search-container {
+  height: 5vh;
+  margin-bottom: 0.5vh;
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Expand and Add Component */
+.ExpandAndAdd-container {
+  margin-top: 0.5vh;
+  height: 5vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 10px;
+}
+
+#add-questions-btn, #expand-questions-btn {
+  padding: 5px;
+  border: 1px solid transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+#add-questions-btn {
+  margin-left: auto;
+}
+
+/* Pop Up Modal */
+.popup-modal-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  background-image: url("https://www.transparenttextures.com/patterns/white-tiles.png");
+  width: 65vw;
+  height: 65vh;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#my-images-div {
+  display: flex;
+  height: 110px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#my-images-div img {
+  aspect-ratio: 3/2;
+  max-height: 75px;
+  object-fit: cover;
+  border: 1px solid transparent;
+}
+
+#my-images-div img:hover {
+  border: 1px solid black;
+}

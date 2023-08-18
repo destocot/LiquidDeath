@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import requests from '../../helpers/requests';
 import AnswerPhoto from './AnswerPhoto';
-import utils from '../../helpers/helpers';
 
 function Answer({ answer, setTheNews, query }) {
   const { body, answerer_name, date, photos } = answer;
@@ -31,20 +30,6 @@ function Answer({ answer, setTheNews, query }) {
     return <span className='text-[#007185]'>{answerer_name}</span>
   }
 
-  // useEffect(() => {
-  //   if (body.toLowerCase().includes(query.toLowerCase()) && query.length > 2) {
-  //     const aIDX = body.toLowerCase().indexOf(query.toLowerCase());
-  //     answer.body2 = utils.highlighter(body, aIDX, query.length);
-  //   }
-  // }, [query])
-
-  // if (query.length > 2) {
-  //   console.log(body, query.length, query);
-  // }
-  // if (!body.toLowerCase().includes(query.toLowerCase()) && query.length >= 3) {
-  //   return null;
-  // }
-
   useEffect(() => {
     if (query.length === 3) {
       setTimeout(() => {
@@ -61,7 +46,6 @@ function Answer({ answer, setTheNews, query }) {
         </h3>
         <h3 className="text-[1.17em]">
           {answer.body2 ? answer.body2 : body}
-          {/* {body} */}
         </h3>
       </div>
       <div className="answer-photos-container flex gap-x-[0.313rem]">

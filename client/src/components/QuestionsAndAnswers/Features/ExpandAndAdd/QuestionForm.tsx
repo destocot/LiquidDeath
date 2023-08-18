@@ -1,11 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import axios from 'axios';
-
-//POPUP TEST
 import Popup from 'reactjs-popup';
-import './Popup.css';
-// import 'reactjs-popup/dist/index.css';
 
 function QuestionForm({ currProductName, currProductId }) {
   const submitHandler = (e) => {
@@ -16,11 +12,6 @@ function QuestionForm({ currProductName, currProductId }) {
     const product_id = currProductId;
     sendQuestion({ body, name, email, product_id });
   }
-
-  // onClick={() => {
-  //   document.body.style.overflow = 'hidden';
-  //   setQForm(true)
-  // }
 
   const sendQuestion = (data) => {
     axios.post('/qa/questions', data)
