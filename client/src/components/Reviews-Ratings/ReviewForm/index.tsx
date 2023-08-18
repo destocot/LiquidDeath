@@ -16,24 +16,94 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(true);
   const [charObj, setCharObj] = useState({});
+  const [photoUrlArray, setPhotoUrlArray] = useState([]);
 
-  // used to update the boolean recommend
   const updateRecommendation = (value) => {
     setRecommendation(value);
   };
 
-  // update characteristics
   const updateCharacteristics = (key, value) => {
     const newCharacteristics = { ...charObj, [key]: value };
-    ('updated: ', newCharacteristics);
     setCharObj(newCharacteristics);
   };
 
-  useEffect(() => {
-    console.log('charObj: ', charObj);
-  },[charObj]);
+  // Form Controls
+  const checkKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+    }
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      close();
+    }
+  };
 
-  // this renders 5 stars that allow user to choose, upon choosing, renders gold stars up to and including what user has selected, fills rest in with grey
+  const close = () => {
+    setAForm(false);
+  };
+
+  const imageChecker = (e) => {
+    ('click');
+    const files = e.target.files;
+    let tempFileArray = [];
+    // console.log(files[0].name); // filename.jpeg
+    console.log(files);
+    let imageDiv = document.getElementById('rev-images-div');
+    imageDiv.innerHTML = '';
+
+    if (files.length > 5) {
+      alert('You can only upload up to 5 photos!');
+      e.target.value = '';
+    } else {
+      for (var i = 0; i < files.length; i++) {
+        var reader = new FileReader();
+        tempFileArray.push('client/dist/Images/' + files[i].name);
+        reader.addEventListener("load", (event) => {
+          const picFile = event.target;
+          const div = document.createElement('div');
+          div.innerHTML = `<img className="thumbnail" src="${picFile.result}" alt="${files[i].name}" />`;
+          imageDiv?.appendChild(div);
+        })
+        reader.readAsDataURL(files[i])
+        console.log('tempArray: ', tempFileArray);
+        setPhotoUrlArray(tempFileArray);
+      }
+    }
+  };
+
+  const sendReview = (data) => {
+    axios.post('/reviews/newreview', data)
+      .catch(() => ('error posting question'));
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    if (rating === 0) {
+      alert('Rating must be given.');
+      return;
+    }
+    if (!charChecker(charObj, reviewsMeta.characteristics)) {
+      alert('Characteristics must be selected.');
+      return;
+    }
+
+    const tempPostObj = {
+      "product_id": currProductId,
+      "rating": rating,
+      "summary": e.target.summary.value,
+      "body": e.target.body.value,
+      "recommend": recommendation,
+      "name": e.target.nickname.value,
+      "email": e.target.email.value,
+      "photos": photoUrlArray,
+      "characteristics": charObj,
+    }
+
+    sendReview(tempPostObj);
+    close();
+  };
+
   const renderStars = () => {
     return [1, 2, 3, 4, 5].map((index, value) => {
       if (index <= rating) {
@@ -48,7 +118,6 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     })
   };
 
-  // generates radio buttons for users to rank characteristics
   const renderCharacteristics = () => {
     return Object.keys(reviewsMeta.characteristics).map((charName) => {
       const currCharId = reviewsMeta.characteristics[charName].id;
@@ -76,79 +145,6 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     })
   };
 
-  // TODO - update this to generate popup window where user can add photos
-  const imageChecker = (e) => {
-    ('click');
-    const files = e.target.files;
-    let imageDiv = document.getElementById('rev-images-div');
-    let imageInput = document.getElementById('reviewPhotos');
-    imageDiv.innerHTML = '';
-    if (files.length > 5) {
-      alert('You can only upload up to 5 photos!');
-      imageInput.value = '';
-    } else {
-      for (var i = 0; i < files.length; i++) {
-        var reader = new FileReader();
-        reader.addEventListener("load", (event) => {
-          const picFile = event.target;
-          const div = document.createElement('div');
-          div.innerHTML = `<img className="thumbnail" src="${picFile.result}" alt="${picFile.name}" />`;
-          imageDiv?.appendChild(div);
-        })
-        reader.readAsDataURL(files[i])
-      }
-    }
-  };
-
-  // Part of Khurram's code
-  const checkKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-    }
-    if (e.key === 'Escape') {
-      e.preventDefault();
-      close();
-    }
-  };
-
-  const close = () => {
-    setAForm(false);
-  };
-
-  const sendReview = (data) => {
-    axios.post('/reviews/newreview', data)
-      .catch(() => ('error posting question'));
-  }
-
-  // TODO - update this to store all values in a massive state
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    if (rating === 0) {
-      alert('Rating must be given.');
-      return;
-    }
-
-    if (!charChecker(charObj, reviewsMeta.characteristics)) {
-      alert('Characteristics must be selected.');
-      return;
-    }
-
-    const tempPostObj = {
-      "product_id": currProductId,
-      "rating": rating,
-      "summary": e.target.summary.value,
-      "body": e.target.body.value,
-      "recommend": recommendation,
-      "name": e.target.nickname.value,
-      "email": e.target.email.value,
-      "photos": [],
-      "characteristics": charObj,
-    }
-
-    sendReview(tempPostObj);
-    close();
-  };
 
   return (
     <div className="reviewFormContainer">
@@ -182,16 +178,16 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
           <label className="reviewFormSectionHeader" >Review Summary <br />
             <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></label>
           <label className="reviewFormSectionHeader" >Review Body <br />
-            <textarea maxLength="1000" minLength="50" rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br /></label>
+            <textarea maxLength="1000" /*minLength="50"*/ rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br /></label>
           <label className="reviewFormSectionHeader" >Nickname<br />
             <input type="text" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
             <div className="reviewFormWarning">For privacy reasons, do not use your full name or email address</div></label>
           <label className="reviewFormSectionHeader">E-mail<br />
             <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
             <div className="reviewFormWarning">For authentication reasons, you will not be emailed</div></label>
-            <div id="rev-images-div"></div>
+            <div id="rev-images-div" className="flex"></div>
           <div className="reviewFormbuttons">
-            <input id="reviewPhotos" type="file" name="photos" accept="image/png, image/jpeg" onChange={(e) => imageChecker()} multiple />
+            <input id="reviewPhotos" type="file" name="photos" accept="image/png, image/jpeg" onChange={(e) => imageChecker(e)} multiple />
             <input id="submitButton" type="submit" value="Submit"/>
           </div>
         </form>

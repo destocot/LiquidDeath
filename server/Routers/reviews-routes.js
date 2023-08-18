@@ -11,7 +11,7 @@ axios.defaults.headers.common["Authorization"] = process.env.AUTH;
 // this can probably be changed to be any order - i couldn't figure out how tho
 // to get all the reviews for a product - specify count to absurd number
 reviewsRouter.get('/:product_id/:sort/:count/:page', (req, res) => {
-  console.log(req.params);
+  // console.log(req.params);
   axios.get(
     path.join(process.env.API_URI, 'reviews'),
     {
@@ -48,7 +48,7 @@ reviewsRouter.post('/newreview', (req, res) => {
     path.join(process.env.API_URI, 'reviews'),
     req.body,
   )
-  .then((result) => console.log(result))
+  .then((result) => console.log('successfully posted review.'))
   .catch((err) => res.status(400).send(err));
 })
 
@@ -56,7 +56,7 @@ reviewsRouter.put('/:review_id/helpful', (req, res) => {
   axios.put(
     path.join(process.env.API_URI, `reviews/${req.params.review_id}/helpful`),
   )
-  .then((result) => console.log(result))
+  .then((result) => console.log('successfully updated helpful'))
   .catch((err) => res.status(400).send(err));
 })
 
@@ -64,7 +64,7 @@ reviewsRouter.put('/:review_id/report', (req, res) => {
   axios.put(
     path.join(process.env.API_URI, `reviews/${req.params.review_id}/report`),
   )
-  .then((result) => console.log(result))
+  .then((result) => console.log('successfully reported'))
   .catch((err) => res.status(400).send(err));
 })
 
