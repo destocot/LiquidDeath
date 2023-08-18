@@ -6,6 +6,7 @@ import ReviewsRatings from "./components/Reviews-Ratings";
 import { List } from "./components/Related/List";
 import initial from "./PlaceHolderData.js";
 import Navbar from "./components/Navbar/Navbar";
+import Confetti from 'react-confetti';
 
 function App() {
   /*
@@ -14,6 +15,13 @@ function App() {
   // states passed to multiple components
   const [product, setProduct] = useState(initial.product);
   const [reviewsMeta, setReviewsMeta] = useState(initial.reviewsMeta);
+  const [colorMode, setColorMode] = useState('Dark Mode')
+  const [colorStyle, setColorStyle] = useState("bg-[#f0f4f8] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[#333333]")
+  const [confetti, setConfetti] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
 
   const updProduct = async (id) => {
     const newProduct = await axios.get(`/products/${id}`);
@@ -37,9 +45,25 @@ function App() {
       .catch((err) => console.error(err));
   }, [product]);
 
+  // does what the name implies
+  const handleWindowResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    })
+  };
+
+  // set confetti to only run for one second
+  useEffect(() => {
+    window.onresize = () => handleWindowResize();
+    confetti &&
+    setTimeout(() => {
+      setConfetti(false)
+    }, 10000)
+  }, [confetti])
+
   /*
   TODOS:
-  - onCardClick fn that updates product
   - onSearchProduct fn that updates product
   */
 
@@ -51,29 +75,11 @@ function App() {
     });
   }, [reviewsMeta]);
 
-  // const changeProduct = () => {
-  //   if (product.id === 37324) {
-  //     updProduct(37325)
-  //       .then((result) => {
-  //         setProduct(result.data);
-  //       })
-  //       .catch((err) => console.error(err));
-  //   } else {
-  //     updProduct(37324)
-  //       .then((result) => {
-  //         setProduct(result.data);
-  //       })
-  //       .catch((err) => console.error(err));
-  //   }
-  // };
-
-  const [colorMode, setColorMode] = useState('Dark Mode')
-  const [colorStyle, setColorStyle] = useState("bg-[#f0f4f8] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[#333333]")
-
   // changed order of components
   if (reviewsMeta) {
     return (
       <div id="the-main-app-container" className={colorStyle}>
+        {confetti ? <Confetti width={windowSize.width} height={windowSize.height}/> : null }
         {/* // className={colorStyle}
         // <button onClick={() => changeColor()}>{colorMode}</button> */}
         <Navbar
@@ -81,7 +87,11 @@ function App() {
           setColorStyle={setColorStyle}
           colorMode={colorMode}
         />
-        <Overview product={product} reviewsMeta={reviewsMeta} />
+        <Overview
+          product={product}
+          reviewsMeta={reviewsMeta}
+          setConfetti={setConfetti}
+        />
         <List
           currentProduct={product}
           updateCurrentProduct={updProduct}

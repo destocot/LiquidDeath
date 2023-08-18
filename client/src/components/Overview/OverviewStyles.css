@@ -18,8 +18,7 @@ body {
   /* background-color: #f1f1f1; */
   /* khurram removed this */
   position:relative;
-  height: 70vh;
-  min-height: 700px;
+  min-height: 450px;
 }
 
 .image-gallery-container {
@@ -153,7 +152,7 @@ img.default-image {
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  height: 18vh;
+  min-height: 18vh;
   overflow: hidden;
 }
 
@@ -202,12 +201,15 @@ img.default-image {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  max-height: 25vh;
+  width:110%;
+  overflow-y: auto;
 }
 
 .style-row {
   position: relative;
   display: flex;
-  margin-bottom: 2%;
+  margin-top: 0.3vh;
 }
 
 .break {
@@ -239,7 +241,7 @@ img.style-thumbnail {
 
 .fa-stack {
   position: absolute;
-  top:-0.5vh;
+  top:0;
   right: -2.6vw;
   width: 100%;
   transition: 0.3s ease;
@@ -273,6 +275,14 @@ img.style-thumbnail:hover {
   display: flex;
   flex-wrap: wrap;
   left: 2vw;
+  margin-top: 1vh
+}
+
+.form-errors {
+  height: 2em;
+  width: 100%;
+  display: block;
+  color: red;
 }
 
 .select-cart-form {

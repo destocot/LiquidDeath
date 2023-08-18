@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CartForm from './CartForm';
+import helpers from '../../../../helpPlease';
+import axios from 'axios';
 
-function AddCart({currentStyle}) {
+function AddCart({currentStyle, setConfetti}) {
+  const [needed, setNeeded] = useState('');
   const formSubmit = (e) => {
     e.preventDefault();
-    console.log('form submitted');
+    let cartBody = helpers.formParser(e.target.elements);
+    if (cartBody.sku_id === 'Select Size' ) {
+      setNeeded('size');
+      return;
+    } else if (cartBody.count === 'Select Quantity') {
+      setNeeded('qty');
+      return;
+    }
+    axios.post('/cart', cartBody)
+      .then(() => setConfetti(true))
+      .then(() => alert('Added Items to Cart!'))
+      .catch((err) => console.error(err));
   }
   return (
     <div>
-      <CartForm currentStyle={currentStyle} handleSubmit={formSubmit} />
+      <CartForm currentStyle={currentStyle} handleSubmit={formSubmit} needed={needed} setNeeded={setNeeded} />
     </div>
   );
 }
