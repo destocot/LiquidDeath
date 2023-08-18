@@ -12,21 +12,21 @@ function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
     if (colorMode === 'Dark Mode') {
       setColorMode('Light Mode')
       setColorStyle("bg-[#121212] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[gold]");
-      setHeaderColors(["#121212", "gold"]);
+      setHeaderColors("gold");
     } else {
       setColorMode('Dark Mode')
       setColorStyle("bg-[rgb(250,249,248)] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[#333333]");
-      setHeaderColors(["rgb(250,249,248)", "black"]);
+      setHeaderColors("black");
     }
   }
 
   // English, Spanish, Japanese, French, Korean, Urdu, Chinese, Arabic, Italian
   const choices = ['Liquid Death', 'muerte liquida', '液体の死', 'Mort liquide', '액체 죽음', 'مائع موت', '液体死亡', 'الموت السائل', 'Morte liquida'];
   const title = choices[Math.floor(Math.random() * choices.length)];
-  const [headerColors, setHeaderColors] = useState(["rgb(250,249,248)", "black"]);
+  const [headerColors, setHeaderColors] = useState("black");
 
   return (
-    <div className={`grid grid-cols-[repeat(6,1fr)] grid-rows-[repeat(2,1fr)] gap-x-0 gap-y-0 bg-[${headerColors[0]}] px-[28px] py-[12px] text-[${headerColors[1]}] h-fit sticky top-0 z-[2] opacity-90`}>
+    <div className={` border-b grid grid-cols-[repeat(6,1fr)] grid-rows-[repeat(2,1fr)] gap-x-0 gap-y-0  px-[28px] py-[12px] text-[${headerColors}] h-fit  ]`}>
       <div className="row-start-1 row-end-3 col-start-1 col-end-3">
         <h1 className="text-[36px] self-end py-1 px-2" >{title}<i className="fa-solid fa-skull hover:animate-[fa-spin_2s_infinite_linear] ml-[10px] line-through" /></h1>
       </div>
