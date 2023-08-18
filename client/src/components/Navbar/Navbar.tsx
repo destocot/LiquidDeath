@@ -32,7 +32,7 @@ function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
   const [headerColors, setHeaderColors] = useState("black");
 
   return (
-    <div className={` border-b grid grid-cols-[repeat(6,1fr)] grid-rows-[repeat(2,1fr)] gap-x-0 gap-y-0  px-[28px] py-[12px] text-[${headerColors}] h-fit  ]`}>
+    <div id="nav-container" className={` border-b grid grid-cols-[repeat(6,1fr)] grid-rows-[repeat(2,1fr)] gap-x-0 gap-y-0  px-[28px] py-[12px] text-[${headerColors}] h-fit  ]`}>
       <div className="row-start-1 row-end-3 col-start-1 col-end-3">
         <h1 className="text-[36px] self-end py-1 px-2" >{title}<i className="fa-solid fa-skull hover:animate-[fa-spin_2s_infinite_linear] ml-[10px] line-through" /></h1>
       </div>

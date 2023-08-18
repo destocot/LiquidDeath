@@ -22,7 +22,7 @@ app.use('/cart', cartRouter);
 app.post('/customerservice', (req, res) => {
   const systemMessage = {
     role: "system",
-    content: "Explain like an ecommerce customer service bot. Respond in only 2-3 sentences."
+    content: "Explain like an ecommerce customer service bot. Respond in only 1-2 sentences."
   }
   const messages = [systemMessage, ...req.body];
 
