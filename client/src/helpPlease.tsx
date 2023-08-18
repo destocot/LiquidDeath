@@ -110,7 +110,7 @@ let helpers = {
     }
   },
   sortRelevance: (arrayOfObjects) => {
-    console.log('prior to sort: ', arrayOfObjects);
+    // console.log('prior to sort: ', arrayOfObjects);
     var helpRange = helpers.findMinMaxArray(arrayOfObjects);
     var result =  arrayOfObjects.sort((a, b) => {
       let valA;
@@ -171,7 +171,7 @@ let helpers = {
       }
       return 0;
       });
-    console.log('after sort: ', result);
+    // console.log('after sort: ', result);
     return result;
   },
   // sortRelevanceCB: (a, b) => {

@@ -35,7 +35,7 @@ const reviewStars = (score) => {
 }
 
 function RatingBreakdown({filters, updateFilters, reviewsMeta}) {
-  console.log({reviewsMeta});
+  // console.log({reviewsMeta});
   const calcAvgRating = (ratingsObj) => {
     if (Object.keys(ratingsObj).length > 0) {
       let sumOfRatings = 0;
