@@ -64,25 +64,25 @@ let helpers = {
       5: 'Runs long'
     },
   },
-  defaultCharacteristics: {
-    Size: null,
-    Width: null,
-    Comfort: null,
-    Quality: null,
-    Length: null,
-    Fit: null
-  },
-  defaultReviewsPostBody: {
-    product_id: null,
-    rating: null,
-    summary: null,
-    body: null,
-    recommend: null,
-    name: null,
-    email: null,
-    photos: [],
-    characteristics: {},
-  },
+  // defaultCharacteristics: {
+  //   Size: null,
+  //   Width: null,
+  //   Comfort: null,
+  //   Quality: null,
+  //   Length: null,
+  //   Fit: null
+  // },
+  // defaultReviewsPostBody: {
+  //   product_id: null,
+  //   rating: null,
+  //   summary: null,
+  //   body: null,
+  //   recommend: null,
+  //   name: null,
+  //   email: null,
+  //   photos: [],
+  //   characteristics: {},
+  // },
   refObj: {
     Size: { low: 'A size too small', high: 'A size too wide' },
     Width: { low: 'Too narrow', high: 'Too wide' },

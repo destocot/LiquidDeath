@@ -2,16 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import helpers from '../../../helpPlease';
 
-// destructuring not working after moving to helpPlease.tsx
 const characteristicLabels = helpers.characteristicLabels;
 const starMeaning = helpers.starMeaning;
-// const sumHelper = helpers.sumHelper;
 const charChecker = helpers.charChecker;
-// const defaultCharacteristics = helpers.defaultCharacteristics;
-// const defaultReviewPostBody = helpers.defaultReviewPostBody;
 const removeNullValues = helpers.removeNullValues;
 
-// main function
 function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }) {
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(true);
@@ -46,7 +41,6 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     ('click');
     const files = e.target.files;
     let tempFileArray = [];
-    // console.log(files[0].name); // filename.jpeg
     console.log(files);
     let imageDiv = document.getElementById('rev-images-div');
     imageDiv.innerHTML = '';
@@ -144,7 +138,6 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
       )
     })
   };
-
 
   return (
     <div className="reviewFormContainer">
