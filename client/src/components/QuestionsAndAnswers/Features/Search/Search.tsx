@@ -15,10 +15,10 @@ function Search({ setQuery }: SearchProps) {
 
   return (
     <div className="search-container">
-      <input className="border-none flex-grow focus:outline-none focus:border-b-[black] focus:border-b focus:border-solid"
+      <input className="border-none flex-grow focus:outline-none focus:border-b-[black] focus:border-b focus:border-solid text-[black]"
         onChange={(e) => setSearch(e)}
         type="text" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS?" />
-      <i className="fa-solid fa-magnifying-glass p-[0.313rem] text-xl " />
+      <i className="fa-solid fa-magnifying-glass p-[0.313rem] text-xl " style={{ color: 'black' }} />
     </div>
   );
 }

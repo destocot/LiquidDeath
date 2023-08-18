@@ -194,3 +194,94 @@ h6 {
 #my-images-div img:hover {
   border: 1px solid black;
 }
+
+/* Styles for max-width: 1025px */
+@media screen and (max-width: 1025px) {
+  .qa-main-container {
+    width: 80vw;
+    font-size: small;
+  }
+
+  .questions-container {
+    max-height: 60vh;
+    padding: 0 10px;
+  }
+
+  .answers-container {
+    max-height: 30vh; /* Adjusted height */
+  }
+
+  .full-answer-photo img {
+    max-height: 80vh; /* Adjusted height */
+    max-width: 80vw; /* Adjusted width */
+  }
+
+  .search-container {
+    height: 7vh; /* Adjusted height */
+  }
+
+  .ExpandAndAdd-container {
+    margin-top: 0.5vh;
+  }
+
+  .modal {
+    font-size: small !important;
+    width: 80vw;
+    height: 80vh;
+  }
+
+  .modal form {
+    height: auto;
+  }
+
+  #my-images-div {
+    height: 90px; /* Adjusted height */
+  }
+
+  #my-images-div img {
+    max-height: 60px; /* Adjusted max height */
+  }
+}
+
+
+@media screen and (max-width: 390px) {
+  .qa-main-container {
+    width: 90vw;
+    font-size: small;
+  }
+
+  .qa-main-container h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .questions-container {
+    max-height: 60vh;
+    padding: 0 5px;
+  }
+
+  .answers-container {
+    max-height: 25vh;
+  }
+
+  .full-answer-photo img {
+    max-height: 70vh;
+    max-width: 70vw;
+  }
+
+  .search-container {
+    height: 8vh;
+  }
+
+  .ExpandAndAdd-container {
+    margin-top: 1vh;
+  }
+
+  #my-images-div {
+    height: 70px;
+  }
+
+  #my-images-div img {
+    aspect-ratio: unset;
+    max-height: 50px;
+  }
+}
