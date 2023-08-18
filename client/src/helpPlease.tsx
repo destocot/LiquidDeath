@@ -313,6 +313,7 @@ let helpers = {
   },
   // creates matrix with style rows
   styleMatrix: (styles, currentStyle, setCurrentStyle) => {
+    console.log('selected Style: ', currentStyle);
     // creates overlayed checkmark
     let selected = () => (
       <div className="fa-stack">

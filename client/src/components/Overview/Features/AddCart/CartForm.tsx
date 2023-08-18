@@ -10,6 +10,7 @@ function CartForm({currentStyle, handleSubmit, needed, setNeeded}) {
   useEffect(() => {
     setSize('');
     setQuantity('');
+    setNeeded('');
     document.getElementById('cart-form').reset();
   }, [currentStyle]);
   // returns array of sizes
