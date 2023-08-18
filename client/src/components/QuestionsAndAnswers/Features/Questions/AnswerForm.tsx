@@ -4,18 +4,6 @@ import axios from 'axios';
 import Popup from 'reactjs-popup';
 
 function AnswerForm({ currProductName, questionBody, questionId }) {
-
-  // // prevents form from being submitted on enter
-  // const checkKeyDown = (e) => {
-  //   if (e.key === 'Enter') {
-  //     e.preventDefault();
-  //   }
-  //   if (e.key === 'Escape') {
-  //     e.preventDefault();
-  //     close();
-  //   }
-  // };
-
   const imageChecker = (e) => {
     const files = e.target.files;
     let imageDiv = document.getElementById('my-images-div');

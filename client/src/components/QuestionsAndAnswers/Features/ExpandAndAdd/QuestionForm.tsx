@@ -35,7 +35,8 @@ function QuestionForm({ currProductName, currProductId }) {
 
             <form
               className="flex flex-col justify-around h-[40vh] text-base p-2"
-              onSubmit={(e) => { submitHandler(e); close(); }}>
+              onSubmit={(e) => { submitHandler(e); close(); }}
+              onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault() }}>
               <label>Your Question*<br />
                 <textarea
                   className="w-full border-2 p-1"

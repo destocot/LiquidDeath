@@ -1,12 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useState, useEffect } from 'react';
 import requests from '../../helpers/requests';
 import AnswerPhoto from './AnswerPhoto';
 
-function Answer({ answer, setTheNews, query }) {
+interface AnswerProps {
+  answer: {
+    body: string;
+    body2?: string;
+    answerer_name: string;
+    date: string;
+    photos: string[];
+    helpfulness: number;
+    answer_id: number;
+  };
+  setTheNews: Dispatch<SetStateAction<boolean>>;
+  query: string;
+}
+
+function Answer({ answer, setTheNews, query }: AnswerProps) {
   const { body, answerer_name, date, photos } = answer;
   const newDate = new Date(date);
   const formatDate = `${newDate.toLocaleString('default', { month: 'long' })} ${newDate.getDate() + 1}, ${newDate.getFullYear()}`;
-  const [helpfulness, setHelpfulness] = useState([answer.helpfulness, false]);
+  const [helpfulness, setHelpfulness] = useState<[number, boolean]>([answer.helpfulness, false]);
   const [report, setReport] = useState(['Report', false]);
 
   const addHelpfulness = () => {
@@ -50,7 +64,7 @@ function Answer({ answer, setTheNews, query }) {
       </div>
       <div className="answer-photos-container flex gap-x-[0.313rem]">
         {
-          photos.map((photo) => (
+          photos.map((photo: any) => (
             <AnswerPhoto photo={photo} key={photo.id} />
           ))
         }

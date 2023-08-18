@@ -5,12 +5,23 @@ import utils from '../../helpers/helpers';
 import requests from '../../helpers/requests';
 import AnswerForm from './AnswerForm';
 
-function Question({ question, currProductName, query }) {
+interface QuestionProps {
+  question: {
+    question_helpfulness: number;
+    question_id: number
+    question_body: string;
+    question_body2: JSX.Element;
+  };
+  currProductName: string;
+  query: string
+}
+
+function Question({ question, currProductName, query }: QuestionProps) {
   const [answersDatabase, setAnswersDatabase] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [more, setMore] = useState(true);
   const { question_helpfulness } = question;
-  const [helpfulness, setHelpfulness] = useState([question_helpfulness, false]);
+  const [helpfulness, setHelpfulness] = useState<[number, boolean]>([question_helpfulness, false]);
   const [report, setReport] = useState(['Report', false]);
 
   const ansFetcher = async () => {
@@ -39,10 +50,15 @@ function Question({ question, currProductName, query }) {
     }
   };
 
-  const [theNews, setTheNews] = useState(false);
+  interface FilteredAnsProps {
+    body: string;
+    body2: JSX.Element;
+  }
+
+  const [theNews, setTheNews] = useState<boolean>(false);
   useEffect(() => {
     if (query.length >= 3) {
-      setAnswers(answersDatabase.reduce((filtered, ans) => {
+      setAnswers(answersDatabase.reduce((filtered: any, ans: FilteredAnsProps) => {
         if (ans.body.toLowerCase().includes(query.toLowerCase())) {
           const aIDX = ans.body.toLowerCase().indexOf(query.toLowerCase());
           ans.body2 = utils.highlighter(ans.body, aIDX, query.length);

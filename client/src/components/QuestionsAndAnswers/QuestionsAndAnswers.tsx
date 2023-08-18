@@ -4,7 +4,12 @@ import Search from './Features/Search/Search';
 import ExpandAndAdd from './Features/ExpandAndAdd/ExpandAndAdd';
 import QuestionList from './Features/Questions/QuestionList';
 
-function QuestionsAndAnswers({ currProductId, currProductName }) {
+interface QuestionsAndAnsProps {
+  currProductId: number;
+  currProductName: string;
+}
+
+function QuestionsAndAnswers({ currProductId, currProductName }: QuestionsAndAnsProps) {
   const [displayMore, setDisplayMore] = useState(false);
   const [query, setQuery] = useState('');
   const [moreQuestions, setMoreQuestions] = useState(false);

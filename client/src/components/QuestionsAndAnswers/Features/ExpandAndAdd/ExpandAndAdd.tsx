@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import QuestionForm from './QuestionForm';
 
-function ExpandAndAdd({ setMoreQuestions, displayMore, currProductName, currProductId }) {
+interface ExpandAndAddProps {
+  setMoreQuestions: Dispatch<SetStateAction<boolean>>;
+  displayMore: boolean;
+  currProductName: string;
+  currProductId: number;
+}
+
+function ExpandAndAdd({ setMoreQuestions, displayMore, currProductName, currProductId }: ExpandAndAddProps) {
   const expandOrCollapse = () => {
     setMoreQuestions(true);
   };

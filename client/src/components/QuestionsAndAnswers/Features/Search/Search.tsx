@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
-function Search({ setQuery }) {
+interface SearchProps {
+  setQuery: Dispatch<SetStateAction<string>>;
+}
+
+function Search({ setQuery }: SearchProps) {
   const setSearch = (event: any) => {
     if (event.target.value.length > 2) {
       setQuery(event.target.value)
