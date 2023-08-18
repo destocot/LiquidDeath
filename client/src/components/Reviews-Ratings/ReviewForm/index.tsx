@@ -12,6 +12,8 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   const [recommendation, setRecommendation] = useState(true);
   const [charObj, setCharObj] = useState({});
   const [photoUrlArray, setPhotoUrlArray] = useState([]);
+  const [charCount, setCharCount] = useState(50);
+  const [charCountCheck, setCharCountCheck] = useState(false);
 
   const updateRecommendation = (value) => {
     setRecommendation(value);
@@ -21,6 +23,15 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     const newCharacteristics = { ...charObj, [key]: value };
     setCharObj(newCharacteristics);
   };
+
+  const countCharLeft = (e) => {
+    setCharCount(50 - e.target.value.length);
+    if (e.target.value.length >= 50) {
+      setCharCountCheck(true);
+    } else {
+      setCharCountCheck(false);
+    }
+  }
 
   // Form Controls
   const checkKeyDown = (e) => {
@@ -176,7 +187,9 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
           <label className="reviewFormSectionHeader" >Review Summary <br />
             <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></label>
           <label className="reviewFormSectionHeader" >Review Body <br />
-            <textarea maxLength="1000" /*minLength="50"*/ rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br /></label>
+            <textarea maxLength="1000" /*minLength="50"*/ onChange={countCharLeft} rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br />
+            {(!charCountCheck) ? <div><span>Minimum required characters left: </span><span>{charCount}</span></div> : <div>Minimum reached</div>}
+          </label><br />
           <label className="reviewFormSectionHeader" >Nickname<br />
             <input type="text" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
             <div className="reviewFormWarning">For privacy reasons, do not use your full name or email address</div></label>
