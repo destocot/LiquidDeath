@@ -179,6 +179,14 @@ body {
   border-top-color: white !important;
 }
 
+.dark .review-tile-user {
+  color: #ff6700;
+}
+
+.dark .fa-check {
+  color: #ff6700;
+}
+
 /* chat animation */
 .cs-main-container {
   animation: fadeIn 0.25s ease-in; /* Animation duration and easing */

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import helpers from '../../../helpPlease';
 
-function BreakdownComp({filters, updateFilters, reviewsMeta}) {
+function BreakdownComp({ filters, updateFilters, reviewsMeta }) {
   // data comes from reviewsMeta
   const sumHelper = helpers.sumHelper;
 
@@ -21,7 +21,7 @@ function BreakdownComp({filters, updateFilters, reviewsMeta}) {
 
   // this function generates the average breakdown bars
   const generateObj = () => {
-    const result = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0};
+    const result = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
     // update result object w/ actual values
     for (var key in reviewsMeta.ratings) {
       result[key] = Number(reviewsMeta.ratings[key]);
@@ -35,7 +35,7 @@ function BreakdownComp({filters, updateFilters, reviewsMeta}) {
       <div key={key} className="breakdownRating" onClick={() => filterByRatings(key)}>
         <div id="breakdownLabel" >{key} stars</div>
         <progress id="breakdownBar" max="1" value={result[key] / sum}>a bar</progress>
-        <div className="ml-1">{result[key]}</div>
+        <div className="mx-auto px-[1px]">{result[key]}</div>
       </div>
     ));
   };

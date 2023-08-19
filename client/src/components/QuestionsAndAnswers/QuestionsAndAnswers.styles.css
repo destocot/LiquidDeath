@@ -186,15 +186,6 @@ h6 {
 
 .qa-main-container ::-webkit-scrollbar-thumb {
   background-color: rgba(158, 158, 158, 0.5);
-}
-
-.qa-main-container ::-webkit-scrollbar-thumb {
-  background-color: rgba(158, 158, 158, 0.5);
-  border-radius: 20px;
-}
-
-.qa-main-container ::-webkit-scrollbar-thumb {
-  background-color: rgba(158, 158, 158, 0.5);
   border-radius: 20px;
   border: 2px solid transparent;
   background-clip: content-box;
