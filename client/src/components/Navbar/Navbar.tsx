@@ -109,10 +109,17 @@ function Chat({ setChat }) {
   }
 
   return (
-    <div id="main-chat-container" className="fixed bottom-0 right-10 h-[375px] w-[300px] border-[1px] border-[black] z-[2]">
+    <div id="main-chat-container" className="fixed bottom-0 right-10 h-[375px] w-[300px] z-[2]">
       <i
         className="fa-regular fa-circle-xmark fa-2xl cursor-pointer absolute z-[3] top-[-10px] right-[-10px] bg-white leading-5 text-[20px] hover:leading-6 hover:text-[28px] rounded-full" style={{ color: 'black' }}
-        onClick={() => setChat(false)}
+        onClick={() => {
+          const csMainContainer = document.querySelector(".cs-main-container");
+          csMainContainer?.classList.add("fade-out");
+          csMainContainer?.addEventListener("animationend", () => {
+            csMainContainer?.classList.remove("fade-out");
+            setChat(false)
+          });
+        }}
       />
       <MainContainer >
         <ChatContainer>

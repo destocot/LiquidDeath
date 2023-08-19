@@ -1,11 +1,11 @@
 body {
-  background-color: white;
-  background-image: url("https://www.transparenttextures.com/patterns/60-lines.png");
+  background-color: whitesmoke;
   font-family: 'Lato', sans-serif;
 }
 
 .dark {
   background-color: #1a1625;
+  background-image: url("https://www.transparenttextures.com/patterns/60-lines.png");
 }
 
 .dark div {
@@ -51,27 +51,38 @@ body {
 /* DARK MODE FOR B'S ELEMENTS */
 
 .dark .reviews a {
-  color: #76737e;
+  color: #ff6700;
 }
 
 .dark .reviews a:hover {
-  color: #908d96;
+  /* color: #908d96; */
+  color: #76737e;
 }
 
 .dark .fa-brands {
   border-radius: 50%;
   width: 32px;
   height: 32px;
-  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 8px 4px rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.75);
+  margin: 0;
 }
 
-.dark .fa-x-twitter {
-  background-color: rgba(255, 255, 255, 0.75);
+.dark .fa-facebook {
+  box-shadow: 1px 1px 8px 4px rgba(255, 255, 255, 1);
+}
+
+.dark .fa-pinterest {
+  box-shadow: -1px 0px 8px 4px rgba(255, 255, 255, 1);
 }
 
 .dark .star, .dark .star:after, .dark .empty-star {
   /* color: #908d96; */
   color: #ff6700;
+}
+
+.dark .vertical-line {
+  border-color: white;
 }
 
 /* DARK MODE FOR J'S ELEMENTS */
@@ -166,6 +177,33 @@ body {
 
 .dark .productBreakdownIndividual div[name="triangle"] {
   border-top-color: white !important;
+}
+
+/* chat animation */
+.cs-main-container {
+  animation: fadeIn 0.25s ease-in; /* Animation duration and easing */
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.25s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
 }
 
 /* THE FOLLOWING ARE MEDIA QUERIES FOR NAVBAR */

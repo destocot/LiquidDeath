@@ -11,7 +11,7 @@ interface AnswerPhotoProps {
 
 function AnswerPhoto({ photo }: AnswerPhotoProps) {
   return (
-    <Popup Popup trigger={<img className="answer-photo aspect-[3/2] max-h-[75px] object-cover border border-solid border-transparent hover:border-[black] cursor-pointer" key={photo.id} alt={`photo${photo.id}`} src={photo.url} />} modal >
+    <Popup Popup trigger={<img className="answer-photo aspect-[3/2] max-h-[80px] object-cover border border-solid border-transparent hover:border-[black] cursor-pointer" key={photo.id} alt={`photo${photo.id}`} src={photo.url} />} modal >
       {(close) => (
         <div className="popup-modal-container">
           <img
