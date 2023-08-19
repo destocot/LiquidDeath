@@ -1,21 +1,24 @@
+// @ts-nocheck
+
 import React, { useState, useEffect } from 'react';
+import Popup from 'reactjs-popup';
+import { ReviewFormProps } from '../types';
 import axios from 'axios';
 import helpers from '../../../helpPlease';
-
 const characteristicLabels = helpers.characteristicLabels;
 const starMeaning = helpers.starMeaning;
 const charChecker = helpers.charChecker;
 // const removeNullValues = helpers.removeNullValues;
 
-function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }) {
+const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currProductName, currProductId }) => {
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(true);
   const [charObj, setCharObj] = useState({});
-  const [photoUrlArray, setPhotoUrlArray] = useState([]);
+  // const [photoUrlArray, setPhotoUrlArray] = useState([]);
   const [charCount, setCharCount] = useState(50);
   const [charCountCheck, setCharCountCheck] = useState(false);
 
-  const updateRecommendation = (value) => {
+  const updateRecommendation = (value: boolean) => {
     setRecommendation(value);
   };
 
@@ -68,7 +71,7 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
           imageDiv?.appendChild(div);
         })
         reader.readAsDataURL(files[i])
-        setPhotoUrlArray(tempFileArray);
+        // setPhotoUrlArray(tempFileArray);
       }
     }
   };
@@ -79,7 +82,7 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
         'Content-Type': 'multipart/form-data'
       }
     })
-      .catch(() => ('error posting question'));
+      .catch(() => console.log('error posting question'));
   }
 
   const submitHandler = (e) => {
@@ -156,55 +159,59 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
   };
 
   return (
-    <div className="reviewFormContainer">
-      <div className="reviewFormSubContainer">
-        <div id="reviewFormHeader">
-          <h1 className="text-2xl font-bold">Write Your Review</h1><br />
-          <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }} />
-        </div>
-        <h2 id="reviewFormTitle">About the {currProductName}</h2>
-        <form onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
-          {/* Overall Rating by Clicking Number of Stars */}
-          <label className="reviewFormSectionHeader" required>Overall Rating*<br />
-            <div className="newReviewStarRating">
-              {renderStars()}
-              {(rating !== 0) ? <div>{starMeaning[rating]}</div> : null}
+    <Popup Popup trigger={<button button id="add-answer-btn" >Add Answer</button >} modal >
+      {(close) => (
+        <div className="reviewFormContainer">
+          <div className="reviewFormSubContainer">
+            <div id="reviewFormHeader">
+              <h1 className="text-2xl font-bold">Write Your Review</h1><br />
+              <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }}/>
             </div>
-          </label>
-          {/* Boolean Product Recommendation - utilizes radio buttons */}
-          <label className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?*<br />
-            <label>Yes
-              <input id="buttonLeft" type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)} />
-            </label>
-            <label>No
-              <input id="buttonRight" type="radio" name="recommendation" value={false} checked={!recommendation} onChange={() => updateRecommendation(false)} />
-              <br /></label>
-          </label>
-          {/* Characteristics */}
-          <label id="charTitle" className="reviewFormSectionHeader" required>Characteristics* <br />
-            <div id="charElement" className="w-[50%] mx-auto text-center">{renderCharacteristics()}</div>
-          </label>
-          {/* Text Inputs */}
-          <label className="reviewFormSectionHeader" >Review Summary <br />
-            <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></label>
-          <label className="reviewFormSectionHeader" >Review Body* <br />
-            <textarea maxLength="1000" minLength="50" onChange={countCharLeft} rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br />
-            {(!charCountCheck) ? <div><span>Minimum required characters left: </span><span>{charCount}</span></div> : <div>Minimum reached</div>}
-          </label><br />
-          <label className="reviewFormSectionHeader" >Nickname*<br />
-            <input type="text" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
-            <div className="reviewFormWarning">For privacy reasons, do not use your full name or email address</div></label>
-          <label className="reviewFormSectionHeader">E-mail*<br />
-            <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
-            <div className="reviewFormWarning">For authentication reasons, you will not be emailed</div></label>
-          <div id="rev-images-div" className="flex"></div>
-          <div className="reviewFormbuttons">
-            <input id="reviewPhotos" type="file" name="photos" accept="image/png, image/jpeg" onChange={(e) => imageChecker(e)} multiple />
-            <input id="submitButton" type="submit" value="Submit" />
+            <h2 id="reviewFormTitle">About the {currProductName}</h2>
+            <form onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
+              {/* Overall Rating by Clicking Number of Stars */}
+              <label className="reviewFormSectionHeader"required>Overall Rating*<br />
+                <div className="newReviewStarRating">
+                  {renderStars()}
+                  {(rating !== 0) ? <div>{starMeaning[rating]}</div> : null}
+                </div>
+              </label>
+              {/* Boolean Product Recommendation - utilizes radio buttons */}
+              <label className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?*<br />
+                <label>Yes
+                  <input id="buttonLeft" type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)}/>
+                </label>
+                <label>No
+                  <input id="buttonRight" type="radio" name="recommendation" value={false} checked={!recommendation}  onChange={() => updateRecommendation(false)} />
+                <br /></label>
+              </label>
+              {/* Characteristics */}
+              <label id="charTitle" className="reviewFormSectionHeader" required>Characteristics* <br />
+                <div id="charElement">{renderCharacteristics()}</div>
+              </label>
+              {/* Text Inputs */}
+              <label className="reviewFormSectionHeader" >Review Summary <br />
+                <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></label>
+              <label className="reviewFormSectionHeader" >Review Body* <br />
+                <textarea maxLength="1000" minLength="50" onChange={countCharLeft} rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br />
+                {(!charCountCheck) ? <div><span>Minimum required characters left: </span><span>{charCount}</span></div> : <div>Minimum reached</div>}
+              </label><br />
+              <label className="reviewFormSectionHeader" >Nickname*<br />
+                <input type="text" maxLength="60" name="nickname" placeholder="Example: jackson11!" required /><br />
+                <div className="reviewFormWarning">For privacy reasons, do not use your full name or email address</div></label>
+              <label className="reviewFormSectionHeader">E-mail*<br />
+                <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
+                <div className="reviewFormWarning">For authentication reasons, you will not be emailed</div></label>
+                <div id="rev-images-div" className="flex"></div>
+              <div className="reviewFormbuttons">
+                <input id="reviewPhotos" type="file" name="photos" accept="image/png, image/jpeg" onChange={(e) => imageChecker(e)} multiple />
+                <input id="submitButton" type="submit" value="Submit"/>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    </div>
+        </div>
+      )}
+    </Popup>
   );
 };
 

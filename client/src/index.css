@@ -187,10 +187,16 @@ body {
   color: #ff6700;
 }
 
+<<<<<<< HEAD
 .dark .reviewFormSubContainer textarea {
   color: white;
   background-color: #46424f;
 }
+=======
+/* .dark .reviewFormContainer{
+  background-color: rgba(26, 22, 37, 0.95);
+} */
+>>>>>>> aea260d (changes to css)
 
 /* chat animation */
 .cs-main-container {

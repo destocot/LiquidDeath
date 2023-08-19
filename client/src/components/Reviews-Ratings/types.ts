@@ -11,6 +11,13 @@ export interface RatingBreakdownProps {
   reviewsMeta: ReviewsMeta
 }
 
+export interface ReviewFormProps {
+  setAForm: any,
+  reviewsMeta: ReviewsMeta,
+  currProductName: string,
+  currProductId: string
+}
+
 export interface ReviewsMeta {
   product_id: string,
   ratings: ObjOfInts,
@@ -57,10 +64,4 @@ interface ReviewObj {
 
 export interface RefObj {
   [key: string]: { low: string; high: string };
-  // Size: { low: string; high: string };
-  // Width: { low: string; high: string };
-  // Comfort: { low: string; high: string };
-  // Quality: { low: string; high: string };
-  // Length: { low: string; high: string };
-  // Fit: { low: string; high: string };
 }
