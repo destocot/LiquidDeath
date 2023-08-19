@@ -38,6 +38,7 @@ function ImageGallery({currentStyle, setCurrentStyle, styles}) {
       null
       :
       <>
+        <i class="carousel-arrow fa-solid fa-angle-up"></i>
         <div className="carousel-container">
           <ImageCarousel
             styles={styles}
@@ -47,6 +48,7 @@ function ImageGallery({currentStyle, setCurrentStyle, styles}) {
             setCurrentStyle={setCurrentStyle}
           />
         </div>
+        <i class="carousel-arrow fa-solid fa-angle-down"></i>
         <Image
           currentStyle={currentStyle}
           img={img}
