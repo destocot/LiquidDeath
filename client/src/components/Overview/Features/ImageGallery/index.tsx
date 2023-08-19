@@ -42,6 +42,7 @@ function ImageGallery({currentStyle, setCurrentStyle, styles}) {
           <ImageCarousel
             styles={styles}
             currentStyle={currentStyle}
+            img={img}
             setImg={setImg}
             setCurrentStyle={setCurrentStyle}
           />
