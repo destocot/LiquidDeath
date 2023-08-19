@@ -353,7 +353,6 @@ progress::-webkit-progress-value {
 .reviewFormSectionHeader {
   font-size: large;
   font-weight: 600;
-  padding-top: 20px;
 }
 
 .newReviewStarRating {

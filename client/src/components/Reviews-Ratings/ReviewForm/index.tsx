@@ -8,17 +8,16 @@ import helpers from '../../../helpPlease';
 const characteristicLabels = helpers.characteristicLabels;
 const starMeaning = helpers.starMeaning;
 const charChecker = helpers.charChecker;
-// const removeNullValues = helpers.removeNullValues;
 
 const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currProductName, currProductId }) => {
   const [rating, setRating] = useState(0);
   const [recommendation, setRecommendation] = useState(true);
   const [charObj, setCharObj] = useState({});
-  // const [photoUrlArray, setPhotoUrlArray] = useState([]);
   const [charCount, setCharCount] = useState(50);
   const [charCountCheck, setCharCountCheck] = useState(false);
 
-  const updateRecommendation = (value: boolean) => {
+  const updateRecommendation = (value) => {
+    console.log('updateRecc - ', value);
     setRecommendation(value);
   };
 
@@ -143,7 +142,7 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
               [1, 2, 3, 4, 5].map((index) => {
                 return (
                   <label key={index}>
-                    <input type="radio" name={charName} value={index} checked={charObj[currCharId] === index} onChange={() => updateCharacteristics(currCharId, index)} />
+                    <input type="radio" name={charName} value={index} checked={charObj[currCharId] === index} onClick={() => updateCharacteristics(currCharId, index)} />
                   </label>
                 )
               })
@@ -159,8 +158,8 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
   };
 
   return (
-    <Popup Popup trigger={<button button id="add-answer-btn" >Add Answer</button >} modal >
-      {(close) => (
+    // <Popup Popup trigger={<button button id="add-answer-btn" >Add Answer</button >} modal >
+    //   {(close) => (
         <div className="reviewFormContainer">
           <div className="reviewFormSubContainer">
             <div id="reviewFormHeader">
@@ -178,12 +177,14 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
               </label>
               {/* Boolean Product Recommendation - utilizes radio buttons */}
               <label className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?*<br />
-                <label>Yes
-                  <input id="buttonLeft" type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)}/>
-                </label>
-                <label>No
-                  <input id="buttonRight" type="radio" name="recommendation" value={false} checked={!recommendation}  onChange={() => updateRecommendation(false)} />
-                <br /></label>
+                <div className="flex gap-5 items-center">
+                  <label>Yes
+                    <input type="radio" name="recommendation" checked={recommendation} onClick={() => updateRecommendation(true)}/>
+                  </label>
+                  <label>No
+                    <input type="radio" name="recommendation" checked={!recommendation}  onClick={() => updateRecommendation(false)} />
+                  <br /></label>
+                </div>
               </label>
               {/* Characteristics */}
               <label id="charTitle" className="reviewFormSectionHeader" required>Characteristics* <br />
@@ -210,8 +211,8 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
             </form>
           </div>
         </div>
-      )}
-    </Popup>
+    //   )}
+    // </Popup>
   );
 };
 
