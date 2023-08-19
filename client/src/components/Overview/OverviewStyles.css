@@ -194,6 +194,7 @@ img.default-image {
   width: 100%;
   min-height: 18vh;
   overflow: hidden;
+  margin-bottom: 0.5%;
 }
 
 .description-left {
@@ -315,7 +316,7 @@ img.style-thumbnail:hover {
   display: flex;
   flex-wrap: wrap;
   left: 2vw;
-  margin-top: 1vh
+  margin-top: 0.5%;
 }
 
 .form-errors {
