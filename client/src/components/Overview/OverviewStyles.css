@@ -94,6 +94,10 @@ body {
   border-radius: 10%;
 }
 
+.carousel-arrow {
+  z-index: 2;
+}
+
 .active-img {
   -webkit-box-shadow:0 0 10px white;
   -moz-box-shadow: 0 0 10px white;
