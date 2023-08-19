@@ -6,12 +6,12 @@ export interface ReviewsRatingsProps {
 }
 
 export interface RatingBreakdownProps {
-  filters: number[],
+  filters: {ratings: number[]},
   updateFilters: any,
   reviewsMeta: ReviewsMeta
 }
 
-interface ReviewsMeta {
+export interface ReviewsMeta {
   product_id: string,
   ratings: ObjOfInts,
   recommended: Recommended,
@@ -55,12 +55,12 @@ interface ReviewObj {
   photos: [{ id: number, url: string}]
 }
 
-// interface AxiosResponse {
-//   config: any,
-//   data: ReviewsData,
-//   headers: any,
-//   request: any,
-//   results: ReviewObj[],
-//   status: number,
-//   statusText: string
-// }
+export interface RefObj {
+  [key: string]: { low: string; high: string };
+  // Size: { low: string; high: string };
+  // Width: { low: string; high: string };
+  // Comfort: { low: string; high: string };
+  // Quality: { low: string; high: string };
+  // Length: { low: string; high: string };
+  // Fit: { low: string; high: string };
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Recommended } from './components/Reviews-Ratings/types';
+import { Recommended, RefObj } from './components/Reviews-Ratings/types';
 
 let helpers = {
   recommended: (obj: Recommended) => {
