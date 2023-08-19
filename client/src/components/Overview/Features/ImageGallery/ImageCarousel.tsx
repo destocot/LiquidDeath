@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ImageCarousel({currentStyle, setImg, styles, setCurrentStyle}) {
+function ImageCarousel({currentStyle, img, setImg, styles, setCurrentStyle}) {
   const carousel = document.getElementById("image-carousel");
   // global photolist var - need to access it for rendering scroll ability on carousel
   let photoList = [];
@@ -11,6 +11,7 @@ function ImageCarousel({currentStyle, setImg, styles, setCurrentStyle}) {
       if (style.photos.length > 1) {
         let stylePhotos = style.photos.map((photo, i) => {
           return <img
+          className={currentStyle.style_id === style.style_id ? "active-img" : ""}
           src={photo.url}
           alt={`${style.name} ${i}`}
           key={`${style.style_id} ${i}`}
@@ -27,6 +28,7 @@ function ImageCarousel({currentStyle, setImg, styles, setCurrentStyle}) {
         // adds this style's photo to photoList
         photoList.push(
           <img
+          className={currentStyle.style_id === style.style_id ? "active-img" : ""}
           src={style.photos[0].url}
           alt={style.name}
           key={style.style_id}

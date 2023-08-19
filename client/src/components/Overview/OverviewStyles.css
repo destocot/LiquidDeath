@@ -73,8 +73,16 @@ body {
 #image-carousel {
   display: flex;
   flex-direction: column;
-  gap: 1vmin;
-  height: 100%;
+  gap: 1.5vmin;
+  width:40%;
+  min-height: 100%;
+  background-image: linear-gradient(to right,
+    rgba(0,0,0, 0) 0,
+    rgba(0,0,0, 0.75) 10%,
+    rgba(0,0,0, 0.75) 90%,
+    rgba(0,0,0, 0) 100%
+  );
+  align-items: center;
 }
 
 #image-carousel > img {
@@ -82,15 +90,21 @@ body {
   object-position: center;
   aspect-ratio: 6/5;
   height: 13%;
-  width: 25%;
+  width: 65%;
   border: 1px solid #000000;
   border-radius: 10%;
+}
+
+.active-img {
+  -webkit-box-shadow:0 0 10px white;
+  -moz-box-shadow: 0 0 10px white;
+  box-shadow: 0 0 10px white;
 }
 
 #image-carousel > img:hover {
   cursor: pointer;
   border: 1px solid #b4afaf;
-  opacity: 0.7;
+  filter:brightness(1.2);
 }
 
 img.default-image {
