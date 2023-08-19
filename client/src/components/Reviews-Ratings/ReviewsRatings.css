@@ -320,14 +320,25 @@ progress::-webkit-progress-value {
 
 .reviewFormSubContainer {
   background-color: white;
-  padding: 20px;
-  height: 90%;
+  width: 25%;
+  padding: 10px;
+  height: fit-content;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-size: medium;
   font-weight: 300;
   overflow: auto;
 }
+
+.reviewFormSubContainer input[type="text"], .reviewFormSubContainer textarea {
+  width: 100%;
+  padding: 5px;
+}
+
+.reviewFormSubContainer input[type="radio"] {
+  margin: 0 5px;
+}
+
 
 #reviewFormHeader {
   display: flex;

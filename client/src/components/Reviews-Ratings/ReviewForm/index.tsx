@@ -118,11 +118,11 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
     return [1, 2, 3, 4, 5].map((index, value) => {
       if (index <= rating) {
         return (
-          <i key={index} className="star fa-regular fa-star" value={index} onClick={() => setRating(index)}/>
+          <i key={index} className="star fa-regular fa-star" value={index} onClick={() => setRating(index)} />
         )
       } else {
         return (
-          <i key={index} className="empty-star fa-regular fa-star" value={index} onClick={() => setRating(index)}/>
+          <i key={index} className="empty-star fa-regular fa-star" value={index} onClick={() => setRating(index)} />
         )
       }
     })
@@ -139,9 +139,9 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
             {
               [1, 2, 3, 4, 5].map((index) => {
                 return (
-                    <label key={index}>
-                      <input type="radio" name={charName} value={index} checked={charObj[currCharId] === index} onChange={() => updateCharacteristics(currCharId, index)}/>
-                    </label>
+                  <label key={index}>
+                    <input type="radio" name={charName} value={index} checked={charObj[currCharId] === index} onChange={() => updateCharacteristics(currCharId, index)} />
+                  </label>
                 )
               })
             }
@@ -160,12 +160,12 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
       <div className="reviewFormSubContainer">
         <div id="reviewFormHeader">
           <h1 className="text-2xl font-bold">Write Your Review</h1><br />
-          <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }}/>
+          <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }} />
         </div>
         <h2 id="reviewFormTitle">About the {currProductName}</h2>
         <form onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
           {/* Overall Rating by Clicking Number of Stars */}
-          <label className="reviewFormSectionHeader"required>Overall Rating*<br />
+          <label className="reviewFormSectionHeader" required>Overall Rating*<br />
             <div className="newReviewStarRating">
               {renderStars()}
               {(rating !== 0) ? <div>{starMeaning[rating]}</div> : null}
@@ -174,15 +174,15 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
           {/* Boolean Product Recommendation - utilizes radio buttons */}
           <label className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?*<br />
             <label>Yes
-              <input id="buttonLeft" type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)}/>
+              <input id="buttonLeft" type="radio" name="recommendation" value={true} checked={recommendation} onChange={() => updateRecommendation(true)} />
             </label>
             <label>No
-              <input id="buttonRight" type="radio" name="recommendation" value={false} checked={!recommendation}  onChange={() => updateRecommendation(false)} />
-            <br /></label>
+              <input id="buttonRight" type="radio" name="recommendation" value={false} checked={!recommendation} onChange={() => updateRecommendation(false)} />
+              <br /></label>
           </label>
           {/* Characteristics */}
           <label id="charTitle" className="reviewFormSectionHeader" required>Characteristics* <br />
-            <div id="charElement">{renderCharacteristics()}</div>
+            <div id="charElement" className="w-[50%] mx-auto text-center">{renderCharacteristics()}</div>
           </label>
           {/* Text Inputs */}
           <label className="reviewFormSectionHeader" >Review Summary <br />
@@ -197,10 +197,10 @@ function NewReviewForm({ setAForm, reviewsMeta, currProductName, currProductId }
           <label className="reviewFormSectionHeader">E-mail*<br />
             <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
             <div className="reviewFormWarning">For authentication reasons, you will not be emailed</div></label>
-            <div id="rev-images-div" className="flex"></div>
+          <div id="rev-images-div" className="flex"></div>
           <div className="reviewFormbuttons">
             <input id="reviewPhotos" type="file" name="photos" accept="image/png, image/jpeg" onChange={(e) => imageChecker(e)} multiple />
-            <input id="submitButton" type="submit" value="Submit"/>
+            <input id="submitButton" type="submit" value="Submit" />
           </div>
         </form>
       </div>
