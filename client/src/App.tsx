@@ -99,7 +99,7 @@ function App() {
           reviewsMeta={reviewsMeta}
           currProductId={product.id}
           currProductName={product.name}
-          initial={initial}
+          initReviews={initial.reviews}
         />
         <Footer />
       </div>

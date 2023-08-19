@@ -6,17 +6,14 @@ import RatingBreakdown from './RatingBreakdown';
 import './ReviewsRatings.css';
 import axios from 'axios';
 import helpers from '../../helpPlease';
+import { ReviewsMeta, ReviewsRatingsProps } from './types';
 
-function ReviewsRatings({ reviewsMeta, currProductId, currProductName, initial }) {
-  // console.log({reviewsMeta});
-  // console.log({currProductId});
-  // console.log({currProductName});
-  // console.log({initial});
+const ReviewsRatings: React.FC<ReviewsRatingsProps> = ({ reviewsMeta, currProductId, currProductName, initReviews }) => {
   const sortRelevance = helpers.sortRelevance;
-  const [reviews, setReviews] = useState(initial.reviews);
-  const [filters, setFilters] = useState({ ratings: [] });
+  const [reviews, setReviews] = useState(initReviews);
+  const [filters, setFilters] = useState<{ ratings: number[] }>({ ratings: [] });
 
-  const updateFilters = (obj) => {
+  const updateFilters = (obj:  { ratings: number[] } ) => {
     setFilters(obj);
   };
 
