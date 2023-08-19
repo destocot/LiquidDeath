@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-function CartForm({currentStyle, handleSubmit, needed, setNeeded}) {
+function CartForm({currentStyle, handleSubmit, needed, setNeeded, size, quantity, setSize, setQuantity}) {
   // state for selected SKU (gets selected after picking a size) and array of sku id's
-  const [size, setSize] = useState('');
-  const [quantity, setQuantity] = useState('');
   const stock = Object.values(currentStyle.skus);
   const skus = Object.keys(currentStyle.skus);
   // reset form on style change
-  useEffect(() => {
-    setSize('');
-    setQuantity('');
-    setNeeded('');
-    document.getElementById('cart-form').reset();
-  }, [currentStyle]);
   // returns array of sizes
   const sizes = () => {
     let sizeArr = [];

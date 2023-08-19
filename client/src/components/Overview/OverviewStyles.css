@@ -17,6 +17,7 @@ body {
   font-family: 'Rubik', sans-serif;
   position:relative;
   min-height: 450px;
+  margin-bottom: 1%;
 }
 
 .image-gallery-container {
@@ -55,13 +56,13 @@ body {
   overflow: hidden;
   position: absolute;
   height: 96%;
-  width: 8%;
+  width: 30%;
   margin-top: 1%;
   z-index: 1;
   margin-left: 2%;
   --mask: linear-gradient(to bottom,
     rgba(0,0,0, 0) 0,
-    rgba(0,0,0, 1) 5%,
+    rgba(0,0,0, 1) 6%,
     rgba(0,0,0, 1) 95%,
     rgba(0,0,0, 0) 100%
   );
@@ -73,7 +74,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1vmin;
-  align-items: center;
   height: 100%;
 }
 
@@ -82,8 +82,15 @@ body {
   object-position: center;
   aspect-ratio: 6/5;
   height: 13%;
+  width: 25%;
   border: 1px solid #000000;
   border-radius: 10%;
+}
+
+#image-carousel > img:hover {
+  cursor: pointer;
+  border: 1px solid #b4afaf;
+  opacity: 0.7;
 }
 
 img.default-image {
@@ -187,6 +194,7 @@ img.default-image {
   width: 100%;
   min-height: 18vh;
   overflow: hidden;
+  margin-bottom: 0.5%;
 }
 
 .description-left {
@@ -308,7 +316,7 @@ img.style-thumbnail:hover {
   display: flex;
   flex-wrap: wrap;
   left: 2vw;
-  margin-top: 1vh
+  margin-top: 0.5%;
 }
 
 .form-errors {

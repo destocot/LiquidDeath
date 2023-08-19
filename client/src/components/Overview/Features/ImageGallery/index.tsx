@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from './Image';
 import ImageCarousel from './ImageCarousel';
 
@@ -6,6 +6,10 @@ function ImageGallery({currentStyle, setCurrentStyle, styles}) {
   // make states for view and current image
   const [expanded, setExpanded] = useState(false);
   const [img, setImg] = useState(currentStyle.photos[0].url);
+
+  useEffect(() => {
+    setImg(currentStyle.photos[0].url)
+  }, [currentStyle])
   /*
   Strategy:
   - Overlay an image gallery onto the left side of the default view image

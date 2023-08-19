@@ -313,7 +313,6 @@ let helpers = {
   },
   // creates matrix with style rows
   styleMatrix: (styles, currentStyle, setCurrentStyle) => {
-    console.log('selected Style: ', currentStyle);
     // creates overlayed checkmark
     let selected = () => (
       <div className="fa-stack">
@@ -333,6 +332,7 @@ let helpers = {
             className="style-thumbnail"
             src={style.photos[0].thumbnail_url}
             onClick={setCurrentStyle}
+            draggable="false"
           />
           {currentStyle.style_id === style.style_id ? selected() : null}
         </div>
