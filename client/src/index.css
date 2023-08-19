@@ -70,7 +70,8 @@ body {
 }
 
 .dark .star, .dark .star:after, .dark .empty-star {
-  color: #908d96;
+  /* color: #908d96; */
+  color: #ff6700;
 }
 
 /* DARK MODE FOR J'S ELEMENTS */
@@ -97,8 +98,16 @@ body {
   background-color: #908d96;
 }
 
+.dark #my-images-div img:hover {
+  border-color: white;
+}
+
+.dark #add-answer-btn:hover, .dark .expand-answers-btn:hover {
+  text-shadow: -0.06ex 0 0 rgba(255, 255, 255, 0.65), 0.06ex 0 0 rgba(255, 255, 255, 0.65);
+}
+
 .dark .answer-container h4 span {
-  color: #76737e;
+  color: #ff6700;
 }
 
 .dark .answer-photo:hover {
@@ -127,7 +136,8 @@ body {
 /* DARK MODE FOR KU'S ELEMENTS */
 
 .dark .stars-container h1 {
-  color: #5e5a66;
+  /* color: #5e5a66; */
+  color: #ff6700;
 }
 
 .dark progress::-webkit-progress-bar {
@@ -135,8 +145,9 @@ body {
 }
 
 .dark progress::-webkit-progress-value {
-  background-color: #5e5a66;
-  box-shadow: 0px 0px 10px white;
+  /* background-color: #5e5a66; */
+  background-color: #ff6700;
+  box-shadow: 0px 0px 7px white;
 }
 
 .dark .reviewResponse {
@@ -151,6 +162,10 @@ body {
 
 .dark #reviewsListButtons button:hover, .dark .reviewTile button:hover {
   border: 1px solid #76737e;
+}
+
+.dark .productBreakdownIndividual div[name="triangle"] {
+  border-top-color: white !important;
 }
 
 /* THE FOLLOWING ARE MEDIA QUERIES FOR NAVBAR */
