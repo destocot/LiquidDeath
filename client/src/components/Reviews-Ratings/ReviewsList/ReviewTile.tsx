@@ -33,7 +33,7 @@ const reviewStars = (score) => {
   );
 }
 
-function ReviewTile({review}) {
+function ReviewTile({ review }) {
   // credit to Khurram for these helpfulness/report states!
   const [helpfulness, setHelpfulness] = useState([review.helpfulness, false]);
   const [report, setReport] = useState(['Report', false]);
@@ -43,7 +43,7 @@ function ReviewTile({review}) {
       setHelpfulness([helpfulness[0] + 1, true]);
       // put request
       axios.put(`/reviews/${review.review_id}/helpful`)
-      .catch((err) => console.error(err));
+        .catch((err) => console.error(err));
     }
   };
 
@@ -52,7 +52,7 @@ function ReviewTile({review}) {
       setReport(['Reported', true]);
       // put request
       axios.put(`/reviews/${review.review_id}/report`)
-      .catch((err) => console.error(err));
+        .catch((err) => console.error(err));
     }
   };
 
@@ -63,7 +63,8 @@ function ReviewTile({review}) {
     year: 'numeric',
   });
 
-  const userAndDate = review.reviewer_name + ',  ' + formattedDate;
+  // const userAndDate = review.reviewer_name + ',  ' + formattedDate;
+  const date = formattedDate;
 
   // if summary > 60 characters, truncate it
   const reviewSummary = () => {
@@ -77,14 +78,14 @@ function ReviewTile({review}) {
   const reviewRecommend = () => {
     if (review.recommend) {
       // console.log('true');
-      return <div className="text-lg my-6 text-[#14532d]">✔️ I recommend this product</div>;
+      return <div className="text-lg my-2 text-[#14532d]"><i className="fa-solid fa-check fa-beat mr-[2px]" /> I recommend this product</div>;
     }
   };
 
   const reviewResponse = () => {
     if (review.response) {
       return (
-        <div className="text-lg my-4">
+        <div className="text-lg p-2">
           <div className="font-semibold">Response from seller: </div>
           <div>{review.response}</div>
         </div>
@@ -96,11 +97,12 @@ function ReviewTile({review}) {
     <div className="reviewTile">
       <div className="reviewTileTop">
         <div className="starRating">{reviewStars(review.rating)}</div>
-        <div className="topRightReviewTile">{userAndDate}</div>
+        <div className="topRightReviewTile"><span className="review-tile-user">{review.reviewer_name}</span>{`, ${date}`}
+        </div>
       </div>
 
       <div className="reviewSummary">{reviewSummary()}</div>
-      <ReviewTileBody review={review}/>
+      <ReviewTileBody review={review} />
       <div className="reviewRec">{reviewRecommend()}</div>
       <div className="reviewResponse">{reviewResponse()}</div>
       <div className="reviewHelpfulness">

@@ -1,3 +1,220 @@
+body {
+  background-color: whitesmoke;
+  font-family: 'Lato', sans-serif;
+}
+
+.dark {
+  background-color: #1a1625;
+  background-image: url("https://www.transparenttextures.com/patterns/60-lines.png");
+}
+
+.dark div {
+  color: white;
+}
+
+.dark select, .dark input {
+  background-color: #46424f;
+  color: white;
+}
+
+.dark .cs-message-list, .dark .cs-message-input  {
+  background-color: #2f2b3a;
+  color: #46424f;
+}
+
+.dark .cs-message__content {
+  background-color: #46424f;
+}
+
+.dark .cs-typing-indicator {
+  background-color: #76737e;
+}
+
+.dark .cs-message-input__content-editor-wrapper, .dark .cs-message-input__content-editor{
+  background-color: #5e5a66;
+}
+
+.dark .cs-message-input {
+  background-color: #2f2b3a;
+}
+
+.dark .cs-button {
+  color: #908d96;
+  opacity: 1;
+}
+
+.dark #color-mode-btn:hover, .dark #customer-service-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+}
+
+/* DARK MODE FOR B'S ELEMENTS */
+
+.dark .reviews a {
+  color: #ff6700;
+}
+
+.dark .reviews a:hover {
+  /* color: #908d96; */
+  color: #76737e;
+}
+
+.dark .fa-brands {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 0 8px 4px rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+.dark .fa-facebook {
+  box-shadow: 1px 1px 8px 4px rgba(255, 255, 255, 1);
+}
+
+.dark .fa-pinterest {
+  box-shadow: -1px 0px 8px 4px rgba(255, 255, 255, 1);
+}
+
+.dark .star, .dark .star:after, .dark .empty-star {
+  /* color: #908d96; */
+  color: #ff6700;
+}
+
+.dark .vertical-line {
+  border-color: white;
+}
+
+/* DARK MODE FOR J'S ELEMENTS */
+
+/* DARK MODE FOR KH'S ELEMENTS */
+
+.dark .search-container {
+  border: 2px solid white;
+}
+
+.dark .search-container, .dark .search-container input {
+  background-color: #1a1625;
+}
+
+.dark .search-container input:focus {
+  border-bottom: 1px solid white;
+}
+
+.dark .search-container i {
+  color: white !important;
+}
+
+.dark .question-labeler span, .dark .answer-labeler span {
+  background-color: #908d96;
+}
+
+.dark #my-images-div img:hover {
+  border-color: white;
+}
+
+.dark #add-answer-btn:hover, .dark .expand-answers-btn:hover {
+  text-shadow: -0.06ex 0 0 rgba(255, 255, 255, 0.65), 0.06ex 0 0 rgba(255, 255, 255, 0.65);
+}
+
+.dark .answer-container h4 span {
+  color: #ff6700;
+}
+
+.dark .answer-photo:hover {
+  border: 1px solid white;
+}
+
+.dark .popup-modal-container {
+  background-color: rgba(26, 22, 37, 0.95);
+}
+
+.dark .modal {
+  background-color: #1a1625;
+  background-image: none;
+  border-color: white;
+}
+
+.dark .modal div:first-child {
+  border-bottom-color: white;
+}
+
+.dark .modal textarea, .dark .modal button, .dark .modal i {
+  background-color: #46424f;
+  color: white;
+}
+
+/* DARK MODE FOR KU'S ELEMENTS */
+
+.dark .stars-container h1 {
+  /* color: #5e5a66; */
+  color: #ff6700;
+}
+
+.dark progress::-webkit-progress-bar {
+  background-color: #908d96;
+}
+
+.dark progress::-webkit-progress-value {
+  /* background-color: #5e5a66; */
+  background-color: #ff6700;
+  box-shadow: 0px 0px 7px white;
+}
+
+.dark .reviewResponse {
+  background-color: #2f2b3a;
+}
+
+.dark #reviewsListButtons button, .dark .reviewTile button {
+  border: 1px solid #46424f;
+  background-color: #908d96;
+  color: #1a1625;
+}
+
+.dark #reviewsListButtons button:hover, .dark .reviewTile button:hover {
+  border: 1px solid #76737e;
+}
+
+.dark .productBreakdownIndividual div[name="triangle"] {
+  border-top-color: white !important;
+}
+
+.dark .review-tile-user {
+  color: #ff6700;
+}
+
+.dark .fa-check {
+  color: #ff6700;
+}
+
+/* chat animation */
+.cs-main-container {
+  animation: fadeIn 0.25s ease-in; /* Animation duration and easing */
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.25s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
+}
+
+/* THE FOLLOWING ARE MEDIA QUERIES FOR NAVBAR */
 @media screen and (max-width: 1025px) {
   #nav-container {
     display: flex;
@@ -44,8 +261,7 @@
   }
 }
 
-
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 412px) {
   #nav-container {
     display: flex;
     flex-direction: column;

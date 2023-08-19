@@ -12,12 +12,12 @@ function Sorting({ updReviews }) {
   };
 
   return (
-    <div className="text-lg pb-3">
-      <label htmlFor="sortFilter">Sort Options:</label>
+    <div className="text-lg">
+      <label htmlFor="sortFilter">sorted by:{' '}</label>
       <select name="sortFilter" onChange={handleClick}>
-        <option value="relevant">Relevant</option>
-        <option value="helpful">Helpful</option>
-        <option value="newest">Newest</option>
+        <option value="relevant">relevance</option>
+        <option value="helpful">helpful</option>
+        <option value="newest">newest</option>
       </select>
     </div>
   );

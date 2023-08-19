@@ -15,8 +15,6 @@ function App() {
   // states passed to multiple components
   const [product, setProduct] = useState(initial.product);
   const [reviewsMeta, setReviewsMeta] = useState(initial.reviewsMeta);
-  const [colorMode, setColorMode] = useState('Dark Mode')
-  const [colorStyle, setColorStyle] = useState("bg-[rgb(250, 249, 248)] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[#333333]")
   const [confetti, setConfetti] = useState(false);
   const [windowSize, setWindowSize] = useState({
     width: undefined,
@@ -57,9 +55,9 @@ function App() {
   useEffect(() => {
     window.onresize = () => handleWindowResize();
     confetti &&
-    setTimeout(() => {
-      setConfetti(false)
-    }, 10000)
+      setTimeout(() => {
+        setConfetti(false)
+      }, 10000)
   }, [confetti]);
 
   /*
@@ -78,13 +76,9 @@ function App() {
   // changed order of components
   if (reviewsMeta) {
     return (
-      <div id="the-main-app-container" className={colorStyle}>
+      <div id="the-main-app-container">
         {confetti ? <Confetti width={windowSize.width} height={windowSize.height} /> : null}
-        <Navbar
-          setColorMode={setColorMode}
-          setColorStyle={setColorStyle}
-          colorMode={colorMode}
-        />
+        <Navbar />
         <Overview
           product={product}
           reviewsMeta={reviewsMeta}

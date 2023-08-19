@@ -19,7 +19,7 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, c
   // renders 2 review tiles at a time using .slice and the listLength state
   const reviewTile = () => {
     return filteredReviews.map((review) =>
-    <div key={review.review_id}><ReviewTile review={review} /></div>).slice(0, listLength);
+      <div key={review.review_id} className="bg-white/[0.1] my-[2px]"><ReviewTile review={review} /></div>).slice(0, listLength);
   };
 
   // increases listLength by 2, in turn rendering two more elements
@@ -29,7 +29,7 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, c
   };
 
   // decides whether or not button should be rendered based on length of results
-  if (filteredReviews.length > 2 && listLength < filteredReviews.length ) {
+  if (filteredReviews.length > 2 && listLength < filteredReviews.length) {
     moreButton = <button id="moreReviewsButton" type="button" onClick={handleClick}>More Reviews</button>;
   } else {
     moreButton = null;
@@ -39,19 +39,19 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, c
 
   return (
     <div className="reviewsListContainer">
-      <div className="flex justify-between text-2xl">
+      <div className="flex justify-between text-2xl items-end border-b-2 pb-[5px]">
         <span className="font-bold">{`${sumHelper(Object.values(reviewsMeta.ratings))} `}
           <span className="font-normal">Total Reviews</span>
         </span>
+        <Sorting filteredReviews={filteredReviews} updReviews={updReviews} />
       </div>
-        <Sorting filteredReviews={filteredReviews} updReviews={updReviews}/>
       <div className="reviewsList">
         {reviewTile()}
       </div>
       <div id="reviewsListButtons">
         {moreButton}
         {addReviewButton()}
-        { aForm ? (<NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta} currProductName={currProductName} currProductId={currProductId}/>) : null}
+        {aForm ? (<NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta} currProductName={currProductName} currProductId={currProductId} />) : null}
       </div>
     </div>
   );

@@ -1,18 +1,16 @@
 .ratingsReviewsContainer {
   /* border-style: solid; */
   /* background-color: rgba(255, 255, 255, 0.828); */
-  /* khurram removed this */
   margin-top: 50px;
   /* width: 75vw; */
   width: 80vw;
   margin: 0 auto;
   padding: 10px;
-  /* khurram added this as a test */
-  background-color: rgba(158, 158, 158, 0.1);
 }
 
 .ratingsReviewsContent {
   display: flex;
+  justify-content: space-between;
 }
 
 /* ----- RATING BREAKDOWN ----- */
@@ -21,10 +19,14 @@
 
 .ratingBreakdown {
   /* border-style: solid; */
-  justify-content: left;
-  margin-right: 2%;
-  width: 28%;
-  position: relative;
+  /* justify-content: left; */
+  /* margin-right: 2%; */
+  /* width: 28%; */
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: flex-start;
+  /* position: relative; */
 }
 
 .stars-container {
@@ -53,8 +55,8 @@
 }
 
 #breakdownLabel {
-  margin-left: 10px;
-  margin-right: 10px;
+  /* margin-left: 10px;
+  margin-right: 10px; */
   width: 50px;
 }
 
@@ -78,8 +80,8 @@ progress::-webkit-progress-value {
 /* -- ProductBreakdown -- */
 
 .productBreakdown {
-  margin-top: 10%;
-  margin-bottom: 2px;
+  margin-top: 5%;
+  /* margin-bottom: 2px; */
   width: 100%;
 }
 
@@ -189,8 +191,23 @@ progress::-webkit-progress-value {
 }
 
 .reviewsList {
-  height: 68vh;
+  max-height: 70vh;
   overflow: auto; /* Enable scrolling */
+}
+
+.reviewsListContainer ::-webkit-scrollbar {
+  width: 15px;
+}
+
+.reviewsListContainer ::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.reviewsListContainer ::-webkit-scrollbar-thumb {
+  background-color: rgba(158, 158, 158, 0.5);
+  border-radius: 20px;
+  border: 4px solid transparent;
+  background-clip: content-box;
 }
 
 #addReviewButton,
@@ -216,11 +233,12 @@ progress::-webkit-progress-value {
 #reviewsListButtons {
   display: flex;
   justify-content: space-between;
+  margin-top: 5px;
 }
 
 .reviewTile {
-  border: 2px;
-  margin-bottom: 12px;
+  border-bottom: 1px;
+  /* margin-bottom: 12px; */
   padding: 8px;
   border-style: groove;
 }
@@ -279,12 +297,9 @@ progress::-webkit-progress-value {
   align-items: center;
 }
 
-#helpfulButton {
-  margin-top: 15px;
-}
-
-#reportButton {
-  margin-top: 15px;
+#helpfulButton, #reportButton {
+  margin: 10px 5px 0 5px;
+  padding: 0 2px;
 }
 
 /* ------ REVIEW FORM ----- */

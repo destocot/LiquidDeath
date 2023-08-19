@@ -49,11 +49,9 @@ h6 {
 /* END OF CSS RESET */
 
 .qa-main-container {
-  font-family: 'Lato', sans-serif;
   padding: 10px;
   width: 80vw;
   margin: 0 auto;
-  background-color: rgba(158, 158, 158, 0.1);
 }
 
 .questions-container {
@@ -103,24 +101,6 @@ h6 {
   top: 0;
   left: 0;
   z-index: 2;
-}
-
-.full-answer-photo img {
-  max-height: 90vh;
-  max-width: 90vw;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-}
-
-.full-answer-photo i {
-  position: absolute;
-  top: 5vh;
-  right: 5vw;
-  margin: auto;
 }
 
 /* Search Component */
@@ -206,15 +186,6 @@ h6 {
 
 .qa-main-container ::-webkit-scrollbar-thumb {
   background-color: rgba(158, 158, 158, 0.5);
-}
-
-.qa-main-container ::-webkit-scrollbar-thumb {
-  background-color: rgba(158, 158, 158, 0.5);
-  border-radius: 20px;
-}
-
-.qa-main-container ::-webkit-scrollbar-thumb {
-  background-color: rgba(158, 158, 158, 0.5);
   border-radius: 20px;
   border: 2px solid transparent;
   background-clip: content-box;
@@ -270,7 +241,7 @@ h6 {
 }
 
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 412px) {
   .qa-main-container {
     width: 90vw;
     font-size: small;
