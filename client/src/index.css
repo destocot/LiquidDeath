@@ -187,9 +187,18 @@ body {
   color: #ff6700;
 }
 
+.dark .reviewFormSubContainer textarea {
+  color: white;
+  background-color: #46424f;
+}
+
 /* chat animation */
 .cs-main-container {
   animation: fadeIn 0.25s ease-in; /* Animation duration and easing */
+}
+
+.dark .reviewFormSubContainer {
+  background-color: #1a1625;
 }
 
 @keyframes fadeIn {
