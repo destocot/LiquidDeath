@@ -1,61 +1,23 @@
-import React, { Dispatch, SetStateAction, useState } from 'react'
+import React, { useState } from 'react'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 import axios from 'axios';
 
-interface NavbarProps {
-  setColorMode: Dispatch<SetStateAction<string>>;
-  setColorStyle: Dispatch<SetStateAction<string>>;
-  colorMode: string;
-}
+function Navbar() {
+  const [colorMode, setColorMode] = useState('Dark Mode');
 
-function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
   const changeColor = () => {
-    const starContainers = document.querySelectorAll('.stars');
-    const selects = document.querySelectorAll('select');
-    const mediaLinks = document.querySelectorAll('.media a');
-
+    document.body.classList.toggle('dark');
     if (colorMode === 'Dark Mode') {
-      setColorMode('Light Mode')
-      setColorStyle("bg-[#121212] bg-[url('https://www.transparenttextures.com/patterns/real-carbon-fibre.png');] text-[gold]");
-      setHeaderColors("gold");
-
-      // gives all stars a white background in dark mode
-      for (let starContainer of starContainers) {
-        starContainer.style.padding = '2px';
-        starContainer.style.background = 'rgba(255, 255, 255, 0.5)';
-      }
-
-      // gives all social media links a white background in dark mode
-      for (let mediaLink of mediaLinks) {
-        mediaLink.style.padding = '2px';
-        mediaLink.style.background = 'rgba(255, 255, 255, 0.5)';
-      }
-
-      // gives all select drop downs a white background in dark mode
-      for (let select of selects) {
-        select.style.background = 'black';
-      };
+      setColorMode('Light Mode');
     } else {
-      setColorMode('Dark Mode')
-      setColorStyle("bg-[rgb(250, 249, 248)] bg-[url('https://www.transparenttextures.com/patterns/60-lines.png')] text-[#333333]");
-      setHeaderColors("black");
-
-      for (let starContainer of starContainers) {
-        starContainer.style.padding = '';
-        starContainer.style.background = '';
-      }
-
-      for (let mediaLink of mediaLinks) {
-        mediaLink.style.padding = '';
-        mediaLink.style.background = '';
-      }
-
-      for (let select of selects) {
-        select.style.background = '';
-      };
+      setColorMode('Dark Mode');
     }
   }
+
+  React.useEffect(() => {
+    changeColor()
+  }, [])
 
   // chat test
   const [chat, setChat] = useState(false);
@@ -75,14 +37,14 @@ function Navbar({ setColorMode, setColorStyle, colorMode }: NavbarProps) {
         <div className="flex-1 flex justify-center">
           <span className="mr-[16px]">Home</span>
           <span className="mr-[16px]">Sale</span>
-          <span className="mr-[16px]">About</span>
-          <button className="hover:underline" onClick={() => changeColor()}>{colorMode}</button>
+          <span className="mr-[15px]">About</span>
+          <button id="color-mode-btn" className="hover:underline px-[1px]" onClick={() => changeColor()}>{colorMode}</button>
         </div>
       </div>
       <div className="row-start-1 row-end-2 col-start-5 col-end-7 justify-self-end">
         <div className="flex-1 flex justify-center mr-auto">
-          <span className="cursor:pointer hover:underline" onClick={() => setChat(true)}>Customer Sevice</span>
-          <span className="ml-[16px]">Students get 20% off</span>
+          <span id="customer-service-btn" className="cursor:pointer px-[1px] hover:underline" onClick={() => setChat(true)}><i className="fa-solid fa-headset mr-2" />Customer Sevice</span>
+          <span className="ml-[15px]">Students get 20% off</span>
           <span className="ml-[16px]">Find a store</span>
         </div>
       </div>
@@ -147,7 +109,7 @@ function Chat({ setChat }) {
   }
 
   return (
-    <div className="fixed bottom-0 right-10 h-[375px] w-[300px] border-[1px] border-[black] z-[2]">
+    <div id="main-chat-container" className="fixed bottom-0 right-10 h-[375px] w-[300px] border-[1px] border-[black] z-[2]">
       <i
         className="fa-regular fa-circle-xmark fa-2xl cursor-pointer absolute z-[3] top-[-10px] right-[-10px] bg-white leading-5 text-[20px] hover:leading-6 hover:text-[28px] rounded-full" style={{ color: 'black' }}
         onClick={() => setChat(false)}

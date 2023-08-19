@@ -1,3 +1,159 @@
+body {
+  background-color: white;
+  background-image: url("https://www.transparenttextures.com/patterns/60-lines.png");
+  font-family: 'Lato', sans-serif;
+}
+
+.dark {
+  background-color: #1a1625;
+}
+
+.dark div {
+  color: white;
+}
+
+.dark select, .dark input {
+  background-color: #46424f;
+  color: white;
+}
+
+.dark .cs-message-list, .dark .cs-message-input  {
+  background-color: #2f2b3a;
+  color: #46424f;
+}
+
+.dark .cs-message__content {
+  background-color: #46424f;
+}
+
+.dark .cs-typing-indicator {
+  background-color: #76737e;
+}
+
+.dark .cs-message-input__content-editor-wrapper, .dark .cs-message-input__content-editor{
+  background-color: #5e5a66;
+}
+
+.dark .cs-message-input {
+  background-color: #2f2b3a;
+}
+
+.dark .cs-button {
+  color: #908d96;
+  opacity: 1;
+}
+
+.dark #color-mode-btn:hover, .dark #customer-service-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+}
+
+/* DARK MODE FOR B'S ELEMENTS */
+
+.dark .reviews a {
+  color: #76737e;
+}
+
+.dark .reviews a:hover {
+  color: #908d96;
+}
+
+.dark .fa-brands {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.75);
+}
+
+.dark .fa-x-twitter {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.dark .star, .dark .star:after, .dark .empty-star {
+  color: #908d96;
+}
+
+/* DARK MODE FOR J'S ELEMENTS */
+
+/* DARK MODE FOR KH'S ELEMENTS */
+
+.dark .search-container {
+  border: 2px solid white;
+}
+
+.dark .search-container, .dark .search-container input {
+  background-color: #1a1625;
+}
+
+.dark .search-container input:focus {
+  border-bottom: 1px solid white;
+}
+
+.dark .search-container i {
+  color: white !important;
+}
+
+.dark .question-labeler span, .dark .answer-labeler span {
+  background-color: #908d96;
+}
+
+.dark .answer-container h4 span {
+  color: #76737e;
+}
+
+.dark .answer-photo:hover {
+  border: 1px solid white;
+}
+
+.dark .popup-modal-container {
+  background-color: rgba(26, 22, 37, 0.95);
+}
+
+.dark .modal {
+  background-color: #1a1625;
+  background-image: none;
+  border-color: white;
+}
+
+.dark .modal div:first-child {
+  border-bottom-color: white;
+}
+
+.dark .modal textarea, .dark .modal button, .dark .modal i {
+  background-color: #46424f;
+  color: white;
+}
+
+/* DARK MODE FOR KU'S ELEMENTS */
+
+.dark .stars-container h1 {
+  color: #5e5a66;
+}
+
+.dark progress::-webkit-progress-bar {
+  background-color: #908d96;
+}
+
+.dark progress::-webkit-progress-value {
+  background-color: #5e5a66;
+  box-shadow: 0px 0px 10px white;
+}
+
+.dark .reviewResponse {
+  background-color: #2f2b3a;
+}
+
+.dark #reviewsListButtons button, .dark .reviewTile button {
+  border: 1px solid #46424f;
+  background-color: #908d96;
+  color: #1a1625;
+}
+
+.dark #reviewsListButtons button:hover, .dark .reviewTile button:hover {
+  border: 1px solid #76737e;
+}
+
+/* THE FOLLOWING ARE MEDIA QUERIES FOR NAVBAR */
 @media screen and (max-width: 1025px) {
   #nav-container {
     display: flex;
@@ -44,8 +200,7 @@
   }
 }
 
-
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 412px) {
   #nav-container {
     display: flex;
     flex-direction: column;
