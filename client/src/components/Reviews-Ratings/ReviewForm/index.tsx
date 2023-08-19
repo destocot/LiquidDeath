@@ -142,7 +142,7 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
               [1, 2, 3, 4, 5].map((index) => {
                 return (
                   <label key={index}>
-                    <input type="radio" name={charName} value={index} checked={charObj[currCharId] === index} onClick={() => updateCharacteristics(currCharId, index)} />
+                    <input type="radio" name={charName} value={index} checked={charObj[currCharId] === index} onChange={() => updateCharacteristics(currCharId, index)} />
                   </label>
                 )
               })
@@ -179,10 +179,10 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
               <label className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?*<br />
                 <div className="flex gap-5 items-center">
                   <label>Yes
-                    <input type="radio" name="recommendation" checked={recommendation} onClick={() => updateRecommendation(true)}/>
+                    <input type="radio" name="recommendation" checked={recommendation} onChange={() => updateRecommendation(true)}/>
                   </label>
                   <label>No
-                    <input type="radio" name="recommendation" checked={!recommendation}  onClick={() => updateRecommendation(false)} />
+                    <input type="radio" name="recommendation" checked={!recommendation}  onChange={() => updateRecommendation(false)} />
                   <br /></label>
                 </div>
               </label>
