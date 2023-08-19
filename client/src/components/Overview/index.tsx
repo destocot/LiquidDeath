@@ -18,6 +18,7 @@ function Overview({product, reviewsMeta, setConfetti}) {
   };
 
   const styleClickHandler = (e) => {
+    console.log('are you running for some reason?');
     e.preventDefault();
     setCurrentStyle(styles[e.target.id]);
   };
@@ -25,7 +26,6 @@ function Overview({product, reviewsMeta, setConfetti}) {
   useEffect(() => {
     updStyles()
       .then((newStyles) => {
-        console.log('styles for this: ', newStyles.data.results);
         setStyles(newStyles.data.results);
         setCurrentStyle(newStyles.data.results[0]);
       })
@@ -35,9 +35,9 @@ function Overview({product, reviewsMeta, setConfetti}) {
   if (currentStyle) {
     return (
       <div className="overview-container">
-        <ImageGallery currentStyle={currentStyle} />
+        <ImageGallery currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} styles={styles}/>
         <div className="right-side-container">
-          <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} />
+          <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} setConfetti={setConfetti} />
           <div className="styles-cart-container">
             <StyleSelector styles={styles} setCurrentStyle={styleClickHandler} currentStyle={currentStyle} />
             <AddCart currentStyle={currentStyle} setConfetti={setConfetti} />

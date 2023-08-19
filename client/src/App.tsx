@@ -57,10 +57,10 @@ function App() {
   useEffect(() => {
     window.onresize = () => handleWindowResize();
     confetti &&
-      setTimeout(() => {
-        setConfetti(false)
-      }, 10000)
-  }, [confetti])
+    setTimeout(() => {
+      setConfetti(false)
+    }, 10000)
+  }, [confetti]);
 
   /*
   TODOS:

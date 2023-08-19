@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Image({currentStyle}) {
+function Image({currentStyle, img}) {
   return (
     <div className="default-image-container">
-      <img className="default-image" src={currentStyle.photos[0].url} alt={currentStyle.name} />
+      <img className="default-image" src={img} alt={currentStyle.name} />
     </div>
   );
 }
