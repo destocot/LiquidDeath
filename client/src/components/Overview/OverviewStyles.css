@@ -55,7 +55,7 @@ body {
   overflow: hidden;
   position: absolute;
   height: 96%;
-  width: 8%;
+  width: 30%;
   margin-top: 1%;
   z-index: 1;
   margin-left: 2%;
@@ -73,7 +73,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1vmin;
-  align-items: center;
   height: 100%;
 }
 
@@ -82,6 +81,7 @@ body {
   object-position: center;
   aspect-ratio: 6/5;
   height: 13%;
+  width: 25%;
   border: 1px solid #000000;
   border-radius: 10%;
 }

@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CartForm from './CartForm';
 import helpers from '../../../../helpPlease';
 import axios from 'axios';
 
 function AddCart({currentStyle, setConfetti}) {
   const [needed, setNeeded] = useState('');
+  const [size, setSize] = useState('');
+  const [quantity, setQuantity] = useState('');
+
+  useEffect(() => {
+    setSize('');
+    setQuantity('');
+    setNeeded('');
+    document.getElementById('cart-form').reset();
+  }, [currentStyle]);
+
   const formSubmit = (e) => {
     e.preventDefault();
     let cartBody = helpers.formParser(e.target.elements);
@@ -16,13 +26,29 @@ function AddCart({currentStyle, setConfetti}) {
       return;
     }
     axios.post('/cart', cartBody)
-      .then(() => setConfetti(true))
+      .then(() => {
+        setConfetti(true)
+        setSize('');
+        setQuantity('');
+        setNeeded('');
+        document.getElementById('cart-form').reset();
+      })
       .then(() => alert('Added Items to Cart!'))
       .catch((err) => console.error(err));
   }
+
   return (
     <div>
-      <CartForm currentStyle={currentStyle} handleSubmit={formSubmit} needed={needed} setNeeded={setNeeded} />
+      <CartForm
+      currentStyle={currentStyle}
+      handleSubmit={formSubmit}
+      needed={needed}
+      setNeeded={setNeeded}
+      size={size}
+      setSize={setSize}
+      quantity={quantity}
+      setQuantity={setQuantity}
+      />
     </div>
   );
 }

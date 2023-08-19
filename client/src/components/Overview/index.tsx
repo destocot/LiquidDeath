@@ -18,7 +18,6 @@ function Overview({product, reviewsMeta, setConfetti}) {
   };
 
   const styleClickHandler = (e) => {
-    console.log('are you running for some reason?');
     e.preventDefault();
     setCurrentStyle(styles[e.target.id]);
   };

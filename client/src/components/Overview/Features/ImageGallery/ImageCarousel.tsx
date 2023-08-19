@@ -13,6 +13,7 @@ function ImageCarousel({currentStyle, setImg, styles, setCurrentStyle}) {
           return <img
           src={photo.url}
           alt={`${style.name} ${i}`}
+          key={`${style.style_id} ${i}`}
           onClick={(e) => {
             setImg(e.target.src);
             if (currentStyle.name !== style.name) {
@@ -28,6 +29,7 @@ function ImageCarousel({currentStyle, setImg, styles, setCurrentStyle}) {
           <img
           src={style.photos[0].url}
           alt={style.name}
+          key={style.style_id}
           onClick={(e) => {
             setImg(e.target.src);
             if (currentStyle.name !== style.name) {
