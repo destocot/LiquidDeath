@@ -6,7 +6,7 @@ import RatingBreakdown from './RatingBreakdown';
 import './ReviewsRatings.css';
 import axios from 'axios';
 import helpers from '../../helpPlease';
-import { ReviewsMeta, ReviewsRatingsProps } from './types';
+import { ReviewsRatingsProps } from './types';
 
 const ReviewsRatings: React.FC<ReviewsRatingsProps> = ({ reviewsMeta, currProductId, currProductName, initReviews }) => {
   const sortRelevance = helpers.sortRelevance;
@@ -21,10 +21,10 @@ const ReviewsRatings: React.FC<ReviewsRatingsProps> = ({ reviewsMeta, currProduc
     axios.get(`/reviews/${currProductId}/${sort}/${count}/${page}`)
       .then((result) => {
         if (sort === "relevant") {
-          const resultObj = result;
-          const sortedArray = sortRelevance(result.data.results);
-          resultObj.results = sortedArray;
-          return resultObj;
+          const resultData = result.data;
+          const sortedArray = sortRelevance(resultData.results);
+          result.data.results = sortedArray;
+          return result.data;
         } else {
           return result.data;
         }

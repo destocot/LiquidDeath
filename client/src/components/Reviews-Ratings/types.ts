@@ -1,4 +1,11 @@
-export interface ReviewsMeta {
+export interface ReviewsRatingsProps {
+  reviewsMeta: ReviewsMeta;
+  currProductId: number;
+  currProductName: string;
+  initReviews: ReviewsData;
+}
+
+interface ReviewsMeta {
   product_id: string,
   ratings: ObjOfInts,
   recommend: ObjOfInts,
@@ -38,10 +45,12 @@ interface ReviewObj {
   photos: [{ id: number, url: string}]
 }
 
-export interface ReviewsRatingsProps {
-  reviewsMeta: ReviewsMeta;
-  currProductId: number;
-  currProductName: string;
-  initReviews: ReviewsData;
+interface AxiosResponse {
+  config: any,
+  data: ReviewsData,
+  headers: any,
+  request: any,
+  results: ReviewObj[],
+  status: number,
+  statusText: string
 }
-
