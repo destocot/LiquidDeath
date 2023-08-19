@@ -5,7 +5,8 @@ import Overview from "./components/Overview";
 import ReviewsRatings from "./components/Reviews-Ratings";
 import { List } from "./components/Related/List";
 import initial from "./PlaceHolderData.js";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/NavbarFooter/Navbar";
+import Footer from "./components/NavbarFooter/Footer";
 import Confetti from 'react-confetti';
 
 function App() {
@@ -100,6 +101,7 @@ function App() {
           currProductName={product.name}
           initial={initial}
         />
+        <Footer />
       </div>
     );
   }
