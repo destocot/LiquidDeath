@@ -71,9 +71,9 @@ function ImageCarousel({currentStyle, img, setImg, styles, setCurrentStyle}) {
       // limits based on how many images you add
       nextPercentage = Math.min(nextPercentage, 0);
       if (photoList.length > 7) {
-        nextPercentage = Math.max(nextPercentage, -((photoList.length - 7) * 13));
+        nextPercentage = Math.max(nextPercentage, -((photoList.length - 7) * 14));
       } else {
-        nextPercentage = Math.max(nextPercentage, 0);
+        nextPercentage = Math.max(nextPercentage, 5);
       }
       // intermediate value to update prev percentage on mouse up
       carousel.dataset.percentage = nextPercentage;
