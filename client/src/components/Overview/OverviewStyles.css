@@ -17,6 +17,7 @@ body {
   font-family: 'Rubik', sans-serif;
   position:relative;
   min-height: 450px;
+  margin-bottom: 1%;
 }
 
 .image-gallery-container {
