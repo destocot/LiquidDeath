@@ -5,16 +5,26 @@ export interface ReviewsRatingsProps {
   initReviews: ReviewsData;
 }
 
+export interface RatingBreakdownProps {
+  filters: number[],
+  updateFilters: any,
+  reviewsMeta: ReviewsMeta
+}
+
 interface ReviewsMeta {
   product_id: string,
   ratings: ObjOfInts,
-  recommend: ObjOfInts,
+  recommended: Recommended,
   characteristics: Characteristics
 };
 
 interface ObjOfInts {
   [key: number]: number
 };
+
+export interface Recommended {
+  [key: string]: string
+}
 
 interface Characteristics {
   [key: string]: Characteristic;
@@ -45,12 +55,12 @@ interface ReviewObj {
   photos: [{ id: number, url: string}]
 }
 
-interface AxiosResponse {
-  config: any,
-  data: ReviewsData,
-  headers: any,
-  request: any,
-  results: ReviewObj[],
-  status: number,
-  statusText: string
-}
+// interface AxiosResponse {
+//   config: any,
+//   data: ReviewsData,
+//   headers: any,
+//   request: any,
+//   results: ReviewObj[],
+//   status: number,
+//   statusText: string
+// }

@@ -1,6 +1,29 @@
 import React from 'react';
+import { Recommended } from './components/Reviews-Ratings/types';
 
 let helpers = {
+  recommended: (obj: Recommended) => {
+    let total = helpers.sumHelper(Object.values(obj));
+    let decimal = Number(obj.true) * 100 / total;
+    let decimalNew = decimal.toFixed(0);
+    let decimalString = decimalNew.toString();
+    return decimalString + '%';
+  },
+  calcAvgRating: (ratingsObj) => {
+    if (Object.keys(ratingsObj).length > 0) {
+      let sumOfRatings = 0;
+      let product = 0;
+      for (var key in ratingsObj) {
+        let rating = key;
+        let numberOfRatings = Number(ratingsObj[key]);
+        product += rating * numberOfRatings;
+        sumOfRatings += numberOfRatings;
+      }
+      let avgRating = product / sumOfRatings;
+      avgRating = Math.round(avgRating * 10) / 10;
+      return avgRating;
+    }
+  },
   reviewScore: (meta) => {
     let totalCount = 0;
     let totalScore = 0;
@@ -64,25 +87,6 @@ let helpers = {
       5: 'Runs long'
     },
   },
-  // defaultCharacteristics: {
-  //   Size: null,
-  //   Width: null,
-  //   Comfort: null,
-  //   Quality: null,
-  //   Length: null,
-  //   Fit: null
-  // },
-  // defaultReviewsPostBody: {
-  //   product_id: null,
-  //   rating: null,
-  //   summary: null,
-  //   body: null,
-  //   recommend: null,
-  //   name: null,
-  //   email: null,
-  //   photos: [],
-  //   characteristics: {},
-  // },
   refObj: {
     Size: { low: 'A size too small', high: 'A size too wide' },
     Width: { low: 'Too narrow', high: 'Too wide' },
@@ -174,61 +178,6 @@ let helpers = {
     // console.log('after sort: ', result);
     return result;
   },
-  // sortRelevanceCB: (a, b) => {
-  //   let valA;
-  //   let valB;
-
-  //   let rateA = a.helpfulness / 10;
-  //   let rateB = b.helpfulness / 10;
-  //   if (rateA === 0) {
-  //     rateA = 1;
-  //   }
-  //   if (rateB === 0) {
-  //     rateB = 1;
-  //   }
-  //   const dateA = new Date(a.date);
-  //   const dateB = new Date(b.date);
-  //   const currentDate = new Date();
-  //   // translate to value of 1 - 5
-  //   // divide by constant to convert from ms to days
-  //   const daysFromNowA = (currentDate - dateA) / 86400000;
-  //   const daysFromNowB = (currentDate - dateB) / 86400000;
-
-  //   // this essentially translates the date into a 1 - 5 numbers
-  //   if (daysFromNowA <= 90) {
-  //     valA = 5 * rateA;
-  //   } else if (daysFromNowA <= 180) {
-  //     valA = 4 * rateA;
-  //   } else if (daysFromNowA <= 270) {
-  //     valA = 3 * rateA;
-  //   } else if (daysFromNowA <= 360) {
-  //     valA = 2 * rateA;
-  //   } else {
-  //     valA = rateA;
-  //   }
-
-  //   if (daysFromNowB <= 90) {
-  //     valB = 5 * rateB;
-  //   } else if (daysFromNowB <= 180) {
-  //     valB = 4 * rateB;
-  //   } else if (daysFromNowB <= 270) {
-  //     valB = 3 * rateB;
-  //   } else if (daysFromNowB <= 360) {
-  //     valB = 2 * rateB;
-  //   } else {
-  //     valB = rateB;
-  //   }
-
-  //   // console.log({rateA, daysFromNowA, valA});
-
-  //   if (valA < valB) {
-  //     return 1;
-  //   }
-  //   if (valA > valB) {
-  //     return -1;
-  //   }
-  //   return 0;
-  // },
   sumHelper: (array) => {
     let sum = 0;
     for (var i = 0; i < array.length; i++) {
@@ -256,11 +205,10 @@ let helpers = {
     return true;
   },
 
-  // creates stars
-  reviewStars: (score) => {
+  reviewStars: (score: number = 5) => {
     const stars = [];
     // "rounding", using 0.65 and 0.35 for more noticeable impact
-    const quarterRound = (num) => {
+    const quarterRound = (num: number) => {
       let quarters;
       if (num > 0.625) {
         quarters = 0.65;
