@@ -66,6 +66,18 @@ body {
   background-color: rgba(0,0,0, 0.4);
 }
 
+.carousel-translate-up {
+  transform: translate(0, -14%);
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.8s;
+}
+
+.carousel-translate-down {
+  transform: translate(0, 14%);
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.8s;
+}
+
 .up-arrow {
   top: 1%;
 }

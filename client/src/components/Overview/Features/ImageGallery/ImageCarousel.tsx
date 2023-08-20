@@ -17,7 +17,7 @@ function ImageCarousel({next, prev, currentStyle, img, setImg, styles, setCurren
           key={`${style.style_id} ${i}`}
           onClick={(e) => {
             setImg(e.target.src);
-            if (currentStyle.name !== style.name) {
+            if (currentStyle.style_id !== style.style_id) {
               setCurrentStyle(style);
             }
           }}
@@ -46,10 +46,12 @@ function ImageCarousel({next, prev, currentStyle, img, setImg, styles, setCurren
   }
   // useEffect for if next or previous is selected
   useEffect(() => {
-    if (next) {
-      arrowTranslate = arrowTranslate + 14;
-
-      carousel.style.transform = `translate(0, ${parseFloat(carousel.dataset.prevPercentage) + 14}%)`
+    if (up) {
+      if ((parseFloat(carousel.dataset.prevPercentage) + 14) < 0) {
+        carousel.classList.toggle("carousel-translate-up");
+        carousel.classList.toggle("carousel-translate-up");
+        carousel.dataset.prevPercentage = parseFloat(carousel.dataset.prevPercentage) + 14;
+      }
     } else if (prev) {
       carousel.style.transform = `translate(0, ${parseFloat(carousel.dataset.prevPercentage) - 14}%)`
     }
