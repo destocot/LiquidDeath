@@ -47,10 +47,8 @@ function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setIm
   useEffect(() => {
     if (up) {
       //  translate the carousel
-      console.log(parseFloat(carousel.dataset.prevPercentage));
-      if (styles.length > 7 && (parseFloat(carousel.dataset.prevPercentage) - 14) > -((styles.length - 7) * 14)) {
+      if (styles.length > 6 && (parseFloat(carousel.dataset.prevPercentage) - 14) >= -((styles.length - 6) * 14)) {
         console.log('we got here ?');
-        carousel.classList.toggle("carousel-translate-up");
         carousel.classList.toggle("carousel-translate-up");
         carousel.dataset.prevPercentage = parseFloat(carousel.dataset.prevPercentage) - 14;
       }
@@ -67,13 +65,14 @@ function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setIm
       }
       toggleUp(!up);
     } else if (down) {
-      console.log(parseFloat(carousel.dataset.prevPercentage));
+      // lost in translation
       if ((parseFloat(carousel.dataset.prevPercentage) + 14) < 0) {
         console.log('we got here ?');
         carousel.classList.toggle("carousel-translate-down");
         carousel.classList.toggle("carousel-translate-down");
         carousel.dataset.prevPercentage = parseFloat(carousel.dataset.prevPercentage) + 14;
       }
+      // change ya style
       if (currentStyle.style_id !== styles[styles.length - 1].style_id) {
         let nextStyle;
         for (let i = 0; i < styles.length - 1; i++) {
@@ -113,8 +112,8 @@ function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setIm
       // ensures you don't go beyond the limits of the carousel
       // limits based on how many images you add
       nextPercentage = Math.min(nextPercentage, 0);
-      if (styles.length > 7) {
-        nextPercentage = Math.max(nextPercentage, -((styles.length - 7) * 14));
+      if (styles.length > 6) {
+        nextPercentage = Math.max(nextPercentage, -((styles.length - 6) * 14));
       } else {
         nextPercentage = 0;
       }
