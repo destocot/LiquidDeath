@@ -48,6 +48,8 @@ function ImageGallery({currentStyle, setCurrentStyle, styles}) {
         }
         <div className="carousel-container">
           <ImageCarousel
+            next={next}
+            prev={prev}
             styles={styles}
             currentStyle={currentStyle}
             img={img}

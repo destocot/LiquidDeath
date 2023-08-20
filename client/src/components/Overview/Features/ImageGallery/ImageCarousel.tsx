@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function ImageCarousel({currentStyle, img, setImg, styles, setCurrentStyle}) {
+function ImageCarousel({next, prev, currentStyle, img, setImg, styles, setCurrentStyle}) {
   const carousel = document.getElementById("image-carousel");
   // global photolist var - need to access it for rendering scroll ability on carousel
   let photoList = [];
@@ -44,6 +44,16 @@ function ImageCarousel({currentStyle, img, setImg, styles, setCurrentStyle}) {
     })
     return photoList;
   }
+  // useEffect for if next or previous is selected
+  useEffect(() => {
+    if (next) {
+      arrowTranslate = arrowTranslate + 14;
+
+      carousel.style.transform = `translate(0, ${parseFloat(carousel.dataset.prevPercentage) + 14}%)`
+    } else if (prev) {
+      carousel.style.transform = `translate(0, ${parseFloat(carousel.dataset.prevPercentage) - 14}%)`
+    }
+  }, [next, prev])
   return (
     <div
     id="image-carousel"
@@ -73,7 +83,7 @@ function ImageCarousel({currentStyle, img, setImg, styles, setCurrentStyle}) {
       if (photoList.length > 7) {
         nextPercentage = Math.max(nextPercentage, -((photoList.length - 7) * 14));
       } else {
-        nextPercentage = Math.max(nextPercentage, 5);
+        nextPercentage = 0;
       }
       // intermediate value to update prev percentage on mouse up
       carousel.dataset.percentage = nextPercentage;

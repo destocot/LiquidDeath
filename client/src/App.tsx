@@ -66,7 +66,7 @@ function App() {
     confetti &&
       setTimeout(() => {
         setConfetti(false)
-      }, 10000)
+      }, 8000)
   }, [confetti]);
 
   /*
