@@ -60,8 +60,17 @@ function App() {
     document.getElementById('nav-search-bar').value = '';
   }
 
-  // set confetti to only run for one second
+  // search bar
+  const changeSearch = (productId) => {
+    updProduct(productId)
+      .then((results) => setProduct(results.data));
+
+    document.getElementById('nav-search-bar').value = '';
+  }
+
+  // set confetti to run for a specified time
   useEffect(() => {
+    // adjusts confetti size to fit screen
     window.onresize = () => handleWindowResize();
     confetti &&
       setTimeout(() => {
