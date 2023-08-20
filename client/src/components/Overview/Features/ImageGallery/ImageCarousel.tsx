@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 
-function ImageCarousel({next, prev, currentStyle, img, setImg, styles, setCurrentStyle}) {
+function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setImg, styles, setCurrentStyle}) {
   const carousel = document.getElementById("image-carousel");
-  // global photolist var - need to access it for rendering scroll ability on carousel
-  let photoList = [];
   const createPhotoList = () => {
+    let photoList = [];
     // adds all photos to photoList
     styles.forEach((style) => {
       // adds all style photos if > 1
@@ -47,15 +46,47 @@ function ImageCarousel({next, prev, currentStyle, img, setImg, styles, setCurren
   // useEffect for if next or previous is selected
   useEffect(() => {
     if (up) {
+      //  translate the carousel
+      console.log(parseFloat(carousel.dataset.prevPercentage));
+      if (styles.length > 7 && (parseFloat(carousel.dataset.prevPercentage) - 14) > -((styles.length - 7) * 14)) {
+        console.log('we got here ?');
+        carousel.classList.toggle("carousel-translate-up");
+        carousel.classList.toggle("carousel-translate-up");
+        carousel.dataset.prevPercentage = parseFloat(carousel.dataset.prevPercentage) - 14;
+      }
+      // change style if it's not the first style
+      if (currentStyle.style_id !== styles[0].style_id) {
+        let nextStyle;
+        for (let i = 1; i < styles.length; i++) {
+          if (currentStyle.style_id === styles[i].style_id) {
+            nextStyle = styles[i - 1];
+            break;
+          }
+        }
+        setCurrentStyle(nextStyle);
+      }
+      toggleUp(!up);
+    } else if (down) {
+      console.log(parseFloat(carousel.dataset.prevPercentage));
       if ((parseFloat(carousel.dataset.prevPercentage) + 14) < 0) {
-        carousel.classList.toggle("carousel-translate-up");
-        carousel.classList.toggle("carousel-translate-up");
+        console.log('we got here ?');
+        carousel.classList.toggle("carousel-translate-down");
+        carousel.classList.toggle("carousel-translate-down");
         carousel.dataset.prevPercentage = parseFloat(carousel.dataset.prevPercentage) + 14;
       }
-    } else if (prev) {
-      carousel.style.transform = `translate(0, ${parseFloat(carousel.dataset.prevPercentage) - 14}%)`
+      if (currentStyle.style_id !== styles[styles.length - 1].style_id) {
+        let nextStyle;
+        for (let i = 0; i < styles.length - 1; i++) {
+          if (currentStyle.style_id === styles[i].style_id) {
+            nextStyle = styles[i + 1];
+            break;
+          }
+        }
+        setCurrentStyle(nextStyle);
+      }
+      toggleDown(!down);
     }
-  }, [next, prev])
+  }, [up, down])
   return (
     <div
     id="image-carousel"
@@ -82,8 +113,8 @@ function ImageCarousel({next, prev, currentStyle, img, setImg, styles, setCurren
       // ensures you don't go beyond the limits of the carousel
       // limits based on how many images you add
       nextPercentage = Math.min(nextPercentage, 0);
-      if (photoList.length > 7) {
-        nextPercentage = Math.max(nextPercentage, -((photoList.length - 7) * 14));
+      if (styles.length > 7) {
+        nextPercentage = Math.max(nextPercentage, -((styles.length - 7) * 14));
       } else {
         nextPercentage = 0;
       }
