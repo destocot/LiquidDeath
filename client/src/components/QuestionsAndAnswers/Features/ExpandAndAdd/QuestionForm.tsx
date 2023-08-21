@@ -18,7 +18,7 @@ function QuestionForm({ currProductName, currProductId }) {
       .catch(() => console.log('error posting question'));
   }
   return (
-    <Popup Popup trigger={<button button id="add-questions-btn" > ADD A QUESTION < i className="fa-solid fa-plus" /> </button >} modal >
+    <Popup Popup trigger={<button button data-testid="add-questions-btn" id="add-questions-btn" > ADD A QUESTION < i className="fa-solid fa-plus" /> </button >} modal >
       {(close) => (
         <div className="popup-modal-container">
           <div className="modal">

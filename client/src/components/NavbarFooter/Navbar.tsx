@@ -4,7 +4,7 @@ import { MainContainer, ChatContainer, MessageList, Message, MessageInput, Typin
 import axios from 'axios';
 import NavSearch from './NavSearch';
 
-function Navbar({ changeSearch }) {
+function Navbar({ changeSearch, numInCart }) {
   const [colorMode, setColorMode] = useState('Dark Mode');
 
   const changeColor = () => {
@@ -55,7 +55,8 @@ function Navbar({ changeSearch }) {
           <NavSearch changeSearch={changeSearch} />
           <i className="fa-regular fa-user fa-lg ml-2" />
           <i className="fa-regular fa-heart  fa-lg ml-2" />
-          <i className="fa-solid fa-cart-shopping fa-lg ml-2" />
+          <i className="fa-solid fa-cart-shopping fa-lg ml-2">
+            <span className="text-[12px]">{numInCart}</span></i>
         </div>
       </div>
       {
