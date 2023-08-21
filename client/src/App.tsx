@@ -63,14 +63,6 @@ function App() {
   };
 
   window.onresize = () => handleWindowResize();
-
-  // search bar
-  const changeSearch = (productId) => {
-    updProduct(productId).then((results) => setProduct(results.data));
-
-    document.getElementById("nav-search-bar").value = "";
-  };
-
   // set confetti to run for a specified time
   useEffect(() => {
     confetti &&
@@ -85,12 +77,12 @@ function App() {
   */
 
   // TESTING TESTING
-  useEffect(() => {
-    console.log({
-      "reviews meta data": reviewsMeta,
-      "current product": product,
-    });
-  }, [reviewsMeta]);
+  // useEffect(() => {
+  //   console.log({
+  //     "reviews meta data": reviewsMeta,
+  //     "current product": product,
+  //   });
+  // }, [reviewsMeta]);
 
   const [numInCart, setNumInCart] = useState(0);
 
@@ -118,7 +110,6 @@ function App() {
           currProductName={product.name}
         />
         <ReviewsRatings
-          id="ratingsReviewsContainerId"
           reviewsMeta={reviewsMeta}
           currProductId={product.id}
           currProductName={product.name}

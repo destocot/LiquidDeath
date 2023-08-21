@@ -77,6 +77,7 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
                 <AddCart
                   currentStyle={currentStyle}
                   setConfetti={setConfetti}
+                  setNumInCart={setNumInCart}
                 />
               </div>
             </div>

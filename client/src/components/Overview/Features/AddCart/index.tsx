@@ -35,7 +35,11 @@ function AddCart({ currentStyle, setConfetti, setNumInCart }) {
         setNumInCart(state => state + Number(cartBody.count));
         document.getElementById('cart-form').reset();
       })
-      .then(() => swal('Added Items to Cart!'))
+      .then(() => {
+        console.log('i am here');
+        swal('Added Items to Cart!')
+      }
+      )
       .catch((err) => console.error(err));
   }
 
