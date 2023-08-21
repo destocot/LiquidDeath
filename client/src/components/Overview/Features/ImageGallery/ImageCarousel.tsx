@@ -46,16 +46,6 @@ function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setIm
   // useEffect for if next or previous is selected
   useEffect(() => {
     if (up) {
-      //  translate the carousel
-      if (styles.length > 7 && (parseFloat(carousel.dataset.prevPercentage) - 14) >= -((styles.length - 6) * 14)) {
-        carousel.classList.toggle("carousel-translate-up");
-        console.log(carousel.dataset.prevPercentage);
-        carousel.dataset.prevPercentage = parseFloat(carousel.dataset.prevPercentage) - 14;
-        console.log(carousel.dataset.prevPercentage);
-        setTimeout(() => {
-          carousel.classList.toggle("carousel-translate-up");
-        }, 800)
-      }
       // change style if it's not the first style
       if (currentStyle.style_id !== styles[0].style_id) {
         let nextStyle;
@@ -69,13 +59,6 @@ function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setIm
       }
       toggleUp(!up);
     } else if (down) {
-      // lost in translation
-      if ((parseFloat(carousel.dataset.prevPercentage) + 14) < 0) {
-        console.log('should translate carousel down');
-        carousel.classList.toggle("carousel-translate-down");
-        carousel.classList.toggle("carousel-translate-down");
-        carousel.dataset.prevPercentage = parseFloat(carousel.dataset.prevPercentage) + 14;
-      }
       // change ya style
       if (currentStyle.style_id !== styles[styles.length - 1].style_id) {
         let nextStyle;

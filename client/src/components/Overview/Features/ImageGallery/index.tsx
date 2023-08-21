@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Image from './Image';
 import ImageCarousel from './ImageCarousel';
 
-function ImageGallery({currentStyle, setCurrentStyle, styles, windowSize}) {
+function ImageGallery({currentStyle, setCurrentStyle, styles}) {
   // make states for view and current image
   const [expanded, setExpanded] = useState(false);
   const [img, setImg] = useState(currentStyle.photos[0].url);
@@ -57,7 +57,6 @@ function ImageGallery({currentStyle, setCurrentStyle, styles, windowSize}) {
             img={img}
             setImg={setImg}
             setCurrentStyle={setCurrentStyle}
-            windowSize={windowSize}
           />
         </div>
         {currentStyle === styles[styles.length - 1] ? null :
