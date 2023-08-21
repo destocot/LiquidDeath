@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-// import helpers from '../../../helpPlease';
-// const sortHelpfulness = helpers.sortHelpfulness;
-// const sortNewest = helpers.sortNewest;
-// const sortRelevance = helpers.sortRelevance;
 
 function Sorting({ updReviews }) {
   const handleClick = (event) => {
