@@ -35,8 +35,6 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, c
     moreButton = null;
   }
 
-  const addReviewButton = () => <button type="button" id="addReviewButton" onClick={() => setAForm(true)} >Add Review</button>
-
   return (
     <div className="reviewsListContainer">
       <div className="flex justify-between text-2xl items-end border-b-2 pb-[5px]">
@@ -50,8 +48,7 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, c
       </div>
       <div id="reviewsListButtons">
         {moreButton}
-        {addReviewButton()}
-        {aForm ? (<NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta} currProductName={currProductName} currProductId={currProductId} />) : null}
+        <NewReviewForm setAForm={setAForm} reviewsMeta={reviewsMeta} currProductName={currProductName} currProductId={currProductId} />
       </div>
     </div>
   );

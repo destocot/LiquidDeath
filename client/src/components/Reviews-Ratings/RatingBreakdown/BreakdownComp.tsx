@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
+import { RatingBreakdownProps } from '../types';
 import helpers from '../../../helpPlease';
+const sumHelper = helpers.sumHelper;
 
-function BreakdownComp({ filters, updateFilters, reviewsMeta }) {
-  // data comes from reviewsMeta
-  const sumHelper = helpers.sumHelper;
-
-  const filterByRatings = (key) => {
-    key = Number(key);
+const BreakdownComp: React.FC<RatingBreakdownProps> = ({ filters, updateFilters, reviewsMeta }) => {
+  const filterByRatings = (key: string) => {
+    let keyNum = Number(key);
     let prevFilters = filters.ratings;
-    let indexOfKey = prevFilters.indexOf(key);
+    let indexOfKey = prevFilters.indexOf(keyNum);
 
     // this either adds or removes a filter based on current filters
     if (indexOfKey === -1) {
-      prevFilters.push(key);
+      prevFilters.push(keyNum);
     } else {
       prevFilters.splice(indexOfKey, 1);
     }
@@ -20,8 +19,11 @@ function BreakdownComp({ filters, updateFilters, reviewsMeta }) {
   };
 
   // this function generates the average breakdown bars
+  type Result = {
+    [key: string]: number
+  }
   const generateObj = () => {
-    const result = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+    const result: Result = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0 };
     // update result object w/ actual values
     for (var key in reviewsMeta.ratings) {
       result[key] = Number(reviewsMeta.ratings[key]);

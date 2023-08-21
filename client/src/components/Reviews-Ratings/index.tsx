@@ -6,17 +6,14 @@ import RatingBreakdown from './RatingBreakdown';
 import './ReviewsRatings.css';
 import axios from 'axios';
 import helpers from '../../helpPlease';
+import { ReviewsRatingsProps } from './types';
 
-function ReviewsRatings({ reviewsMeta, currProductId, currProductName, initial }) {
-  // console.log({reviewsMeta});
-  // console.log({currProductId});
-  // console.log({currProductName});
-  // console.log({initial});
+const ReviewsRatings: React.FC<ReviewsRatingsProps> = ({ reviewsMeta, currProductId, currProductName, initReviews }) => {
   const sortRelevance = helpers.sortRelevance;
-  const [reviews, setReviews] = useState(initial.reviews);
-  const [filters, setFilters] = useState({ ratings: [] });
+  const [reviews, setReviews] = useState(initReviews);
+  const [filters, setFilters] = useState<{ ratings: number[] }>({ ratings: [] });
 
-  const updateFilters = (obj) => {
+  const updateFilters = (obj:  { ratings: number[] } ) => {
     setFilters(obj);
   };
 
@@ -24,10 +21,10 @@ function ReviewsRatings({ reviewsMeta, currProductId, currProductName, initial }
     axios.get(`/reviews/${currProductId}/${sort}/${count}/${page}`)
       .then((result) => {
         if (sort === "relevant") {
-          const resultObj = result;
-          const sortedArray = sortRelevance(result.data.results);
-          resultObj.results = sortedArray;
-          return resultObj;
+          const resultData = result.data;
+          const sortedArray = sortRelevance(resultData.results);
+          result.data.results = sortedArray;
+          return result.data;
         } else {
           return result.data;
         }
