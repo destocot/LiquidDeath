@@ -61,7 +61,7 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
         />
         {view === "expanded" ? null : (
           <>
-            <div className="right-side-container">
+            <div id="right-side-container">
               <ProductInfo
                 product={product}
                 currentStyle={currentStyle}
