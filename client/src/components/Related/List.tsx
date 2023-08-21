@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Links } from "./Links";
 import axios, { Axios, AxiosResponse } from "axios";
 import "./app.css";
+import { OutfitList } from "./OutfitList";
 type ProdBase = {
   id: number;
   name: string;
@@ -82,6 +83,7 @@ export const List: FunctionComponent<ListProps> = ({
 
   return (
     <>
+      <OutfitList />
       <div className="flex flex-col items-center">
         <em
           onMouseEnter={() => {
