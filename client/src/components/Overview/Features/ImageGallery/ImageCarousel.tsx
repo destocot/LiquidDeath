@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setImg, styles, setCurrentStyle, windowSize}) {
+function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setImg, styles, setCurrentStyle}) {
   const carousel = document.getElementById("image-carousel");
   const createPhotoList = () => {
     let photoList = [];
@@ -99,8 +99,8 @@ function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setIm
       // ensures you don't go beyond the limits of the carousel
       // limits based on how many images you add
       nextPercentage = Math.min(nextPercentage, 0);
-      if (styles.length > 7) {
-        nextPercentage = Math.max(nextPercentage, -(styles.length - 7) * 14);
+      if (styles.length > 6) {
+        nextPercentage = Math.max(nextPercentage, -(styles.length - 6) * 13);
       } else {
         nextPercentage = 0;
       }
