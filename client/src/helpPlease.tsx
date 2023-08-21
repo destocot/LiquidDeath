@@ -103,79 +103,86 @@ let helpers = {
     }
     return obj;
   },
-  scaleValue: (value, oldMin, oldMax, newMin, newMax) => {
-    return ((value - oldMin) / (oldMax - oldMin)) * (newMax - newMin) + newMin;
-  },
-  findMinMaxArray: (arrayOfObjects) => {
-    let tempArray = arrayOfObjects.map((obj) => obj.helpfulness);
-    return {
-      min: Math.min(...tempArray),
-      max: Math.max(...tempArray),
-    }
+  // findMinMaxArray: (arrayOfObjects) => {
+  //   let tempArray = arrayOfObjects.map((obj) => obj.helpfulness);
+  //   return Math.max(...tempArray)
+  // },
+  normalizeData: (data) => {
+    const currentDate = new Date();
+
+    const minDate = new Date(Math.min(...data.map(item => new Date(item.date))));
+    const maxHelpfulness = Math.max(...data.map(item => item.helpfulness));
+
+    const normalizedDate = data.map(item => (currentDate - new Date(item.date)) / (currentDate - minDate));
+    const normalizedHelpfulness = data.map(item => (item.helpfulness - 1) / (maxHelpfulness - 1));
+
+    console.log({normalizedDate, normalizedHelpfulness});
+    const compositeMetric = normalizedHelpfulness.map((helpfulness, index) =>
+        (0.5 * helpfulness) + (0.5 * normalizedDate[index])
+    );
+    console.log({compositeMetric})
+    return compositeMetric;
   },
   sortRelevance: (arrayOfObjects) => {
-    // console.log('prior to sort: ', arrayOfObjects);
-    var helpRange = helpers.findMinMaxArray(arrayOfObjects);
-    var result =  arrayOfObjects.sort((a, b) => {
-      let valA;
-      let valB;
+    const normalizedArray = helpers.normalizeData(arrayOfObjects);
+    console.log('prior to sort: ', normalizedArray);
+    // var arrayMax = helpers.findMinMaxArray(arrayOfObjects);
+    var result = normalizedArray.sort((a, b) => {
+      console.log({a, b});
+      // let valA;
+      // let valB;
 
-      let rateA = a.helpfulness;
-      // console.log('original helpfulness rating: ', rateA);
-      let rateB = b.helpfulness;
-      if (rateA === 0) {
-        rateA = 1;
-      }
-      if (rateB === 0) {
-        rateB = 1;
-      }
-      // rateA = helpers.scaleValue(rateA, 1, helpRange.max, 1, 5);
-      // rateB = helpers.scaleValue(rateB, 1, helpRange.max, 1, 5);
-      // console.log('scaled helpfulness: ', rateA);
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      const currentDate = new Date();
-      // translate to value of 1 - 5
-      // divide by constant to convert from ms to days
-      const daysFromNowA = (currentDate - dateA) / 86400000;
-      const daysFromNowB = (currentDate - dateB) / 86400000;
+      // let rateA = a.helpfulness;
+      // let rateB = b.helpfulness;
+      // if (rateA === 0) {
+      //   rateA = 1;
+      // }
+      // if (rateB === 0) {
+      //   rateB = 1;
+      // }
+
+      // const dateA = new Date(a.date);
+      // const dateB = new Date(b.date);
+      // const currentDate = new Date();
+
+      // // divide by constant to convert from ms to days
+      // const daysFromNowA = (currentDate - dateA) / 86400000;
+      // const daysFromNowB = (currentDate - dateB) / 86400000;
 
       // this essentially translates the date into a 1 - 5 numbers
-      if (daysFromNowA <= 90) {
-        valA = 5 * rateA;
-      } else if (daysFromNowA <= 180) {
-        valA = 4 * rateA;
-      } else if (daysFromNowA <= 270) {
-        valA = 3 * rateA;
-      } else if (daysFromNowA <= 360) {
-        valA = 2 * rateA;
-      } else {
-        valA = rateA;
-      }
+      // if (daysFromNowA <= 90) {
+      //   valA = 5 * rateA;
+      // } else if (daysFromNowA <= 180) {
+      //   valA = 4 * rateA;
+      // } else if (daysFromNowA <= 270) {
+      //   valA = 3 * rateA;
+      // } else if (daysFromNowA <= 360) {
+      //   valA = 2 * rateA;
+      // } else {
+      //   valA = rateA;
+      // }
 
-      if (daysFromNowB <= 90) {
-        valB = 5 * rateB;
-      } else if (daysFromNowB <= 180) {
-        valB = 4 * rateB;
-      } else if (daysFromNowB <= 270) {
-        valB = 3 * rateB;
-      } else if (daysFromNowB <= 360) {
-        valB = 2 * rateB;
-      } else {
-        valB = rateB;
-      }
+      // if (daysFromNowB <= 90) {
+      //   valB = 5 * rateB;
+      // } else if (daysFromNowB <= 180) {
+      //   valB = 4 * rateB;
+      // } else if (daysFromNowB <= 270) {
+      //   valB = 3 * rateB;
+      // } else if (daysFromNowB <= 360) {
+      //   valB = 2 * rateB;
+      // } else {
+      //   valB = rateB;
+      // }
 
-      // console.log({rateA, daysFromNowA, valA});
-
-      if (valA < valB) {
+      if (a < b) {
         return 1;
       }
-      if (valA > valB) {
+      if (a > b) {
         return -1;
       }
       return 0;
       });
-    // console.log('after sort: ', result);
+    console.log('after sort: ', result);
     return result;
   },
   sumHelper: (array) => {
