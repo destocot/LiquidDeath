@@ -82,16 +82,19 @@ function App() {
     });
   }, [reviewsMeta]);
 
+  const [numInCart, setNumInCart] = useState(0);
+
   // changed order of components
   if (reviewsMeta) {
     return (
       <div id="the-main-app-container">
         {confetti ? <Confetti width={windowSize.width} height={windowSize.height} /> : null}
-        <Navbar changeSearch={changeSearch} />
+        <Navbar changeSearch={changeSearch} numInCart={numInCart} />
         <Overview
           product={product}
           reviewsMeta={reviewsMeta}
           setConfetti={setConfetti}
+          setNumInCart={setNumInCart}
         />
         <List
           currentProduct={product}
