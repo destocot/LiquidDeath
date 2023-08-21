@@ -180,7 +180,7 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
   };
 
   return (
-    <Popup Popup trigger={<button button id="addReviewButton" >Add Answer</button >} modal >
+    <Popup Popup trigger={<button button id="addReviewButton" >Add Review</button >} modal >
       {(close) => (
         <div className="reviewFormContainer">
           <div className="reviewFormSubContainer">

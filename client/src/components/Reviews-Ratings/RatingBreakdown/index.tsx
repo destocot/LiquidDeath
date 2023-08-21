@@ -43,7 +43,7 @@ const RatingBreakdown: React.FC<RatingBreakdownProps> = ({filters, updateFilters
   return (
     <div className="ratingBreakdown">
       <div className="stars-container">
-        <h1 className="text-6xl font-bold text-[#14532d]">{avgRating}</h1>
+        <h1 className="text-6xl font-bold text-[#1d1a4d]">{avgRating}</h1>
         <div>{reviewStars(avgRating)}</div>
       </div>
       <div><span>{recommended(reviewsMeta.recommended)}</span><span> of reviewers recommend this product.</span></div>

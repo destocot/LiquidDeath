@@ -72,9 +72,10 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-  background-color: rgb(124, 188, 82);
+  background-color: #007185;
+  /* background-color: #1d1a4d; */
   border-radius: 7px;
-  box-shadow: 1px 1px 3px 3px rgb(109, 109, 109);
+  box-shadow: 1px 1px 3px 3px rgba(167, 167, 167, 0.392);
 }
 
 /* -- ProductBreakdown -- */
