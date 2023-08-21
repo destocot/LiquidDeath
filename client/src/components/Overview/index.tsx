@@ -56,27 +56,32 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
           currentStyle={currentStyle}
           setCurrentStyle={setCurrentStyle}
           styles={styles}
+          view={view}
+          toggleExpand={toggleExpand}
         />
-        <div className="right-side-container">
-          <ProductInfo
-            product={product}
-            currentStyle={currentStyle}
-            reviewsMeta={reviewsMeta}
-            setConfetti={setConfetti}
-          />
-          <div className="styles-cart-container">
-            <StyleSelector
-              styles={styles}
-              setCurrentStyle={styleClickHandler}
-              currentStyle={currentStyle}
-            />
-            <AddCart
-              currentStyle={currentStyle}
-              setConfetti={setConfetti}
-              setNumInCart={setNumInCart}
-            />
-          </div>
-        </div>
+        {view === "expanded" ? null : (
+          <>
+            <div className="right-side-container">
+              <ProductInfo
+                product={product}
+                currentStyle={currentStyle}
+                reviewsMeta={reviewsMeta}
+                setConfetti={setConfetti}
+              />
+              <div className="styles-cart-container">
+                <StyleSelector
+                  styles={styles}
+                  setCurrentStyle={styleClickHandler}
+                  currentStyle={currentStyle}
+                />
+                <AddCart
+                  currentStyle={currentStyle}
+                  setConfetti={setConfetti}
+                />
+              </div>
+            </div>
+          </>
+        )}
         <div className="description-container">
           <Description product={product} />
         </div>

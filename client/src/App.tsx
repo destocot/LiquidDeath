@@ -62,12 +62,21 @@ function App() {
     document.getElementById("nav-search-bar").value = "";
   };
 
+  window.onresize = () => handleWindowResize();
+
+  // search bar
+  const changeSearch = (productId) => {
+    updProduct(productId).then((results) => setProduct(results.data));
+
+    document.getElementById("nav-search-bar").value = "";
+  };
+
   // set confetti to run for a specified time
   useEffect(() => {
     confetti &&
       setTimeout(() => {
         setConfetti(false);
-      }, 10000);
+      }, 8000);
   }, [confetti]);
 
   /*
