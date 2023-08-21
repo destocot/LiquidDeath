@@ -6,7 +6,7 @@ function NavSearch({ changeSearch }) {
 
   const navSearch = (e) => {
     if (e.target.value.length > 2) {
-      setSearchProducts(list.filter(item => item.name.toLowerCase().includes(e.target.value.toLowerCase())))
+      setSearchProducts(list.filter(item => item.name.toLowerCase().startsWith(e.target.value.toLowerCase())))
     } else {
       setSearchProducts([]);
     }
@@ -24,7 +24,7 @@ function NavSearch({ changeSearch }) {
             }
             }
 
-              key={searchProduct.id}>{searchProduct.name}</span>))
+              key={searchProduct.id}><b>{searchProduct.name.slice(0, 1)}</b>{searchProduct.name.slice(1)}</span>))
           }
         </div>
       }
