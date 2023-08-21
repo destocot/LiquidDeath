@@ -68,6 +68,7 @@ body {
   position:relative;
   height: 100%;
   width: 100%;
+  justify-content: center;
 }
 
 .default-arrow {
@@ -97,6 +98,29 @@ body {
   height: 100%;
   width: 100%;
   transform: translate(-50%, -50%);
+}
+
+.big-carousel-container {
+  display: flex;
+  position: absolute;
+  top: 92%;
+  gap: 2vmin;
+  z-index: 5;
+  align-items: center;
+}
+
+.big-select {
+  color:#393939;
+  opacity: 0.8;
+}
+
+.big-active {
+  color: white;
+}
+
+.big-select:hover {
+  cursor: pointer;
+  filter:brightness(2);
 }
 
 #right-side-container {

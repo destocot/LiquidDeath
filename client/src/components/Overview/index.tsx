@@ -15,7 +15,6 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
   const [view, changeView] = useState("default");
 
   const defaultImageGallery = document.getElementById("image-gallery-container");
-  const expandedImageGallery = document.getElementById("expanded-gallery-container");
   const rightSideContainer = document.getElementById("right-side-container");
 
   const updStyles = async () => {

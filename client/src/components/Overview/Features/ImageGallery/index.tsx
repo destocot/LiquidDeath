@@ -24,6 +24,9 @@ function ImageGallery({currentStyle, setCurrentStyle, styles, view, toggleExpand
           <BigImage
             currentStyle={currentStyle}
             img={img}
+            setImg={setImg}
+            styles={styles}
+            setCurrentStyle={setCurrentStyle}
           />
         </div>
       :
