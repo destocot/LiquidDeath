@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
+import swal from 'sweetalert';
 
 function QuestionForm({ currProductName, currProductId }) {
   const submitHandler = (e) => {
@@ -15,6 +16,7 @@ function QuestionForm({ currProductName, currProductId }) {
 
   const sendQuestion = (data) => {
     axios.post('/qa/questions', data)
+      .then(() => swal('Question submitted.'))
       .catch(() => console.log('error posting question'));
   }
   return (

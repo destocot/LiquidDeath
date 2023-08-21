@@ -45,6 +45,7 @@ function AnswerForm({ currProductName, questionBody, questionId }) {
         'Content-Type': 'multipart/form-data'
       }
     })
+      .then(() => swal('Answer submitted.'))
       .catch(() => console.log('error posting answer', data));
   }
 
