@@ -46,7 +46,6 @@ function App() {
 
   // does what the name implies
   const handleWindowResize = () => {
-    console.log(window.innerWidth);
     setWindowSize({
       width: window.innerWidth,
       height: window.innerHeight,
@@ -102,7 +101,6 @@ function App() {
           product={product}
           reviewsMeta={reviewsMeta}
           setConfetti={setConfetti}
-          windowSize={windowSize}
         />
         <List
           currentProduct={product}

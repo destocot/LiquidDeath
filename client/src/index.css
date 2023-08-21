@@ -38,6 +38,10 @@ body {
   background-color: #46424f;
 }
 
+.dark .swal-text {
+  color: black;
+}
+
 .dark .cs-typing-indicator {
   background-color: #76737e;
 }

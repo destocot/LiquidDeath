@@ -67,6 +67,10 @@ body {
   background-color: rgba(0,0,0, 0.4);
 }
 
+.carousel-arrow {
+  color: white;
+}
+
 .carousel-translate-up {
   transform: translate(0, -14%);
   transition-timing-function: ease-in-out;
