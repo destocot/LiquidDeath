@@ -48,7 +48,7 @@ body {
   text-decoration: none;
 }
 
-/* DARK MODE FOR B'S ELEMENTS */
+/* DARK MODE FOR OVERVIEW ELEMENTS */
 
 .dark .reviews a {
   color: #ff6700;
@@ -85,9 +85,9 @@ body {
   border-color: white;
 }
 
-/* DARK MODE FOR J'S ELEMENTS */
+/* DARK MODE FOR RELATED ELEMENTS */
 
-/* DARK MODE FOR KH'S ELEMENTS */
+/* DARK MODE FOR QUESTIONS AND ANSWERS ELEMENTS */
 
 .dark .search-container {
   border: 2px solid white;
@@ -117,6 +117,14 @@ body {
   text-shadow: -0.06ex 0 0 rgba(255, 255, 255, 0.65), 0.06ex 0 0 rgba(255, 255, 255, 0.65);
 }
 
+.dark {
+  .ExpandAndAdd-container {
+    #expand-questions-btn:hover , #add-questions-btn:hover {
+      border-color: white;
+    }
+  }
+}
+
 .dark .answer-container h4 span {
   color: #ff6700;
 }
@@ -144,7 +152,7 @@ body {
   color: white;
 }
 
-/* DARK MODE FOR KU'S ELEMENTS */
+/* DARK MODE FOR REVIEWS ELEMENTS */
 
 .dark .stars-container h1 {
   /* color: #5e5a66; */
