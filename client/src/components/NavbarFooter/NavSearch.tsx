@@ -16,13 +16,15 @@ function NavSearch({ changeSearch }) {
     <div>
       <input id="nav-search-bar" className="border-2 py-1 px-2 rounded-[1.625rem] text-[black]" type="text" placeholder="Search products" onChange={(e) => navSearch(e)}></input>
       {
-        !!searchProducts.length && <div className="bg-[black]/[0.75] z-[10] absolute flex flex-col px-[2vw] mt-[0.25vh]">
+        !!searchProducts.length && <div className="bg-[black]/[0.8] z-[10] absolute flex flex-col px-[2vw] mt-[0.25vh]">
           {
-            searchProducts.map((searchProduct) => (<span className="text-white hover:text-[#007185]" onClick={() => {
+            searchProducts.map((searchProduct) => (<span className="searchProd text-white hover:text-[#007185]" onClick={() => {
               changeSearch(searchProduct.id);
               setSearchProducts([]);
             }
-            }>{searchProduct.name}</span>))
+            }
+
+              key={searchProduct.id}>{searchProduct.name}</span>))
           }
         </div>
       }

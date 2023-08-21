@@ -1,7 +1,7 @@
 import React from 'react';
 import helpers from '../../../../helpPlease';
 
-function StarsAndReviews({reviewScore, setConfetti}) {
+function StarsAndReviews({ reviewScore, setConfetti }) {
   return (
     <div className="stars-reviews mt-3">
       <div className="stars-container">
