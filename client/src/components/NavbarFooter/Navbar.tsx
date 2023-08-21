@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 import axios from 'axios';
+import NavSearch from './NavSearch';
 
-function Navbar() {
+function Navbar({ changeSearch }) {
   const [colorMode, setColorMode] = useState('Dark Mode');
 
   const changeColor = () => {
@@ -37,8 +38,8 @@ function Navbar() {
         <div className="flex-1 flex justify-center">
           <span className="mr-[16px]">Home</span>
           <span className="mr-[16px]">Sale</span>
-          <span className="mr-[15px]">About</span>
-          <button id="color-mode-btn" className="hover:underline px-[1px]" onClick={() => changeColor()}>{colorMode}</button>
+          <span className="mr-[16px]">About</span>
+          <button id="color-mode-btn" className="hover:underline px-[1px] mr-[16px]" onClick={() => changeColor()}>{colorMode}</button>
         </div>
       </div>
       <div className="row-start-1 row-end-2 col-start-5 col-end-7 justify-self-end">
@@ -50,7 +51,7 @@ function Navbar() {
       </div>
       <div className="row-start-2 row-end-3 col-start-6 col-end-7">
         <div className="flex-1 flex justify-center ml-auto items-center" >
-          <input className="border-2 py-1 px-2 rounded-[1.625rem] text-[black]" type="text" value="Search products"></input>
+          <NavSearch changeSearch={changeSearch} />
           <i className="fa-regular fa-user fa-lg ml-2" />
           <i className="fa-regular fa-heart  fa-lg ml-2" />
           <i className="fa-solid fa-cart-shopping fa-lg ml-2" />
