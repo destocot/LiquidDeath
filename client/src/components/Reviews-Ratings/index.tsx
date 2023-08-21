@@ -13,7 +13,7 @@ const ReviewsRatings: React.FC<ReviewsRatingsProps> = ({ reviewsMeta, currProduc
   const [reviews, setReviews] = useState(initReviews);
   const [filters, setFilters] = useState<{ ratings: number[] }>({ ratings: [] });
 
-  const updateFilters = (obj:  { ratings: number[] } ) => {
+  const updateFilters = (obj: { ratings: number[] }) => {
     setFilters(obj);
   };
 
@@ -43,7 +43,7 @@ const ReviewsRatings: React.FC<ReviewsRatingsProps> = ({ reviewsMeta, currProduc
     <div data-testid="test-1" className="ratingsReviewsContainer" id="ratingsReviewsContainerId">
       <h2 className="h-[5vh] text-[2rem]">RATINGS & REVIEWS</h2>
       <div className="ratingsReviewsContent">
-        <RatingBreakdown filters={filters} updateFilters={updateFilters} reviewsMeta={reviewsMeta}/>
+        <RatingBreakdown filters={filters} updateFilters={updateFilters} reviewsMeta={reviewsMeta} />
         <ReviewsList filteredReviews={filteredReviews} filters={filters} reviewsMeta={reviewsMeta} currProductName={currProductName} currProductId={currProductId} updReviews={updReviews} />
       </div>
     </div>
