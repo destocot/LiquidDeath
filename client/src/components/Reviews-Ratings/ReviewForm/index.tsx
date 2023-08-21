@@ -50,30 +50,52 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
     setAForm(false);
   };
 
+  // const imageChecker = (e) => {
+  //   const files = e.target.files;
+  //   let tempFileArray = [];
+  //   let imageDiv = document.getElementById('rev-images-div');
+  //   imageDiv.innerHTML = '';
+
+  //   if (files.length > 5) {
+  //     alert('You can only upload up to 5 photos!');
+  //     e.target.value = '';
+  //   } else {
+  //     for (var i = 0; i < files.length; i++) {
+  //       var reader = new FileReader();
+  //       tempFileArray.push('client/dist/Images/' + files[i].name);
+  //       reader.addEventListener("load", (event) => {
+  //         const picFile = event.target;
+  //         const div = document.createElement('div');
+  //         div.innerHTML = `<img className="thumbnail" src="${picFile.result}" alt="${files[i].name}" />`;
+  //         imageDiv?.appendChild(div);
+  //       })
+  //       reader.readAsDataURL(files[i])
+  //       // setPhotoUrlArray(tempFileArray);
+  //     }
+  //   }
+  // };
+
   const imageChecker = (e) => {
     const files = e.target.files;
-    let tempFileArray = [];
-    let imageDiv = document.getElementById('rev-images-div');
+    let imageDiv = document.getElementById('my-images-div');
+    let imageInput = document.getElementById('ans-photos');
     imageDiv.innerHTML = '';
-
     if (files.length > 5) {
       alert('You can only upload up to 5 photos!');
-      e.target.value = '';
+      imageInput.value = '';
     } else {
       for (var i = 0; i < files.length; i++) {
         var reader = new FileReader();
-        tempFileArray.push('client/dist/Images/' + files[i].name);
         reader.addEventListener("load", (event) => {
           const picFile = event.target;
           const div = document.createElement('div');
-          div.innerHTML = `<img className="thumbnail" src="${picFile.result}" alt="${files[i].name}" />`;
+          div.innerHTML = `<img className="thumbnail" src="${picFile.result}" alt="${picFile.name}" />`;
           imageDiv?.appendChild(div);
         })
         reader.readAsDataURL(files[i])
-        // setPhotoUrlArray(tempFileArray);
       }
     }
-  };
+  }
 
   const sendReview = (data) => {
     axios.post('/reviews/newreview', data, {
@@ -206,7 +228,7 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
               <label className="reviewFormSectionHeader">E-mail*<br />
                 <input type="email" maxLength="60" placeholder="Example: jack@email.com" name="email" required /> <br />
                 <div className="reviewFormWarning">For authentication reasons, you will not be emailed</div></label>
-                <div id="rev-images-div" className="flex"></div>
+                <div id="my-images-div" className="flex"></div>
               <div className="reviewFormbuttons">
                 <input id="reviewPhotos" type="file" name="photos" accept="image/png, image/jpeg" onChange={(e) => imageChecker(e)} multiple />
                 <input id="submitButton" type="submit" value="Submit"/>
