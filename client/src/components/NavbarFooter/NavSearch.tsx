@@ -12,17 +12,17 @@ function NavSearch({ changeSearch }) {
     }
   }
 
-  // const changeSearch = (productId) => {
-  //   console.log(productId);
-  // }
-
   return (
     <div>
-      <input className="border-2 py-1 px-2 rounded-[1.625rem] text-[black]" type="text" placeholder="Search products" onChange={(e) => navSearch(e)}></input>
+      <input id="nav-search-bar" className="border-2 py-1 px-2 rounded-[1.625rem] text-[black]" type="text" placeholder="Search products" onChange={(e) => navSearch(e)}></input>
       {
-        !!searchProducts.length && <div className="bg-[black]/[0.75] z-[10] absolute flex flex-col px-[2.5vw] mt-[0.25vh]">
+        !!searchProducts.length && <div className="bg-[black]/[0.75] z-[10] absolute flex flex-col px-[2vw] mt-[0.25vh]">
           {
-            searchProducts.map((searchProduct) => (<div className="w-[100%] text-white hover:text-[#007185]" onClick={() => changeSearch(searchProduct.id)}>{searchProduct.name}</div>))
+            searchProducts.map((searchProduct) => (<span className="text-white hover:text-[#007185]" onClick={() => {
+              changeSearch(searchProduct.id);
+              setSearchProducts([]);
+            }
+            }>{searchProduct.name}</span>))
           }
         </div>
       }

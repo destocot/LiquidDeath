@@ -56,6 +56,8 @@ function App() {
   const changeSearch = (productId) => {
     updProduct(productId)
       .then((results) => setProduct(results.data));
+
+    document.getElementById('nav-search-bar').value = '';
   }
 
   // set confetti to only run for one second
