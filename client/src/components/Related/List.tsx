@@ -42,6 +42,7 @@ export const List: FunctionComponent<ListProps> = ({
   const [related, setRelated] = useState<Array<object>>();
   const [relatedStyles, setRelatedStyles] = useState<Array<object>>([]);
   const [hidden, setHidden] = useState<boolean>(true);
+  const [pulse, setPulse] = useState<boolean>(false);
   var getRelatedObjs = (ID: number) => {
     return axios.get(`products/${ID}`);
   };
@@ -85,8 +86,11 @@ export const List: FunctionComponent<ListProps> = ({
         <em
           onMouseEnter={() => {
             setHidden(false);
+            setPulse(true);
           }}
-          className="text-2xl h-9 font-extrabold hover:animate-pulse"
+          className={`text-2xl h-9 font-extrabold ${
+            pulse ? "animate-pulse" : null
+          }`}
         >
           Related
         </em>
@@ -102,6 +106,7 @@ export const List: FunctionComponent<ListProps> = ({
           }`}
           onClick={() => {
             setHidden(true);
+            setPulse(false);
           }}
         >
           {related
