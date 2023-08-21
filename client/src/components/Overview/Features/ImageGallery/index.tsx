@@ -6,6 +6,9 @@ function ImageGallery({currentStyle, setCurrentStyle, styles}) {
   // make states for view and current image
   const [expanded, setExpanded] = useState(false);
   const [img, setImg] = useState(currentStyle.photos[0].url);
+  // states for default carousel arrows
+  const [up, toggleUp] = useState(false);
+  const [down, toggleDown] = useState(false);
 
   useEffect(() => {
     setImg(currentStyle.photos[0].url)
@@ -38,14 +41,29 @@ function ImageGallery({currentStyle, setCurrentStyle, styles}) {
       null
       :
       <>
+        {currentStyle === styles[0] ? null :
+          <div className="carousel-arrow-btn up-arrow" onClick={() => toggleUp(!up)}>
+            <i className="carousel-arrow fa-solid fa-angle-up"></i>
+          </div>
+        }
         <div className="carousel-container">
           <ImageCarousel
+            up={up}
+            down={down}
+            toggleUp={toggleUp}
+            toggleDown={toggleDown}
             styles={styles}
             currentStyle={currentStyle}
+            img={img}
             setImg={setImg}
             setCurrentStyle={setCurrentStyle}
           />
         </div>
+        {currentStyle === styles[styles.length - 1] ? null :
+          <div className="carousel-arrow-btn down-arrow" onClick={() => toggleDown(!down)} >
+            <i className="carousel-arrow fa-solid fa-angle-down"></i>
+          </div>
+        }
         <Image
           currentStyle={currentStyle}
           img={img}

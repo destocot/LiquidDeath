@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CartForm from './CartForm';
 import helpers from '../../../../helpPlease';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 function AddCart({currentStyle, setConfetti}) {
   const [needed, setNeeded] = useState('');
@@ -33,7 +34,7 @@ function AddCart({currentStyle, setConfetti}) {
         setNeeded('');
         document.getElementById('cart-form').reset();
       })
-      .then(() => alert('Added Items to Cart!'))
+      .then(() => swal('Added Items to Cart!'))
       .catch((err) => console.error(err));
   }
 

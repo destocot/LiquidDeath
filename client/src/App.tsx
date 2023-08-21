@@ -52,6 +52,8 @@ function App() {
     })
   };
 
+  window.onresize = () => handleWindowResize();
+
   // search bar
   const changeSearch = (productId) => {
     updProduct(productId)
@@ -60,13 +62,12 @@ function App() {
     document.getElementById('nav-search-bar').value = '';
   }
 
-  // set confetti to only run for one second
+  // set confetti to run for a specified time
   useEffect(() => {
-    window.onresize = () => handleWindowResize();
     confetti &&
       setTimeout(() => {
         setConfetti(false)
-      }, 10000)
+      }, 8000)
   }, [confetti]);
 
   /*
