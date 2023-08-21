@@ -4,7 +4,7 @@ import helpers from '../../../../helpPlease';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-function AddCart({ currentStyle, setConfetti, setNumInCart }) {
+function AddCart({currentStyle, setConfetti}) {
   const [needed, setNeeded] = useState('');
   const [size, setSize] = useState('');
   const [quantity, setQuantity] = useState('');
@@ -19,7 +19,7 @@ function AddCart({ currentStyle, setConfetti, setNumInCart }) {
   const formSubmit = (e) => {
     e.preventDefault();
     let cartBody = helpers.formParser(e.target.elements);
-    if (cartBody.sku_id === 'Select Size') {
+    if (cartBody.sku_id === 'Select Size' ) {
       setNeeded('size');
       return;
     } else if (cartBody.count === 'Select Quantity') {
@@ -32,7 +32,6 @@ function AddCart({ currentStyle, setConfetti, setNumInCart }) {
         setSize('');
         setQuantity('');
         setNeeded('');
-        setNumInCart(state => state + Number(cartBody.count));
         document.getElementById('cart-form').reset();
       })
       .then(() => {
@@ -46,14 +45,14 @@ function AddCart({ currentStyle, setConfetti, setNumInCart }) {
   return (
     <div>
       <CartForm
-        currentStyle={currentStyle}
-        handleSubmit={formSubmit}
-        needed={needed}
-        setNeeded={setNeeded}
-        size={size}
-        setSize={setSize}
-        quantity={quantity}
-        setQuantity={setQuantity}
+      currentStyle={currentStyle}
+      handleSubmit={formSubmit}
+      needed={needed}
+      setNeeded={setNeeded}
+      size={size}
+      setSize={setSize}
+      quantity={quantity}
+      setQuantity={setQuantity}
       />
     </div>
   );

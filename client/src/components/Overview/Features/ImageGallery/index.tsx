@@ -10,8 +10,6 @@ function ImageGallery({currentStyle, setCurrentStyle, styles, view, toggleExpand
   const [up, toggleUp] = useState(false);
   const [down, toggleDown] = useState(false);
 
-  const defaultImageGallery = document.getElementById("image-gallery-container");
-
   useEffect(() => {
     setImg(currentStyle.photos[0].url)
   }, [currentStyle])
@@ -20,6 +18,9 @@ function ImageGallery({currentStyle, setCurrentStyle, styles, view, toggleExpand
     <>
       { view === 'expanded' ?
         <div id="expanded-gallery-container">
+          <div className="default-arrow" onClick={() => toggleExpand(false)}>
+            <i className="fa-solid fa-arrow-left"></i>
+          </div>
           <BigImage
             currentStyle={currentStyle}
             img={img}
