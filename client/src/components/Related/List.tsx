@@ -82,25 +82,14 @@ export const List: FunctionComponent<ListProps> = ({
   return (
     <>
       <div className="flex flex-col items-center">
-        <em>Related</em>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-8 h-8 justify-center items-center transition-all hover:animate-pulse"
+        <em
           onMouseEnter={() => {
             setHidden(false);
           }}
+          className="text-lg h-9 font-extrabold"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"
-            className="justify-center"
-          />
-        </svg>
+          Related
+        </em>
       </div>
       <div
         className={`transition-all duration-400 delay-75 ease-in-out ${
@@ -109,7 +98,7 @@ export const List: FunctionComponent<ListProps> = ({
       >
         <div
           className={`container-xl flex flex-row overflow-auto max-w-full min-w-screen space-x-24 ${
-            hidden ? "hidden" : "animation: fadeIn 3s"
+            hidden ? "hidden" : "animation: fadeIn 9s"
           }`}
         >
           {related
