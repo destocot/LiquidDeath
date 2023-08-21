@@ -86,7 +86,7 @@ export const List: FunctionComponent<ListProps> = ({
           onMouseEnter={() => {
             setHidden(false);
           }}
-          className="text-lg h-9 font-extrabold hover:animate-pulse"
+          className="text-2xl h-9 font-extrabold hover:animate-pulse"
         >
           Related
         </em>
