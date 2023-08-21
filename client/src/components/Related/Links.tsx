@@ -77,12 +77,12 @@ export const Links: React.FC<LinkProps> = ({
             <button
               className="bg-gray-500 rounded-xl relative top-1/2 h-8 w-32"
               onClick={(e) => {
-                e.preventDefault();
                 let toOutfit = currListProduct;
                 toOutfit.style = style.url;
                 let outfitHolder = outfitList;
                 outfitHolder.push(toOutfit);
                 updateOutfitList(outfitHolder);
+                outfitHolder = [];
               }}
             >
               Add To Outfit{" "}

@@ -13,24 +13,24 @@ export const OutfitList: React.FC<OutfitProps> = ({
   const [hidden, setHidden] = useState<boolean>(true);
   return (
     <div>
-      {hidden ? (
-        <button
-          onClick={() => {
-            hidden ? setHidden(false) : setHidden(true);
-          }}
-          className=" outline-4 outline-white outline-double rounded-lg w-36 float-right block fixed right-0 top-96 -rotate-90  text-center h-max "
-        >
-          Outfit List
-        </button>
-      ) : (
-        <div className="rounded-lg w-36 float-right block fixed right-0 top-96   text-center h-max outline-double outline-white row">
-          {" "}
-          Outfit
-          <div className="">
+      <button
+        onClick={() => {
+          hidden ? setHidden(false) : setHidden(true);
+        }}
+        className=" outline-4 outline-black outline-double rounded-lg w-36 float-right block fixed right-0 top-96 -rotate-90  text-center h-max "
+      >
+        Outfit List
+      </button>
+      {hidden ? null : (
+        <div className="rounded-lg w-36 float-right block fixed right-0 top-96   text-center h-max outline-double outline-black row bg-gray-300">
+          <div className="font-bold border-black border-b-8">
+            {" "}
             {outfitList.map((current) => {
               return (
                 <div>
+                  <em>{current.name}</em>
                   <img src={current.style} />
+                  <em>{current.default_price}$</em>
                 </div>
               );
             })}
