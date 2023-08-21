@@ -37,4 +37,5 @@ module.exports = {
   mode: "development",
   // after initial build, webpack watches for changes in resolved files
   watch: true,
+  devtool: "source-map",
 };
