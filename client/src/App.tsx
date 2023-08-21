@@ -52,6 +52,12 @@ function App() {
     })
   };
 
+  // search bar
+  const changeSearch = (productId) => {
+    updProduct(productId)
+      .then((results) => setProduct(results.data));
+  }
+
   // set confetti to only run for one second
   useEffect(() => {
     window.onresize = () => handleWindowResize();
@@ -79,7 +85,7 @@ function App() {
     return (
       <div id="the-main-app-container">
         {confetti ? <Confetti width={windowSize.width} height={windowSize.height} /> : null}
-        <Navbar />
+        <Navbar changeSearch={changeSearch} />
         <Overview
           product={product}
           reviewsMeta={reviewsMeta}
