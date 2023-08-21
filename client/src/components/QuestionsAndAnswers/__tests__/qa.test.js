@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import React from "react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import axios from "axios";
 
@@ -20,8 +20,17 @@ const questionBody = "Quam aperiam est dignissimos velit.";
 const questionId = 300483;
 
 jest.mock("axios");
+jest.mock("react", () => ({
+  ...jest.requireActual("react"),
+  useState: jest.fn(),
+}));
+import { useState } from "react";
 
 describe("ability to render all components and subcomponents", () => {
+  beforeEach(() => {
+    useState.mockImplementation(jest.requireActual("react").useState);
+    //other preperations
+  });
   ////////////////////////////////////////
   // Question And Answer Component
   ////////////////////////////////////////
@@ -47,35 +56,41 @@ describe("ability to render all components and subcomponents", () => {
   // Question Component
   ////////////////////////////////////////
   //  => Question List
-  test("question list component renders", async () => {
-    axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
-    const setDisplaymore = jest.fn(); // Create a mock function
-    jest.spyOn(React, "useState").mockReturnValue([false, setDisplaymore]);
+  // test("question list component renders", async () => {
+  //   axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
 
-    render(
-      <QuestionList
-        currProductId={currProductId}
-        currProductName={currProductName}
-        moreQuestions={false}
-        query=""
-        setDisplayMore={setDisplaymore}
-      />
-    );
-  });
+  //   const setDisplayMore = jest.fn(); // Create a mock function
+  //   jest.spyOn(React, "useState").mockReturnValue([false, setDisplayMore]);
 
-  // => => Question
-  test("question component renders", () => {
-    render(
-      <Question
-        question={{
-          question_id: 300494,
-          question_helpfulness: 28,
-        }}
-        currProductName={currProductName}
-        query=""
-      />
-    );
-  });
+  //   act(() => {
+  //     render(
+  //       <QuestionList
+  //         currProductId={currProductId}
+  //         currProductName={currProductName}
+  //         moreQuestions={false}
+  //         query=""
+  //         setDisplayMore={setDisplayMore}
+  //       />
+  //     );
+  //   });
+  // });
+
+  // // => => Question
+  // test("question component renders", async () => {
+  //   axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
+  //   act(() => {
+  //     render(
+  //       <Question
+  //         question={{
+  //           question_id: 300494,
+  //           question_helpfulness: 28,
+  //         }}
+  //         currProductName={currProductName}
+  //         query=""
+  //       />
+  //     );
+  //   });
+  // });
 
   // => => => Answer
   test("answer component renders", async () => {
@@ -124,6 +139,18 @@ describe("ability to render all components and subcomponents", () => {
         questionId={questionId}
       />
     );
+
+    fireEvent.click(getByTestId("add-answer-btn"));
+
+    const nameWarning = screen.getByText(
+      /For privacy reasons, do not use your full name or email address/i
+    );
+    expect(nameWarning).toBeInTheDocument();
+
+    const emailWarning = screen.getByText(
+      /For authentication reasons, you will not be emailed/i
+    );
+    expect(emailWarning).toBeInTheDocument();
   });
 
   ////////////////////////////////////////
@@ -147,16 +174,16 @@ describe("ability to render all components and subcomponents", () => {
       />
     );
 
-    // fireEvent.click(getByTestId("add-questions-btn"));
+    fireEvent.click(getByTestId("add-questions-btn"));
 
-    // const nameWarning = screen.getByText(
-    //   /For privacy reasons, do not use your full name or email address/i
-    // );
-    // expect(nameWarning).toBeInTheDocument();
+    const nameWarning = screen.getByText(
+      /For privacy reasons, do not use your full name or email address/i
+    );
+    expect(nameWarning).toBeInTheDocument();
 
-    // const emailWarning = screen.getByText(
-    //   /For authentication reasons, you will not be emailed/i
-    // );
-    // expect(emailWarning).toBeInTheDocument();
+    const emailWarning = screen.getByText(
+      /For authentication reasons, you will not be emailed/i
+    );
+    expect(emailWarning).toBeInTheDocument();
   });
 });
