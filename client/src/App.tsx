@@ -62,14 +62,6 @@ function App() {
     document.getElementById('nav-search-bar').value = '';
   }
 
-  // search bar
-  const changeSearch = (productId) => {
-    updProduct(productId)
-      .then((results) => setProduct(results.data));
-
-    document.getElementById('nav-search-bar').value = '';
-  }
-
   // set confetti to run for a specified time
   useEffect(() => {
     confetti &&
