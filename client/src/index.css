@@ -139,6 +139,10 @@ body {
   .searchProd:hover {
     color: #ff6700;
   }
+
+  #add-questions-btn:hover, #expand-questions-btn:hover {
+    background-color: rgba(255, 103, 0, 0.5);
+  }
 }
 
 .dark .answer-container h4 span {
