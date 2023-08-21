@@ -100,6 +100,9 @@ export const List: FunctionComponent<ListProps> = ({
           className={`container-xl flex flex-row overflow-auto max-w-full min-w-screen space-x-24 ${
             hidden ? "hidden" : "animation: fadeIn 9s"
           }`}
+          onClick={() => {
+            setHidden(true);
+          }}
         >
           {related
             ? related.map((current, index) => {
