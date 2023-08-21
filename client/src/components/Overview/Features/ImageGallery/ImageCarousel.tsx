@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setImg, styles, setCurrentStyle}) {
+function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setImg, styles, setCurrentStyle, windowSize}) {
   const carousel = document.getElementById("image-carousel");
   const createPhotoList = () => {
     let photoList = [];
@@ -47,10 +47,14 @@ function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setIm
   useEffect(() => {
     if (up) {
       //  translate the carousel
-      if (styles.length > 6 && (parseFloat(carousel.dataset.prevPercentage) - 14) >= -((styles.length - 6) * 14)) {
-        console.log('we got here ?');
+      if (styles.length > 7 && (parseFloat(carousel.dataset.prevPercentage) - 14) >= -((styles.length - 6) * 14)) {
         carousel.classList.toggle("carousel-translate-up");
+        console.log(carousel.dataset.prevPercentage);
         carousel.dataset.prevPercentage = parseFloat(carousel.dataset.prevPercentage) - 14;
+        console.log(carousel.dataset.prevPercentage);
+        setTimeout(() => {
+          carousel.classList.toggle("carousel-translate-up");
+        }, 800)
       }
       // change style if it's not the first style
       if (currentStyle.style_id !== styles[0].style_id) {
@@ -67,7 +71,7 @@ function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setIm
     } else if (down) {
       // lost in translation
       if ((parseFloat(carousel.dataset.prevPercentage) + 14) < 0) {
-        console.log('we got here ?');
+        console.log('should translate carousel down');
         carousel.classList.toggle("carousel-translate-down");
         carousel.classList.toggle("carousel-translate-down");
         carousel.dataset.prevPercentage = parseFloat(carousel.dataset.prevPercentage) + 14;
@@ -112,8 +116,8 @@ function ImageCarousel({up, toggleUp, down, toggleDown, currentStyle, img, setIm
       // ensures you don't go beyond the limits of the carousel
       // limits based on how many images you add
       nextPercentage = Math.min(nextPercentage, 0);
-      if (styles.length > 6) {
-        nextPercentage = Math.max(nextPercentage, -((styles.length - 6) * 14));
+      if (styles.length > 7) {
+        nextPercentage = Math.max(nextPercentage, -(styles.length - 7) * 14);
       } else {
         nextPercentage = 0;
       }

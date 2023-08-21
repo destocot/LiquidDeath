@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Image from './Image';
 import ImageCarousel from './ImageCarousel';
 
-function ImageGallery({currentStyle, setCurrentStyle, styles}) {
+function ImageGallery({currentStyle, setCurrentStyle, styles, windowSize}) {
   // make states for view and current image
   const [expanded, setExpanded] = useState(false);
   const [img, setImg] = useState(currentStyle.photos[0].url);
@@ -57,9 +57,10 @@ function ImageGallery({currentStyle, setCurrentStyle, styles}) {
             img={img}
             setImg={setImg}
             setCurrentStyle={setCurrentStyle}
+            windowSize={windowSize}
           />
         </div>
-        {currentStyle === styles[styles.length - 1] ? console.log('this is true') :
+        {currentStyle === styles[styles.length - 1] ? null :
           <div className="carousel-arrow-btn down-arrow" onClick={() => toggleDown(!down)} >
             <i className="carousel-arrow fa-solid fa-angle-down"></i>
           </div>
