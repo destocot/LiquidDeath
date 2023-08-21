@@ -2,3 +2,4 @@ node_modules
 exampleData
 client/dist/bundle.js
 .env
+coverage
