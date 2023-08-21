@@ -41,6 +41,7 @@ export const List: FunctionComponent<ListProps> = ({
   const [relatedIDs, setRelatedIDs] = useState<Array<number>>([]);
   const [related, setRelated] = useState<Array<object>>();
   const [relatedStyles, setRelatedStyles] = useState<Array<object>>([]);
+  const [hidden, setHidden] = useState<boolean>(true);
   var getRelatedObjs = (ID: number) => {
     return axios.get(`products/${ID}`);
   };
@@ -79,21 +80,46 @@ export const List: FunctionComponent<ListProps> = ({
   }, [relatedIDs]);
 
   return (
-    <div className=" container-xl flex flex-row overflow-auto max-w-full min-w-screen space-x-24 ">
-      {related
-        ? related.map((current, index) => {
-            return (
-              <div className="min-w-max">
-                <Links
-                  currListProduct={current}
-                  updatePropInFocus={updateCurrentProduct}
-                  changePropInFocus={setCurrentProduct}
-                  style={relatedStyles[index]}
-                />
-              </div>
-            );
-          })
-        : null}
-    </div>
+    <>
+      <div className="flex flex-col items-center">
+        <em
+          onMouseEnter={() => {
+            setHidden(false);
+          }}
+          className="text-2xl h-9 font-extrabold hover:animate-pulse"
+        >
+          Related
+        </em>
+      </div>
+      <div
+        className={`transition-all duration-400 delay-75 ease-in-out ${
+          hidden ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        <div
+          className={`container-xl flex flex-row overflow-auto max-w-full min-w-screen space-x-24 ${
+            hidden ? "hidden" : "animation: fadeIn 9s"
+          }`}
+          onClick={() => {
+            setHidden(true);
+          }}
+        >
+          {related
+            ? related.map((current, index) => {
+                return (
+                  <div className="min-w-max">
+                    <Links
+                      currListProduct={current}
+                      updatePropInFocus={updateCurrentProduct}
+                      changePropInFocus={setCurrentProduct}
+                      style={relatedStyles[index]}
+                    />
+                  </div>
+                );
+              })
+            : null}
+        </div>
+      </div>
+    </>
   );
 };
