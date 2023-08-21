@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Links } from "./Links";
 import axios, { Axios, AxiosResponse } from "axios";
 import "./app.css";
+import { OutfitList } from "./OutfitList";
 type ProdBase = {
   id: number;
   name: string;
@@ -42,6 +43,8 @@ export const List: FunctionComponent<ListProps> = ({
   const [related, setRelated] = useState<Array<object>>();
   const [relatedStyles, setRelatedStyles] = useState<Array<object>>([]);
   const [hidden, setHidden] = useState<boolean>(true);
+  const [pulse, setPulse] = useState<boolean>(false);
+  const [outfitList, updateOutfitList] = React.useState<Array<object>>([]);
   var getRelatedObjs = (ID: number) => {
     return axios.get(`products/${ID}`);
   };
@@ -81,12 +84,17 @@ export const List: FunctionComponent<ListProps> = ({
 
   return (
     <>
+      <OutfitList outfitList={outfitList} updateOutfitList={updateOutfitList} />
+
       <div className="flex flex-col items-center">
         <em
           onMouseEnter={() => {
             setHidden(false);
+            setPulse(true);
           }}
-          className="text-2xl h-9 font-extrabold hover:animate-pulse"
+          className={`text-2xl h-9 font-extrabold ${
+            pulse ? "animate-pulse" : null
+          }`}
         >
           Related
         </em>
@@ -101,7 +109,7 @@ export const List: FunctionComponent<ListProps> = ({
             hidden ? "hidden" : "animation: fadeIn 9s"
           }`}
           onClick={() => {
-            setHidden(true);
+            setPulse(false);
           }}
         >
           {related
@@ -113,6 +121,10 @@ export const List: FunctionComponent<ListProps> = ({
                       updatePropInFocus={updateCurrentProduct}
                       changePropInFocus={setCurrentProduct}
                       style={relatedStyles[index]}
+                      outfitList={outfitList}
+                      updateOutfitList={updateOutfitList}
+                      hidden={hidden}
+                      setHidden={setHidden}
                     />
                   </div>
                 );

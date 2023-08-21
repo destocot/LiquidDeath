@@ -7,7 +7,8 @@ import { List } from "./components/Related/List";
 import initial from "./PlaceHolderData.js";
 import Navbar from "./components/NavbarFooter/Navbar";
 import Footer from "./components/NavbarFooter/Footer";
-import Confetti from 'react-confetti';
+import Confetti from "react-confetti";
+import { OutfitList } from "./components/Related/OutfitList";
 
 function App() {
   /*
@@ -49,25 +50,33 @@ function App() {
     setWindowSize({
       width: window.innerWidth,
       height: window.innerHeight,
-    })
+    });
   };
 
   window.onresize = () => handleWindowResize();
 
   // search bar
   const changeSearch = (productId) => {
-    updProduct(productId)
-      .then((results) => setProduct(results.data));
+    updProduct(productId).then((results) => setProduct(results.data));
 
-    document.getElementById('nav-search-bar').value = '';
-  }
+    document.getElementById("nav-search-bar").value = "";
+  };
+
+  window.onresize = () => handleWindowResize();
+
+  // search bar
+  const changeSearch = (productId) => {
+    updProduct(productId).then((results) => setProduct(results.data));
+
+    document.getElementById("nav-search-bar").value = "";
+  };
 
   // set confetti to run for a specified time
   useEffect(() => {
     confetti &&
       setTimeout(() => {
-        setConfetti(false)
-      }, 8000)
+        setConfetti(false);
+      }, 8000);
   }, [confetti]);
 
   /*
@@ -89,7 +98,9 @@ function App() {
   if (reviewsMeta) {
     return (
       <div id="the-main-app-container">
-        {confetti ? <Confetti width={windowSize.width} height={windowSize.height} /> : null}
+        {confetti ? (
+          <Confetti width={windowSize.width} height={windowSize.height} />
+        ) : null}
         <Navbar changeSearch={changeSearch} numInCart={numInCart} />
         <Overview
           product={product}
