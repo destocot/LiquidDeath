@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Popup from 'reactjs-popup';
 
 function ReviewTileBody({ review }) {
   const reviewLen = review.body.length;
@@ -40,15 +41,20 @@ function ReviewTileBody({ review }) {
   // map photos into review body. will add onto this at later time
   const renderPhotos = () => review.photos.map((photo) => {
     return (
-      <div key={photo.id}>
-        <img key={photo.id} /*className="reviewPhotos"*/ className="answer-photo aspect-[3/2] max-h-[75px] object-cover border border-solid border-transparent hover:border-[black] cursor-pointer mr-[5px]" src={photo.url} alt={`photo${photo.id}`} onClick={() => {
-          document.body.style.overflow = 'hidden';
-          setFullPhoto(true)
-        }} />
-        {
-          fullPhoto && <div className="full-answer-photo"><img alt={`fphoto${photo.id}`} src={photo.url} /> <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#00000" }} /> </div>
+      <Popup Popup trigger={<img className="answer-photo aspect-[3/2] max-h-[80px] object-cover border border-solid border-transparent hover:border-[black] cursor-pointer" key={photo.id} alt={`photo${photo.id}`} src={photo.url} />} modal >
+        {(close) => (
+          <div className="popup-modal-container">
+            <img
+              className="max-w-[98vw] max-h-[98vh] absolute top-0 bottom-0 right-0 left-0 m-auto"
+              alt={`fphoto${photo.id}`}
+              src={photo.url} />
+            <i
+              className="fa-regular fa-circle-xmark fa-2xl cursor-pointer absolute z-[2] top-[4vh] right-[4vh] hover:text-[36px] text-[30px]"
+              onClick={close} />
+          </div>
+        )
         }
-      </div>
+    </Popup >
     )
   });
 
