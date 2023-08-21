@@ -59,7 +59,7 @@ body {
   z-index: 2;
   width:10%;
   height:15px;
-  left: 2.8%;
+  left: 2vmin;
 }
 
 .carousel-arrow-btn:hover {
@@ -96,7 +96,7 @@ body {
   position: absolute;
   top: 3%;
   height: 92%;
-  width: 30%;
+  width: 15vmin;
   min-width: 180px;
   margin-top: 1%;
   z-index: 1;
@@ -115,7 +115,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5vmin;
-  width:40%;
+  width: 12vmin;
   min-height: 100%;
   background-image: linear-gradient(to right,
     rgba(0,0,0, 0) 0,
@@ -130,8 +130,7 @@ body {
   object-fit: cover;
   object-position: center;
   aspect-ratio: 6/5;
-  height: 13%;
-  width: 65%;
+  width: 70%;
   border: 1px solid #000000;
   border-radius: 10%;
 }

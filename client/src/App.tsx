@@ -46,11 +46,14 @@ function App() {
 
   // does what the name implies
   const handleWindowResize = () => {
+    console.log(window.innerWidth);
     setWindowSize({
       width: window.innerWidth,
       height: window.innerHeight,
     })
   };
+
+  window.onresize = () => handleWindowResize();
 
   // search bar
   const changeSearch = (productId) => {
@@ -70,8 +73,6 @@ function App() {
 
   // set confetti to run for a specified time
   useEffect(() => {
-    // adjusts confetti size to fit screen
-    window.onresize = () => handleWindowResize();
     confetti &&
       setTimeout(() => {
         setConfetti(false)
@@ -101,6 +102,7 @@ function App() {
           product={product}
           reviewsMeta={reviewsMeta}
           setConfetti={setConfetti}
+          windowSize={windowSize}
         />
         <List
           currentProduct={product}

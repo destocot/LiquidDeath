@@ -7,7 +7,7 @@ import AddCart from './Features/AddCart';
 import Description from './Features/ProductInfo/Description';
 import './OverviewStyles.css';
 
-function Overview({product, reviewsMeta, setConfetti}) {
+function Overview({product, reviewsMeta, setConfetti, windowSize}) {
   // states for styles and current style
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
@@ -34,7 +34,7 @@ function Overview({product, reviewsMeta, setConfetti}) {
   if (currentStyle) {
     return (
       <div className="overview-container">
-        <ImageGallery currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} styles={styles}/>
+        <ImageGallery windowSize={windowSize} currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} styles={styles}/>
         <div className="right-side-container">
           <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} setConfetti={setConfetti} />
           <div className="styles-cart-container">
