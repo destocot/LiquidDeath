@@ -14,9 +14,8 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
   const [expand, toggleExpand] = useState(false);
   const [view, changeView] = useState("default");
 
-  const defaultImageGallery = document.getElementById(
-    "image-gallery-container"
-  );
+  const defaultImageGallery = document.getElementById("image-gallery-container");
+  const rightSideContainer = document.getElementById("right-side-container");
 
   const updStyles = async () => {
     const newStyles = await axios.get(`/products/${product.id}/styles`);
@@ -39,13 +38,14 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
 
   useEffect(() => {
     if (expand === true) {
-      defaultImageGallery.classList.toggle("image-gallery-translate-off");
+      defaultImageGallery.style.transform = 'translate(-100%, 0)';
+      rightSideContainer.style.transform = 'translate(180%, 0)';
       setTimeout(() => {
-        changeView("expanded");
-        defaultImageGallery.classList.toggle("image-gallery-translate-off");
-      }, 900);
-    } else {
-      changeView("default");
+        defaultImageGallery.style.transform = 'translate(0, 0)';
+        changeView('expanded');
+      }, 820)
+    } else if (view === 'expanded') {
+      changeView('default');
     }
   }, [expand]);
 
@@ -61,7 +61,7 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
         />
         {view === "expanded" ? null : (
           <>
-            <div className="right-side-container">
+            <div id="right-side-container">
               <ProductInfo
                 product={product}
                 currentStyle={currentStyle}

@@ -22,8 +22,6 @@ body {
 
 .image-gallery-translate-off {
   transform: translate(-100%, 0);
-  transition-timing-function: ease-in-out;
-  transition-duration: 0.8s;
 }
 
 .image-gallery-translate-on {
@@ -49,6 +47,8 @@ body {
   position:relative;
   height: 55vh;
   width: 60vw;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.8s;
 }
 
 #expanded-gallery-container {
@@ -57,6 +57,8 @@ body {
   height: 55vh;
   width: 100vw;
   z-index: 3;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.8s;
 }
 
 .big-image-container {
@@ -66,6 +68,25 @@ body {
   position:relative;
   height: 100%;
   width: 100%;
+  justify-content: center;
+}
+
+.default-arrow {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  background-color: transparent;
+  z-index: 4;
+  width:2%;
+  height:15px;
+  top: 2%;
+  left: 97%;
+  color:white;
+}
+
+.default-arrow:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .big-image {
@@ -79,10 +100,35 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.right-side-container {
+.big-carousel-container {
+  display: flex;
+  position: absolute;
+  top: 92%;
+  gap: 2vmin;
+  z-index: 5;
+  align-items: center;
+}
+
+.big-select {
+  color:#393939;
+  opacity: 0.8;
+}
+
+.big-active {
+  color: white;
+}
+
+.big-select:hover {
+  cursor: pointer;
+  filter:brightness(2);
+}
+
+#right-side-container {
   display: inline-block;
   position: absolute;
   height: 100%;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.8s;
 }
 
 .styles-cart-container {
