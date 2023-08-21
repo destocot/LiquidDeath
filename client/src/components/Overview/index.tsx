@@ -11,6 +11,10 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
   // states for styles and current style
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
+  const [expand, toggleExpand] = useState(false);
+  const [view, changeView] = useState('default');
+
+  const defaultImageGallery = document.getElementById("image-gallery-container");
 
   const updStyles = async () => {
     const newStyles = await axios.get(`/products/${product.id}/styles`);
@@ -31,17 +35,39 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
       .catch((err) => console.error(err));
   }, [product]);
 
+  useEffect(() => {
+    if (expand === true) {
+      defaultImageGallery.classList.toggle('image-gallery-translate-off');
+      setTimeout(() => {
+        changeView('expanded');
+        defaultImageGallery.classList.toggle('image-gallery-translate-off');
+      }, 900)
+    } else {
+      changeView('default');
+    }
+  }, [expand])
+
   if (currentStyle) {
     return (
       <div className="overview-container">
-        <ImageGallery currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} styles={styles} />
-        <div className="right-side-container">
-          <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} setConfetti={setConfetti} />
-          <div className="styles-cart-container">
-            <StyleSelector styles={styles} setCurrentStyle={styleClickHandler} currentStyle={currentStyle} />
-            <AddCart currentStyle={currentStyle} setConfetti={setConfetti} setNumInCart={setNumInCart} />
+        <ImageGallery
+          currentStyle={currentStyle}
+          setCurrentStyle={setCurrentStyle}
+          styles={styles}
+          view={view}
+          toggleExpand={toggleExpand}
+        />
+        { view === 'expanded' ? null :
+        <>
+          <div className="right-side-container">
+            <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} setConfetti={setConfetti} />
+            <div className="styles-cart-container">
+              <StyleSelector styles={styles} setCurrentStyle={styleClickHandler} currentStyle={currentStyle} />
+              <AddCart currentStyle={currentStyle} setConfetti={setConfetti} />
+            </div>
           </div>
-        </div>
+        </>
+        }
         <div className="description-container">
           <Description product={product} />
         </div>
