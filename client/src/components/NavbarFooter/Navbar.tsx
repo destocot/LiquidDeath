@@ -16,9 +16,10 @@ function Navbar({ changeSearch }) {
     }
   }
 
-  React.useEffect(() => {
-    changeColor()
-  }, [])
+  // uncomment this to have dark mode at start
+  // seEffect(() => {
+  //   changeColor()
+  // }, [])
 
   // chat test
   const [chat, setChat] = useState(false);

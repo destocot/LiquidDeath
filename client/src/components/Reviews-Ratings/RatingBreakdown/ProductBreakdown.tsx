@@ -20,12 +20,12 @@ const ProductBreakdown: React.FC<ReviewsRatingsProps> = ({ reviewsMeta }) => {
             <p className="text-lg font-serif font-semibold ">{char}</p>
             <div className="pointer" data-value={charValue} style={
               {
-              "marginLeft": pointerPosition,
-              "width": 0,
-              "height": 0,
-              "borderLeft": "5px solid transparent",
-              "borderRight": "5px solid transparent",
-              "borderTop": "10px solid #ff6700",
+                "marginLeft": pointerPosition,
+                "width": 0,
+                "height": 0,
+                "borderLeft": "5px solid transparent",
+                "borderRight": "5px solid transparent",
+                "borderTop": "10px solid black",
               }
             }>
             </div>
@@ -37,7 +37,7 @@ const ProductBreakdown: React.FC<ReviewsRatingsProps> = ({ reviewsMeta }) => {
           </div>
         );
       })
-    }
+      }
     </div>
   );
 }
