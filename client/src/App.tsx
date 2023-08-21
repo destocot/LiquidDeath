@@ -92,8 +92,7 @@ function App() {
         {confetti ? (
           <Confetti width={windowSize.width} height={windowSize.height} />
         ) : null}
-        <Navbar />
-
+        <Navbar changeSearch={changeSearch} numInCart={numInCart} />
         <Overview
           product={product}
           reviewsMeta={reviewsMeta}
