@@ -44,6 +44,7 @@ export const List: FunctionComponent<ListProps> = ({
   const [relatedStyles, setRelatedStyles] = useState<Array<object>>([]);
   const [hidden, setHidden] = useState<boolean>(true);
   const [pulse, setPulse] = useState<boolean>(false);
+  const [outfitList, updateOutfitList] = React.useState<Array<object>>([]);
   var getRelatedObjs = (ID: number) => {
     return axios.get(`products/${ID}`);
   };
@@ -83,7 +84,8 @@ export const List: FunctionComponent<ListProps> = ({
 
   return (
     <>
-      <OutfitList />
+      <OutfitList outfitList={outfitList} updateOutfitList={updateOutfitList} />
+
       <div className="flex flex-col items-center">
         <em
           onMouseEnter={() => {
@@ -107,7 +109,6 @@ export const List: FunctionComponent<ListProps> = ({
             hidden ? "hidden" : "animation: fadeIn 9s"
           }`}
           onClick={() => {
-            setHidden(true);
             setPulse(false);
           }}
         >
@@ -120,6 +121,10 @@ export const List: FunctionComponent<ListProps> = ({
                       updatePropInFocus={updateCurrentProduct}
                       changePropInFocus={setCurrentProduct}
                       style={relatedStyles[index]}
+                      outfitList={outfitList}
+                      updateOutfitList={updateOutfitList}
+                      hidden={hidden}
+                      setHidden={setHidden}
                     />
                   </div>
                 );
