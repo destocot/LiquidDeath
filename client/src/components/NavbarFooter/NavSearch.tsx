@@ -5,8 +5,8 @@ function NavSearch({ changeSearch }) {
   const =[searchProducts, setSearchProducts] = useState([]);
 
   const navSearch = (e) => {
-    if (e.target.value.length > 2) {
-      setSearchProducts(list.filter(item => item.name.toLowerCase().startsWith(e.target.value.toLowerCase())))
+    if (e.target.value.length > 0) {
+      setSearchProducts(list.filter(item => item.name.toLowerCase().startsWith(e.target.value.toLowerCase())).slice(0, 11))
     } else {
       setSearchProducts([]);
     }
