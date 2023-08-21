@@ -213,7 +213,10 @@ progress::-webkit-progress-value {
 #addReviewButton,
 #moreReviewsButton {
   padding: 5px;
-  border: 1px solid transparent;
+  border: 2px solid #007185;
+  border-radius: 10px;
+  font-size: large;
+  font-weight: 450;
   background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
@@ -223,12 +226,12 @@ progress::-webkit-progress-value {
   border: 1px solid black;
 }
 
-#moreReviewsButton {
+/* #moreReviewsButton {
 }
 
 #addReviewButton {
   margin-left: auto;
-}
+} */
 
 #reviewsListButtons {
   display: flex;
@@ -278,14 +281,14 @@ progress::-webkit-progress-value {
   margin: 6px;
   padding: 3px;
   border: 2px solid black;
-  background-color: rgb(224, 224, 224);
+  border-radius: 10px;
+  /* color: inherit; */
+  /* background-color: rgba(0, 0, 0, 0.1); */
 }
 
-/* .reviewPhotos {
-  max-width: 100px;
-  height: auto;
-  margin-right: 10px;
-} */
+#reviewPhotos {
+  border-width: 0;
+}
 
 .reviewResponse {
   border: 1px;
@@ -323,12 +326,25 @@ progress::-webkit-progress-value {
   background-color: white;
   width: 32%;
   padding: 10px;
-  height: 100vh;
+  height: 96vh;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-size: medium;
   font-weight: 300;
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviewFormScrollable {
+  /* border: 5px solid black; */
+  max-height: 85vh;
   overflow: auto;
+  align-self: start;
+  width: 100%;
 }
 
 .reviewFormSubContainer input[type="text"], .reviewFormSubContainer textarea {
@@ -339,6 +355,7 @@ progress::-webkit-progress-value {
 .reviewFormSubContainer input[type="radio"] {
   margin: 0 5px;
 }
+
 
 
 #reviewFormHeader {
@@ -390,8 +407,14 @@ progress::-webkit-progress-value {
 
 #submitButton {
   border: 2px inset#000;
+  width: 50%;
+  font-weight:500;
+  background-color: rgba(158, 158, 158, 0.2);
+  /* display: inline-block; */
+  margin-top: 4px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: x-large;
   transition: background-color 0.3s, color 0.3s;
 }
 
