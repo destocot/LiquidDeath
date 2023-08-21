@@ -8,6 +8,7 @@ import Description from "./Features/ProductInfo/Description";
 import "./OverviewStyles.css";
 
 function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
+function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
   // states for styles and current style
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
@@ -52,29 +53,12 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
   if (currentStyle) {
     return (
       <div className="overview-container">
-        <ImageGallery
-          currentStyle={currentStyle}
-          setCurrentStyle={setCurrentStyle}
-          styles={styles}
-        />
+        <ImageGallery currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} styles={styles} />
         <div className="right-side-container">
-          <ProductInfo
-            product={product}
-            currentStyle={currentStyle}
-            reviewsMeta={reviewsMeta}
-            setConfetti={setConfetti}
-          />
+          <ProductInfo product={product} currentStyle={currentStyle} reviewsMeta={reviewsMeta} setConfetti={setConfetti} />
           <div className="styles-cart-container">
-            <StyleSelector
-              styles={styles}
-              setCurrentStyle={styleClickHandler}
-              currentStyle={currentStyle}
-            />
-            <AddCart
-              currentStyle={currentStyle}
-              setConfetti={setConfetti}
-              setNumInCart={setNumInCart}
-            />
+            <StyleSelector styles={styles} setCurrentStyle={styleClickHandler} currentStyle={currentStyle} />
+            <AddCart currentStyle={currentStyle} setConfetti={setConfetti} setNumInCart={setNumInCart} />
           </div>
         </div>
         <div className="description-container">
