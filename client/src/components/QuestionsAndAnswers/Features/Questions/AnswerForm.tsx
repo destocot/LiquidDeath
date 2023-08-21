@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
+import swal from 'sweetalert';
 
 function AnswerForm({ currProductName, questionBody, questionId }) {
   const imageChecker = (e) => {
@@ -10,7 +11,12 @@ function AnswerForm({ currProductName, questionBody, questionId }) {
     let imageInput = document.getElementById('ans-photos');
     imageDiv.innerHTML = '';
     if (files.length > 5) {
-      alert('You can only upload up to 5 photos!');
+      swal({
+        title: 'You can only upload up to 5 photos!',
+        icon: 'warning',
+        buttons: false,
+        timer: 1500,
+      });
       imageInput.value = '';
     } else {
       for (var i = 0; i < files.length; i++) {
@@ -39,6 +45,7 @@ function AnswerForm({ currProductName, questionBody, questionId }) {
         'Content-Type': 'multipart/form-data'
       }
     })
+      .then(() => swal('Answer submitted.'))
       .catch(() => console.log('error posting answer', data));
   }
 
