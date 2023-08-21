@@ -50,31 +50,6 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
     setAForm(false);
   };
 
-  // const imageChecker = (e) => {
-  //   const files = e.target.files;
-  //   let tempFileArray = [];
-  //   let imageDiv = document.getElementById('rev-images-div');
-  //   imageDiv.innerHTML = '';
-
-  //   if (files.length > 5) {
-  //     alert('You can only upload up to 5 photos!');
-  //     e.target.value = '';
-  //   } else {
-  //     for (var i = 0; i < files.length; i++) {
-  //       var reader = new FileReader();
-  //       tempFileArray.push('client/dist/Images/' + files[i].name);
-  //       reader.addEventListener("load", (event) => {
-  //         const picFile = event.target;
-  //         const div = document.createElement('div');
-  //         div.innerHTML = `<img className="thumbnail" src="${picFile.result}" alt="${files[i].name}" />`;
-  //         imageDiv?.appendChild(div);
-  //       })
-  //       reader.readAsDataURL(files[i])
-  //       // setPhotoUrlArray(tempFileArray);
-  //     }
-  //   }
-  // };
-
   const imageChecker = (e) => {
     const files = e.target.files;
     let imageDiv = document.getElementById('my-images-div');
@@ -180,7 +155,7 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
   };
 
   return (
-    <Popup Popup trigger={<button button id="addReviewButton" >Add Answer</button >} modal >
+    <Popup Popup trigger={<button button id="addReviewButton" >Add Review</button >} modal >
       {(close) => (
         <div className="reviewFormContainer">
           <div className="reviewFormSubContainer">
