@@ -164,7 +164,10 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
           <div className="reviewFormSubContainer">
             <div id="reviewFormHeader">
               <h1 className="text-2xl font-bold">Write Your Review</h1><br />
-              <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }}/>
+              {/* <i onClick={() => close()} className="fa-solid fa-x fa-xl" style={{ color: "#ff007b" }}/> */}
+              <i
+              className="fa-regular fa-circle-xmark fa-2xl cursor-pointer hover:text-[36px] text-[30px] pt-2"
+              onClick={close} />
             </div>
             <h2 id="reviewFormTitle">About the {currProductName}</h2>
             <form onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => checkKeyDown(e)}>
@@ -176,7 +179,7 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
                 </div>
               </label>
               {/* Boolean Product Recommendation - utilizes radio buttons */}
-              <label className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?*<br />
+              <div className="reviewFormSectionHeader" id="recommendationForm">Do you recommend this product?*<br />
                 <div className="flex gap-5 items-center">
                   <label>Yes
                     <input type="radio" name="recommendation" checked={recommendation} onChange={() => updateRecommendation(true)}/>
@@ -185,15 +188,15 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
                     <input type="radio" name="recommendation" checked={!recommendation}  onChange={() => updateRecommendation(false)} />
                   <br /></label>
                 </div>
-              </label>
+              </div>
               {/* Characteristics */}
-              <label id="charTitle" className="reviewFormSectionHeader" required>Characteristics* <br />
+              <div id="charTitle" className="reviewFormSectionHeader" required>Characteristics* <br />
                 <div id="charElement">{renderCharacteristics()}</div>
-              </label>
+              </div>
               {/* Text Inputs */}
-              <label className="reviewFormSectionHeader" >Review Summary <br />
-                <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></label>
-              <label className="reviewFormSectionHeader" >Review Body* <br />
+              <div className="reviewFormSectionHeader" >Review Summary <br />
+                <textarea maxLength="60" name="summary" placeholder="Example: Best purchase ever!" /> <br /></div>
+              <div className="reviewFormSectionHeader" >Review Body* <br />
                 <textarea maxLength="1000" minLength="50" onChange={countCharLeft} rows="5" name="body" placeholder="Why did you like the product or not?" required /> <br />
                 {(!charCountCheck) ? <div><span>Minimum required characters left: </span><span>{charCount}</span></div> : <div>Minimum reached</div>}
               </label><br />
