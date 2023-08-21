@@ -43,7 +43,7 @@ function AnswerForm({ currProductName, questionBody, questionId }) {
   }
 
   return (
-    <Popup Popup trigger={<button button id="add-answer-btn" >Add Answer</button >} modal >
+    <Popup Popup trigger={<button data-testid="add-answer-btn" id="add-answer-btn" >Add Answer</button >} modal >
       {(close) => (
         <div className="popup-modal-container">
           <div className="modal">

@@ -29,7 +29,7 @@ const expandAnswers = (answersDatabase, setAnswers, shouldExpand) => {
   return !shouldExpand;
 };
 
-const highlighter = (bodyToHighlight, indexToHighlight, queryLength) {
+const highlighter = (bodyToHighlight, indexToHighlight, queryLength) => {
   return (<>
     {bodyToHighlight.slice(0, indexToHighlight)}
     <span className='bg-[#FFEBB7]'>{bodyToHighlight.slice(indexToHighlight, indexToHighlight + queryLength)}</span>
