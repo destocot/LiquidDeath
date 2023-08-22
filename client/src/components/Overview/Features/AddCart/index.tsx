@@ -4,7 +4,7 @@ import helpers from '../../../../helpPlease';
 import axios from 'axios';
 import swal from 'sweetalert';
 
-function AddCart({ currentStyle, setConfetti, setNumInCart }) {
+function AddCart({currentStyle, setConfetti, setNumInCart}) {
   const [needed, setNeeded] = useState('');
   const [size, setSize] = useState('');
   const [quantity, setQuantity] = useState('');
@@ -36,10 +36,8 @@ function AddCart({ currentStyle, setConfetti, setNumInCart }) {
         document.getElementById('cart-form').reset();
       })
       .then(() => {
-        console.log('i am here');
-        swal('Added Items to Cart!')
-      }
-      )
+        swal('Added Items to Cart!');
+      })
       .catch((err) => console.error(err));
   }
 

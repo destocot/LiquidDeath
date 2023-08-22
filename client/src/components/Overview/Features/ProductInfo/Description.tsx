@@ -18,7 +18,7 @@ function Description({product}) {
           descriptionArray.map((motto) => {
             return (
               <div className="d-checkbox">
-                    <i className="fa-solid fa-check" /><span className="check-text">{motto}</span>
+                    <i className="fa-solid fa-check fa-beat" /><span className="check-text">{motto}</span>
                   </div>
             )
           })
