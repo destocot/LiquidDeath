@@ -78,7 +78,7 @@ function ReviewTile({ review }) {
   const reviewRecommend = () => {
     if (review.recommend) {
       // console.log('true');
-      return <div className="text-lg my-2 text-[#14532d]"><i className="fa-solid fa-check fa-beat mr-[2px]" /> I recommend this product</div>;
+      return <div className="text-lg my-2 text-black]"><i className="fa-solid fa-check fa-beat mr-[2px]" /> I recommend this product</div>;
     }
   };
 

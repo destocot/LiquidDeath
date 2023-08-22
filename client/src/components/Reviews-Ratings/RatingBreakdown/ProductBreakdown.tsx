@@ -5,6 +5,7 @@ const refObj: RefObj = helpers.refObj;
 
 const ProductBreakdown: React.FC<ReviewsRatingsProps> = ({ reviewsMeta }) => {
   const { characteristics } = reviewsMeta;
+  console.log(characteristics);
 
   return (
     <div className="productBreakdown">

@@ -21,7 +21,7 @@ let helpers = {
       }
       let avgRating = product / sumOfRatings;
       avgRating = Math.round(avgRating * 10) / 10;
-      return avgRating;
+      return avgRating.toFixed(1);
     }
   },
   reviewScore: (meta) => {
