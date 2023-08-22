@@ -125,15 +125,17 @@ let helpers = {
     Length: { low: 'Runs short', high: 'Runs long' },
     Fit: { low: 'Runs tight', high: 'Runs long' },
   },
-  removeNullValues: (obj) => {
-    for (var key in obj) {
-      if (!obj[key]) {
-        delete obj[key];
-      }
-    }
-    return obj;
-  },
+  // removeNullValues: (obj) => {
+  //   console.log({obj});
+  //   for (var key in obj) {
+  //     if (!obj[key]) {
+  //       delete obj[key];
+  //     }
+  //   }
+  //   return obj;
+  // },
   normalizeData: (data) => {
+    // console.log({data});
     const currentDate = new Date();
     const minDate = new Date(Math.min(...data.map(item => new Date(item.date))));
     const maxHelpfulness = Math.max(...data.map(item => item.helpfulness));
@@ -144,7 +146,6 @@ let helpers = {
       var sortRelMetric = (0.5 * normalizedHelpfulness) + (0.5 * normalizedDate);
       data[i].sortRelMetric = sortRelMetric;
     }
-
     return data;
   },
   sortRelevance: (arrayOfObjects) => {
@@ -178,6 +179,7 @@ let helpers = {
     return sum;
   },
   charChecker: (stateObj, productChars) => {
+    console.log({stateObj, productChars});
     let productCharArray = Object.values(productChars);
     /* productCharArray = [
      * { id: 14, value: '4.0'},
