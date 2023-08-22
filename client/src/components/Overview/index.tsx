@@ -7,7 +7,7 @@ import AddCart from "./Features/AddCart";
 import Description from "./Features/ProductInfo/Description";
 import "./OverviewStyles.css";
 
-function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
+function Overview({ product, reviewsMeta, setConfetti, setNumInCart, windowSize }) {
   // states for styles and current style
   const [styles, setStyles] = useState(null);
   const [currentStyle, setCurrentStyle] = useState(null);
@@ -64,6 +64,7 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
           styles={styles}
           view={view}
           toggleExpand={toggleExpand}
+          windowSize={windowSize}
         />
         {view === "expanded" && nullVar ?
         null

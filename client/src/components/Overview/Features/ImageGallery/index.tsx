@@ -3,7 +3,7 @@ import Image from './Image';
 import ImageCarousel from './ImageCarousel';
 import BigImage from './BigImage';
 
-function ImageGallery({currentStyle, setCurrentStyle, styles, view, toggleExpand}) {
+function ImageGallery({currentStyle, setCurrentStyle, styles, view, toggleExpand, windowSize }) {
   // make states for view and current image
   const [img, setImg] = useState(currentStyle.photos[0].url);
   // states for default carousel arrows
@@ -27,6 +27,7 @@ function ImageGallery({currentStyle, setCurrentStyle, styles, view, toggleExpand
             setImg={setImg}
             styles={styles}
             setCurrentStyle={setCurrentStyle}
+            windowSize={windowSize}
           />
         </div>
       :
