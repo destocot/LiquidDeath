@@ -49,6 +49,42 @@ body {
   justify-content: center;
 }
 
+#plus-cursor {
+  position: absolute;
+  display: flex;
+  z-index: 6;
+  top: -15%;
+  left: 0;
+  cursor: none;
+  animation-name: stretch;
+    animation-duration: 2.0s;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+@keyframes stretch {
+  0% {
+      color: rgb(0, 0, 0);
+      text-shadow: 0 0 3px white;
+  }
+
+  50% {
+      color: rgb(127, 127, 127);
+      text-shadow: 0 0 3px rgb(158, 158, 158);
+  }
+
+  100% {
+      color: rgb(0, 0, 0);
+      text-shadow: 0 0 3px rgb(0, 0, 0);
+  }
+}
+
+#minus-cursor {
+  z-index: 6;
+}
+
 .default-arrow {
   display: flex;
   position: absolute;
@@ -76,6 +112,7 @@ body {
   height: 100%;
   width: 100%;
   transform: translate(-50%, -50%);
+  cursor: none;
 }
 
 .big-carousel-container {
@@ -242,6 +279,12 @@ img.default-image {
   height: 100%;
   width: 100%;
   transform: translate(-50%, -50%);
+}
+
+img.default-image:hover {
+  cursor: -moz-zoom-in;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
 }
 
 .product-info-container {

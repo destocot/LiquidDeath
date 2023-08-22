@@ -60,6 +60,7 @@ function ImageGallery({currentStyle, setCurrentStyle, styles, view, toggleExpand
           <Image
             currentStyle={currentStyle}
             img={img}
+            toggleExpand={toggleExpand}
           />
         </div>
       }

@@ -13,6 +13,10 @@ body {
   color: #007185;
 }
 
+.reviews a:hover {
+  color: #a1a1a1;
+}
+
 /* dark mode */
 
 .dark {
