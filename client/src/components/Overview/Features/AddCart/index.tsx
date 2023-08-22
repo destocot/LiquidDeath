@@ -36,7 +36,6 @@ function AddCart({currentStyle, setConfetti, setNumInCart}) {
         document.getElementById('cart-form').reset();
       })
       .then(() => {
-        setNumInCart(state => state + Number(cartBody.count));
         swal('Added Items to Cart!');
       })
       .catch((err) => console.error(err));
