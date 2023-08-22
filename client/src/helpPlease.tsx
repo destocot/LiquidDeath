@@ -179,7 +179,6 @@ let helpers = {
     return sum;
   },
   charChecker: (stateObj, productChars) => {
-    console.log({stateObj, productChars});
     let productCharArray = Object.values(productChars);
     /* productCharArray = [
      * { id: 14, value: '4.0'},

@@ -10,20 +10,29 @@ import axios from 'axios';
 // import all components
 import ReviewsRatings from '../components/Reviews-Ratings';
 import ReviewsList from '../components/Reviews-Ratings/ReviewsList';
-import Sorting from '../components/Reviews-Ratings/ReviewsList';
-import ReviewTile from '../components/Reviews-Ratings/ReviewsList';
-import ReviewTileBody from '../components/Reviews-Ratings/ReviewsList';
-import NewReviewForm from '../components/Reviews-Ratings/ReviewsList';
-import RatingBreakdown from '../components/Reviews-Ratings/RatingBreakdown';
-import BreakdownComp from '../components/Reviews-Ratings/RatingBreakdown';
-import ProductBreakdown from '../components/Reviews-Ratings/RatingBreakdown';
-// import NewReviewForm from '../components/Reviews-Ratings/ReviewForm';
+// import Sorting from '../components/Reviews-Ratings/ReviewsList';
+// import ReviewTile from '../components/Reviews-Ratings/ReviewsList';
+// import ReviewTileBody from '../components/Reviews-Ratings/ReviewsList';
+// import RatingBreakdown from '../components/Reviews-Ratings/RatingBreakdown';
+// import BreakdownComp from '../components/Reviews-Ratings/RatingBreakdown';
+// import ProductBreakdown from '../components/Reviews-Ratings/RatingBreakdown';
+import NewReviewForm from '../components/Reviews-Ratings/ReviewForm';
+import initial from "../PlaceHolderData.js";
 
 // I think I can delete this?
 // import App from '../../../App';
-const sumHelper = helpers.sumHelper;
+// no longer needed?
+// test('use jsdom in this test file', () => {
+//   const element = document.createElement('div');
+//   expect(element).not.toBeNull();
+// });
 
-const getReviewsMeta = {
+const sumHelper = helpers.sumHelper;
+const currProductId= 37234;
+const currProductName= 'Jaylen Backpack';
+const initReviews = initial.reviews;
+const filteredReviews = initial.reviews.results;
+const reviewsMeta = {
   product_id: '2',
   ratings: {
     2: 1,
@@ -48,7 +57,6 @@ const getReviewsMeta = {
       id: 16,
       value: '4.0000',
     },
-    // ...
   },
 }
 
@@ -59,26 +67,92 @@ jest.mock("react", () => ({
 }));
 import { useState } from "react";
 
-// describe("ability to render all components and subcomponents", () => {
-//   beforeEach(() => {
-//     useState.mockImplementation(jest.requireActual("react").useState);
-//   });
+describe("ability to render all components and subcomponents", () => {
+  beforeEach(() => {
+    useState.mockImplementation(jest.requireActual("react").useState);
+  });
 
-// });
+  test("ratings and reviews component renders", async () => {
+    axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
 
-test('use jsdom in this test file', () => {
-  const element = document.createElement('div');
-  expect(element).not.toBeNull();
+    render(
+      <ReviewsRatings
+        reviewsMeta={reviewsMeta}
+        currProductId={currProductId}
+        currProductName={currProductName}
+        initReviews={initial.reviews}
+      />
+    );
+  });
+
+  test("check if new answer form pops up", async () => {
+    axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
+    const { getByTestId } = render(
+      <NewReviewForm
+      setAForm={() => {console.log('hello world')}}
+      reviewsMeta={reviewsMeta}
+      currProductName={currProductName}
+      currProductId={currProductId} />
+    );
+
+    fireEvent.click(getByTestId("add-review-btn"));
+
+    const title = screen.getByText(
+      'Write Your Review'
+    );
+    expect(title).toBeInTheDocument();
+
+    const currProductText = screen.getByText(
+      `About the ${currProductName}`
+    );
+    expect(currProductText).toBeInTheDocument();
+  });
+
+
+
+  // commenting out for now b/c not increasing coverage
+  test("NewReviewsForm component renders", async () => {
+    axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
+
+    render(
+      <NewReviewForm
+      setAForm={() => {console.log('hello world')}}
+      reviewsMeta={reviewsMeta}
+      currProductName={currProductName}
+      currProductId={currProductId} />
+    );
+  });
+
+  test("check that more reviews button expands list past 2 after click", async () => {
+    axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
+
+    render(
+      <ReviewsList
+      filteredReviews={initial.reviews.results}
+      filters={[1, 2, 3, 4, 5]}
+      reviewsMeta={reviewsMeta}
+      currProductName={currProductName}
+      currProductId={currProductId}
+      updReviews={initial.reviews} />
+    );
+
+    const parentDiv = screen.getByTestId('reviews-list');
+    let childElements = parentDiv.querySelectorAll('[role="listitem"]'); // using role allows to only query what is rendered
+
+    const moreReviewsBtn = screen.getByTestId("more-reviews-btn");
+
+    let numberOfChildElements = childElements.length;
+    expect(numberOfChildElements).toBe(2);
+
+    fireEvent.click(moreReviewsBtn);
+
+    numberOfChildElements = parentDiv.querySelectorAll('[role="listitem"]').length;
+    expect(numberOfChildElements).toBeGreaterThan(2);
+  });
+
 });
 
-// describe('ReviewsRatings Component', () => {
-//   test('should render ReviewsRatings component', () => {
-//     render(<NewReviewForm setAForm={() => console.log('test') } reviewsMeta={getReviewsMeta} currProductName="jordans"/>);
-//     const reviewsRatingsElement = screen.getAllByTestId('review-form-parent-id');
-//     expect(reviewsRatingsElement).toHaveLength(3);
-//   })
-// });
-
+// Function Testing
 const testReviewArray = [
   {
     helpfulness: 5,
@@ -94,7 +168,6 @@ const testReviewArray = [
   },
 ];
 
-// Function Testing
 describe("sumHelper", () => {
 
   test('sumHelper should return the sum of an array', () => {
