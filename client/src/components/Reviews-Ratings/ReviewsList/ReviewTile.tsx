@@ -76,10 +76,10 @@ function ReviewTile({ review }) {
       <ReviewTileBody review={review} />
       <div className="reviewRec">{reviewRecommend()}</div>
       <div className="reviewResponse">{reviewResponse()}</div>
-      <div className="reviewHelpfulness">
+      <div data-testid="helpful-count" className="reviewHelpfulness">
         {`Helpful? `}
         <button type="button" id="helpfulButton" onClick={() => addHelpfulness()} onKeyDown={() => addHelpfulness()}>Yes</button>
-        {` (${helpfulness[0]}) | `}
+        <span>{`(${helpfulness[0]}) | `}</span>
         <button type="button" id="reportButton" onClick={() => reportFunction()} onKeyDown={() => reportFunction()}>{report[0]}</button>
       </div>
     </div>

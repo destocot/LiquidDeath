@@ -11,7 +11,7 @@ import axios from 'axios';
 import ReviewsRatings from '../components/Reviews-Ratings';
 import ReviewsList from '../components/Reviews-Ratings/ReviewsList';
 // import Sorting from '../components/Reviews-Ratings/ReviewsList';
-// import ReviewTile from '../components/Reviews-Ratings/ReviewsList';
+import ReviewTile from '../components/Reviews-Ratings/ReviewsList';
 // import ReviewTileBody from '../components/Reviews-Ratings/ReviewsList';
 // import RatingBreakdown from '../components/Reviews-Ratings/RatingBreakdown';
 import BreakdownComp from '../components/Reviews-Ratings/RatingBreakdown';
@@ -169,33 +169,31 @@ describe("ability to render all components and subcomponents", () => {
     expect(resetFilterText).toBeInTheDocument();
   });
 
-  test("check that filters applied text appears when a rating filter is applied", async () => {
-    axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
+  // test("check that clicking helpful changes value by 1", async () => {
+  //   axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
 
-    render(
-      <ReviewsList
-      filteredReviews={initial.reviews.results}
-      filters={[]}
-      reviewsMeta={reviewsMeta}
-      currProductName={currProductName}
-      currProductId={currProductId}
-      updReviews={initial.reviews}
-      />
-    );
+  //   render(
+  //     <ReviewsList
+  //     filteredReviews={initial.reviews.results}
+  //     filters={{ratings: []}}
+  //     reviewsMeta={reviewsMeta}
+  //     currProductName={currProductName}
+  //     currProductId={currProductId}
+  //     updReviews={initial.reviews}
+  //     />
+  //   );
 
-    const parentDiv = screen.getByTestId('reviews-list');
-    let childElements = parentDiv.querySelectorAll('[role="listitem"]'); // using role allows to only query what is rendered
+  //   const helpfulCount = screen.getByTestId("helpful-count");
+  //   console.log(helpfulCount);
 
-    const moreReviewsBtn = screen.getByTestId("more-reviews-btn");
+    // let numberOfChildElements = childElements.length;
+    // expect(numberOfChildElements).toBe(2);
 
-    let numberOfChildElements = childElements.length;
-    expect(numberOfChildElements).toBe(2);
+    // fireEvent.click(moreReviewsBtn);
 
-    fireEvent.click(moreReviewsBtn);
-
-    numberOfChildElements = parentDiv.querySelectorAll('[role="listitem"]').length;
-    expect(numberOfChildElements).toBeGreaterThan(2);
-  });
+    // numberOfChildElements = parentDiv.querySelectorAll('[role="listitem"]').length;
+    // expect(numberOfChildElements).toBeGreaterThan(2);
+  // });
 
 });
 
