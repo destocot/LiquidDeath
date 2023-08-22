@@ -19,7 +19,7 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, c
   // renders 2 review tiles at a time using .slice and the listLength state
   const reviewTile = () => {
     return filteredReviews.map((review) =>
-      <div key={review.review_id} className="bg-white/[0.1] my-[2px]"><ReviewTile review={review} /></div>).slice(0, listLength);
+      <div key={review.review_id} role="listitem" className="bg-white/[0.1] my-[2px]"><ReviewTile review={review} /></div>).slice(0, listLength);
   };
 
   // increases listLength by 2, in turn rendering two more elements
@@ -30,7 +30,7 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, c
 
   // decides whether or not button should be rendered based on length of results
   if (filteredReviews.length > 2 && listLength < filteredReviews.length) {
-    moreButton = <button id="moreReviewsButton" type="button" onClick={handleClick}>More Reviews</button>;
+    moreButton = <button data-testid="more-reviews-btn"id="moreReviewsButton" type="button" onClick={handleClick}>More Reviews</button>;
   } else {
     moreButton = null;
   }
@@ -43,7 +43,7 @@ function ReviewsList({ filteredReviews, filters, reviewsMeta, currProductName, c
         </span>
         <Sorting filteredReviews={filteredReviews} updReviews={updReviews} />
       </div>
-      <div className="reviewsList">
+      <div className="reviewsList" data-testid="reviews-list">
         {reviewTile()}
       </div>
       <div id="reviewsListButtons">

@@ -17,7 +17,6 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
   const [charCountCheck, setCharCountCheck] = useState(false);
 
   const updateRecommendation = (value) => {
-    console.log('updateRecc - ', value);
     setRecommendation(value);
   };
 
@@ -155,7 +154,7 @@ const NewReviewForm: React.FC<ReviewFormProps> = ({ setAForm, reviewsMeta, currP
   };
 
   return (
-    <Popup Popup trigger={<button button id="addReviewButton" >Add Review</button >} modal >
+    <Popup Popup trigger={<button button data-testid="add-review-btn" id="addReviewButton" >Add Review</button >} modal >
       {(close) => (
         <div className="reviewFormContainer">
           <div className="reviewFormSubContainer">
