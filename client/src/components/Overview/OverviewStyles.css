@@ -162,7 +162,7 @@ body {
 #right-side-container {
   display: inline-block;
   position: absolute;
-  height: 100%;
+  height: 55vh;
   transition-timing-function: ease-in-out;
   transition-duration: 0.8s;
 }
