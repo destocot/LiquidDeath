@@ -13,8 +13,8 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
   const [currentStyle, setCurrentStyle] = useState(null);
   const [expand, toggleExpand] = useState(false);
   const [view, changeView] = useState("default");
+  const [nullVar, setNullVar] = useState(false);
 
-  const defaultImageGallery = document.getElementById("image-gallery-container");
   const rightSideContainer = document.getElementById("right-side-container");
 
   const updStyles = async () => {
@@ -38,16 +38,22 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
 
   useEffect(() => {
     if (expand === true) {
-      defaultImageGallery.style.transform = 'translate(-100%, 0)';
       rightSideContainer.style.transform = 'translate(180%, 0)';
-      setTimeout(() => {
-        defaultImageGallery.style.transform = 'translate(0, 0)';
-        changeView('expanded');
-      }, 820)
+      changeView('expanded');
     } else if (view === 'expanded') {
       changeView('default');
     }
   }, [expand]);
+
+  useEffect(() => {
+    if (expand === true) {
+      setTimeout(() => {
+        setNullVar(true);
+      }, 700)
+    } else {
+      setNullVar(false);
+    }
+  }, [view]);
 
   if (currentStyle) {
     return (
@@ -59,7 +65,9 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart }) {
           view={view}
           toggleExpand={toggleExpand}
         />
-        {view === "expanded" ? null : (
+        {view === "expanded" && nullVar ?
+        null
+        : (
           <>
             <div id="right-side-container">
               <ProductInfo
