@@ -15,11 +15,11 @@ function Description({product}) {
       <div className="vertical-line"></div>
       <div className="description-right">
         {
-          descriptionArray.map((motto) => {
+          descriptionArray.map((motto, i) => {
             return (
-              <div className="d-checkbox">
-                    <i className="fa-solid fa-check fa-beat" /><span className="check-text">{motto}</span>
-                  </div>
+              <div className="d-checkbox" key={i}>
+                <i className="fa-solid fa-check fa-beat" /><span className="check-text">{motto}</span>
+              </div>
             )
           })
         }

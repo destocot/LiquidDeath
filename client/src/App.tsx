@@ -99,6 +99,7 @@ function App() {
           reviewsMeta={reviewsMeta}
           setConfetti={setConfetti}
           setNumInCart={setNumInCart}
+          windowSize={windowSize}
         />
         <List
           currentProduct={product}
