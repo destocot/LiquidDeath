@@ -14,7 +14,7 @@ import ReviewsList from '../components/Reviews-Ratings/ReviewsList';
 // import ReviewTile from '../components/Reviews-Ratings/ReviewsList';
 // import ReviewTileBody from '../components/Reviews-Ratings/ReviewsList';
 // import RatingBreakdown from '../components/Reviews-Ratings/RatingBreakdown';
-// import BreakdownComp from '../components/Reviews-Ratings/RatingBreakdown';
+import BreakdownComp from '../components/Reviews-Ratings/RatingBreakdown';
 // import ProductBreakdown from '../components/Reviews-Ratings/RatingBreakdown';
 import NewReviewForm from '../components/Reviews-Ratings/ReviewForm';
 import initial from "../PlaceHolderData.js";
@@ -65,6 +65,7 @@ jest.mock("react", () => ({
   ...jest.requireActual("react"),
   useState: jest.fn(),
 }));
+
 import { useState } from "react";
 
 describe("ability to render all components and subcomponents", () => {
@@ -108,9 +109,6 @@ describe("ability to render all components and subcomponents", () => {
     expect(currProductText).toBeInTheDocument();
   });
 
-
-
-  // commenting out for now b/c not increasing coverage
   test("NewReviewsForm component renders", async () => {
     axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
 
@@ -134,6 +132,55 @@ describe("ability to render all components and subcomponents", () => {
       currProductName={currProductName}
       currProductId={currProductId}
       updReviews={initial.reviews} />
+    );
+
+    const parentDiv = screen.getByTestId('reviews-list');
+    let childElements = parentDiv.querySelectorAll('[role="listitem"]'); // using role allows to only query what is rendered
+
+    const moreReviewsBtn = screen.getByTestId("more-reviews-btn");
+
+    let numberOfChildElements = childElements.length;
+    expect(numberOfChildElements).toBe(2);
+
+    fireEvent.click(moreReviewsBtn);
+
+    numberOfChildElements = parentDiv.querySelectorAll('[role="listitem"]').length;
+    expect(numberOfChildElements).toBeGreaterThan(2);
+  });
+
+  test("check that filters applied text appears when a rating filter is applied", async () => {
+    axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
+
+    render(
+      <BreakdownComp
+      filters={{ratings: [2]}}
+      updateFilters={() => console.log('test')}
+      reviewsMeta={reviewsMeta}
+      />
+    );
+
+    const filterText = screen.getByText(
+      `Filters Applied:`
+    );
+    expect(filterText).toBeInTheDocument();
+    const resetFilterText = screen.getByText(
+      `Reset Filters`
+    );
+    expect(resetFilterText).toBeInTheDocument();
+  });
+
+  test("check that filters applied text appears when a rating filter is applied", async () => {
+    axios.get.mockImplementation(() => Promise.resolve({ data: [] }));
+
+    render(
+      <ReviewsList
+      filteredReviews={initial.reviews.results}
+      filters={[]}
+      reviewsMeta={reviewsMeta}
+      currProductName={currProductName}
+      currProductId={currProductId}
+      updReviews={initial.reviews}
+      />
     );
 
     const parentDiv = screen.getByTestId('reviews-list');
@@ -197,7 +244,7 @@ describe("calcAvgRating" , () => {
   var testObj = {1: '1', 2: '1', 3: '0', 4: '0', 5: '0'};
 
   test('calcAvgRating should take an object and return a value representing average rating', () => {
-    expect(calcAvgRating(testObj)).toBe(1.5);
+    expect(calcAvgRating(testObj)).toBe("1.5");
   })
 });
 
@@ -270,16 +317,3 @@ describe("charChecker" , () => {
     expect(charChecker(testStateObjFailPartial, testProductChars)).toBe(false);
   })
 });
-
-// describe("sortRelevance", () => {
-
-//   test('sortRelevance function should return -1 when first argument larger than second', () => {
-//     expect(sortRelevance(testReviewArray[0],testReviewArray[2])).toEqual(-1);
-//   });
-
-//   test('sortRelevance function should return 1 when first argument smaller than second', () => {
-//     expect(sortRelevance(testReviewArray[2],testReviewArray[0])).toEqual(1);
-//   });
-
-// });
-
