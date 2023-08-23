@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import list from './productList';
 
 function NavSearch({ changeSearch }) {
-  const =[searchProducts, setSearchProducts] = useState([]);
+  const [searchProducts, setSearchProducts] = useState([]);
 
   const navSearch = (e) => {
     if (e.target.value.length > 0) {
