@@ -56,7 +56,7 @@ function Navbar({ changeSearch, numInCart }) {
           <i className="fa-regular fa-user fa-lg ml-2" />
           <i className="fa-regular fa-heart  fa-lg ml-2" />
           <i className="fa-solid fa-cart-shopping fa-lg ml-2">
-            <span className="text-[12px]">{numInCart}</span></i>
+          </i><span className="text-[16px]">{numInCart}</span>
         </div>
       </div>
       {
