@@ -465,3 +465,7 @@ progress::-webkit-progress-value {
   justify-content: space-between;
   font-size: small;
 }
+
+.testLiqDeath {
+  font-family: 'Chomsky', sans-serif;
+}
