@@ -2,8 +2,8 @@ import React from 'react'
 
 function Footer() {
   return (
-    <footer className="h-fit mt-[2vh] border-t">
-      <div className="flex justify-between w-[20vw] mx-auto py-[5px]">
+    <footer className="h-fit mt-[5vh] border-t">
+      <div className="flex justify-between w-[20vw] mx-auto py-[10px]">
         <span>BT</span>
         <span>|</span>
         <span>JW</span>

@@ -172,7 +172,8 @@ body {
   position: relative;
   flex-direction: column;
   height: 35vh;
-  left: 6vw;
+  left: 3vw;
+  padding: 5px;
   margin-top: 15px;
 }
 
@@ -245,10 +246,10 @@ body {
   z-index: 1;
   margin-left: 2%;
   --mask: linear-gradient(to bottom,
-    rgba(0,0,0, 0) 0,
-    rgba(0,0,0, 1) 8%,
-    rgba(0,0,0, 1) 92%,
-    rgba(0,0,0, 0) 100%
+    rgba(245, 245, 245, 0) 0,
+    rgba(245, 245, 245, 1) 8%,
+    rgba(245, 245, 245, 1) 92%,
+    rgba(245, 245, 245, 0) 100%
   );
   -webkit-mask: var(--mask);
   mask: var(--mask);
@@ -261,10 +262,10 @@ body {
   width: 12vmin;
   min-height: 100%;
   background-image: linear-gradient(to right,
-    rgba(0,0,0, 0) 0,
-    rgba(0,0,0, 0.7) 10%,
-    rgba(0,0,0, 0.7) 90%,
-    rgba(0,0,0, 0) 100%
+    rgba(245, 245, 245, 0) 0,
+    rgba(245, 245, 245, 0.7) 10%,
+    rgba(245, 245, 245, 0.7) 90%,
+    rgba(245, 245, 245, 0) 100%
   );
   align-items: center;
 }
@@ -385,7 +386,7 @@ img.default-image:hover {
 .original-price {
   text-decoration: line-through;
   font-style: italic;
-  color:#E60023;
+  color:#990000;
   margin-right: 2%;
 }
 
