@@ -1,7 +1,10 @@
 body {
   background-color: whitesmoke;
   font-family: 'Lato', sans-serif;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.4s;
 }
+
 
 /* default suggestions for light mode */
 
@@ -170,6 +173,10 @@ body {
 #related-carousel-container div div:first-of-type {
   margin-left: 0;
   padding-bottom: 5px;
+}
+
+.dark #outfitlist-button {
+  color: black;
 }
 
 /* DARK MODE FOR QUESTIONS AND ANSWERS ELEMENTS */
