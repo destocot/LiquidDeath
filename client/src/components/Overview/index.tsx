@@ -57,7 +57,7 @@ function Overview({ product, reviewsMeta, setConfetti, setNumInCart, windowSize 
 
   if (currentStyle) {
     return (
-      <div className="overview-container">
+      <div data-testid="overview" className="overview-container">
         <ImageGallery
           currentStyle={currentStyle}
           setCurrentStyle={setCurrentStyle}
