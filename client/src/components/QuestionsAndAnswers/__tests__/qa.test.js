@@ -3,6 +3,15 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import axios from "axios";
 
+// NAVBAR and FOOTER
+import Navbar from "../../NavbarFooter/Navbar";
+import NavSearch from "../../NavbarFooter/NavSearch";
+import Footer from "../../NavbarFooter/Footer";
+
+// HELPERS
+import utils from "../helpers/helpers";
+import fakeData from "../helpers/fakeData";
+
 // COMPONENTS
 import QuestionsAndAnswers from "../QuestionsAndAnswers";
 import Search from "../Features/Search/Search";
@@ -185,5 +194,48 @@ describe("ability to render all components and subcomponents", () => {
       /For authentication reasons, you will not be emailed/i
     );
     expect(emailWarning).toBeInTheDocument();
+  });
+});
+
+describe("testing helper functions for questions and answers", () => {
+  test("should sort by a property", () => {
+    const sortByHelpfulness = fakeData.fakeData.results.sort(
+      utils.compare("question_helpfulness")
+    );
+
+    const max = sortByHelpfulness[0].question_helpfulness;
+    for (var i = 1; i < sortByHelpfulness.length; i++) {
+      if (sortByHelpfulness[i].question_helpfulness > max) {
+        max = sortByHelpfulness[i].question_helpfulness;
+      }
+    }
+
+    expect(max).toBe(sortByHelpfulness[0].question_helpfulness);
+  });
+
+  test("should sort by username Seller", () => {
+    const sortedBySellers = utils.sortSellers(fakeData.fakeAnswers3.results);
+
+    expect(sortedBySellers[0].answerer_name).toBe("Seller");
+  });
+
+  test("should sort by username Seller", () => {
+    const sortedBySellers = utils.sortSellers(fakeData.fakeAnswers3.results);
+
+    expect(sortedBySellers[0].answerer_name).toBe("Seller");
+  });
+});
+
+describe("testing render of navbar and footer", () => {
+  test("should render navbar", () => {
+    render(<Navbar />);
+  });
+
+  test("should render navbar search", () => {
+    render(<NavSearch />);
+  });
+
+  test("should render footer", () => {
+    render(<Footer />);
   });
 });

@@ -91,12 +91,11 @@ export const List: FunctionComponent<ListProps> = ({
           onMouseEnter={() => {
             setHidden(false);
             setPulse(true);
-
           }}
           className={`text-4xl m-2 h-9 font-extrabold ${pulse ? "animate-pulse" : null
             }`}
-        >
-          Related
+        >Related
+          <i className=" fa-solid fa-2xs fa-square-caret-down ml-[10px]" />
         </span>
       </div>
       <div id="related-carousel-container"
@@ -110,7 +109,7 @@ export const List: FunctionComponent<ListProps> = ({
             setPulse(false);
           }}
         >
-          <i className="absolute fa-solid fa-lg hover:text-[32px] left-[6vw] fa-square-caret-up" onClick={() => { setHidden(true) }} />
+          <i className="absolute fa-solid fa-2xs text-2xl left-[6.5vw] fa-square-caret-up" onMouseEnter={() => { setHidden(true) }} />
           {related
             ? related.map((current, index) => {
               return (

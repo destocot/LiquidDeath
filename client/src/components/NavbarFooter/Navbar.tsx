@@ -40,7 +40,11 @@ function Navbar({ changeSearch, numInCart }) {
           <span className="mr-[16px]">Home</span>
           <span className="mr-[16px]">Sale</span>
           <span className="mr-[16px]">About</span>
-          <button id="color-mode-btn" className="hover:underline px-[1px] mr-[16px]" onClick={() => changeColor()}>{colorMode}</button>
+          <button id="color-mode-btn" className="hover:underline px-[1px] mr-[16px]" onClick={() => changeColor()}>
+            {(colorMode === 'Dark Mode') && <i className="fa-solid fa-moon" />}
+            {(colorMode === 'Light Mode') && <i className="fa-solid fa-sun" />}
+            {/* // {colorMode} */}
+          </button>
         </div>
       </div>
       <div className="row-start-1 row-end-2 col-start-5 col-end-7 justify-self-end">
@@ -56,7 +60,7 @@ function Navbar({ changeSearch, numInCart }) {
           <i className="fa-regular fa-user fa-lg ml-2" />
           <i className="fa-regular fa-heart  fa-lg ml-2" />
           <i className="fa-solid fa-cart-shopping fa-lg ml-2">
-            <span className="text-[12px]">{numInCart}</span></i>
+          </i><span className="text-[16px]">{numInCart}</span>
         </div>
       </div>
       {
