@@ -86,49 +86,48 @@ export const List: FunctionComponent<ListProps> = ({
     <>
       <OutfitList outfitList={outfitList} updateOutfitList={updateOutfitList} />
 
-      <div className="flex flex-col items-center">
-        <em
+      <div id="hide-my-list" className="flex flex-col items-center" >
+        <span
           onMouseEnter={() => {
             setHidden(false);
             setPulse(true);
+
           }}
-          className={`text-2xl h-9 font-extrabold ${
-            pulse ? "animate-pulse" : null
-          }`}
+          className={`text-4xl m-2 h-9 font-extrabold ${pulse ? "animate-pulse" : null
+            }`}
         >
           Related
-        </em>
+        </span>
       </div>
-      <div
-        className={`transition-all duration-400 delay-75 ease-in-out ${
-          hidden ? "opacity-0" : "opacity-100"
-        }`}
+      <div id="related-carousel-container"
+        className={`transition-all duration-400 delay-75 ease-in-out mx-[auto] w-[80vw] ${hidden ? "opacity-0" : "opacity-100"
+          }`}
       >
         <div
-          className={`container-xl flex flex-row overflow-auto max-w-full min-w-screen space-x-24 ${
-            hidden ? "hidden" : "animation: fadeIn 9s"
-          }`}
+          className={`container-xl flex flex-row overflow-auto max-w-full min-w-screen space-x-24 ${hidden ? "hidden" : "animation: fadeIn 9s"
+            }`}
           onClick={() => {
             setPulse(false);
           }}
         >
+          <i className="absolute fa-solid fa-lg hover:text-[32px] left-[6vw] fa-square-caret-up" onClick={() => { setHidden(true) }} />
           {related
             ? related.map((current, index) => {
-                return (
-                  <div className="min-w-max">
-                    <Links
-                      currListProduct={current}
-                      updatePropInFocus={updateCurrentProduct}
-                      changePropInFocus={setCurrentProduct}
-                      style={relatedStyles[index]}
-                      outfitList={outfitList}
-                      updateOutfitList={updateOutfitList}
-                      hidden={hidden}
-                      setHidden={setHidden}
-                    />
-                  </div>
-                );
-              })
+              return (
+                <div className="min-w-max" key={index}>
+                  <Links
+                    currListProduct={current}
+                    updatePropInFocus={updateCurrentProduct}
+                    changePropInFocus={setCurrentProduct}
+                    style={relatedStyles[index]}
+                    outfitList={outfitList}
+                    updateOutfitList={updateOutfitList}
+                    hidden={hidden}
+                    setHidden={setHidden}
+                  />
+                </div>
+              );
+            })
             : null}
         </div>
       </div>

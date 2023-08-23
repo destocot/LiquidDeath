@@ -3,9 +3,9 @@ import StarsAndReviews from './StarsAndReviews';
 import ProductIdentifiers from './ProductIdentifiers';
 import helpers from '../../../../helpPlease';
 
-function ProductInfo({product, reviewsMeta, currentStyle, setConfetti}) {
+function ProductInfo({ product, reviewsMeta, currentStyle, setConfetti }) {
   return (
-    <div className="product-info-container">
+    <div className="product-info-container ml-5">
       {helpers.reviewScore(reviewsMeta) ?
         <StarsAndReviews reviewScore={helpers.reviewScore(reviewsMeta)} setConfetti={setConfetti} /> : null}
       <ProductIdentifiers product={product} currentStyle={currentStyle} />

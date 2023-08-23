@@ -11,26 +11,29 @@ export const OutfitList: React.FC<OutfitProps> = ({
   updateOutfitList,
 }) => {
   const [hidden, setHidden] = useState<boolean>(true);
+
+  const showOutfits = (e) => {
+    hidden ? setHidden(false) : setHidden(true);
+    e.target.classList.toggle('turn-outfitlist-btn');
+  }
+
   return (
     <div>
-      <button
-        onClick={() => {
-          hidden ? setHidden(false) : setHidden(true);
-        }}
-        className=" outline-4 outline-black outline-double rounded-lg w-36 float-right block fixed right-0 top-96 -rotate-90  text-center h-max "
+      <button id="outfitlist-button"
+        onClick={(e) => showOutfits(e)}
+        className="z-[10] w-36 float-right block border-2 fixed right-0 top-[10rem] -rotate-90  text-center h-max bg-gray-300"
       >
         Outfit List
       </button>
       {hidden ? null : (
-        <div className="rounded-lg w-36 float-right block fixed right-0 top-96   text-center h-max outline-double outline-black row bg-gray-300">
-          <div className="font-bold border-black border-b-8">
-            {" "}
+        <div className="w-36 float-right block fixed right-0 top-[8.5rem]   text-center h-max row bg-gray-300 z-20">
+          <div id="outfitlist-map-container">
             {outfitList.map((current) => {
               return (
-                <div>
+                <div className="border">
                   <em>{current.name}</em>
                   <img src={current.style} />
-                  <em>{current.default_price}$</em>
+                  <em>${current.default_price.slice(0, -3)}</em>
                 </div>
               );
             })}

@@ -162,7 +162,7 @@ let helpers = {
         return -1;
       }
       return 0;
-      });
+    });
 
     // console.log('after sort: ', result);
     return result;
@@ -231,20 +231,20 @@ let helpers = {
   priceChecker: (currentStyle) => {
     if (currentStyle.sale_price === null) {
       return (
-        <p className="price">
+        <p className="price text-[20px]">
           $
-          {currentStyle.original_price}
+          {currentStyle.original_price.slice(0, -3)}
         </p>
       );
     }
     return (
-      <p className="price">
-        <span className="original-price">
+      <p className="price text-[20px]">
+        <span className="original-price ">
           $
-          {currentStyle.original_price}
+          {currentStyle.original_price.slice(0, -3)}
         </span>
         $
-        {currentStyle.sale_price}
+        {currentStyle.sale_price.slice(0, -3)}
       </p>
     );
   },
@@ -261,19 +261,19 @@ let helpers = {
     let matrix = [];
     styles.forEach((style, i) => {
       row.push(
-      <li key={style.style_id} className="style-list-item">
-        <div className="style" >
-          <img
-            id={i}
-            alt={style.name}
-            className="style-thumbnail"
-            src={style.photos[0].thumbnail_url}
-            onClick={setCurrentStyle}
-            draggable="false"
-          />
-          {currentStyle.style_id === style.style_id ? selected() : null}
-        </div>
-      </li>
+        <li key={style.style_id} className="style-list-item">
+          <div className="style" >
+            <img
+              id={i}
+              alt={style.name}
+              className="style-thumbnail"
+              src={style.photos[0].thumbnail_url}
+              onClick={setCurrentStyle}
+              draggable="false"
+            />
+            {currentStyle.style_id === style.style_id ? selected() : null}
+          </div>
+        </li>
       );
       if (row.length === 4) {
         matrix.push(<ul key={matrix.length} className="style-row">{row}</ul>)
