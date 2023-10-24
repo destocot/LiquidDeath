@@ -45,7 +45,7 @@
 
 ## About The Project
 
-Liquid Death is a front-end application that models a product page for an eCommerce
+LIQUiD Mart is a front-end application that models a product page for an eCommerce
 website using React. It prominently features an overview section,
 related products, user-generated questions and answers, and customer
 reviews.
